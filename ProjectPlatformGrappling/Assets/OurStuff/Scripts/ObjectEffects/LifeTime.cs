@@ -7,6 +7,8 @@ public class LifeTime : MonoBehaviour {
 
     IEnumerator lifeIE;
 
+    public GameObject deathPar;
+
     void Awake()
     {
         if (lifeIE != null)
@@ -41,6 +43,14 @@ public class LifeTime : MonoBehaviour {
         {
             gameObject.SetActive(false);
         }
+
+        if (deathPar != null)
+        {
+            GameObject temp = Instantiate(deathPar.gameObject);
+            temp.transform.position = transform.position;
+            Destroy(temp.gameObject, 3);
+        }
+
         lifeIE = null;
     }
 }

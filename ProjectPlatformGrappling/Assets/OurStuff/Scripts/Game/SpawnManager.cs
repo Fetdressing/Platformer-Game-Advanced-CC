@@ -166,7 +166,7 @@ public class SpawnManager : BaseClass {
         yield return mainCameraS.SetRot(latestSpawn.forward, false);
         player.GetComponent<PowerManager>().Reset();
         player.GetComponent<StagMovement>().Reset();
-        player.GetComponent<StagShooter>().Reset();
+        //player.GetComponent<StagShooter>().Reset();
         player.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 
         if(spawnEffectObject != null)

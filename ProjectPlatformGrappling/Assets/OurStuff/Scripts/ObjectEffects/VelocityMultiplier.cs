@@ -8,6 +8,9 @@ public class VelocityMultiplier : MonoBehaviour {
 
     public bool stickToGround = false;
     public float stickToGroundAmount = 5;
+
+    protected bool readyToGo = true;
+    public float activeDelay = 1.0f; //hur länge den ska vänta efter active innan den börjar lägga på värde
 	// Use this for initialization
 	void Start () {
         o_Rigidbody = GetComponent<Rigidbody>();
@@ -38,4 +41,15 @@ public class VelocityMultiplier : MonoBehaviour {
             }
         }
 	}
+
+    void OnEnable()
+    {
+        readyToGo = false;
+        StartCoroutine(WaitActive());
+    }
+
+    IEnumerator WaitActive()
+    {
+        yield return new WaitForSeconds(activeDelay);
+    }
 }

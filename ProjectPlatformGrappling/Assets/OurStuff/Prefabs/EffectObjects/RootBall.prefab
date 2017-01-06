@@ -157,10 +157,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34561062765b25c4391e0ab726209a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplierValue: 10
+  multiplierValue: 5
   maxVelocity: 140
   stickToGround: 1
   stickToGroundAmount: 0.7
+  activeDelay: 1
 --- !u!114 &114000011775272376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -174,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroy: 0
   lifeTime: 20
+  deathPar: {fileID: 1000010212710648, guid: a915930ee2302f048b877d4eba119dd4, type: 2}
 --- !u!114 &114000012678742412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -211,7 +213,7 @@ MonoBehaviour:
   breakingAnim: {fileID: 0}
   animSpeed: 1
   idleASpeed: 1
-  deathPar: {fileID: 1000013848181366, guid: fdf0bafb66b5bdf45b8bdfc763325b82, type: 2}
+  deathPar: {fileID: 1000010212710648, guid: a915930ee2302f048b877d4eba119dd4, type: 2}
 --- !u!135 &135000013383828992
 SphereCollider:
   m_ObjectHideFlags: 1
