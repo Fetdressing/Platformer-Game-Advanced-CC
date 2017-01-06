@@ -1,0 +1,228 @@
+fileFormatVersion: 2
+guid: 2807b2896c847184289b3821d5a9acd0
+timeCreated: 1483567340
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: armjoint10
+    100002: armjoint11
+    100004: armjoint12
+    100006: armjoint13
+    100008: armjoint14
+    100010: armjoint15
+    100012: armjoint16
+    100014: armjoint9
+    100016: butjointLeft
+    100018: butjointRight
+    100020: joint1
+    100022: joint2
+    100024: legjoint15
+    100026: legjoint16
+    100028: legjoint17
+    100030: legjoint18
+    100032: legjoint19
+    100034: legjoint20
+    100036: legjoint21
+    100038: legjoint22
+    100040: nurbsCircle1
+    100042: spinejoint1
+    100044: spinejoint2
+    100046: spinejoint3
+    100048: spinejoint4
+    100050: spinejoint5
+    100052: spinejoint6
+    100054: spinejoint7
+    100056: spinejoint8
+    100058: WomanTree
+    100060: //RootNode
+    400000: armjoint10
+    400002: armjoint11
+    400004: armjoint12
+    400006: armjoint13
+    400008: armjoint14
+    400010: armjoint15
+    400012: armjoint16
+    400014: armjoint9
+    400016: butjointLeft
+    400018: butjointRight
+    400020: joint1
+    400022: joint2
+    400024: legjoint15
+    400026: legjoint16
+    400028: legjoint17
+    400030: legjoint18
+    400032: legjoint19
+    400034: legjoint20
+    400036: legjoint21
+    400038: legjoint22
+    400040: nurbsCircle1
+    400042: spinejoint1
+    400044: spinejoint2
+    400046: spinejoint3
+    400048: spinejoint4
+    400050: spinejoint5
+    400052: spinejoint6
+    400054: spinejoint7
+    400056: spinejoint8
+    400058: WomanTree
+    400060: //RootNode
+    4300000: WomanTree
+    7400000: WomanTree_Idle
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: WomanTree
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: WomanTree_Idle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 30
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: nurbsCircle1
+        weight: 1
+      - path: nurbsCircle1/spinejoint1
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/butjointLeft
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/butjointRight
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/legjoint15
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/legjoint15/legjoint16
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/legjoint15/legjoint16/legjoint17
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/legjoint15/legjoint16/legjoint17/legjoint18
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/legjoint19
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/legjoint19/legjoint20
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/legjoint19/legjoint20/legjoint21
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/legjoint19/legjoint20/legjoint21/legjoint22
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/spinejoint2
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/spinejoint2/joint1
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/spinejoint2/joint2
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/spinejoint2/spinejoint3
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/spinejoint2/spinejoint3/armjoint9
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/spinejoint2/spinejoint3/armjoint9/armjoint10
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/spinejoint2/spinejoint3/armjoint9/armjoint10/armjoint11
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/spinejoint2/spinejoint3/armjoint9/armjoint10/armjoint11/armjoint12
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/spinejoint2/spinejoint3/armjoint13
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/spinejoint2/spinejoint3/armjoint13/armjoint14
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/spinejoint2/spinejoint3/armjoint13/armjoint14/armjoint15
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/spinejoint2/spinejoint3/armjoint13/armjoint14/armjoint15/armjoint16
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/spinejoint2/spinejoint3/spinejoint4
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/spinejoint2/spinejoint3/spinejoint4/spinejoint5
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/spinejoint2/spinejoint3/spinejoint4/spinejoint5/spinejoint6
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/spinejoint2/spinejoint3/spinejoint4/spinejoint5/spinejoint6/spinejoint7
+        weight: 1
+      - path: nurbsCircle1/spinejoint1/spinejoint2/spinejoint3/spinejoint4/spinejoint5/spinejoint6/spinejoint7/spinejoint8
+        weight: 1
+      - path: WomanTree
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 400
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,562 @@
+fileFormatVersion: 2
+guid: f3c87923734207744888e229b3ae8386
+timeCreated: 1478272335
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: BlueBum1
+    100004: Earjoint10
+    100006: Earjoint7
+    100008: Earjoint8
+    100010: Earjoint9
+    100012: EyeBrows
+    100014: HeadTailjoint1
+    100016: HeadTailjoint2
+    100018: HeadTailjoint3
+    100020: HeadTailjoint4
+    100022: HeadTailjoint5
+    100024: HeadTailjoint6
+    100026: Jawjoint1
+    100028: Jawjoint2
+    100030: joint1
+    100032: joint2
+    100034: joint3
+    100036: joint4
+    100038: joint5
+    100040: joint6
+    100042: joint7
+    100044: joint8
+    100046: LeftLegjoint10
+    100048: LeftLegjoint11
+    100050: LeftLegjoint7
+    100052: LeftLegjoint8
+    100054: LeftLegjoint9
+    100056: nurbsCircle1
+    100058: nurbsCircle3
+    100060: RightLegjoint12
+    100062: RightLegjoint13
+    100064: RightLegjoint14
+    100066: RightLegjoint15
+    100068: RightLegjoint16
+    100070: Spinejoint1
+    100072: Spinejoint2
+    100074: Spinejoint3
+    100076: Spinejoint4
+    100078: transform1
+    100080: transform12
+    100082: transform13
+    100084: transform2
+    100086: transform3
+    100088: transform4
+    100090: transform5
+    100092: transform6
+    100094: transform7
+    100096: transform8
+    100098: transform9
+    400000: //RootNode
+    400002: BlueBum1
+    400004: Earjoint10
+    400006: Earjoint7
+    400008: Earjoint8
+    400010: Earjoint9
+    400012: EyeBrows
+    400014: HeadTailjoint1
+    400016: HeadTailjoint2
+    400018: HeadTailjoint3
+    400020: HeadTailjoint4
+    400022: HeadTailjoint5
+    400024: HeadTailjoint6
+    400026: Jawjoint1
+    400028: Jawjoint2
+    400030: joint1
+    400032: joint2
+    400034: joint3
+    400036: joint4
+    400038: joint5
+    400040: joint6
+    400042: joint7
+    400044: joint8
+    400046: LeftLegjoint10
+    400048: LeftLegjoint11
+    400050: LeftLegjoint7
+    400052: LeftLegjoint8
+    400054: LeftLegjoint9
+    400056: nurbsCircle1
+    400058: nurbsCircle3
+    400060: RightLegjoint12
+    400062: RightLegjoint13
+    400064: RightLegjoint14
+    400066: RightLegjoint15
+    400068: RightLegjoint16
+    400070: Spinejoint1
+    400072: Spinejoint2
+    400074: Spinejoint3
+    400076: Spinejoint4
+    400078: transform1
+    400080: transform12
+    400082: transform13
+    400084: transform2
+    400086: transform3
+    400088: transform4
+    400090: transform5
+    400092: transform6
+    400094: transform7
+    400096: transform8
+    400098: transform9
+    4300000: BlueBum1
+    7400000: BlueBum_Idle
+    7400002: BlueBum_Run
+    7400004: BlueBum_Attack
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: BlueBum1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: BlueBum_Idle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 23
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BlueBum1
+        weight: 1
+      - path: nurbsCircle1
+        weight: 1
+      - path: nurbsCircle1/transform9
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/LeftLegjoint7
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/LeftLegjoint7/LeftLegjoint8
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/LeftLegjoint7/LeftLegjoint8/LeftLegjoint9
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/LeftLegjoint7/LeftLegjoint8/LeftLegjoint9/LeftLegjoint10
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/LeftLegjoint7/LeftLegjoint8/LeftLegjoint9/LeftLegjoint10/LeftLegjoint11
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/RightLegjoint12
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/RightLegjoint12/RightLegjoint13
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/RightLegjoint12/RightLegjoint13/RightLegjoint14
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/RightLegjoint12/RightLegjoint13/RightLegjoint14/RightLegjoint15
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/RightLegjoint12/RightLegjoint13/RightLegjoint14/RightLegjoint15/RightLegjoint16
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform1
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform1/joint3
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform2
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform2/joint2
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform3
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform3/joint1
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform4
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform4/joint4
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform5
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform5/joint5
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform6
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform6/joint6
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform7
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform8
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Jawjoint1
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Jawjoint1/Jawjoint2
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/nurbsCircle3
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/nurbsCircle3/transform12
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/nurbsCircle3/transform12/joint7
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/nurbsCircle3/transform13
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/nurbsCircle3/transform13/joint8
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Earjoint7
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Earjoint7/Earjoint8
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Earjoint9
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Earjoint9/Earjoint10
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1/HeadTailjoint2
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1/HeadTailjoint2/HeadTailjoint3
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1/HeadTailjoint2/HeadTailjoint3/HeadTailjoint4
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1/HeadTailjoint2/HeadTailjoint3/HeadTailjoint4/HeadTailjoint5
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1/HeadTailjoint2/HeadTailjoint3/HeadTailjoint4/HeadTailjoint5/HeadTailjoint6
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: BlueBum_Run
+      takeName: Take 001
+      firstFrame: 26
+      lastFrame: 44
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BlueBum1
+        weight: 1
+      - path: nurbsCircle1
+        weight: 1
+      - path: nurbsCircle1/transform9
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/LeftLegjoint7
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/LeftLegjoint7/LeftLegjoint8
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/LeftLegjoint7/LeftLegjoint8/LeftLegjoint9
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/LeftLegjoint7/LeftLegjoint8/LeftLegjoint9/LeftLegjoint10
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/LeftLegjoint7/LeftLegjoint8/LeftLegjoint9/LeftLegjoint10/LeftLegjoint11
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/RightLegjoint12
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/RightLegjoint12/RightLegjoint13
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/RightLegjoint12/RightLegjoint13/RightLegjoint14
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/RightLegjoint12/RightLegjoint13/RightLegjoint14/RightLegjoint15
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/RightLegjoint12/RightLegjoint13/RightLegjoint14/RightLegjoint15/RightLegjoint16
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform1
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform1/joint3
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform2
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform2/joint2
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform3
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform3/joint1
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform4
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform4/joint4
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform5
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform5/joint5
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform6
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform6/joint6
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform7
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform8
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Jawjoint1
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Jawjoint1/Jawjoint2
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/nurbsCircle3
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/nurbsCircle3/transform12
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/nurbsCircle3/transform12/joint7
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/nurbsCircle3/transform13
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/nurbsCircle3/transform13/joint8
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Earjoint7
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Earjoint7/Earjoint8
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Earjoint9
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Earjoint9/Earjoint10
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1/HeadTailjoint2
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1/HeadTailjoint2/HeadTailjoint3
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1/HeadTailjoint2/HeadTailjoint3/HeadTailjoint4
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1/HeadTailjoint2/HeadTailjoint3/HeadTailjoint4/HeadTailjoint5
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1/HeadTailjoint2/HeadTailjoint3/HeadTailjoint4/HeadTailjoint5/HeadTailjoint6
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: BlueBum_Attack
+      takeName: Take 001
+      firstFrame: 46
+      lastFrame: 60
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BlueBum1
+        weight: 1
+      - path: nurbsCircle1
+        weight: 1
+      - path: nurbsCircle1/transform9
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/LeftLegjoint7
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/LeftLegjoint7/LeftLegjoint8
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/LeftLegjoint7/LeftLegjoint8/LeftLegjoint9
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/LeftLegjoint7/LeftLegjoint8/LeftLegjoint9/LeftLegjoint10
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/LeftLegjoint7/LeftLegjoint8/LeftLegjoint9/LeftLegjoint10/LeftLegjoint11
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/RightLegjoint12
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/RightLegjoint12/RightLegjoint13
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/RightLegjoint12/RightLegjoint13/RightLegjoint14
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/RightLegjoint12/RightLegjoint13/RightLegjoint14/RightLegjoint15
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/RightLegjoint12/RightLegjoint13/RightLegjoint14/RightLegjoint15/RightLegjoint16
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform1
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform1/joint3
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform2
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform2/joint2
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform3
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform3/joint1
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform4
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform4/joint4
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform5
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform5/joint5
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform6
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform6/joint6
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform7
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/EyeBrows/transform8
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Jawjoint1
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Jawjoint1/Jawjoint2
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/nurbsCircle3
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/nurbsCircle3/transform12
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/nurbsCircle3/transform12/joint7
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/nurbsCircle3/transform13
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/nurbsCircle3/transform13/joint8
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Earjoint7
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Earjoint7/Earjoint8
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Earjoint9
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Earjoint9/Earjoint10
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1/HeadTailjoint2
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1/HeadTailjoint2/HeadTailjoint3
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1/HeadTailjoint2/HeadTailjoint3/HeadTailjoint4
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1/HeadTailjoint2/HeadTailjoint3/HeadTailjoint4/HeadTailjoint5
+        weight: 1
+      - path: nurbsCircle1/transform9/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/HeadTailjoint1/HeadTailjoint2/HeadTailjoint3/HeadTailjoint4/HeadTailjoint5/HeadTailjoint6
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 120
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

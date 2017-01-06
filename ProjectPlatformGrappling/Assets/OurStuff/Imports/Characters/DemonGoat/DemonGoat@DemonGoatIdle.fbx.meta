@@ -1,0 +1,244 @@
+fileFormatVersion: 2
+guid: 293174ee67aaca043aac7344d10ec1a3
+timeCreated: 1480086943
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: BaseControl
+    100002: DemonGoat
+    100004: //RootNode
+    100006: leftarmjoint1
+    100008: leftarmjoint2
+    100010: leftarmjoint3
+    100012: leftarmjoint4
+    100014: leftarmjoint5
+    100016: leftlegjoint1
+    100018: leftlegjoint2
+    100020: leftlegjoint3
+    100022: leftlegjoint4
+    100024: leftlegjoint5
+    100026: leftlegjoint6
+    100028: rightarmjoint10
+    100030: rightarmjoint6
+    100032: rightarmjoint7
+    100034: rightarmjoint8
+    100036: rightarmjoint9
+    100038: rightlegjoint10
+    100040: rightlegjoint11
+    100042: rightlegjoint12
+    100044: rightlegjoint7
+    100046: rightlegjoint8
+    100048: rightlegjoint9
+    100050: RootController
+    100052: spinejoint1
+    100054: spinejoint2
+    100056: spinejoint3
+    100058: spinejoint4
+    100060: spinejoint5
+    100062: spinejoint6
+    100064: spinejoint7
+    100066: spinejoint8
+    100068: spinejoint9
+    400000: BaseControl
+    400002: DemonGoat
+    400004: //RootNode
+    400006: leftarmjoint1
+    400008: leftarmjoint2
+    400010: leftarmjoint3
+    400012: leftarmjoint4
+    400014: leftarmjoint5
+    400016: leftlegjoint1
+    400018: leftlegjoint2
+    400020: leftlegjoint3
+    400022: leftlegjoint4
+    400024: leftlegjoint5
+    400026: leftlegjoint6
+    400028: rightarmjoint10
+    400030: rightarmjoint6
+    400032: rightarmjoint7
+    400034: rightarmjoint8
+    400036: rightarmjoint9
+    400038: rightlegjoint10
+    400040: rightlegjoint11
+    400042: rightlegjoint12
+    400044: rightlegjoint7
+    400046: rightlegjoint8
+    400048: rightlegjoint9
+    400050: RootController
+    400052: spinejoint1
+    400054: spinejoint2
+    400056: spinejoint3
+    400058: spinejoint4
+    400060: spinejoint5
+    400062: spinejoint6
+    400064: spinejoint7
+    400066: spinejoint8
+    400068: spinejoint9
+    4300000: DemonGoat
+    7400000: DemonGoatIdle
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: DemonGoat
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: DemonGoatIdle
+      takeName: Take 001
+      firstFrame: 21
+      lastFrame: 44
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: DemonGoat
+        weight: 1
+      - path: RootController
+        weight: 1
+      - path: RootController/BaseControl
+        weight: 1
+      - path: RootController/spinejoint1
+        weight: 1
+      - path: RootController/spinejoint1/leftlegjoint1
+        weight: 1
+      - path: RootController/spinejoint1/leftlegjoint1/leftlegjoint2
+        weight: 1
+      - path: RootController/spinejoint1/leftlegjoint1/leftlegjoint2/leftlegjoint3
+        weight: 1
+      - path: RootController/spinejoint1/leftlegjoint1/leftlegjoint2/leftlegjoint3/leftlegjoint4
+        weight: 1
+      - path: RootController/spinejoint1/leftlegjoint1/leftlegjoint2/leftlegjoint3/leftlegjoint4/leftlegjoint5
+        weight: 1
+      - path: RootController/spinejoint1/leftlegjoint1/leftlegjoint2/leftlegjoint3/leftlegjoint4/leftlegjoint5/leftlegjoint6
+        weight: 1
+      - path: RootController/spinejoint1/rightlegjoint7
+        weight: 1
+      - path: RootController/spinejoint1/rightlegjoint7/rightlegjoint8
+        weight: 1
+      - path: RootController/spinejoint1/rightlegjoint7/rightlegjoint8/rightlegjoint9
+        weight: 1
+      - path: RootController/spinejoint1/rightlegjoint7/rightlegjoint8/rightlegjoint9/rightlegjoint10
+        weight: 1
+      - path: RootController/spinejoint1/rightlegjoint7/rightlegjoint8/rightlegjoint9/rightlegjoint10/rightlegjoint11
+        weight: 1
+      - path: RootController/spinejoint1/rightlegjoint7/rightlegjoint8/rightlegjoint9/rightlegjoint10/rightlegjoint11/rightlegjoint12
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint2
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint2/spinejoint3
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint2/spinejoint3/leftarmjoint1
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint2/spinejoint3/leftarmjoint1/leftarmjoint2
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint2/spinejoint3/leftarmjoint1/leftarmjoint2/leftarmjoint3
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint2/spinejoint3/leftarmjoint1/leftarmjoint2/leftarmjoint3/leftarmjoint4
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint2/spinejoint3/leftarmjoint1/leftarmjoint2/leftarmjoint3/leftarmjoint4/leftarmjoint5
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint2/spinejoint3/rightarmjoint6
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint2/spinejoint3/rightarmjoint6/rightarmjoint7
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint2/spinejoint3/rightarmjoint6/rightarmjoint7/rightarmjoint8
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint2/spinejoint3/rightarmjoint6/rightarmjoint7/rightarmjoint8/rightarmjoint9
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint2/spinejoint3/rightarmjoint6/rightarmjoint7/rightarmjoint8/rightarmjoint9/rightarmjoint10
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint2/spinejoint3/spinejoint4
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint2/spinejoint3/spinejoint4/spinejoint5
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint2/spinejoint3/spinejoint4/spinejoint5/spinejoint6
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint7
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint7/spinejoint8
+        weight: 1
+      - path: RootController/spinejoint1/spinejoint7/spinejoint8/spinejoint9
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,1159 @@
+fileFormatVersion: 2
+guid: 9fd2d188e54df2440bec9fecf3b6372a
+timeCreated: 1478039842
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Handjoint1
+    100002: Handjoint10
+    100004: Handjoint11
+    100006: Handjoint12
+    100008: Handjoint13
+    100010: Handjoint14
+    100012: Handjoint15
+    100014: Handjoint16
+    100016: Handjoint17
+    100018: Handjoint18
+    100020: Handjoint2
+    100022: Handjoint3
+    100024: Handjoint4
+    100026: Handjoint5
+    100028: Handjoint6
+    100030: Handjoint7
+    100032: Handjoint8
+    100034: Handjoint9
+    100036: HandLeftArmjoint5
+    100038: HandRightArmjoint8
+    100040: HeadSpinejoint1
+    100042: HeadSpinejoint6
+    100044: HeadSpinejoint7
+    100046: HeadSpinejoint8
+    100048: HeadSpinejoint9
+    100050: LeftArmjoint1
+    100052: LeftArmjoint3
+    100054: LeftArmjoint4
+    100056: LeftBackLegjoint1
+    100058: LeftBackLegjoint2
+    100060: LeftBackLegjoint3
+    100062: LeftBackLegjoint4
+    100064: //RootNode
+    100066: MaggotFace1
+    100068: nurbsCircle1
+    100070: RightArmjoint2
+    100072: RightArmjoint6
+    100074: RightArmjoint7
+    100076: RightBackLegjoint5
+    100078: RightBackLegjoint6
+    100080: RightBackLegjoint7
+    100082: RightBackLegjoint8
+    100084: Spinejoint1
+    100086: Spinejoint10
+    100088: Spinejoint11
+    100090: Spinejoint12
+    100092: Spinejoint2
+    100094: Spinejoint3
+    100096: Spinejoint4
+    100098: Spinejoint5
+    100100: TailSpinejoint13
+    100102: TailSpinejoint14
+    100104: TailSpinejoint15
+    100106: TailSpinejoint16
+    100108: TailSpinejoint17
+    400000: Handjoint1
+    400002: Handjoint10
+    400004: Handjoint11
+    400006: Handjoint12
+    400008: Handjoint13
+    400010: Handjoint14
+    400012: Handjoint15
+    400014: Handjoint16
+    400016: Handjoint17
+    400018: Handjoint18
+    400020: Handjoint2
+    400022: Handjoint3
+    400024: Handjoint4
+    400026: Handjoint5
+    400028: Handjoint6
+    400030: Handjoint7
+    400032: Handjoint8
+    400034: Handjoint9
+    400036: HandLeftArmjoint5
+    400038: HandRightArmjoint8
+    400040: HeadSpinejoint1
+    400042: HeadSpinejoint6
+    400044: HeadSpinejoint7
+    400046: HeadSpinejoint8
+    400048: HeadSpinejoint9
+    400050: LeftArmjoint1
+    400052: LeftArmjoint3
+    400054: LeftArmjoint4
+    400056: LeftBackLegjoint1
+    400058: LeftBackLegjoint2
+    400060: LeftBackLegjoint3
+    400062: LeftBackLegjoint4
+    400064: //RootNode
+    400066: MaggotFace1
+    400068: nurbsCircle1
+    400070: RightArmjoint2
+    400072: RightArmjoint6
+    400074: RightArmjoint7
+    400076: RightBackLegjoint5
+    400078: RightBackLegjoint6
+    400080: RightBackLegjoint7
+    400082: RightBackLegjoint8
+    400084: Spinejoint1
+    400086: Spinejoint10
+    400088: Spinejoint11
+    400090: Spinejoint12
+    400092: Spinejoint2
+    400094: Spinejoint3
+    400096: Spinejoint4
+    400098: Spinejoint5
+    400100: TailSpinejoint13
+    400102: TailSpinejoint14
+    400104: TailSpinejoint15
+    400106: TailSpinejoint16
+    400108: TailSpinejoint17
+    4300000: MaggotFace1
+    7400000: MaggotFace_Walk
+    7400002: MaggotFace_Run
+    7400004: MaggotFace_Idle
+    7400006: MaggotFace_Jump
+    7400008: MaggotFace_Attack
+    7400010: MaggotFace_Swim
+    7400012: MaggotFace_Roll
+    9500000: //RootNode
+    11100000: MaggotFace1
+    11100002: //RootNode
+    13700000: MaggotFace1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: MaggotFace_Walk
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 20
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MaggotFace1
+        weight: 1
+      - path: nurbsCircle1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2/LeftBackLegjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2/LeftBackLegjoint3/LeftBackLegjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6/RightBackLegjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6/RightBackLegjoint7/RightBackLegjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1/Handjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1/Handjoint2/Handjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4/Handjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4/Handjoint5/Handjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7/Handjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7/Handjoint8/Handjoint9
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10/Handjoint11
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10/Handjoint11/Handjoint12
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13/Handjoint14
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13/Handjoint14/Handjoint15
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16/Handjoint17
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16/Handjoint17/Handjoint18
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint9
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint12
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint11
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint10
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15/TailSpinejoint16
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15/TailSpinejoint16/TailSpinejoint17
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: MaggotFace_Run
+      takeName: Take 001
+      firstFrame: 23
+      lastFrame: 49
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MaggotFace1
+        weight: 1
+      - path: nurbsCircle1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2/LeftBackLegjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2/LeftBackLegjoint3/LeftBackLegjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6/RightBackLegjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6/RightBackLegjoint7/RightBackLegjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1/Handjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1/Handjoint2/Handjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4/Handjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4/Handjoint5/Handjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7/Handjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7/Handjoint8/Handjoint9
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10/Handjoint11
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10/Handjoint11/Handjoint12
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13/Handjoint14
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13/Handjoint14/Handjoint15
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16/Handjoint17
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16/Handjoint17/Handjoint18
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint9
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint12
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint11
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint10
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15/TailSpinejoint16
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15/TailSpinejoint16/TailSpinejoint17
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: MaggotFace_Idle
+      takeName: Take 001
+      firstFrame: 53
+      lastFrame: 70
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MaggotFace1
+        weight: 1
+      - path: nurbsCircle1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2/LeftBackLegjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2/LeftBackLegjoint3/LeftBackLegjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6/RightBackLegjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6/RightBackLegjoint7/RightBackLegjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1/Handjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1/Handjoint2/Handjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4/Handjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4/Handjoint5/Handjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7/Handjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7/Handjoint8/Handjoint9
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10/Handjoint11
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10/Handjoint11/Handjoint12
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13/Handjoint14
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13/Handjoint14/Handjoint15
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16/Handjoint17
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16/Handjoint17/Handjoint18
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint9
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint12
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint11
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint10
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15/TailSpinejoint16
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15/TailSpinejoint16/TailSpinejoint17
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: MaggotFace_Jump
+      takeName: Take 001
+      firstFrame: 73
+      lastFrame: 91
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MaggotFace1
+        weight: 1
+      - path: nurbsCircle1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2/LeftBackLegjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2/LeftBackLegjoint3/LeftBackLegjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6/RightBackLegjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6/RightBackLegjoint7/RightBackLegjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1/Handjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1/Handjoint2/Handjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4/Handjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4/Handjoint5/Handjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7/Handjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7/Handjoint8/Handjoint9
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10/Handjoint11
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10/Handjoint11/Handjoint12
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13/Handjoint14
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13/Handjoint14/Handjoint15
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16/Handjoint17
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16/Handjoint17/Handjoint18
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint9
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint12
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint11
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint10
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15/TailSpinejoint16
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15/TailSpinejoint16/TailSpinejoint17
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: MaggotFace_Attack
+      takeName: Take 001
+      firstFrame: 93
+      lastFrame: 105
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MaggotFace1
+        weight: 1
+      - path: nurbsCircle1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2/LeftBackLegjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2/LeftBackLegjoint3/LeftBackLegjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6/RightBackLegjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6/RightBackLegjoint7/RightBackLegjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1/Handjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1/Handjoint2/Handjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4/Handjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4/Handjoint5/Handjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7/Handjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7/Handjoint8/Handjoint9
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10/Handjoint11
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10/Handjoint11/Handjoint12
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13/Handjoint14
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13/Handjoint14/Handjoint15
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16/Handjoint17
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16/Handjoint17/Handjoint18
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint9
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint12
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint11
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint10
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15/TailSpinejoint16
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15/TailSpinejoint16/TailSpinejoint17
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: MaggotFace_Swim
+      takeName: Take 001
+      firstFrame: 107
+      lastFrame: 124
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MaggotFace1
+        weight: 1
+      - path: nurbsCircle1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2/LeftBackLegjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2/LeftBackLegjoint3/LeftBackLegjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6/RightBackLegjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6/RightBackLegjoint7/RightBackLegjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1/Handjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1/Handjoint2/Handjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4/Handjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4/Handjoint5/Handjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7/Handjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7/Handjoint8/Handjoint9
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10/Handjoint11
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10/Handjoint11/Handjoint12
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13/Handjoint14
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13/Handjoint14/Handjoint15
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16/Handjoint17
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16/Handjoint17/Handjoint18
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint9
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint12
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint11
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint10
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15/TailSpinejoint16
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15/TailSpinejoint16/TailSpinejoint17
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: MaggotFace_Roll
+      takeName: Take 001
+      firstFrame: 126
+      lastFrame: 145
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MaggotFace1
+        weight: 1
+      - path: nurbsCircle1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2/LeftBackLegjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/LeftBackLegjoint1/LeftBackLegjoint2/LeftBackLegjoint3/LeftBackLegjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6/RightBackLegjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/RightBackLegjoint5/RightBackLegjoint6/RightBackLegjoint7/RightBackLegjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1/Handjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint1/Handjoint2/Handjoint3
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4/Handjoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint4/Handjoint5/Handjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7/Handjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/LeftArmjoint1/LeftArmjoint3/LeftArmjoint4/HandLeftArmjoint5/Handjoint7/Handjoint8/Handjoint9
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10/Handjoint11
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint10/Handjoint11/Handjoint12
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13/Handjoint14
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint13/Handjoint14/Handjoint15
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16/Handjoint17
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/RightArmjoint2/RightArmjoint6/RightArmjoint7/HandRightArmjoint8/Handjoint16/Handjoint17/Handjoint18
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint1
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint8
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint5/HeadSpinejoint6/HeadSpinejoint7/HeadSpinejoint9
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint4/Spinejoint12
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint2/Spinejoint3/Spinejoint11
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/Spinejoint10
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15/TailSpinejoint16
+        weight: 1
+      - path: nurbsCircle1/Spinejoint1/TailSpinejoint13/TailSpinejoint14/TailSpinejoint15/TailSpinejoint16/TailSpinejoint17
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 500
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
