@@ -37,7 +37,7 @@ public class Wisp : BaseClass {
     void Update () {
         if (fleeing)
         {
-            Vector3 dir = (transform.position - fleeingUnit.position);
+            Vector3 dir = (transform.position - fleeingUnit.position).normalized;
             transform.position = Vector3.Slerp(transform.position, dir, Time.deltaTime * speed * 6);
             if (Vector3.Distance(startPosition, transform.position) < 5)
             {
@@ -52,7 +52,7 @@ public class Wisp : BaseClass {
         if(movePosIntervalTimer < Time.time)
         {
             movePosIntervalTimer = movePosIntervalTime + Time.time;
-            currMovePos = new Vector3(Random.Range(-checkDistanceThreshhold * 0.5f, checkDistanceThreshhold * 0.5f), Random.Range(-checkDistanceThreshhold * 0.5f, checkDistanceThreshhold * 0.5f), Random.Range(-checkDistanceThreshhold * 0.5f, checkDistanceThreshhold * 0.5f));
+            currMovePos = GetRandomVector() + transform.position;
         }
 
         if(Vector3.Distance(transform.position, startPosition) > checkDistanceThreshhold*3 && returning == false)
@@ -98,6 +98,12 @@ public class Wisp : BaseClass {
     //    }
     //    returning = false;
     //}
+
+    public Vector3 GetRandomVector()
+    {
+        Vector3 p = new Vector3(Random.Range(-checkDistanceThreshhold * 0.5f, checkDistanceThreshhold * 0.5f), Random.Range(-checkDistanceThreshhold * 0.5f, checkDistanceThreshhold * 0.5f), Random.Range(-checkDistanceThreshhold * 0.5f, checkDistanceThreshhold * 0.5f));
+        return p;
+    }
 
     void OnTriggerEnter(Collider col)
     {

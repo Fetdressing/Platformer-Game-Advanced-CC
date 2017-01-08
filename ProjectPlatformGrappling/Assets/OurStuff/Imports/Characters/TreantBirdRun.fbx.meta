@@ -1,0 +1,264 @@
+fileFormatVersion: 2
+guid: be9806e49cfa3d74c9fc2040a30193c8
+timeCreated: 1483894952
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: armjoint1
+    100002: armjoint2
+    100004: armjoint3
+    100006: armjoint4
+    100008: armjoint5
+    100010: armjoint6
+    100012: armjoint7
+    100014: armjoint8
+    100016: BodyControl
+    100018: eyejoint1
+    100020: eyejoint2
+    100022: FootControl
+    100024: FootControl1
+    100026: ikHandle1
+    100028: ikHandle2
+    100030: ikHandle3
+    100032: legjoint10
+    100034: legjoint5
+    100036: legjoint6
+    100038: legjoint7
+    100040: legjoint8
+    100042: legjoint9
+    100044: peekjoint3
+    100046: peekjoint4
+    100048: spinejoint1
+    100050: spinejoint2
+    100052: spinejoint3
+    100054: spinejoint4
+    100056: spinejoint5
+    100058: spinejoint6
+    100060: spinejoint7
+    100062: spinejoint8
+    100064: TailControl
+    100066: tailjoint5
+    100068: tailjoint6
+    100070: tailjoint7
+    100072: tailjoint8
+    100074: tailjoint9
+    100076: //RootNode
+    100078: TreantFlyer
+    400000: armjoint1
+    400002: armjoint2
+    400004: armjoint3
+    400006: armjoint4
+    400008: armjoint5
+    400010: armjoint6
+    400012: armjoint7
+    400014: armjoint8
+    400016: BodyControl
+    400018: eyejoint1
+    400020: eyejoint2
+    400022: FootControl
+    400024: FootControl1
+    400026: ikHandle1
+    400028: ikHandle2
+    400030: ikHandle3
+    400032: legjoint10
+    400034: legjoint5
+    400036: legjoint6
+    400038: legjoint7
+    400040: legjoint8
+    400042: legjoint9
+    400044: peekjoint3
+    400046: peekjoint4
+    400048: spinejoint1
+    400050: spinejoint2
+    400052: spinejoint3
+    400054: spinejoint4
+    400056: spinejoint5
+    400058: spinejoint6
+    400060: spinejoint7
+    400062: spinejoint8
+    400064: TailControl
+    400066: tailjoint5
+    400068: tailjoint6
+    400070: tailjoint7
+    400072: tailjoint8
+    400074: tailjoint9
+    400076: //RootNode
+    400078: TreantFlyer
+    4300000: TreantFlyer
+    7400000: TreantBird_Run
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: TreantFlyer
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 2
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: TreantBird_Run
+      takeName: Take 001
+      firstFrame: 32
+      lastFrame: 56
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BodyControl
+        weight: 1
+      - path: BodyControl/FootControl
+        weight: 1
+      - path: BodyControl/FootControl/ikHandle2
+        weight: 1
+      - path: BodyControl/FootControl1
+        weight: 1
+      - path: BodyControl/FootControl1/ikHandle3
+        weight: 1
+      - path: BodyControl/spinejoint1
+        weight: 1
+      - path: BodyControl/spinejoint1/legjoint5
+        weight: 1
+      - path: BodyControl/spinejoint1/legjoint5/legjoint6
+        weight: 1
+      - path: BodyControl/spinejoint1/legjoint5/legjoint6/legjoint7
+        weight: 1
+      - path: BodyControl/spinejoint1/legjoint8
+        weight: 1
+      - path: BodyControl/spinejoint1/legjoint8/legjoint9
+        weight: 1
+      - path: BodyControl/spinejoint1/legjoint8/legjoint9/legjoint10
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3/armjoint1
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3/armjoint1/armjoint2
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3/armjoint1/armjoint2/armjoint3
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3/armjoint1/armjoint2/armjoint3/armjoint4
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3/armjoint5
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3/armjoint5/armjoint6
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3/armjoint5/armjoint6/armjoint7
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3/armjoint5/armjoint6/armjoint7/armjoint8
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3/spinejoint4
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3/spinejoint4/spinejoint5
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3/spinejoint4/spinejoint5/eyejoint1
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3/spinejoint4/spinejoint5/eyejoint2
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3/spinejoint4/spinejoint5/peekjoint3
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3/spinejoint4/spinejoint5/peekjoint3/peekjoint4
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3/spinejoint4/spinejoint5/spinejoint6
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3/spinejoint4/spinejoint5/spinejoint6/spinejoint7
+        weight: 1
+      - path: BodyControl/spinejoint1/spinejoint2/spinejoint3/spinejoint4/spinejoint5/spinejoint6/spinejoint7/spinejoint8
+        weight: 1
+      - path: BodyControl/spinejoint1/tailjoint5
+        weight: 1
+      - path: BodyControl/spinejoint1/tailjoint5/tailjoint6
+        weight: 1
+      - path: BodyControl/spinejoint1/tailjoint5/tailjoint6/tailjoint7
+        weight: 1
+      - path: BodyControl/spinejoint1/tailjoint5/tailjoint6/tailjoint7/tailjoint8
+        weight: 1
+      - path: BodyControl/spinejoint1/tailjoint5/tailjoint6/tailjoint7/tailjoint8/tailjoint9
+        weight: 1
+      - path: BodyControl/TailControl
+        weight: 1
+      - path: BodyControl/TailControl/ikHandle1
+        weight: 1
+      - path: TreantFlyer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 400
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

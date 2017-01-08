@@ -916,7 +916,7 @@ public class StagMovement : BaseClass
         dashComboResetTimer = dashComboResetTime + Time.time;
         currDashCombo++;
 
-        float finalDashCost = dashPowerCost + ((float)currDashCombo * 0.02f);
+        float finalDashCost = dashPowerCost + ((float)currDashCombo * 0.03f);
 
         if (!powerManager.SufficentPower(-finalDashCost, true)) return false; //camerashake, konstig syntax kanske du tycker, men palla göra det fancy!
         powerManager.AddPower(-finalDashCost);

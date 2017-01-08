@@ -414,6 +414,7 @@
     <Compile Include="Assets\ExternalAssets\QuickSetObjectPlacer\Scripts\QuickSetObjectPlacer.cs" />
     <Compile Include="Assets\ExternalAssets\SimpleLUT\Script\SimpleLUT.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\AIBase.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\AI\AttackFlyer.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\Boss\BossBase.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\NormalAI\NAIBase.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\NormalAI\NAIInvisibleNavmesh.cs" />
