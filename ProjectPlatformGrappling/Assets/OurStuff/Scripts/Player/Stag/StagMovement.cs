@@ -1125,10 +1125,11 @@ public class StagMovement : BaseClass
 
         Vector3 currViewPlayerPos = checkCamera.WorldToViewportPoint(transform.position); //spelarens position i kamera spacet
 
+        HealthSpirit hSpirit = null;
         for (int i = 0; i < potTargets.Length; i++)
         {
             //if (Vector3.Distance(transform.position, potTargets[i].transform.position) < minDistance) continue; //om den är för nära så hoppa vidare
-            HealthSpirit hSpirit = potTargets[i].GetComponent<HealthSpirit>();
+            hSpirit = potTargets[i].GetComponent<HealthSpirit>();
             if (hSpirit == null || hSpirit.IsAlive() == false) continue;
             if (potTargets[i].transform == lastUnitHit) { continue; }//så man inte fastnar på infinite dash
 
@@ -1162,6 +1163,7 @@ public class StagMovement : BaseClass
                     bestFinalValue = currFinalValue;
                     biasedDir = TToTar;
                     target = potTargets[i].transform;
+                    hSpirit = target.GetComponent<HealthSpirit>();
                     //bestDashTransform = potTargets[i].transform; //denna måste dock resettas efter en kort tid så att man återigen kan dasha på denna, detta bör göras när man kör en vanlig dash, dvs en som går på cd o liknande
                 }
             }
@@ -1189,6 +1191,13 @@ public class StagMovement : BaseClass
 
         float startDashTime = Time.time;
         float extendedTime = 0.0f;
+
+        Vector3 offsetTarget = Vector3.zero;
+        if (hSpirit != null)
+        {
+            offsetTarget = new Vector3(0, hSpirit.middlePointOffsetY, 0);
+        }
+
         while (currDashTime < maxDashTime)
         {
             currMomentum = Vector3.zero;
@@ -1203,7 +1212,7 @@ public class StagMovement : BaseClass
 
             if(target != null)
             {
-                dirMod = ((target.position + gOffset) - (transform.position + gOffset)).normalized;
+                dirMod = ((target.position + gOffset + offsetTarget) - (transform.position + gOffset)).normalized;
             }
             dashVel = dirMod * dashSpeed; //styra under dashen
             stagObject.transform.forward = dashVel;

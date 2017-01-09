@@ -1259,8 +1259,8 @@ MonoBehaviour:
   - {fileID: 137000011531837698}
   damagedMaterial: {fileID: 2100000, guid: 5a5a1a50a180c2246b70601cbc08ebef, type: 2}
   middlePoint: {x: 0, y: 0, z: 0}
-  middlePointOffsetY: 0.5
-  startHealth: 3
+  middlePointOffsetY: 7
+  startHealth: 2
   maxHealth: 3
   fadeOnDamage: 0
   startHealthRegAmount: 1
