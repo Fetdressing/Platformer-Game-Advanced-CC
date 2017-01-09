@@ -30,6 +30,7 @@ public class StagMovement : BaseClass
     protected float startSpeed = 190;
     protected float jumpSpeed = 100;
     protected float gravity = 160;
+    protected Vector3 yVector;
     protected float stagSpeedMultMax = 1.5f;
     protected float stagSpeedMultMin = 0.85f;
 
@@ -220,6 +221,56 @@ public class StagMovement : BaseClass
         }
     }
 
+    void FixedUpdate()
+    {
+        if (activePlatform != null)
+        {
+            Vector3 newGlobalPlatformPoint = activePlatform.TransformPoint(activeLocalPlatformPoint);
+            Vector3 moveDistance = (newGlobalPlatformPoint - activeGlobalPlatformPoint);
+
+            if (activeLocalPlatformPoint != Vector3.zero)
+            {
+                //transform.position = transform.position + moveDistance;
+                characterController.Move(moveDistance);
+            }
+        }
+
+        if (activePlatform != null)
+        {
+            activeGlobalPlatformPoint = transform.position;
+            activeLocalPlatformPoint = activePlatform.InverseTransformPoint(transform.position);
+        }
+
+        if (GetGroundedTransform(groundCheckObject, 2) != activePlatform)
+        {
+            activePlatform = null; //kolla om platformen fortfarande finns under mig eller ej
+        }
+
+        Vector3 tempExternalVal = externalVel; //spara värdet innan man minskar för att kunna lägga på det på momentum
+        //externalVel = Vector3.Lerp(externalVel, Vector3.zero, 0.01f * 5); //ta sakta bort den externa forcen
+        Break(5, ref externalVel);
+
+        Vector3 lostEVel = tempExternalVal - externalVel;
+        lostEVel.y = 0;
+        currMomentum += lostEVel; //lägg på det man tappat på momentum istället
+
+        HandleMovement(); //moddar finalMoveDir
+
+
+        // YYYYY
+        //Debug.Log(characterController.isGrounded);
+        // apply gravity acceleration to vertical speed:
+        if (activePlatform == null && !characterController.isGrounded)
+        {
+            ySpeed -= gravity * 0.01f;
+        }
+        else
+        {
+            //ySpeed = 0; //behöver inte lägga på gravity när man står på moving platform, varför funkar inte grounded? lol
+        }
+
+    }
+
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.T))
@@ -344,50 +395,6 @@ public class StagMovement : BaseClass
         //characterController.Move((yVector) * deltaTime);
 
         // YYYYY
-
-        if (activePlatform != null)
-        {
-            Vector3 newGlobalPlatformPoint = activePlatform.TransformPoint(activeLocalPlatformPoint);
-            Vector3 moveDistance = (newGlobalPlatformPoint - activeGlobalPlatformPoint);
-
-            if (activeLocalPlatformPoint != Vector3.zero)
-            {
-                //transform.position = transform.position + moveDistance;
-                characterController.Move(moveDistance);
-            }
-        }
-
-        if (activePlatform != null)
-        {
-            activeGlobalPlatformPoint = transform.position;
-            activeLocalPlatformPoint = activePlatform.InverseTransformPoint(transform.position);
-        }
-
-        if (GetGroundedTransform(groundCheckObject, 2) != activePlatform)
-        {
-            activePlatform = null; //kolla om platformen fortfarande finns under mig eller ej
-        }
-
-        Vector3 tempExternalVal = externalVel; //spara värdet innan man minskar för att kunna lägga på det på momentum
-        externalVel = Vector3.Lerp(externalVel, Vector3.zero, deltaTime * 5); //ta sakta bort den externa forcen
-
-        Vector3 lostEVel = tempExternalVal - externalVel;
-        lostEVel.y = 0;
-        currMomentum += lostEVel; //lägg på det man tappat på momentum istället
-        
-        HandleMovement(); //moddar finalMoveDir
-        // YYYYY
-        //Debug.Log(characterController.isGrounded);
-        // apply gravity acceleration to vertical speed:
-        if (activePlatform == null && !characterController.isGrounded)
-        {
-            ySpeed -= gravity * deltaTime;
-        }
-        else
-        {
-            //ySpeed = 0; //behöver inte lägga på gravity när man står på moving platform, varför funkar inte grounded? lol
-        }
-
         if (characterController.isGrounded) //dessa if-satser skall vara separata
         {
             if (jumpTimePoint < Time.time - 0.4f) //så den inte ska fucka och resetta dirr efter man hoppat
@@ -400,16 +407,8 @@ public class StagMovement : BaseClass
             Jump();
         }
 
-        Vector3 yVector = new Vector3(0, ySpeed, 0);
+        yVector = new Vector3(0, ySpeed, 0);
         AngleY(ref yVector, transform.position + new Vector3(0, characterController.height * 0.5f, 0), 6);
-        //adjusta neråt vektor så den går för sliders
-        //Vector3 mainComparePoint = transform.position + new Vector3(0, groundedCheckOffsetY, 0);
-        //Vector3[] comparePoints = {
-        //transform.position + transform.right + new Vector3(0, groundedCheckOffsetY, 0),
-        //transform.position + -transform.right + new Vector3(0, groundedCheckOffsetY, 0),
-        //transform.position + transform.forward + new Vector3(0, groundedCheckOffsetY, 0),
-        //transform.position + -transform.forward + new Vector3(0, groundedCheckOffsetY, 0)};
-        //AngleToAvoid(ref yVector, mainComparePoint, comparePoints, characterController.radius + 2, false);
         // YYYYY
 
         characterController.Move((currMomentum + dashVel + externalVel + yVector) * deltaTime);
@@ -745,7 +744,7 @@ public class StagMovement : BaseClass
 
         if (movementStacks > 0) //hur många stacks som behövs för att den ska bli sliding
         {
-            currMomentum += finalMoveDir * deltaTime * bonusStageSpeed * (1 + flatMoveStacksSpeedBonues); //om inte man är uppe i hög speed så kan man alltid köra currMomentum = finalMoveDir som vanligt
+            currMomentum += finalMoveDir * 0.01f * bonusStageSpeed * (1 + flatMoveStacksSpeedBonues); //om inte man är uppe i hög speed så kan man alltid köra currMomentum = finalMoveDir som vanligt
             float momY = currMomentum.y;
 
             Vector3 currMomXZ = new Vector3(currMomentum.x, 0, currMomentum.z);
@@ -784,7 +783,7 @@ public class StagMovement : BaseClass
         {
             breakamount = 0.1f;
         }
-        vec = Vector3.Lerp(vec, Vector3.zero, Time.deltaTime * breakamount); //detta är inte braa!
+        vec = Vector3.Lerp(vec, Vector3.zero, 0.01f * breakamount); //detta är inte braa!
     }
 
     public void Stagger(float staggTime) //låser spelaren kvickt

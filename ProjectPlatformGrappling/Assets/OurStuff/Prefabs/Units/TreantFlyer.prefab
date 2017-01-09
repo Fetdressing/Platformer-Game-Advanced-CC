@@ -21,8 +21,8 @@ GameObject:
   - 4: {fileID: 4000011209117530}
   - 114: {fileID: 114000012332538610}
   - 143: {fileID: 143000013754810038}
-  - 135: {fileID: 135000012016610168}
-  m_Layer: 0
+  - 114: {fileID: 114000014020557108}
+  m_Layer: 22
   m_Name: TreantFlyer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1237,23 +1237,46 @@ MonoBehaviour:
   speed: 20
   chaseSpeed: 40
   checkDistanceThreshhold: 7
+  playerChaseDistance: 140
   animH: {fileID: 111000011418022244}
   idle: {fileID: 7400000, guid: cb2e6222b408a4c4686435cf1819c97e, type: 3}
   run: {fileID: 7400000, guid: be9806e49cfa3d74c9fc2040a30193c8, type: 3}
   idleSpeed: 1
   runSpeed: 2.2
---- !u!135 &135000012016610168
-SphereCollider:
+--- !u!114 &114000014020557108
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010120548474}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 70
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0d8d3e0e7d4488468a3fafda699239d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLocked: 0
+  thisRenderer:
+  - {fileID: 137000011531837698}
+  damagedMaterial: {fileID: 2100000, guid: 5a5a1a50a180c2246b70601cbc08ebef, type: 2}
+  middlePoint: {x: 0, y: 0, z: 0}
+  middlePointOffsetY: 0.5
+  startHealth: 3
+  maxHealth: 3
+  fadeOnDamage: 0
+  startHealthRegAmount: 1
+  healthRegAmount: 1
+  destroyOnDeath: 0
+  respawn: 1
+  animationObj: {fileID: 0}
+  deathAnimation: {fileID: 0}
+  deathParticleSystemObj: {fileID: 0}
+  delayedDeathTime: 0
+  isAlive: 1
+  isIndestructable: 0
+  dropDeathObject: {fileID: 1000011286707946, guid: aad862bd58299a24995f2c0e07f9133c,
+    type: 2}
+  nrDropObjects: 3
+  dropObjLifeTime: 10
 --- !u!137 &137000011531837698
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

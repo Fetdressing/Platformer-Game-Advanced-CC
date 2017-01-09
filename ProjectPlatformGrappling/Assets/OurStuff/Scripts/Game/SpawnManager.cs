@@ -28,6 +28,7 @@ public class SpawnManager : BaseClass {
 
     public Text powerGlobeText;
     PowerPickup[] powerPickups;
+    HealthSpirit[] healthSpirits; //så man kan respawna fiender n stuff
     private int collectedPowerGlobes = 0;
 	// Use this for initialization
 	void Start () {
@@ -39,6 +40,7 @@ public class SpawnManager : BaseClass {
         base.Init();
         collectedPowerGlobes = 0;
         powerPickups = FindObjectsOfType(typeof(PowerPickup)) as PowerPickup[];
+        healthSpirits = FindObjectsOfType(typeof(HealthSpirit)) as HealthSpirit[];
 
         GameObject[] spawnpointObjects = GameObject.FindGameObjectsWithTag("SpawnPoint");
         if(startSpawn == null)
@@ -144,6 +146,14 @@ public class SpawnManager : BaseClass {
         for (int i = 0; i < powerPickups.Length; i++)
         {
             powerPickups[i].Reset();
+        }
+
+        for (int i = 0; i < healthSpirits.Length; i++)
+        {
+            if (healthSpirits[i].respawn)
+            {
+                healthSpirits[i].Reset(); //respawna dem!
+            }
         }
         //player.position = closestSpawnPos;
     }

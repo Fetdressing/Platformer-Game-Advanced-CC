@@ -12,6 +12,7 @@ public class AttackFlyer : BaseClass {
     public float speed = 4;
     public float chaseSpeed = 14;
     public float checkDistanceThreshhold = 20;
+    public float playerChaseDistance = 100;
 
     private bool chasing = false;
     private Transform player;
@@ -65,6 +66,16 @@ public class AttackFlyer : BaseClass {
     // Update is called once per frame
     void Update()
     {
+        float playerDistance = Vector3.Distance(player.position, transform.position);
+        if(playerDistance < playerChaseDistance)
+        {
+            chasing = true;
+        }
+        else
+        {
+            chasing = false;
+        }
+
         Vector3 dir = transform.forward;
         if (chasing)
         {
@@ -116,6 +127,8 @@ public class AttackFlyer : BaseClass {
             {
                 animH.CrossFade(idle.name);
             }
+
+            
         }
 
         Vector3 dirNoY = new Vector3(dir.x, rotater.forward.y, dir.z);
@@ -130,10 +143,10 @@ public class AttackFlyer : BaseClass {
         return p;
     }
 
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.tag != "Player") { return; }
-        chasing = true;
+    //void OnTriggerEnter(Collider col)
+    //{
+    //    if (col.tag != "Player") { return; }
+    //    chasing = true;
 
-    }
+    //}
 }

@@ -30,6 +30,7 @@ public class HealthSpirit : BaseClass
     private float healthRegTimer = 0.0f;
 
     public bool destroyOnDeath = false;
+    public bool respawn = false;
 
     public GameObject animationObj;
     public AnimationClip deathAnimation;
