@@ -63,7 +63,7 @@ public class StagMovement : BaseClass
     public GameObject dashEffectObject;
     public ParticleSystem dashReadyPS; //particlesystem som körs när dash är redo att användas
     protected int currDashCombo = 0; //hur många dashes som gjorts i streck, används för att öka kostnaden tex
-    protected float dashComboMult = 0.03f;
+    protected float dashComboMult = 0.015f;
     protected float dashComboResetTime = 0.85f;
     protected float dashComboResetTimer = 0.0f;
     public LayerMask unitCheckLM; //fiender o liknande som dash ska styras mot

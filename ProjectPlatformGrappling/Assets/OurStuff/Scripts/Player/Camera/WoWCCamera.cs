@@ -110,8 +110,6 @@ public class WoWCCamera : BaseClass
 
     IEnumerator SettingRot(float xn, bool unlock)
     {
-        Debug.Log("Den väljer alltid den minsta lutningen, det blir fel för denna som alltid går genom samma håll, FIXA!");
-
         xn = xn + x;
         float yn = 30;
         while(settingRotation != null && Mathf.Abs(x - xn) + Mathf.Abs(y - yn) > 2f)
