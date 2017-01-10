@@ -155,7 +155,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010564265800}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1410.2821, y: 717.6652, z: 1201.481}
+  m_LocalPosition: {x: 2522.9395, y: -200, z: -3052.9604}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -289,9 +289,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   thisRenderer: {fileID: 137000010749563584}
+  refresh: 1
+  collisionFadeLayers: []
   phaseOutMaterial: {fileID: 2100000, guid: 491012f4a1851f644a3898e72460ddfa, type: 2}
   fadeAmount: 10
-  fadeTime: 4
+  fadeTime: 2
   animationH: {fileID: 111000013111168240}
   breakAnim: {fileID: 7400004, guid: 87fea1e1a4c073c41bbeb8791ab56d1d, type: 3}
   renewAnim: {fileID: 7400006, guid: 87fea1e1a4c073c41bbeb8791ab56d1d, type: 3}
@@ -299,6 +301,7 @@ MonoBehaviour:
   breakingAnim: {fileID: 7400002, guid: 87fea1e1a4c073c41bbeb8791ab56d1d, type: 3}
   animSpeed: 1.5
   idleASpeed: 0.3
+  deathPar: {fileID: 0}
 --- !u!137 &137000010749563584
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

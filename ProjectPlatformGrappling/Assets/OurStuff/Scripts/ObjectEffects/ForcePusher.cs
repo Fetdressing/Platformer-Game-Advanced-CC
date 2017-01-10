@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ForcePusher : BaseRigidbody {
+public class ForcePusher : BaseClass {
     public bool isContinuous = false;
     public bool pushAway = false; //om true så pushar denna ifrån sig själv oavsett vilket riktning objekten kommer ifrån
     public float pushForce = 100;
@@ -12,6 +12,9 @@ public class ForcePusher : BaseRigidbody {
 
     public AudioSource audioSource;
     private CameraShaker cameraShaker;
+
+    public bool canBeBlocked = false;
+    public float powerAddPercentage = 0.0f; //hur mkt i procent den kommer sno power
 
     void Start()
     {
@@ -29,6 +32,20 @@ public class ForcePusher : BaseRigidbody {
         if (isContinuous) return;
         if(col.tag == "Player")
         {
+            StagMovement sM = col.GetComponent<StagMovement>();
+            if (canBeBlocked)
+            {
+                if(sM.speedBreaker.active == true)
+                {
+                    return;
+                }
+            }
+
+            if(powerAddPercentage > 0.001f || powerAddPercentage < -0.001f)
+            {
+                col.GetComponent<PowerManager>().AddPowerPercentage(powerAddPercentage, true);
+            }
+
             cameraShaker.ShakeCamera(0.2f, 1, true);
 
             if(audioSource != null)
@@ -40,7 +57,6 @@ public class ForcePusher : BaseRigidbody {
                 animPlayer.PlayAnimation(pushAnim, 1, animationSpeed);
             }
 
-            StagMovement sM = col.GetComponent<StagMovement>();
             if(sM != null)
             {
                 if (pushAway)
@@ -56,18 +72,18 @@ public class ForcePusher : BaseRigidbody {
             return;
         }
 
-        Rigidbody rbody = col.GetComponent<Rigidbody>();
+        //Rigidbody rbody = col.GetComponent<Rigidbody>();
 
-        if (rbody != null)
-        {
-            if (pushAway)
-            {
-                Vector3 dir = (col.transform.position - transform.position).normalized;
-                AddForceFastDrag(dir * pushForce, ForceMode.Impulse, rbody);
-            }
-            else
-                AddForceFastDrag(transform.forward * pushForce, ForceMode.Impulse, rbody);
-        }
+        //if (rbody != null)
+        //{
+        //    if (pushAway)
+        //    {
+        //        Vector3 dir = (col.transform.position - transform.position).normalized;
+        //        AddForceFastDrag(dir * pushForce, ForceMode.Impulse, rbody);
+        //    }
+        //    else
+        //        AddForceFastDrag(transform.forward * pushForce, ForceMode.Impulse, rbody);
+        //}
     }
 
     void OnTriggerStay(Collider col)
@@ -92,17 +108,17 @@ public class ForcePusher : BaseRigidbody {
             return;
         }
 
-        Rigidbody rbody = col.GetComponent<Rigidbody>();
+        //Rigidbody rbody = col.GetComponent<Rigidbody>();
 
-        if (rbody != null)
-        {
-            if (pushAway)
-            {
-                Vector3 dir = (col.transform.position - transform.position).normalized;
-                AddForceFastDrag(dir * pushForce * Time.deltaTime, ForceMode.Force, rbody);
-            }
-            else
-                AddForceFastDrag(transform.forward * pushForce * Time.deltaTime, ForceMode.Force, rbody);
-        }
+        //if (rbody != null)
+        //{
+        //    if (pushAway)
+        //    {
+        //        Vector3 dir = (col.transform.position - transform.position).normalized;
+        //        AddForceFastDrag(dir * pushForce * Time.deltaTime, ForceMode.Force, rbody);
+        //    }
+        //    else
+        //        AddForceFastDrag(transform.forward * pushForce * Time.deltaTime, ForceMode.Force, rbody);
+        //}
     }
 }

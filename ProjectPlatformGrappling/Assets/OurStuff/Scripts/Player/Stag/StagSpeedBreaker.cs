@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class StagSpeedBreaker : BaseClass {
-    bool active = false;
+    [HideInInspector] public bool active = false;
     StagMovement stagMovement; //kunna skicka att man gjort hit osv
     PowerManager pm;
 

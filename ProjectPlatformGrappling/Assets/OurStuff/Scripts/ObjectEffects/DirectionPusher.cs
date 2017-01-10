@@ -61,6 +61,7 @@ public class DirectionPusher : MonoBehaviour {
             stagMov.ApplyExternalForce(dir * pushForce, true);
 
             stagMov.AddJumpsAvaible(1, 1);
+            stagMov.dashUsed = false;
         }
     }
 

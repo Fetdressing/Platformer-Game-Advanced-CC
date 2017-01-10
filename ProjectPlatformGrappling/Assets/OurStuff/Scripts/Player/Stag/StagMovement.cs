@@ -30,6 +30,7 @@ public class StagMovement : BaseClass
     protected float startSpeed = 190;
     protected float jumpSpeed = 100;
     protected float gravity = 160;
+    [HideInInspector]public float currGravityModifier = 1.0f;
     protected Vector3 yVector;
     protected float stagSpeedMultMax = 1.5f;
     protected float stagSpeedMultMin = 0.85f;
@@ -52,13 +53,13 @@ public class StagMovement : BaseClass
     [HideInInspector]public IEnumerator staggIE; //normala stag grejen
     [HideInInspector]public float dashTimePoint; //mud påverkar denna så att man inte kan dasha
     protected float dashGlobalCooldown = 0.3f;
-    protected float dashCooldown = 1f; //går igång ifall man dashar från marken
+    protected float dashGroundCooldown = 1f; //går igång ifall man dashar från marken
     protected float dashSpeed = 380;
     protected float currDashTime;
-    protected float startMaxDashTime = 0.06f; //den går att utöka
+    protected float startMaxDashTime = 0.08f; //den går att utöka
     [HideInInspector] public float maxDashTime;
     protected float dashPowerCost = 0.1f; //hur mycket power det drar varje gång man dashar
-    protected bool dashUsed = false; //så att man måste bli grounded innan man kan använda den igen
+    [HideInInspector]public bool dashUsed = false; //så att man måste bli grounded innan man kan använda den igen
     public GameObject dashEffectObject;
     public ParticleSystem dashReadyPS; //particlesystem som körs när dash är redo att användas
     protected int currDashCombo = 0; //hur många dashes som gjorts i streck, används för att öka kostnaden tex
@@ -189,6 +190,7 @@ public class StagMovement : BaseClass
         lastH_Vector = Vector3.zero; //senast som horVector hade ett värde (dvs inte vector3.zero)
         lastV_Vector = Vector3.zero;
         ySpeed = -gravity * 0.01f; //nollställer ej helt
+        currGravityModifier = 1.0f;
         currExternalSpeedMult = 1.0f;
         currLimitSpeed = startLimitSpeed;
 
@@ -262,7 +264,7 @@ public class StagMovement : BaseClass
         // apply gravity acceleration to vertical speed:
         if (activePlatform == null && !characterController.isGrounded)
         {
-            ySpeed -= gravity * 0.01f;
+            ySpeed -= gravity * 0.01f * currGravityModifier;
         }
         else
         {
@@ -434,10 +436,7 @@ public class StagMovement : BaseClass
         }
 
         lastFramePos = transform.position;
-        //if (Input.GetKeyDown(KeyCode.C))
-        //{
-        //    ToggleInfiniteGravity(!pullField.enabled);
-        //}
+
 
         PlayAnimationStates();
 
@@ -1048,7 +1047,7 @@ public class StagMovement : BaseClass
 
         if (GetGrounded(groundCheckObject, 3)) //extra cooldown för att man dashar från marken! FY PÅ DEJ!! (varit airbourne i X sekunder)if(Mathf.Abs(jumpTimePoint - Time.time) > 0.08f)
         {
-            dashTimePoint += dashCooldown;
+            dashTimePoint += dashGroundCooldown;
         }
 
         //HÄMTA RIKTNINGEN
@@ -1413,7 +1412,7 @@ public class StagMovement : BaseClass
     {
         if (gameObject.activeSelf == false) return;
         dashEffectObject.transform.rotation = cameraHolder.rotation;
-        float trailOriginalTime = 1.0f;
+        float trailOriginalTime = 0.05f;
         float startWidth = 1;
         float endWidth = 0.1f;
         TrailRenderer[] tR = dashEffectObject.GetComponentsInChildren<TrailRenderer>();

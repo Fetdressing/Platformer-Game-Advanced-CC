@@ -10,6 +10,7 @@ public class HealthSpirit : BaseClass
     public Renderer[] thisRenderer; //om den inte sätts så kör den på default stuff
     private List<Material> thisMaterial = new List<Material>();
     public Material damagedMaterial;
+    IEnumerator changeMatIE;
 
     [HideInInspector]
     public Vector3 middlePoint; //var dennas mittpunkt ligger
@@ -214,7 +215,7 @@ public class HealthSpirit : BaseClass
             for(int i = 0; i < nrDropObjects; i++)
             {
                 GameObject tempD = Instantiate(dropDeathObject);
-                tempD.transform.position = transform.position + new Vector3(0, 2, 0);
+                tempD.transform.position = transform.position + new Vector3(0, 2 + middlePointOffsetY, 0);
 
                 PowerPickup pp = tempD.GetComponent<PowerPickup>();
                 if(pp != null)
@@ -270,13 +271,6 @@ public class HealthSpirit : BaseClass
         return currHealth;
     }
 
-    public void ApplyMaterial(Material m, float time)
-    {
-        if (thisTransform.gameObject.activeSelf == false) return;
-        StartCoroutine(MarkMaterial(m, time));
-    }
-
-
     public void SetTransparency(float tra, bool limit)
     {
         if(limit)
@@ -308,6 +302,17 @@ public class HealthSpirit : BaseClass
         //}
     }
 
+    public void ApplyMaterial(Material m, float time)
+    {
+        if (thisTransform.gameObject.activeSelf == false) return;
+
+        if (changeMatIE != null) return;
+
+        changeMatIE = MarkMaterial(m, time);
+
+        StartCoroutine(changeMatIE);
+    }
+
     public IEnumerator MarkMaterial(Material m, float time)
     {
         //thisRenderer.material = m;
@@ -337,6 +342,7 @@ public class HealthSpirit : BaseClass
             }
             thisRenderer[i].materials = matsSetTemp;
         }
+        changeMatIE = null;
     }
 
     void OnCollisionEnter(Collision collision)

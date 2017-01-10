@@ -697,7 +697,6 @@ GameObject:
   - 143: {fileID: 143000011298428658}
   - 114: {fileID: 114000011163655248}
   - 114: {fileID: 114000013215126190}
-  - 114: {fileID: 114000010338782126}
   - 65: {fileID: 65000013943010592}
   m_Layer: 8
   m_Name: PlayerObject
@@ -3687,26 +3686,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114000010338782126
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011624216690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2892718a31b33b34cadb04c454836ec6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isLocked: 0
-  shooterObj: {fileID: 4000011839564482}
-  targetLM:
-    serializedVersion: 2
-    m_Bits: 1
-  projectileType: {fileID: 1000010551313334, guid: baeccb2e3dde6914ab3924e85a757fc6,
-    type: 2}
-  shootSound: {fileID: 8300000, guid: 160babfd851c9d94887c7daa1d8f455c, type: 3}
-  volume: 0.7
 --- !u!114 &114000010390454838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4203,8 +4182,10 @@ MonoBehaviour:
   speedBreaker: {fileID: 0}
   stagRootJoint: {fileID: 4000010653670334}
   stagObject: {fileID: 4000011412557584}
+  currGravityModifier: 1
   currExternalSpeedMult: 1
   ySpeed: 0
+  jumpAmount: 2
   jumpEffectObject: {fileID: 1000013884809932}
   currFrameMovespeed: 0
   dashTimePoint: 0
@@ -5175,6 +5156,9 @@ MonoBehaviour:
   lightsMaxIntensity: 2
   emissiveStagMaterial: {fileID: 2100000, guid: fac517c5343b772468e55ca732238063,
     type: 2}
+  damagedMaterial: {fileID: 2100000, guid: 5a5a1a50a180c2246b70601cbc08ebef, type: 2}
+  changeMatRenderers:
+  - {fileID: 137000010550600080}
   currPower: 0
   powerDecay: -0.02
   isAlive: 0
@@ -5258,6 +5242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLocked: 0
+  active: 0
 --- !u!114 &114000013454058472
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -453,6 +453,7 @@
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\DeadlyObj.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\DirectionPusher.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\ForcePusher.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\GravityModifier.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\LifeTime.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\MovingPlatform.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Mud.cs" />

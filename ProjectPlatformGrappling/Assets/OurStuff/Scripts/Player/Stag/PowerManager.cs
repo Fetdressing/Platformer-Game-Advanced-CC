@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(StagMovement))]
 
@@ -16,6 +17,10 @@ public class PowerManager : BaseClass {
     public float lightsMaxIntensity = 2;
 
     public Material emissiveStagMaterial; //det som fadeas ut när denne tappar powernn
+    public Material damagedMaterial;
+    List<List<Material>> originalMats = new List<List<Material>>(); //så man kan återställa efter changemat
+    public Renderer[] changeMatRenderers;
+    IEnumerator changeMatIE;
 
     private float maxPower = 1;
     [HideInInspector] public float currPower;
@@ -44,6 +49,18 @@ public class PowerManager : BaseClass {
 
         allRenderers = GetComponentsInChildren<Renderer>();
 
+        for (int i = 0; i < changeMatRenderers.Length; i++)
+        {
+            List<Material> matT = new List<Material>();
+
+            for (int y = 0; y < changeMatRenderers[i].materials.Length; y++)
+            {
+                matT.Add(changeMatRenderers[i].materials[y]);
+            }
+            originalMats.Add(matT);
+
+        }
+
         Reset();
         //GameObject.FindGameObjectWithTag("Manager").GetComponent<SpawnManager>().Respawn(transform.position); //viktigt denna inte ligger i reset, infinite loop annars
     }
@@ -61,6 +78,8 @@ public class PowerManager : BaseClass {
         {
             allRenderers[i].enabled = true;
         }
+
+        ResetChangeMat(); //kan vara risky
     }
     // Update is called once per frame
     void Update () {
@@ -68,11 +87,19 @@ public class PowerManager : BaseClass {
         AddPower(powerDecay * Time.deltaTime);
 	}
 
-    public void AddPower(float p)
+    public void AddPower(float p, bool showDamageMat = false)
     {
         currPower += p;
 
-        if(currPower > maxPower)
+        if (showDamageMat)
+        {
+            if (damagedMaterial != null && p < 0.0f)
+            {
+                ApplyMaterial(damagedMaterial, 0.1f);
+            }
+        }
+
+        if (currPower > maxPower)
         {
             currPower = maxPower;
         }
@@ -91,11 +118,19 @@ public class PowerManager : BaseClass {
         }
     }
 
-    public void AddPower(float p, float maxPercentage) //tex ger max upp till 80% av max powern
+    public void AddPower(float p, float maxPercentage, bool showDamageMat = false) //tex ger max upp till 80% av max powern
     {
         if (p > 0 && ((currPower / maxPower) * 100) > maxPercentage) return; //kolla oxå så att värdet är positivt, dvs INTE gör skada
 
         currPower += p;
+
+        if (showDamageMat)
+        {
+            if (damagedMaterial != null && p < 0.0f)
+            {
+                ApplyMaterial(damagedMaterial, 0.1f);
+            }
+        }
 
         if (currPower > maxPower)
         {
@@ -114,6 +149,12 @@ public class PowerManager : BaseClass {
         {
             lifeLights[i].intensity = (lightsMaxIntensity * currPower) - 0.3f;
         }
+    }
+
+    public void AddPowerPercentage(float p, bool showDamageMat = false) //i decimaltal
+    {
+        float powP = p * maxPower;
+        AddPower(powP, showDamageMat);
     }
 
     public bool SufficentPower(float p) //kolla ifall det finns tillräkligt med power för att dra
@@ -190,6 +231,61 @@ public class PowerManager : BaseClass {
         else
         {
             transform.gameObject.SetActive(false);
+        }
+    }
+
+
+    public void ApplyMaterial(Material m, float time)
+    {
+        if (transform.gameObject.activeSelf == false) return;
+
+        if (changeMatIE != null) return;
+
+        changeMatIE = MarkMaterial(m, time);
+
+        StartCoroutine(changeMatIE);
+    }
+
+    public IEnumerator MarkMaterial(Material m, float time)
+    {
+        //allRenderers.material = m;
+        
+
+        for (int i = 0; i < changeMatRenderers.Length; i++)
+        {
+            Material[] matsSetTemp = changeMatRenderers[i].materials; //temporär så att man ska kunna sätta allRenderers[i].materials till ett värde
+
+            for (int y = 0; y < changeMatRenderers[i].materials.Length; y++)
+            {
+                matsSetTemp[y] = m;
+            }
+            changeMatRenderers[i].materials = matsSetTemp;
+
+        }
+        yield return new WaitForSeconds(time);
+        for (int i = 0; i < changeMatRenderers.Length; i++)
+        {
+            Material[] matsSetTemp = changeMatRenderers[i].materials; //temporär så att man ska kunna sätta allRenderers[i].materials till ett värde
+            for (int y = 0; y < originalMats[i].Count; y++)
+            {
+                matsSetTemp[y] = originalMats[i][y];
+            }
+            changeMatRenderers[i].materials = matsSetTemp;
+        }
+        changeMatIE = null;
+    }
+
+    public void ResetChangeMat()
+    {
+        if (originalMats.Count == 0) return;
+        for (int i = 0; i < changeMatRenderers.Length; i++)
+        {
+            Material[] matsSetTemp = changeMatRenderers[i].materials; //temporär så att man ska kunna sätta allRenderers[i].materials till ett värde
+            for (int y = 0; y < originalMats[i].Count; y++)
+            {
+                matsSetTemp[y] = originalMats[i][y];
+            }
+            changeMatRenderers[i].materials = matsSetTemp;
         }
     }
 }

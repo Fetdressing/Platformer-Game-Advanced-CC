@@ -22,6 +22,8 @@ GameObject:
   - 114: {fileID: 114000012332538610}
   - 143: {fileID: 143000013754810038}
   - 114: {fileID: 114000014020557108}
+  - 114: {fileID: 114000010959236534}
+  - 135: {fileID: 135000010351967286}
   m_Layer: 22
   m_Name: TreantFlyer
   m_TagString: Untagged
@@ -772,8 +774,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010120548474}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3153.9749, y: -758.603, z: -328.89645}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 530.4697, y: -117.673584, z: -1251.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1220,6 +1222,27 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 1
+--- !u!114 &114000010959236534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010120548474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35b63ed7135f824381abf51064a43fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLocked: 0
+  isContinuous: 0
+  pushAway: 1
+  pushForce: 100
+  animPlayer: {fileID: 0}
+  pushAnim: {fileID: 0}
+  animationSpeed: 1
+  audioSource: {fileID: 0}
+  canBeBlocked: 1
+  powerAddPercentage: -0.2
 --- !u!114 &114000012332538610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1277,6 +1300,18 @@ MonoBehaviour:
     type: 2}
   nrDropObjects: 3
   dropObjLifeTime: 10
+--- !u!135 &135000010351967286
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010120548474}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 5.33, z: 0}
 --- !u!137 &137000011531837698
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1361,8 +1396,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 15
-  m_Radius: 4
+  m_Height: 20
+  m_Radius: 6
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08

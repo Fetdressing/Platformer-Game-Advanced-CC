@@ -514,9 +514,9 @@ public class QuickObjectEditor : Editor
 			GameObject go = PrefabUtility.InstantiatePrefab (newObj) as GameObject;
 			Undo.RegisterCreatedObjectUndo (go, "Instantiated object");
 			go.transform.position = targetPoint + offset.vector3Value;
-            Vector3 randomYRot = new Vector3(0, UnityEngine.Random.Range(0, 180), 0);
+            Vector3 randomYRot = new Vector3(0, UnityEngine.Random.Range(0, 360), 0);
 			go.transform.rotation = Quaternion.Euler(rotation.vector3Value + randomYRot);
-			go.transform.localScale += scale.vector3Value; //lägg på istället för o sätta direkt tror jag är bättre
+			go.transform.localScale += scale.vector3Value + new Vector3(UnityEngine.Random.Range(-scale.vector3Value.x * 0.1f, scale.vector3Value.x * 0.1f), UnityEngine.Random.Range(-scale.vector3Value.y * 0.1f, scale.vector3Value.y * 0.1f), UnityEngine.Random.Range(-scale.vector3Value.z * 0.1f, scale.vector3Value.z * 0.1f)); ; //lägg på istället för o sätta direkt tror jag är bättre
 			if(parent.objectReferenceValue)
 			{
 				Transform par = parent.objectReferenceValue as Transform;
@@ -536,9 +536,9 @@ public class QuickObjectEditor : Editor
 			GameObject go = PrefabUtility.InstantiatePrefab (objRoot) as GameObject;
 			Undo.RegisterCreatedObjectUndo (go, "Instantiated object");
 			go.transform.position = targetPoint + offset.vector3Value;
-            Vector3 randomYRot = new Vector3(0, UnityEngine.Random.Range(0, 180), 0);
+            Vector3 randomYRot = new Vector3(0, UnityEngine.Random.Range(0, 360), 0);
             go.transform.rotation = Quaternion.Euler(rotation.vector3Value + randomYRot);
-            go.transform.localScale = scale.vector3Value;
+            go.transform.localScale += scale.vector3Value + new Vector3(UnityEngine.Random.Range(-scale.vector3Value.x * 0.1f, scale.vector3Value.x * 0.1f), UnityEngine.Random.Range(-scale.vector3Value.y * 0.1f, scale.vector3Value.y * 0.1f), UnityEngine.Random.Range(-scale.vector3Value.z * 0.1f, scale.vector3Value.z * 0.1f)); ;
 			if(parent.objectReferenceValue)
 				go.transform.parent = parent.objectReferenceValue as Transform;
 		}
@@ -548,9 +548,9 @@ public class QuickObjectEditor : Editor
 			GameObject go = GameObject.Instantiate(newObj, targetPoint , Quaternion.identity) as GameObject;
 			Undo.RegisterCreatedObjectUndo (go, "Instantiated object");
 			go.transform.position = targetPoint + offset.vector3Value;
-            Vector3 randomYRot = new Vector3(0, UnityEngine.Random.Range(0, 180), 0);
+            Vector3 randomYRot = new Vector3(0, UnityEngine.Random.Range(0, 360), 0);
             go.transform.rotation = Quaternion.Euler(rotation.vector3Value + randomYRot);
-            go.transform.localScale = scale.vector3Value;
+            go.transform.localScale += scale.vector3Value + new Vector3(UnityEngine.Random.Range(-scale.vector3Value.x * 0.1f, scale.vector3Value.x * 0.1f), UnityEngine.Random.Range(-scale.vector3Value.y * 0.1f, scale.vector3Value.y * 0.1f), UnityEngine.Random.Range(-scale.vector3Value.z * 0.1f, scale.vector3Value.z * 0.1f));
 			if(parent.objectReferenceValue)
 				go.transform.parent = parent.objectReferenceValue as Transform;
 		}

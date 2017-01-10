@@ -97,7 +97,7 @@ public class StagMovementForces : StagMovement {
 
             if (groundedSlope > maxSlopeGrounded) //denna checken görs här när man är grounded och i charactercontrollerhit när man INTE är grounded
             {
-                ApplyExternalForce(groundedNormal * 20); // så man glider för slopes
+                //ApplyExternalForce(groundedNormal * 20); // så man glider för slopes
             }
         }
         else
@@ -322,7 +322,7 @@ public class StagMovementForces : StagMovement {
     public override bool IsDashReady()
     {
         if (!powerManager.SufficentPower(-dashPowerCost)) return false;
-        if (dashTimePoint + dashCooldown > Time.time) return false;
+        if (dashTimePoint + dashGroundCooldown > Time.time) return false;
         if (dashUsed) return false;
 
         return true;
