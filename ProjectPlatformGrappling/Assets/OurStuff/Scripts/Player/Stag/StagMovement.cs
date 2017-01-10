@@ -63,6 +63,7 @@ public class StagMovement : BaseClass
     public GameObject dashEffectObject;
     public ParticleSystem dashReadyPS; //particlesystem som körs när dash är redo att användas
     protected int currDashCombo = 0; //hur många dashes som gjorts i streck, används för att öka kostnaden tex
+    protected float dashComboMult = 0.03f;
     protected float dashComboResetTime = 0.85f;
     protected float dashComboResetTimer = 0.0f;
     public LayerMask unitCheckLM; //fiender o liknande som dash ska styras mot
@@ -283,8 +284,14 @@ public class StagMovement : BaseClass
             else
                 QualitySettings.vSyncCount = 2;
         }
-        //hämta alltid input, även om man är låst
-        hor = controlManager.horAxis;
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            powerManager.Die();
+        }
+
+            //hämta alltid input, även om man är låst
+            hor = controlManager.horAxis;
         ver = controlManager.verAxis;
 
         horVector = hor * cameraHolder.right;
@@ -437,6 +444,11 @@ public class StagMovement : BaseClass
 
         lastFramePos = transform.position;
 
+
+        if (dashComboResetTimer < Time.time) //man tappar combon för man har varit för seg med och dasha
+        {
+            currDashCombo = 0;
+        }
 
         PlayAnimationStates();
 
@@ -905,18 +917,18 @@ public class StagMovement : BaseClass
 
     public virtual bool Dash(bool useCameraDir, float extraDashTime = 0)
     {
-        if (!IsDashReady()) return false;
-
-        if (dashComboResetTimer < Time.time) //man tappar combon för man har varit för seg med och dasha
+        if (!IsDashReady(dashPowerCost + ((float)(currDashCombo++) * dashComboMult)))
         {
-            currDashCombo = 0;
+            cameraShaker.ShakeCamera(0.2f, 1, true);
+            return false;
         }
+
         dashComboResetTimer = dashComboResetTime + Time.time;
         currDashCombo++;
 
-        float finalDashCost = dashPowerCost + ((float)currDashCombo * 0.03f);
+        float finalDashCost = dashPowerCost + ((float)currDashCombo * dashComboMult);
 
-        if (!powerManager.SufficentPower(-finalDashCost, true)) return false; //camerashake, konstig syntax kanske du tycker, men palla göra det fancy!
+        //if (!powerManager.SufficentPower(-finalDashCost, true)) return false; //camerashake, konstig syntax kanske du tycker, men palla göra det fancy!
         powerManager.AddPower(-finalDashCost);
         lastUnitHit = null; //resetta denna så att man återigen kan dasha på detta unit
         dashUsed = true;
@@ -935,18 +947,18 @@ public class StagMovement : BaseClass
     {
         if(!free)
         {
-            if (!IsDashReady()) return false;
-
-            if (dashComboResetTimer < Time.time) //man tappar combon för man har varit för seg med och dasha
+            if (!IsDashReady(dashPowerCost + ((float)(currDashCombo++) * dashComboMult)))
             {
-                currDashCombo = 0;
+                cameraShaker.ShakeCamera(0.2f, 1, true);
+                return false;
             }
+
             dashComboResetTimer = dashComboResetTime + Time.time;
             currDashCombo++;
 
-            float finalDashCost = dashPowerCost + ((float)currDashCombo * 0.016f);
+            float finalDashCost = dashPowerCost + ((float)currDashCombo * dashComboMult);
 
-            if (!powerManager.SufficentPower(-finalDashCost, true)) return false; //camerashake, konstig syntax kanske du tycker, men palla göra det fancy!
+            //if (!powerManager.SufficentPower(-finalDashCost, true)) return false; //camerashake, konstig syntax kanske du tycker, men palla göra det fancy!
             powerManager.AddPower(-finalDashCost);
             lastUnitHit = null; //resetta denna så att man återigen kan dasha på detta unit
             dashUsed = true;
@@ -965,6 +977,15 @@ public class StagMovement : BaseClass
     public virtual bool IsDashReady()
     {
         if (!powerManager.SufficentPower(-dashPowerCost)) return false;
+        if (dashTimePoint + dashGlobalCooldown > Time.time) return false;
+        if (dashUsed) return false;
+
+        return true;
+    }
+
+    public virtual bool IsDashReady(float modCost) //annan kostnad
+    {
+        if (!powerManager.SufficentPower(-modCost)) return false;
         if (dashTimePoint + dashGlobalCooldown > Time.time) return false;
         if (dashUsed) return false;
 

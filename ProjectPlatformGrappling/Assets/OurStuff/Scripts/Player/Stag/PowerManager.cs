@@ -17,6 +17,7 @@ public class PowerManager : BaseClass {
     public float lightsMaxIntensity = 2;
 
     public Material emissiveStagMaterial; //det som fadeas ut när denne tappar powernn
+    public Renderer emissiveStagRenderer;
     public Material damagedMaterial;
     List<List<Material>> originalMats = new List<List<Material>>(); //så man kan återställa efter changemat
     public Renderer[] changeMatRenderers;
@@ -249,43 +250,47 @@ public class PowerManager : BaseClass {
     public IEnumerator MarkMaterial(Material m, float time)
     {
         //allRenderers.material = m;
-        
 
-        for (int i = 0; i < changeMatRenderers.Length; i++)
-        {
-            Material[] matsSetTemp = changeMatRenderers[i].materials; //temporär så att man ska kunna sätta allRenderers[i].materials till ett värde
 
-            for (int y = 0; y < changeMatRenderers[i].materials.Length; y++)
-            {
-                matsSetTemp[y] = m;
-            }
-            changeMatRenderers[i].materials = matsSetTemp;
+        //for (int i = 0; i < changeMatRenderers.Length; i++)
+        //{
+        //    Material[] matsSetTemp = changeMatRenderers[i].materials; //temporär så att man ska kunna sätta allRenderers[i].materials till ett värde
 
-        }
+        //    for (int y = 0; y < changeMatRenderers[i].materials.Length; y++)
+        //    {
+        //        matsSetTemp[y] = m;
+        //    }
+        //    changeMatRenderers[i].materials = matsSetTemp;
+
+        //}
+        emissiveStagRenderer.material = m;
+
         yield return new WaitForSeconds(time);
-        for (int i = 0; i < changeMatRenderers.Length; i++)
-        {
-            Material[] matsSetTemp = changeMatRenderers[i].materials; //temporär så att man ska kunna sätta allRenderers[i].materials till ett värde
-            for (int y = 0; y < originalMats[i].Count; y++)
-            {
-                matsSetTemp[y] = originalMats[i][y];
-            }
-            changeMatRenderers[i].materials = matsSetTemp;
-        }
+        emissiveStagRenderer.material = emissiveStagMaterial;
+        //for (int i = 0; i < changeMatRenderers.Length; i++)
+        //{
+        //    Material[] matsSetTemp = changeMatRenderers[i].materials; //temporär så att man ska kunna sätta allRenderers[i].materials till ett värde
+        //    for (int y = 0; y < originalMats[i].Count; y++)
+        //    {
+        //        matsSetTemp[y] = originalMats[i][y];
+        //    }
+        //    changeMatRenderers[i].materials = matsSetTemp;
+        //}
         changeMatIE = null;
     }
 
     public void ResetChangeMat()
     {
-        if (originalMats.Count == 0) return;
-        for (int i = 0; i < changeMatRenderers.Length; i++)
-        {
-            Material[] matsSetTemp = changeMatRenderers[i].materials; //temporär så att man ska kunna sätta allRenderers[i].materials till ett värde
-            for (int y = 0; y < originalMats[i].Count; y++)
-            {
-                matsSetTemp[y] = originalMats[i][y];
-            }
-            changeMatRenderers[i].materials = matsSetTemp;
-        }
+        emissiveStagRenderer.material = emissiveStagMaterial;
+        //if (originalMats.Count == 0) return;
+        //for (int i = 0; i < changeMatRenderers.Length; i++)
+        //{
+        //    Material[] matsSetTemp = changeMatRenderers[i].materials; //temporär så att man ska kunna sätta allRenderers[i].materials till ett värde
+        //    for (int y = 0; y < originalMats[i].Count; y++)
+        //    {
+        //        matsSetTemp[y] = originalMats[i][y];
+        //    }
+        //    changeMatRenderers[i].materials = matsSetTemp;
+        //}
     }
 }

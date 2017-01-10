@@ -4190,6 +4190,7 @@ MonoBehaviour:
   currFrameMovespeed: 0
   dashTimePoint: 0
   maxDashTime: 0
+  dashUsed: 0
   dashEffectObject: {fileID: 1000013548107072}
   dashReadyPS: {fileID: 198000010572112006}
   unitCheckLM:
@@ -5156,6 +5157,7 @@ MonoBehaviour:
   lightsMaxIntensity: 2
   emissiveStagMaterial: {fileID: 2100000, guid: fac517c5343b772468e55ca732238063,
     type: 2}
+  emissiveStagRenderer: {fileID: 137000010550600080}
   damagedMaterial: {fileID: 2100000, guid: 5a5a1a50a180c2246b70601cbc08ebef, type: 2}
   changeMatRenderers:
   - {fileID: 137000010550600080}
