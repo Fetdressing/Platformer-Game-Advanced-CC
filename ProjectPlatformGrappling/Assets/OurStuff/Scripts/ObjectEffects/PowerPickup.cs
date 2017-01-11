@@ -3,6 +3,9 @@ using System.Collections;
 
 public class PowerPickup : BaseClass {
     public GameObject pickUpObj;
+    public bool pickUpObjFollow = true;
+
+    protected bool isAlive = true;
 
     [HideInInspector]public bool hasBeenPicked = false; //resettas bara när man kör om hela lvlen
     private Rigidbody thisRigidbody;
@@ -95,7 +98,8 @@ public class PowerPickup : BaseClass {
 
     void Update()
     {
-        if (pickUpObj.gameObject.activeSelf == false) return;
+        if (!pickUpObjFollow && pickUpObj.gameObject.activeSelf == false) return;
+        if (isAlive == false && particlePicked.gameObject.activeSelf == false) return;
         if (Time.timeScale == 0) return;
         if (player.gameObject.activeSelf == false) return;
         if (stagMovement.isLocked) return;
@@ -104,7 +108,7 @@ public class PowerPickup : BaseClass {
         float distanceToPlayer = Vector3.Distance(player.position, this.transform.position);
         if (distanceToPlayer < playerChaseDistance && cooldownChase < Time.time)
         {
-            this.transform.position = Vector3.Slerp(this.transform.position, player.position, Time.deltaTime * playerChaseSpeed / distanceToPlayer);
+            transform.position = Vector3.Slerp(this.transform.position, player.position, Time.deltaTime * playerChaseSpeed / distanceToPlayer);
         }
         else if (moveToWantedPos) //en external position
         {
@@ -117,7 +121,7 @@ public class PowerPickup : BaseClass {
         }
         else if (Vector3.Distance(startPos, this.transform.position) > (playerChaseDistance) && returnToStartPos)
         {
-            this.transform.position = Vector3.Slerp(this.transform.position, startPos, Time.deltaTime * playerChaseSpeed);
+            transform.position = Vector3.Slerp(this.transform.position, startPos, Time.deltaTime * playerChaseSpeed);
         }
     }
 
@@ -171,6 +175,7 @@ public class PowerPickup : BaseClass {
         this.transform.position = startPos;
         thisRigidbody.velocity = new Vector3(0, 0, 0);
         pickUpObj.gameObject.SetActive(true);
+        isAlive = true;
     }
 
     void Die()
@@ -196,6 +201,7 @@ public class PowerPickup : BaseClass {
         }
 
         pickUpObj.gameObject.SetActive(false);
+        isAlive = false;
     }
 
     public void SetWantedPos(Vector3 pos, float cooldownChase)

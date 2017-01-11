@@ -51,6 +51,8 @@ public class AttackFlyer : BaseClass {
             }
         }
 
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
         Reset();
     }
 
@@ -61,7 +63,6 @@ public class AttackFlyer : BaseClass {
         returning = false;
         movePosIntervalTimer = 0.0f;
 
-        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
     // Update is called once per frame
     void Update()

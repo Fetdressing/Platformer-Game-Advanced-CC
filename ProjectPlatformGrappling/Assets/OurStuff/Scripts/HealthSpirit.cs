@@ -7,10 +7,14 @@ public class HealthSpirit : BaseClass
     private Transform thisTransform;
     private Rigidbody thisRigidbody;
     private AIBase aiBase;
+
     public Renderer[] thisRenderer; //om den inte sätts så kör den på default stuff
     private List<Material> thisMaterial = new List<Material>();
     public Material damagedMaterial;
+    List<List<Material>> originalMats = new List<List<Material>>(); //så man kan återställa efter changemat
     IEnumerator changeMatIE;
+
+    private Vector3 startPos;
 
     [HideInInspector]
     public Vector3 middlePoint; //var dennas mittpunkt ligger
@@ -56,6 +60,7 @@ public class HealthSpirit : BaseClass
         base.Init();
         thisTransform = this.transform;
         thisRigidbody = thisTransform.GetComponent<Rigidbody>();
+        startPos = thisTransform.position;
         if (thisRenderer == null)
         {
             thisRenderer = GetComponentsInChildren<Renderer>();
@@ -67,6 +72,18 @@ public class HealthSpirit : BaseClass
             //Debug.Log(re.material.name);
             thisMaterial.Add(re.material);
             i++;
+        }
+
+        for (int k = 0; k < thisRenderer.Length; k++)
+        {
+            List<Material> matT = new List<Material>();
+
+            for (int y = 0; y < thisRenderer[k].materials.Length; y++)
+            {
+                matT.Add(thisRenderer[k].materials[y]);
+            }
+            originalMats.Add(matT);
+
         }
 
         Reset();
@@ -86,7 +103,10 @@ public class HealthSpirit : BaseClass
         transparentValue = 1;
         SetTransparency(transparentValue, false);
 
-        ApplyMaterial(damagedMaterial, 0.1f);
+        thisTransform.position = startPos;
+
+        //ApplyMaterial(damagedMaterial, 0.1f);
+        ResetChangeMat();
     }
 
     // Update is called once per frame
@@ -315,35 +335,75 @@ public class HealthSpirit : BaseClass
 
     public IEnumerator MarkMaterial(Material m, float time)
     {
-        //thisRenderer.material = m;
-        List<List<Material>> mats = new List<List<Material>>();
-        
         for (int i = 0; i < thisRenderer.Length; i++)
         {
-            List<Material> matT = new List<Material>();
-            Material[] matsSetTemp = thisRenderer[i].materials; //temporär så att man ska kunna sätta thisRenderer[i].materials till ett värde
+            Material[] matsSetTemp = thisRenderer[i].materials; //temporär så att man ska kunna sätta allRenderers[i].materials till ett värde
 
             for (int y = 0; y < thisRenderer[i].materials.Length; y++)
             {
-                matT.Add(thisRenderer[i].materials[y]);
                 matsSetTemp[y] = m;
             }
             thisRenderer[i].materials = matsSetTemp;
-            mats.Add(matT);
-            
+
         }
         yield return new WaitForSeconds(time);
         for (int i = 0; i < thisRenderer.Length; i++)
         {
-            Material[] matsSetTemp = thisRenderer[i].materials; //temporär så att man ska kunna sätta thisRenderer[i].materials till ett värde
-            for (int y = 0; y < mats[i].Count; y++)
+            Material[] matsSetTemp = thisRenderer[i].materials; //temporär så att man ska kunna sätta allRenderers[i].materials till ett värde
+            for (int y = 0; y < originalMats[i].Count; y++)
             {
-                matsSetTemp[y] = mats[i][y];
+                matsSetTemp[y] = originalMats[i][y];
             }
             thisRenderer[i].materials = matsSetTemp;
         }
         changeMatIE = null;
     }
+
+    public void ResetChangeMat()
+    {
+        if (originalMats.Count == 0) return;
+        for (int i = 0; i < thisRenderer.Length; i++)
+        {
+            Material[] matsSetTemp = thisRenderer[i].materials; //temporär så att man ska kunna sätta allRenderers[i].materials till ett värde
+            for (int y = 0; y < originalMats[i].Count; y++)
+            {
+                matsSetTemp[y] = originalMats[i][y];
+            }
+            thisRenderer[i].materials = matsSetTemp;
+        }
+    }
+
+    //public IEnumerator MarkMaterial(Material m, float time)
+    //{
+    //    //thisRenderer.material = m;
+    //    List<List<Material>> mats = new List<List<Material>>();
+
+    //    for (int i = 0; i < thisRenderer.Length; i++)
+    //    {
+    //        List<Material> matT = new List<Material>();
+    //        Material[] matsSetTemp = thisRenderer[i].materials; //temporär så att man ska kunna sätta thisRenderer[i].materials till ett värde
+
+    //        for (int y = 0; y < thisRenderer[i].materials.Length; y++)
+    //        {
+    //            matT.Add(thisRenderer[i].materials[y]);
+    //            matsSetTemp[y] = m;
+    //        }
+    //        thisRenderer[i].materials = matsSetTemp;
+    //        mats.Add(matT);
+
+    //    }
+    //    yield return new WaitForSeconds(time);
+    //    for (int i = 0; i < thisRenderer.Length; i++)
+    //    {
+    //        Material[] matsSetTemp = thisRenderer[i].materials; //temporär så att man ska kunna sätta thisRenderer[i].materials till ett värde
+    //        for (int y = 0; y < mats[i].Count; y++)
+    //        {
+    //            matsSetTemp[y] = mats[i][y];
+    //        }
+    //        thisRenderer[i].materials = matsSetTemp;
+    //    }
+    //    changeMatIE = null;
+    //}
 
     void OnCollisionEnter(Collision collision)
     {

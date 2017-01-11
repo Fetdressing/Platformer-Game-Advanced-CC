@@ -90,7 +90,7 @@ public class StagMovement : BaseClass
     [HideInInspector] public Vector3 dashVel = new Vector3(0, 0, 0); //vill kunna komma åt denna, så därför public
     protected Vector3 finalMoveDir = new Vector3(0, 0, 0);
     protected Vector3 externalVel = new Vector3(0, 0, 0);
-    protected Vector3 currMomentum = Vector3.zero; //så man behåller fart även efter man släppt på styrning
+    [HideInInspector] public Vector3 currMomentum = Vector3.zero; //så man behåller fart även efter man släppt på styrning
     protected float startLimitSpeed = 60;
     protected float currLimitSpeed;
 
@@ -154,6 +154,7 @@ public class StagMovement : BaseClass
         groundChecker = GetComponentsInChildren<GroundChecker>()[0];
 
         controlManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<ControlManager>();
+        currGravityModifier = 1.0f;
 
         try
         {
@@ -191,7 +192,7 @@ public class StagMovement : BaseClass
         lastH_Vector = Vector3.zero; //senast som horVector hade ett värde (dvs inte vector3.zero)
         lastV_Vector = Vector3.zero;
         ySpeed = -gravity * 0.01f; //nollställer ej helt
-        currGravityModifier = 1.0f;
+        //currGravityModifier = 1.0f; jag vill nog inte resetta denna vid spawn
         currExternalSpeedMult = 1.0f;
         currLimitSpeed = startLimitSpeed;
 
