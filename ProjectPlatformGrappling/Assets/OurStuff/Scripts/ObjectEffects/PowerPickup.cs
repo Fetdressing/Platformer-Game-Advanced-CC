@@ -172,8 +172,8 @@ public class PowerPickup : BaseClass {
 
     void Spawn()
     {
-        this.transform.position = startPos;
         thisRigidbody.velocity = new Vector3(0, 0, 0);
+        this.transform.position = startPos;
         pickUpObj.gameObject.SetActive(true);
         isAlive = true;
     }

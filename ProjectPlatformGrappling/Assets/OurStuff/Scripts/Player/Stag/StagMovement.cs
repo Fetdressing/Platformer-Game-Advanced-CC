@@ -67,7 +67,12 @@ public class StagMovement : BaseClass
     protected float dashComboResetTime = 0.85f;
     protected float dashComboResetTimer = 0.0f;
     public LayerMask unitCheckLM; //fiender o liknande som dash ska styras mot
+    //during dash
     [HideInInspector] public Transform lastUnitHit; //så att man inte träffar samma igen
+    Transform dashTarget = null;
+    Vector3 dirMod = Vector3.zero;
+    Vector3 groundOffset = new Vector3(0, 0.4f, 0);
+    Vector3 dashTargetOffset = Vector3.zero; //sätts av middlepoint av unitet
 
     protected float knockForceMovingPlatform = 420; //om man hamnar på fel sidan av moving platform så knuffas man bort lite
 
@@ -223,6 +228,10 @@ public class StagMovement : BaseClass
         {
             currExternalSpeedMult = 1.0f;
         }
+        else //ha igång någon effekt
+        {
+            Debug.Log("En effekt");
+        }
     }
 
     void FixedUpdate()
@@ -374,7 +383,7 @@ public class StagMovement : BaseClass
                 Dash(false, false);
             }
         }
-
+        
         //// YYYYY SKA JU LIGGA INNAN MOVING PLATFORM OM MAN VILL HA Y-MOVING PLATFORMS
         ////Debug.Log(characterController.isGrounded);
         //// apply gravity acceleration to vertical speed:
@@ -993,7 +1002,7 @@ public class StagMovement : BaseClass
         return true;
     }
 
-    public IEnumerator StaggDash(bool useCameraDir, float staggTime, float extraDashTime) //används när man träffar ett target mest, DASHAR OLIKA SNABBT MED VÄNTE-TIDEN? Stackar den?
+    public IEnumerator StaggDash(bool useCameraDir, float staggTime, float extraDashTime) //används när man träffar ett dashTarget mest, DASHAR OLIKA SNABBT MED VÄNTE-TIDEN? Stackar den?
     {
         //Debug.Log(" DASHAR OLIKA SNABBT MED VÄNTE-TIDEN? Stackar den?");
         BreakNormalStagg();
@@ -1028,29 +1037,38 @@ public class StagMovement : BaseClass
         staggDashIE = null;
     }
 
-    public void BreakDash()
+    public void BreakDash(bool instantDisable = true) //instant disable stänger av dashobjektet dirr
     {
         ToggleDashEffect(false);
         unitDetectionCamera.transform.localRotation = Quaternion.identity; //nollställ
         unitDetectionCamera.transform.localPosition = Vector3.zero;
-        Time.timeScale = 1.0f;
-        if (dashVel.magnitude > 2.0f)
+        
+        if (dashVel.magnitude > 1.0f)
         {
             currMomentum = new Vector3(dashVel.x, 0, dashVel.z);
         }
 
         dashVel = Vector3.zero;
 
-        if (staggDashIE != null)
-        {
-            StopCoroutine(staggDashIE);
-        }
-        speedBreakerTimer = 0.0f;
-        speedBreaker.InstantDisable();
-
         if (currDashIE != null)
         {
             StopCoroutine(currDashIE);
+        }
+
+        currDashIE = null;
+
+        if (instantDisable)
+        {
+            Time.timeScale = 1.0f;
+            if (staggDashIE != null)
+            {
+                StopCoroutine(staggDashIE);
+            }
+
+
+            speedBreakerTimer = 0.0f;
+            speedBreaker.InstantDisable();
+
         }
     }
 
@@ -1073,7 +1091,7 @@ public class StagMovement : BaseClass
         }
 
         //HÄMTA RIKTNINGEN
-        Vector3 dirMod;
+        dirMod = Vector3.zero;
         Camera checkCamera = unitDetectionCamera;
         useCameraDir = true;
         if (useCameraDir) //sker efter tex dashhit i fiende
@@ -1130,19 +1148,17 @@ public class StagMovement : BaseClass
 
         //***DASHSTYRNIG***
         Vector3 biasedDir = Vector3.zero; //styr den mot fiender
-        Transform target = null;
+        dashTarget = null;
 
-        Collider[] potTargets = Physics.OverlapSphere(transform.position, distanceCheck, unitCheckLM); //att hitta ett target borde kanske bara göras i början av dash?
+        Collider[] potTargets = Physics.OverlapSphere(transform.position, distanceCheck, unitCheckLM); //att hitta ett dashTarget borde kanske bara göras i början av dash?
         //float closestDistance = Mathf.Infinity;
         float closeDistanceThreshhold = 3; //ifall den är för nära så skit i det
         //float closestToMidValue = Mathf.Infinity;
 
-        float bestFinalValue = -Mathf.Infinity; //det target med högst värde är den som väljs
+        float bestFinalValue = -Mathf.Infinity; //det dashTarget med högst värde är den som väljs
 
         Vector3 horVectorNoY = new Vector3(horVector.x, 0, horVector.z);
         Vector3 verVectorNoY = new Vector3(verVector.x, 0, verVector.z);
-
-        Vector3 gOffset = new Vector3(0, 0.4f, 0); //en liten offset från marken när man kör raycast
 
         Vector3 currViewPlayerPos = checkCamera.WorldToViewportPoint(transform.position); //spelarens position i kamera spacet
 
@@ -1154,7 +1170,7 @@ public class StagMovement : BaseClass
             if (hSpirit == null || hSpirit.IsAlive() == false) continue;
             if (potTargets[i].transform == lastUnitHit) { continue; }//så man inte fastnar på infinite dash
 
-            Vector3 TToTar = ((potTargets[i].transform.position + gOffset) - (transform.position + gOffset)).normalized;
+            Vector3 TToTar = ((potTargets[i].transform.position + groundOffset) - (transform.position + groundOffset)).normalized;
             Vector3 CToTar = (potTargets[i].transform.position - cameraHolder.position).normalized;
 
             Vector3 currViewPos = checkCamera.WorldToViewportPoint(potTargets[i].transform.position); //använder en kamera för att se ifall den ser några fiender!
@@ -1178,13 +1194,13 @@ public class StagMovement : BaseClass
                 RaycastHit rHit;
 
                 //kolla så att ingen miljö är i vägen
-                if (!Physics.Raycast(transform.position + gOffset, TToTar, out rHit, currDistance-2, groundCheckLM)) //kolla så att den inte träffar någon miljö bara
+                if (!Physics.Raycast(transform.position + groundOffset, TToTar, out rHit, currDistance-2, groundCheckLM)) //kolla så att den inte träffar någon miljö bara
                 {
                     //if(lastUnitHit != null) sätts i StagSpeedBreaker
                     bestFinalValue = currFinalValue;
                     biasedDir = TToTar;
-                    target = potTargets[i].transform;
-                    hSpirit = target.GetComponent<HealthSpirit>();
+                    dashTarget = potTargets[i].transform;
+                    hSpirit = dashTarget.GetComponent<HealthSpirit>();
                     //bestDashTransform = potTargets[i].transform; //denna måste dock resettas efter en kort tid så att man återigen kan dasha på denna, detta bör göras när man kör en vanlig dash, dvs en som går på cd o liknande
                 }
             }
@@ -1213,12 +1229,13 @@ public class StagMovement : BaseClass
         float startDashTime = Time.time;
         float extendedTime = 0.0f;
 
-        Vector3 offsetTarget = Vector3.zero;
+        Vector3 dashTargetOffset = Vector3.zero;
         if (hSpirit != null)
         {
-            offsetTarget = new Vector3(0, hSpirit.middlePointOffsetY, 0);
+            dashTargetOffset = new Vector3(0, hSpirit.middlePointOffsetY, 0);
         }
 
+        //yield return new WaitForSeconds(maxDashTime);
         while (currDashTime < maxDashTime)
         {
             currMomentum = Vector3.zero;
@@ -1231,9 +1248,9 @@ public class StagMovement : BaseClass
 
             speedBreakerTimer = Time.time + speedBreakerTime; //speedbreakern aktiveras sedan i update
 
-            if(target != null)
+            if (dashTarget != null)
             {
-                dirMod = ((target.position + gOffset + offsetTarget) - (transform.position + gOffset)).normalized;
+                dirMod = ((dashTarget.position + groundOffset + dashTargetOffset) - (transform.position + groundOffset)).normalized;
             }
             dashVel = dirMod * dashSpeed; //styra under dashen
             stagObject.transform.forward = dashVel;
@@ -1241,28 +1258,50 @@ public class StagMovement : BaseClass
             Vector3 hitNormal = Vector3.zero;
             if (!IsWalkable(1.0f, characterController.radius + 1.0f, dashVel, maxSlopeGrounded, ref hitNormal)) //så den slutar dasha när den går emot en vägg
             {
-                ToggleDashEffect(false);
-                currMomentum = new Vector3(dashVel.x, 0, dashVel.z);
-                dashVel = Vector3.zero;
-
-                //Debug.Log("Fixa Dot mojset!!");
-
+                BreakDash(false);
                 Stagger(0.12f);
-                //Break(1000, ref currMomentum);
-                unitDetectionCamera.transform.localRotation = Quaternion.identity; //nollställ
-                unitDetectionCamera.transform.localPosition = Vector3.zero;
                 yield break;
             }
             currDashTime = Time.time - startDashTime - extendedTime;
             yield return null;
         }
-        ToggleDashEffect(false);
-        unitDetectionCamera.transform.localRotation = Quaternion.identity; //nollställ
-        unitDetectionCamera.transform.localPosition = Vector3.zero;
+        //ToggleDashEffect(false);
+        //unitDetectionCamera.transform.localRotation = Quaternion.identity; //nollställ
+        //unitDetectionCamera.transform.localPosition = Vector3.zero;
 
-        currMomentum = new Vector3(dashVel.x, 0, dashVel.z);
-        dashVel = Vector3.zero;
+        //currMomentum = new Vector3(dashVel.x, 0, dashVel.z);
+        //dashVel = Vector3.zero;
+        BreakDash(false);
         //Debug.Log(cameraObj.forward.ToString() + " " + dirMod.ToString() + "  " + biasedDir.ToString() + " " + lastUnitHit.ToString());
+    }
+
+    void DashUpdate() //körs medans man dashar
+    {
+        if (currDashIE == null) return;
+
+        currMomentum = Vector3.zero;
+        //if (isLocked) //ifall den låses så skall fortfarande dashen vara igång efter
+        //{
+        //    extendedTime += Time.deltaTime * 1.7f; //vet inte varför den behöver multipliceras, det borde bli samma tid ändå som den förlorade
+        //}
+
+        speedBreakerTimer = Time.time + speedBreakerTime; //speedbreakern aktiveras sedan i update
+
+        if (dashTarget != null)
+        {
+            dirMod = ((dashTarget.position + groundOffset + dashTargetOffset) - (transform.position + groundOffset)).normalized;
+        }
+        dashVel = dirMod * dashSpeed; //styra under dashen
+        stagObject.transform.forward = dashVel;
+
+        Vector3 hitNormal = Vector3.zero;
+        if (!IsWalkable(1.0f, characterController.radius + 1.0f, dashVel, maxSlopeGrounded, ref hitNormal)) //så den slutar dasha när den går emot en vägg
+        {
+            BreakDash(false);
+            Stagger(0.12f);
+        }
+        //currDashTime = Time.time - startDashTime - extendedTime;
+
     }
 
     void CenterRectangle(ref Rect someRect)
