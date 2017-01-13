@@ -309,7 +309,7 @@ public class StagMovement : BaseClass
         }
 
             //hämta alltid input, även om man är låst
-            hor = controlManager.horAxis;
+        hor = controlManager.horAxis;
         ver = controlManager.verAxis;
 
         horVector = hor * cameraHolder.right;
@@ -355,6 +355,10 @@ public class StagMovement : BaseClass
 
             if (groundedSlope > maxSlopeGrounded) //denna checken görs här när man är grounded och i charactercontrollerhit när man INTE är grounded
             {
+                if(groundedRaycastObject.tag == "WallJump")
+                {
+                    AddJumpsAvaible(jumpAmount, jumpAmount);
+                }
                 //ApplyExternalForce(groundedNormal * 20); // så man glider för slopes
                 //currMomentum = Vector3.zero;
             }
@@ -482,6 +486,11 @@ public class StagMovement : BaseClass
         {
             if (slope > maxSlopeGrounded)
             {
+                if(hit.collider.tag == "WallJump") //hoppar på väggen!
+                {
+                    AddJumpsAvaible(jumpAmount, jumpAmount);
+                }
+
                 if (isGroundedRaycast || isGrounded)
                 {
                     if (groundedSlope > maxSlopeGrounded)
@@ -497,7 +506,7 @@ public class StagMovement : BaseClass
                     //currMomentum = Vector3.zero;
                 }
             }
-            else if (slope < maxSlopeGrounded) //ingen slope, dvs man står på marken, resetta stuff!
+            else if (slope <= maxSlopeGrounded) //ingen slope, dvs man står på marken, resetta stuff!
             {
                 if (jumpTimePoint < Time.time - 0.4f) //så den inte ska fucka och resetta dirr efter man hoppat
                 {
