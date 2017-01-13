@@ -10,6 +10,8 @@ public class GameManager : BaseClass {
     private Transform player;
     public Transform goal;
     public GameObject goalDisplay; //aktiveras när man går i mål
+
+    float lastTimeScale = 1.0f; //spara ned den timescalen som var innan man körde igång menyn
 	// Use this for initialization
 	void Start () {
         Init();
@@ -57,12 +59,13 @@ public class GameManager : BaseClass {
 
         if(b)
         {
+            lastTimeScale = Time.timeScale;
             Time.timeScale = 0;
             ToggleUI(menuUIPanel);
         }
         else
         {
-            Time.timeScale = 1;
+            Time.timeScale = lastTimeScale;
             ToggleUI(gameUIPanel);
         }
     }
@@ -72,12 +75,13 @@ public class GameManager : BaseClass {
 
         if (b)
         {
+            lastTimeScale = Time.timeScale;
             Time.timeScale = 0;
             ToggleUI(menuUIPanel);
         }
         else
         {
-            Time.timeScale = 1;
+            Time.timeScale = lastTimeScale;
             ToggleUI(gameUIPanel);
         }
     }

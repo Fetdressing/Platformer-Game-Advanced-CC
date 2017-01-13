@@ -88,6 +88,7 @@ GameObject:
   - 111: {fileID: 111000012562698748}
   - 65: {fileID: 65000011548515604}
   - 114: {fileID: 114000013399255560}
+  - 114: {fileID: 114000013020532538}
   m_Layer: 11
   m_Name: LaserBeamer
   m_TagString: Untagged
@@ -115,8 +116,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013229235826}
   m_LocalRotation: {x: -0, y: -0.098384544, z: -0, w: 0.99514854}
-  m_LocalPosition: {x: 1525.4, y: -81.5, z: -3118.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1498.3, y: -81.5, z: -2982.9}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_LocalEulerAnglesHint: {x: 0, y: -11.018001, z: 0}
   m_Children:
   - {fileID: 4000010056590976}
@@ -265,6 +266,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000013020532538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013229235826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351a6299a7f558f4f96aec7e063c8ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedIncrease: 0.6
 --- !u!114 &114000013399255560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -276,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0640b398ef912c498e6923d3179d59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axis: {x: 0, y: 1, z: 0}
+  axis: {x: 0, y: -1, z: 0}
   speed: 1
 --- !u!137 &137000012694141848
 SkinnedMeshRenderer:

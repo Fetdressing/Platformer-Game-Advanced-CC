@@ -4199,6 +4199,7 @@ MonoBehaviour:
   lastUnitHit: {fileID: 0}
   activePlatform: {fileID: 0}
   dashVel: {x: 0, y: 0, z: 0}
+  currMomentum: {x: 0, y: 0, z: 0}
   moveStackText: {fileID: 114000012092135568}
   movementStacks: 0
   pullField: {fileID: 114000010577849772}

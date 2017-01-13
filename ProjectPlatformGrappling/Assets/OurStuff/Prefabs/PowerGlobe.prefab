@@ -288,10 +288,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   pickUpObj: {fileID: 1000014119565378}
+  pickUpObjFollow: 1
   hasBeenPicked: 0
   globeRenderer: {fileID: 23000010434138584}
-  playerChaseSpeed: 280
-  playerChaseDistance: 35
+  playerChaseSpeed: 320
+  playerChaseDistance: 40
   powerWorth: 0.1
   returnToStartPos: 1
   respawn: 1

@@ -54,8 +54,7 @@ public class StagMovement : BaseClass
     [HideInInspector]public float dashTimePoint; //mud påverkar denna så att man inte kan dasha
     protected float dashGlobalCooldown = 0.3f;
     protected float dashGroundCooldown = 1f; //går igång ifall man dashar från marken
-    protected float dashSpeed = 380;
-    protected float currDashTime;
+    protected float dashSpeed = 400;
     protected float startMaxDashTime = 0.08f; //den går att utöka
     [HideInInspector] public float maxDashTime;
     protected float dashPowerCost = 0.1f; //hur mycket power det drar varje gång man dashar
@@ -73,6 +72,11 @@ public class StagMovement : BaseClass
     Vector3 dirMod = Vector3.zero;
     Vector3 groundOffset = new Vector3(0, 0.4f, 0);
     Vector3 dashTargetOffset = Vector3.zero; //sätts av middlepoint av unitet
+    float currDashTime;
+    float startDashTime = 0.0f;
+    float extendedTime = 0.0f;
+    int dashUpdates = 20; //hur många fixedupdates som dash ska köra, detta gör den consistent i hur långt den åker oavsett framerate. Kanske en skum lösning men det funkar asbra!
+    int currDashUpdates = 0;
 
     protected float knockForceMovingPlatform = 420; //om man hamnar på fel sidan av moving platform så knuffas man bort lite
 
@@ -219,11 +223,6 @@ public class StagMovement : BaseClass
         if (Time.timeScale == 0) return;
         if (isLocked) return;
 
-        if (currMomentum.magnitude < 0.01f) return;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(currMomentum.x, 0, currMomentum.z));
-        //Quaternion lookRotation = Quaternion.LookRotation(new Vector3(cameraHolder.forward.x, 0, cameraHolder.forward.z));
-        stagObject.rotation = Quaternion.Slerp(stagObject.rotation, lookRotation, deltaTime * 20);
-
         if ((moveSpeedMultTimePoint + moveSpeedMultDuration) < Time.time)
         {
             currExternalSpeedMult = 1.0f;
@@ -232,6 +231,11 @@ public class StagMovement : BaseClass
         {
             Debug.Log("En effekt");
         }
+
+        if (currMomentum.magnitude < 0.01f) return;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(currMomentum.x, 0, currMomentum.z));
+        //Quaternion lookRotation = Quaternion.LookRotation(new Vector3(cameraHolder.forward.x, 0, cameraHolder.forward.z));
+        stagObject.rotation = Quaternion.Slerp(stagObject.rotation, lookRotation, deltaTime * 20);
     }
 
     void FixedUpdate()
@@ -281,6 +285,8 @@ public class StagMovement : BaseClass
         {
             //ySpeed = 0; //behöver inte lägga på gravity när man står på moving platform, varför funkar inte grounded? lol
         }
+
+        DashUpdate();
 
     }
 
@@ -1010,6 +1016,7 @@ public class StagMovement : BaseClass
         {
             StopCoroutine(currDashIE); //avbryter nuvarande dash
         }
+        currDashIE = null;
         //Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Unit"), gameObject.layer, true);
         //if (isLocked) yield break;
         cameraShaker.ShakeCamera(staggTime, 1f, true, true);
@@ -1039,6 +1046,8 @@ public class StagMovement : BaseClass
 
     public void BreakDash(bool instantDisable = true) //instant disable stänger av dashobjektet dirr
     {
+        currDashTime = Mathf.Infinity;
+        currDashUpdates = dashUpdates + 1; //så att den ska sluta köra DashUpdate()
         ToggleDashEffect(false);
         unitDetectionCamera.transform.localRotation = Quaternion.identity; //nollställ
         unitDetectionCamera.transform.localPosition = Vector3.zero;
@@ -1223,28 +1232,72 @@ public class StagMovement : BaseClass
             dirMod = biasedDir;
         }
 
-
         currDashTime = 0.0f;
 
-        float startDashTime = Time.time;
-        float extendedTime = 0.0f;
+        startDashTime = Time.time;
+        extendedTime = 0.0f;
 
-        Vector3 dashTargetOffset = Vector3.zero;
+        dashTargetOffset = Vector3.zero;
         if (hSpirit != null)
         {
             dashTargetOffset = new Vector3(0, hSpirit.middlePointOffsetY, 0);
         }
 
+        currDashUpdates = 0 - (int)(extraDashTime * 70); //lägger till extraDashTime
+
+        speedBreakerTimer = Time.time + speedBreakerTime; //speedbreakern aktiveras sedan i update
+        speedBreaker.Activate();
+
+        yield break;
+
         //yield return new WaitForSeconds(maxDashTime);
-        while (currDashTime < maxDashTime)
+        //while (currDashTime < maxDashTime)
+        //{
+        //    currMomentum = Vector3.zero;
+        //    if (isLocked) //ifall den låses så skall fortfarande dashen vara igång efter
+        //    {
+        //        extendedTime += Time.deltaTime * 1.7f; //vet inte varför den behöver multipliceras, det borde bli samma tid ändå som den förlorade
+        //        yield return null;
+        //        continue;
+        //    }
+
+        //speedBreakerTimer = Time.time + speedBreakerTime; //speedbreakern aktiveras sedan i update
+
+        //    if (dashTarget != null)
+        //    {
+        //        dirMod = ((dashTarget.position + groundOffset + dashTargetOffset) - (transform.position + groundOffset)).normalized;
+        //    }
+        //    dashVel = dirMod * dashSpeed; //styra under dashen
+        //    stagObject.transform.forward = dashVel;
+
+        //    Vector3 hitNormal = Vector3.zero;
+        //    if (!IsWalkable(1.0f, characterController.radius + 1.0f, dashVel, maxSlopeGrounded, ref hitNormal)) //så den slutar dasha när den går emot en vägg
+        //    {
+        //        BreakDash(false);
+        //        Stagger(0.12f);
+        //        yield break;
+        //    }
+        //    currDashTime = Time.time - startDashTime - extendedTime;
+        //    yield return null;
+        //}
+        //ToggleDashEffect(false);
+        //unitDetectionCamera.transform.localRotation = Quaternion.identity; //nollställ
+        //unitDetectionCamera.transform.localPosition = Vector3.zero;
+
+        //currMomentum = new Vector3(dashVel.x, 0, dashVel.z);
+        //dashVel = Vector3.zero;
+        //BreakDash(false);
+        //Debug.Log(cameraObj.forward.ToString() + " " + dirMod.ToString() + "  " + biasedDir.ToString() + " " + lastUnitHit.ToString());
+    }
+
+    void DashUpdate() //körs medans man dashar
+    {
+        if (currDashIE == null) return;
+
+        if (currDashUpdates < dashUpdates)
         {
+            currDashUpdates++;
             currMomentum = Vector3.zero;
-            if (isLocked) //ifall den låses så skall fortfarande dashen vara igång efter
-            {
-                extendedTime += Time.deltaTime * 1.7f; //vet inte varför den behöver multipliceras, det borde bli samma tid ändå som den förlorade
-                yield return null;
-                continue;
-            }
 
             speedBreakerTimer = Time.time + speedBreakerTime; //speedbreakern aktiveras sedan i update
 
@@ -1254,53 +1307,21 @@ public class StagMovement : BaseClass
             }
             dashVel = dirMod * dashSpeed; //styra under dashen
             stagObject.transform.forward = dashVel;
+            currDashTime = Time.time - startDashTime - extendedTime;
+
+            //ySpeed = -gravity * 0.01f; //nollställer ej helt
 
             Vector3 hitNormal = Vector3.zero;
             if (!IsWalkable(1.0f, characterController.radius + 1.0f, dashVel, maxSlopeGrounded, ref hitNormal)) //så den slutar dasha när den går emot en vägg
             {
                 BreakDash(false);
                 Stagger(0.12f);
-                yield break;
             }
-            currDashTime = Time.time - startDashTime - extendedTime;
-            yield return null;
         }
-        //ToggleDashEffect(false);
-        //unitDetectionCamera.transform.localRotation = Quaternion.identity; //nollställ
-        //unitDetectionCamera.transform.localPosition = Vector3.zero;
-
-        //currMomentum = new Vector3(dashVel.x, 0, dashVel.z);
-        //dashVel = Vector3.zero;
-        BreakDash(false);
-        //Debug.Log(cameraObj.forward.ToString() + " " + dirMod.ToString() + "  " + biasedDir.ToString() + " " + lastUnitHit.ToString());
-    }
-
-    void DashUpdate() //körs medans man dashar
-    {
-        if (currDashIE == null) return;
-
-        currMomentum = Vector3.zero;
-        //if (isLocked) //ifall den låses så skall fortfarande dashen vara igång efter
-        //{
-        //    extendedTime += Time.deltaTime * 1.7f; //vet inte varför den behöver multipliceras, det borde bli samma tid ändå som den förlorade
-        //}
-
-        speedBreakerTimer = Time.time + speedBreakerTime; //speedbreakern aktiveras sedan i update
-
-        if (dashTarget != null)
-        {
-            dirMod = ((dashTarget.position + groundOffset + dashTargetOffset) - (transform.position + groundOffset)).normalized;
-        }
-        dashVel = dirMod * dashSpeed; //styra under dashen
-        stagObject.transform.forward = dashVel;
-
-        Vector3 hitNormal = Vector3.zero;
-        if (!IsWalkable(1.0f, characterController.radius + 1.0f, dashVel, maxSlopeGrounded, ref hitNormal)) //så den slutar dasha när den går emot en vägg
+        else
         {
             BreakDash(false);
-            Stagger(0.12f);
         }
-        //currDashTime = Time.time - startDashTime - extendedTime;
 
     }
 
@@ -1340,6 +1361,29 @@ public class StagMovement : BaseClass
         }
         Physics.IgnoreCollision(transform.GetComponent<Collider>(), t_Ignore.GetComponent<Collider>(), false);
         Physics.IgnoreCollision(speedBreaker.GetComponent<Collider>(), t_Ignore.GetComponent<Collider>(), false);
+    }
+
+    public IEnumerator DoIgnoreLayer(float duration, int layer1, int layer2)
+    {
+        float startTime = Time.time;
+        float extendedTime = 0.0f;
+        Physics.IgnoreLayerCollision(layer1, layer2, true);
+        while ((Time.time - startTime - extendedTime) < duration)
+        {
+            if (isLocked) //ifall den låses så skall fortfarande vara igång efter
+            {
+                extendedTime += Time.deltaTime;
+                yield return null;
+                continue;
+            }
+            yield return null;
+        }
+        Physics.IgnoreLayerCollision(layer1, layer2, false);
+    }
+
+    public void IgnoreLayer(int layer1, int layer2, bool ignore)
+    {
+        Physics.IgnoreLayerCollision(layer1, layer2, ignore);
     }
 
     void AddMovementStack(int i)

@@ -39,6 +39,7 @@ public class StagSpeedBreaker : BaseClass {
         HealthSpirit h = col.GetComponent<HealthSpirit>();
         if(h != null && h.IsAlive())
         {
+            stagMovement.BreakDash(false);
             stagMovement.IgnoreCollider(false, internalLastUnitHit);
 
             internalLastUnitHit = col.transform;
@@ -73,12 +74,16 @@ public class StagSpeedBreaker : BaseClass {
         active = true;
         ToggleColliders(true);
         ToggleRenderers(true);
+
+        stagMovement.IgnoreLayer(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Unit"), true); //ignorera all kollision mellan spelarobjektet och alla fiender, så man inte studsar mot dem under dash
     }
 
     public void Disable()
     {
         if (initTimes == 0) return;
         if (fadeOut != null || renderers[0].enabled == false) return;
+
+        stagMovement.IgnoreLayer(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Unit"), false);
 
         fadeOut = FadeOut(0.5f);
         StartCoroutine(fadeOut);
@@ -90,7 +95,9 @@ public class StagSpeedBreaker : BaseClass {
         ToggleColliders(false);
         ToggleRenderers(false);
 
-        if(fadeOut != null)
+        stagMovement.IgnoreLayer(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Unit"), false);
+
+        if (fadeOut != null)
         {
             StopCoroutine(fadeOut);
         }

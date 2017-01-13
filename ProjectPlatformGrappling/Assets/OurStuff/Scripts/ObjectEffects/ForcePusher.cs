@@ -93,6 +93,14 @@ public class ForcePusher : BaseClass {
         if (col.tag == "Player")
         {
             StagMovement sM = col.GetComponent<StagMovement>();
+            if (canBeBlocked)
+            {
+                if (sM.speedBreaker.active == true)
+                {
+                    return;
+                }
+            }
+
             if (sM != null)
             {
                 if (pushAway)

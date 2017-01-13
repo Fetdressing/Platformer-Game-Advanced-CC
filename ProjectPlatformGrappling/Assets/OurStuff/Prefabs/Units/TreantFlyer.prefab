@@ -385,7 +385,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014126461196}
   - 82: {fileID: 82000010619103320}
-  m_Layer: 22
+  m_Layer: 0
   m_Name: PushAudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1436,7 +1436,7 @@ MonoBehaviour:
   rotater: {fileID: 0}
   movePosIntervalTime: 8
   speed: 20
-  chaseSpeed: 40
+  chaseSpeed: 80
   checkDistanceThreshhold: 7
   playerChaseDistance: 140
   animH: {fileID: 111000011418022244}
@@ -1467,7 +1467,7 @@ MonoBehaviour:
   startHealthRegAmount: 1
   healthRegAmount: 1
   destroyOnDeath: 0
-  respawn: 1
+  respawn: 0
   animationObj: {fileID: 0}
   deathAnimation: {fileID: 0}
   deathParticleSystemObj: {fileID: 1000011467355800, guid: cde71cae4950c5e4ab130591809c542d,
