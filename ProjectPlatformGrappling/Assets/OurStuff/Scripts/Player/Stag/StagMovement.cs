@@ -16,6 +16,8 @@ public class StagMovement : BaseClass
     protected CharacterController characterController;
     protected PowerManager powerManager;
     protected ControlManager controlManager;
+    [HideInInspector]
+    public Vector3 yMiddlePointOffset = new Vector3(0, 3, 0);
 
     [HideInInspector] public StagSpeedBreaker speedBreaker;
     protected float speedBreakerActiveSpeed = 1.8f; //vid vilken fart den går igång

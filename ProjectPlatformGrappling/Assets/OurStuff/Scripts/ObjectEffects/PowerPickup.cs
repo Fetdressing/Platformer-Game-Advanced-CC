@@ -108,7 +108,7 @@ public class PowerPickup : BaseClass {
         float distanceToPlayer = Vector3.Distance(player.position, this.transform.position);
         if (distanceToPlayer < playerChaseDistance && cooldownChase < Time.time)
         {
-            transform.position = Vector3.Slerp(this.transform.position, player.position, Time.deltaTime * playerChaseSpeed / distanceToPlayer);
+            transform.position = Vector3.Slerp(this.transform.position, player.position + stagMovement.yMiddlePointOffset, Time.deltaTime * playerChaseSpeed / distanceToPlayer);
         }
         else if (moveToWantedPos) //en external position
         {

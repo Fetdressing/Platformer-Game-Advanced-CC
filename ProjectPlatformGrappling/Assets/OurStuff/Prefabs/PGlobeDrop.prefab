@@ -259,9 +259,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   pickUpObj: {fileID: 1000011418654882}
+  pickUpObjFollow: 1
   hasBeenPicked: 0
   globeRenderer: {fileID: 0}
-  playerChaseSpeed: 180
+  playerChaseSpeed: 320
   playerChaseDistance: 200
   powerWorth: 0.1
   returnToStartPos: 1
