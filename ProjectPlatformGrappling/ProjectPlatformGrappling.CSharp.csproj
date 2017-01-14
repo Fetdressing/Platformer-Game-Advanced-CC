@@ -473,6 +473,7 @@
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Triggers\MoveObjectTrigger.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Triggers\Trigger.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\VelocityMultiplier.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\WallJumpObj.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\WaterFloat.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Camera\CameraController.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Camera\ThirdPersonLike\DebugDraw.cs" />
@@ -487,7 +488,6 @@
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\GroundChecker.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\PowerManager.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagMovement.cs" />
-    <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagMovementForces.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagShooter.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagSpeedBreaker.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Spawnpoint.cs" />

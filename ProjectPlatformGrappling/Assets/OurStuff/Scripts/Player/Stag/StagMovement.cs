@@ -19,6 +19,8 @@ public class StagMovement : BaseClass
     [HideInInspector]
     public Vector3 yMiddlePointOffset = new Vector3(0, 3, 0);
 
+    protected int fUpdatesPassed = 0; //hur många fixedupdates det har gått sedan senaste updaten
+
     [HideInInspector] public StagSpeedBreaker speedBreaker;
     protected float speedBreakerActiveSpeed = 1.8f; //vid vilken fart den går igång
     protected float speedBreakerTime = 0.2f; //endel tid i själva StagSpeedBreaker scriptet
@@ -102,6 +104,7 @@ public class StagMovement : BaseClass
     protected Vector3 finalMoveDir = new Vector3(0, 0, 0);
     protected Vector3 externalVel = new Vector3(0, 0, 0);
     [HideInInspector] public Vector3 currMomentum = Vector3.zero; //så man behåller fart även efter man släppt på styrning
+    protected Vector3 updateTrans;
     protected float startLimitSpeed = 60;
     protected float currLimitSpeed;
 
@@ -242,6 +245,7 @@ public class StagMovement : BaseClass
 
     void FixedUpdate()
     {
+        fUpdatesPassed++; //resettas vid varje vanlig update, så man vet hur många FixedUpdates som har passerat
         if (activePlatform != null)
         {
             Vector3 newGlobalPlatformPoint = activePlatform.TransformPoint(activeLocalPlatformPoint);
@@ -273,8 +277,13 @@ public class StagMovement : BaseClass
         lostEVel.y = 0;
         currMomentum += lostEVel; //lägg på det man tappat på momentum istället
 
-        HandleMovement(); //moddar finalMoveDir
+        Vector3 tempMomentum = HandleMovement(); //moddar finalMoveDir
+        currMomentum += tempMomentum;
 
+        Vector3 mainComparePoint = transform.position + new Vector3(0, 2, 0);
+        Vector3 firstComparePoint = transform.position + new Vector3(0, 2, 0) + transform.right * characterController.radius;
+        Vector3 secondComparePoint = transform.position + new Vector3(0, 2, 0) + -transform.right * characterController.radius;
+        AngleToAvoid(ref currMomentum, mainComparePoint, firstComparePoint, secondComparePoint, characterController.radius + 0.75f, true); //korrekt riktningen så man inte "springer in i väggar"
 
         // YYYYY
         //Debug.Log(characterController.isGrounded);
@@ -355,10 +364,10 @@ public class StagMovement : BaseClass
 
             if (groundedSlope > maxSlopeGrounded) //denna checken görs här när man är grounded och i charactercontrollerhit när man INTE är grounded
             {
-                if(groundedRaycastObject.tag == "WallJump")
-                {
-                    AddJumpsAvaible(jumpAmount, jumpAmount);
-                }
+                //if(groundedRaycastObject.tag == "WallJump") görs nu i separat script
+                //{
+                //    AddJumpsAvaible(jumpAmount, jumpAmount);
+                //}
                 //ApplyExternalForce(groundedNormal * 20); // så man glider för slopes
                 //currMomentum = Vector3.zero;
             }
@@ -444,7 +453,6 @@ public class StagMovement : BaseClass
 
         characterController.Move((currMomentum + dashVel + externalVel + yVector) * deltaTime);
 
-
         currFrameMovespeed = (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(lastFramePos.x, 0, lastFramePos.z)) * deltaTime) * 100;
         //Debug.Log((currFrameMovespeed).ToString());
 
@@ -486,11 +494,6 @@ public class StagMovement : BaseClass
         {
             if (slope > maxSlopeGrounded)
             {
-                if(hit.collider.tag == "WallJump") //hoppar på väggen!
-                {
-                    AddJumpsAvaible(jumpAmount, jumpAmount);
-                }
-
                 if (isGroundedRaycast || isGrounded)
                 {
                     if (groundedSlope > maxSlopeGrounded)
@@ -725,7 +728,7 @@ public class StagMovement : BaseClass
         Debug.DrawRay(transform.position, dir * 100, Color.blue);
     }
 
-    public virtual void HandleMovement()
+    public virtual Vector3 HandleMovement() //returnerar vektorn som ska flyttas
     {
         float stagSpeedMultiplier = 1.0f;
         if (characterController.isGrounded)
@@ -746,23 +749,6 @@ public class StagMovement : BaseClass
             finalMoveDir *= 0.7f; //mindre aircontrol
         }
 
-        //Vector3 mainComparePoint = transform.position + new Vector3(0, 2, 0);
-        //Vector3 firstComparePoint = transform.position + new Vector3(0, 2, 0) + transform.right * characterController.radius;
-        //Vector3 secondComparePoint = transform.position + new Vector3(0, 2, 0) + -transform.right * characterController.radius;
-        //AngleToAvoid(ref finalMoveDir, mainComparePoint, firstComparePoint, secondComparePoint, characterController.radius + 0.75f, true);
-        //if (IsWalkable(1.0f, 1.8f, (horVector + verVector).normalized, maxSlopeGrounded)) //dessa värden kan behöva justeras
-        //{
-
-        //}
-        //else
-        //{
-        //    finalMoveDir *= 0.1f;
-        //    //Debug.Log(Time.time.ToString());
-        //    Break(1000, ref currMomentum);
-        //    //currMomentum = Vector3.zero;
-        //    //currMomentum *= 0.1f;
-        //}
-
         //poängen i början ska dock vara värda mer!!
         float flatMoveStacksSpeedBonues = Mathf.Max(1, Mathf.Log(movementStacks, 1.01f));
         flatMoveStacksSpeedBonues *= 0.003f;
@@ -780,38 +766,31 @@ public class StagMovement : BaseClass
 
         currLimitSpeed = startLimitSpeed * bonusStageSpeed * currExternalSpeedMult;
 
-        if (movementStacks > 0) //hur många stacks som behövs för att den ska bli sliding
+        //currMomentum += finalMoveDir * 0.01f * bonusStageSpeed * (1 + flatMoveStacksSpeedBonues); //om inte man är uppe i hög speed så kan man alltid köra currMomentum = finalMoveDir som vanligt
+        Vector3 tempMomentum = finalMoveDir * 0.01f * bonusStageSpeed * (1 + flatMoveStacksSpeedBonues);
+        float momY = currMomentum.y;
+
+        Vector3 currMomXZ = new Vector3(currMomentum.x, 0, currMomentum.z);
+
+        Vector3 breakVec = Vector3.zero;
+
+        if (currMomXZ.magnitude > currLimitSpeed)
         {
-            currMomentum += finalMoveDir * 0.01f * bonusStageSpeed * (1 + flatMoveStacksSpeedBonues); //om inte man är uppe i hög speed så kan man alltid köra currMomentum = finalMoveDir som vanligt
-            float momY = currMomentum.y;
+            breakVec = Break((25 - movementStacks * 0.3f), currMomXZ);
 
-            Vector3 currMomXZ = new Vector3(currMomentum.x, 0, currMomentum.z);
-
-            if (currMomXZ.magnitude > currLimitSpeed)
-            {
-                Break((25 - movementStacks * 0.3f), ref currMomXZ);
-
-            }
-            else
-            {
-                if (isGroundedRaycast) //släppt kontrollerna, då kan man deaccelerera snabbare! : finalMoveDir.magnitude <= 0.0f
-                {
-                    Break((6 - movementStacks * 0.2f), ref currMomXZ);
-                    //Break(2, ref currMomXZ);
-                }
-            }
-
-            currMomentum = new Vector3(currMomXZ.x, momY, currMomXZ.z);
         }
-        else //vanlig slö speed
+        else
         {
-            currMomentum = finalMoveDir * 0.21f * (1 + (float)movementStacks * 0.019f);
+            if (isGroundedRaycast) //släppt kontrollerna, då kan man deaccelerera snabbare! : finalMoveDir.magnitude <= 0.0f
+            {
+                breakVec = Break((6 - movementStacks * 0.2f), currMomXZ);
+                //Break(2, ref currMomXZ);
+            }
         }
-
-        Vector3 mainComparePoint = transform.position + new Vector3(0, 2, 0);
-        Vector3 firstComparePoint = transform.position + new Vector3(0, 2, 0) + transform.right * characterController.radius;
-        Vector3 secondComparePoint = transform.position + new Vector3(0, 2, 0) + -transform.right * characterController.radius;
-        AngleToAvoid(ref currMomentum, mainComparePoint, firstComparePoint, secondComparePoint, characterController.radius + 0.75f, true); //korrekt riktningen så man inte "springer in i väggar"
+        breakVec.y = 0;
+        tempMomentum += breakVec;
+        return tempMomentum;
+        //currMomentum = new Vector3(currMomXZ.x, momY, currMomXZ.z);
 
     }
 
@@ -822,6 +801,12 @@ public class StagMovement : BaseClass
             breakamount = 0.1f;
         }
         vec = Vector3.Lerp(vec, Vector3.zero, 0.01f * breakamount); //detta är inte braa!
+    }
+
+    Vector3 Break(float breakamount, Vector3 vec) //returnerar vektorn som breakas med
+    {
+        Vector3 vectemp = Vector3.Lerp(vec, Vector3.zero, 0.01f * breakamount);
+        return vectemp - vec;
     }
 
     public void Stagger(float staggTime) //låser spelaren kvickt
