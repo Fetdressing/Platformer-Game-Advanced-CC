@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class StagMovement : BaseClass
 {
     [HideInInspector]
+    public bool isCCed = false;
+    [HideInInspector]
     //public bool isLocked = false; //förhindrar alla actions, ligger i baseclass
     public Transform cameraHolder; //den som förflyttas när man rör sig med musen
     protected Transform cameraObj; //kameran själv
@@ -34,6 +36,7 @@ public class StagMovement : BaseClass
     protected float startSpeed = 190;
     protected float jumpSpeed = 100;
     protected float gravity = 160;
+    [HideInInspector]public float minimumGravity = -20;
     [HideInInspector]public float currGravityModifier = 1.0f;
     protected Vector3 yVector;
     protected float stagSpeedMultMax = 1.5f;
@@ -104,9 +107,9 @@ public class StagMovement : BaseClass
     protected Vector3 finalMoveDir = new Vector3(0, 0, 0);
     protected Vector3 externalVel = new Vector3(0, 0, 0);
     [HideInInspector] public Vector3 currMomentum = Vector3.zero; //så man behåller fart även efter man släppt på styrning
-    protected Vector3 updateTrans;
     protected float startLimitSpeed = 60;
-    protected float currLimitSpeed;
+    [HideInInspector]public float currLimitSpeed; //max momentumen, hämtas från script som WallJumpObj
+    protected Vector3 updateTrans;
 
     public Text moveStackText;
     protected float movementStackGroundedTime = 5.0f;
@@ -194,6 +197,7 @@ public class StagMovement : BaseClass
     public override void Reset()
     {
         base.Reset();
+        isCCed = false;
         Time.timeScale = 1.0f;
         ToggleDashEffect(false);
         speedBreaker.Disable();
@@ -205,7 +209,7 @@ public class StagMovement : BaseClass
         lastHV_Vector = Vector3.zero;
         lastH_Vector = Vector3.zero; //senast som horVector hade ett värde (dvs inte vector3.zero)
         lastV_Vector = Vector3.zero;
-        ySpeed = -gravity * 0.01f; //nollställer ej helt
+        ySpeed = minimumGravity; //nollställer ej helt
         //currGravityModifier = 1.0f; jag vill nog inte resetta denna vid spawn
         currExternalSpeedMult = 1.0f;
         currLimitSpeed = startLimitSpeed;
@@ -227,6 +231,7 @@ public class StagMovement : BaseClass
     {
         if (Time.timeScale == 0) return;
         if (isLocked) return;
+        if (isCCed) return;
 
         if ((moveSpeedMultTimePoint + moveSpeedMultDuration) < Time.time)
         {
@@ -247,6 +252,7 @@ public class StagMovement : BaseClass
     {
         if (Time.timeScale == 0) return;
         if (isLocked) return;
+        if (isCCed) return;
 
         fUpdatesPassed++; //resettas vid varje vanlig update, så man vet hur många FixedUpdates som har passerat
         if (activePlatform != null)
@@ -336,6 +342,7 @@ public class StagMovement : BaseClass
 
         if (Time.timeScale == 0) return;
         if (isLocked) return;
+        if (isCCed) return;
 
         isGroundedRaycast = GetGrounded(groundCheckObject);
         //Debug.Log(GetGroundedDuration().ToString());
@@ -442,7 +449,7 @@ public class StagMovement : BaseClass
         {
             if (jumpTimePoint < Time.time - 0.4f) //så den inte ska fucka och resetta dirr efter man hoppat
             {
-                ySpeed = -gravity * 0.05f; //nollställer ej helt // grounded character has vSpeed = 0...
+                ySpeed = minimumGravity; //nollställer ej helt // grounded character has vSpeed = 0...
             }
         }
         if (controlManager.didJump)
@@ -519,7 +526,7 @@ public class StagMovement : BaseClass
                     dashUsed = false; //den resettas även när man landar på marken nu! MEN om man dashar från marken så får man cd
                     AddJumpsAvaible(jumpAmount, jumpAmount);
                     //jumpsAvaible = jumpAmount;
-                    ySpeed = -gravity * 0.01f; //nollställer ej helt // grounded character has vSpeed = 0...
+                    ySpeed = minimumGravity; //nollställer ej helt // grounded character has vSpeed = 0...
                 }
             }
 
@@ -828,11 +835,11 @@ public class StagMovement : BaseClass
 
     IEnumerator DoStagg(float staggTime)
     {
-        isLocked = true;
+        isCCed = true;
         Time.timeScale = 0.2f;
         yield return new WaitForSeconds(staggTime);
         Time.timeScale = 1.0f;
-        isLocked = false;
+        isCCed = false;
         staggIE = null;
     }
 
@@ -843,7 +850,7 @@ public class StagMovement : BaseClass
             StopCoroutine(staggIE);
         }
         Time.timeScale = 1.0f;
-        isLocked = false;
+        isCCed = false;
         staggIE = null;
     }
 
@@ -876,7 +883,7 @@ public class StagMovement : BaseClass
                 jumpTimePoint = Time.time;
 
                 if (ySpeed < 0) //ska motverka gravitationen, behövs ej atm?
-                    ySpeed = 0; //nollställer ej helt
+                    ySpeed = 0;
 
                 if (groundedRaycastObject != null && groundedRaycastObject.tag == "BreakerObject") //breakar objekt om man hoppar på dem
                 {
@@ -914,9 +921,9 @@ public class StagMovement : BaseClass
     IEnumerator MoveSlam(float maxDistance)
     {
         Vector3 startP = transform.position;
-        isLocked = true; //kan vara farligt att göra detta här
+        isCCed = true; //kan vara farligt att göra detta här
         yield return new WaitForSeconds(0.3f);
-        isLocked = false;
+        isCCed = false;
         ySpeed = -170;
         while (!characterController.isGrounded && ySpeed < -2.0f && Vector3.Distance(startP, transform.position) < (maxDistance + 2))
         {
@@ -1086,7 +1093,7 @@ public class StagMovement : BaseClass
         maxDashTime = startMaxDashTime + extraDashTime; //den kan utökas sen
         AddMovementStack(1);
         cameraShaker.ChangeFOV(0.05f, 5);
-        ySpeed = -gravity * 0.01f; //nollställer ej helt
+        ySpeed = minimumGravity; //nollställer ej helt
         ToggleDashEffect(true);
         dashTimePoint = Time.time;
         dashVel = Vector3.zero;
@@ -1350,7 +1357,7 @@ public class StagMovement : BaseClass
         Physics.IgnoreCollision(speedBreaker.GetComponent<Collider>(), t_Ignore.GetComponent<Collider>(), true);
         while ((Time.time - startTime - extendedTime) < duration)
         {
-            if (isLocked) //ifall den låses så skall fortfarande vara igång efter
+            if (isLocked || isCCed) //ifall den låses så skall fortfarande vara igång efter
             {
                 extendedTime += Time.deltaTime;
                 yield return null;
@@ -1369,7 +1376,7 @@ public class StagMovement : BaseClass
         Physics.IgnoreLayerCollision(layer1, layer2, true);
         while ((Time.time - startTime - extendedTime) < duration)
         {
-            if (isLocked) //ifall den låses så skall fortfarande vara igång efter
+            if (isLocked || isCCed) //ifall den låses så skall fortfarande vara igång efter
             {
                 extendedTime += Time.deltaTime;
                 yield return null;

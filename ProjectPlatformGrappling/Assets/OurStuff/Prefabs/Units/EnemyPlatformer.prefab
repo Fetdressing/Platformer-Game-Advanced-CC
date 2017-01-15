@@ -1351,7 +1351,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010023548100}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -479.3, y: 106.5, z: 610.05}
+  m_LocalPosition: {x: 367.3274, y: -15.54, z: 1494.665}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1822,12 +1822,13 @@ MonoBehaviour:
   damagedMaterial: {fileID: 2100000, guid: 5a5a1a50a180c2246b70601cbc08ebef, type: 2}
   middlePoint: {x: 0, y: 0, z: 0}
   middlePointOffsetY: 0.5
-  startHealth: 3
+  startHealth: 10000
   maxHealth: 3
   fadeOnDamage: 1
   startHealthRegAmount: 1
   healthRegAmount: 1
   destroyOnDeath: 0
+  respawn: 0
   animationObj: {fileID: 0}
   deathAnimation: {fileID: 0}
   deathParticleSystemObj: {fileID: 1000011905470152, guid: 2b09ad58f38394648a03fa6f4b85ae1a,
@@ -1871,20 +1872,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLocked: 0
-  currRigidbody: {fileID: 0}
-  thisRigidbody: {fileID: 0}
-  thisCollider: {fileID: 0}
-  SlowDrag: 0.8
-  fastDrag: 0.04
-  slowMaxSpeed: 0
-  maxSpeedAccelerationMult: 4
-  minTime_ApplySlowDrag: 0.5
-  groundedCheckOffsetY: 0.5
-  groundedCheckDistance: 1.9
-  isGrounded: 0
-  groundCheckLM:
-    serializedVersion: 2
-    m_Bits: 0
   isContinuous: 0
   pushAway: 1
   pushForce: 300
@@ -1892,6 +1879,8 @@ MonoBehaviour:
   pushAnim: {fileID: 7400004, guid: f3c87923734207744888e229b3ae8386, type: 3}
   animationSpeed: 1
   audioSource: {fileID: 82000011191459688}
+  canBeBlocked: 1
+  powerAddPercentage: 0
 --- !u!136 &136000011098232214
 CapsuleCollider:
   m_ObjectHideFlags: 1
