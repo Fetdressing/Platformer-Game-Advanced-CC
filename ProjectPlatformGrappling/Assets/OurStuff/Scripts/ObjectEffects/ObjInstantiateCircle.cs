@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class ObjInstantiateCircle : BaseClass { //spawnar objekt som sedan tas bort vid en viss position (eller efter en tid?)
     public Transform spawnLocation;
     public GameObject o_object;
+    public GameObject particleEffect;
     public int poolSize = 5;
     protected List<GameObject> objPool = new List<GameObject>();
 
@@ -74,6 +75,13 @@ public class ObjInstantiateCircle : BaseClass { //spawnar objekt som sedan tas b
                 {
                     animH.CrossFade(spawnClip.name);
                     yield return new WaitForSeconds((spawnClip.length * animSpeed) * 0.8f);
+                }
+
+                if(particleEffect != null)
+                {
+                    GameObject tempPar = Instantiate(particleEffect.gameObject);
+                    tempPar.transform.position = spawnLocation.position;
+                    Destroy(tempPar.gameObject, 3);
                 }
 
                 objToSpawn.transform.position = spawnLocation.position;

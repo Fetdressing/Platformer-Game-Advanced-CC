@@ -245,6 +245,9 @@ public class StagMovement : BaseClass
 
     void FixedUpdate()
     {
+        if (Time.timeScale == 0) return;
+        if (isLocked) return;
+
         fUpdatesPassed++; //resettas vid varje vanlig update, så man vet hur många FixedUpdates som har passerat
         if (activePlatform != null)
         {

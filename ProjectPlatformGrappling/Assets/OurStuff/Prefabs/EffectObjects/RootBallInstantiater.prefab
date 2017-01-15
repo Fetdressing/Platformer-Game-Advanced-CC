@@ -1001,6 +1001,8 @@ MonoBehaviour:
   isLocked: 0
   spawnLocation: {fileID: 4000013864117964}
   o_object: {fileID: 1000013823786698, guid: c5695387320b6bd478561f22683375d8, type: 2}
+  particleEffect: {fileID: 1000013496621158, guid: 9b33ffc93e15c2e4c9fd9d720b43e479,
+    type: 2}
   poolSize: 8
   spawnInterval: 2.5
   animH: {fileID: 111000012079367560}
