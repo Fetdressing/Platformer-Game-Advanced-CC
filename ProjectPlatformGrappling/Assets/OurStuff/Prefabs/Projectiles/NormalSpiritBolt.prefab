@@ -159,12 +159,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39275bab1e989164f9904e6dfb643c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   targetsLM:
     serializedVersion: 2
     m_Bits: 0
   healTags: []
   damageTags:
   - Player
+  noGoTags: []
   particleExplosionObj: {fileID: 1000013712628432, guid: c238073cbe7ec884b96298d378828783,
     type: 2}
   particleObjectPoolSize: 3
@@ -191,7 +193,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011557968698}
-  serializedVersion: 2
+  serializedVersion: 4
   lengthInSec: 5
   startDelay:
     scalar: 0
@@ -229,12 +231,13 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
-  randomSeed: 1111302376
   looping: 1
   prewarm: 1
   playOnAwake: 1
   moveWithTransform: 1
+  autoRandomSeed: 0
   scalingMode: 1
+  randomSeed: 1111302400
   InitialModule:
     serializedVersion: 2
     enabled: 1
