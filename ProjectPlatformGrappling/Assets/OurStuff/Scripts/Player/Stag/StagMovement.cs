@@ -36,7 +36,7 @@ public class StagMovement : BaseClass
     protected float startSpeed = 190;
     protected float jumpSpeed = 100;
     protected float gravity = 160;
-    [HideInInspector]public float minimumGravity = -20;
+    [HideInInspector]public float minimumGravity = -30;
     [HideInInspector]public float currGravityModifier = 1.0f;
     protected Vector3 yVector;
     protected float stagSpeedMultMax = 1.5f;
@@ -69,7 +69,7 @@ public class StagMovement : BaseClass
     public GameObject dashEffectObject;
     public ParticleSystem dashReadyPS; //particlesystem som körs när dash är redo att användas
     protected int currDashCombo = 0; //hur många dashes som gjorts i streck, används för att öka kostnaden tex
-    protected float dashComboMult = 0.015f;
+    protected float dashComboMult = 0.011f;
     protected float dashComboResetTime = 0.85f;
     protected float dashComboResetTimer = 0.0f;
     public LayerMask unitCheckLM; //fiender o liknande som dash ska styras mot
@@ -289,10 +289,12 @@ public class StagMovement : BaseClass
         Vector3 tempMomentum = HandleMovement(); //moddar finalMoveDir
         currMomentum += tempMomentum;
 
+        Vector3 sideVecToMom = Vector3.Cross(currMomentum, transform.up).normalized; //ger en vektor som är åt höger/vänster av momentumen, (innan använde jag transform.right)
+
         Vector3 mainComparePoint = transform.position + new Vector3(0, 2, 0);
-        Vector3 firstComparePoint = transform.position + new Vector3(0, 2, 0) + transform.right * characterController.radius;
-        Vector3 secondComparePoint = transform.position + new Vector3(0, 2, 0) + -transform.right * characterController.radius;
-        AngleToAvoid(ref currMomentum, mainComparePoint, firstComparePoint, secondComparePoint, characterController.radius + 0.75f, true); //korrekt riktningen så man inte "springer in i väggar"
+        Vector3 firstComparePoint = transform.position + new Vector3(0, 2, 0) + sideVecToMom * characterController.radius;
+        Vector3 secondComparePoint = transform.position + new Vector3(0, 2, 0) + -sideVecToMom * characterController.radius;
+        AngleToAvoid(ref currMomentum, mainComparePoint, firstComparePoint, secondComparePoint, characterController.radius + 0.9f, true); //korrekt riktningen så man inte "springer in i väggar"
 
         // YYYYY
         //Debug.Log(characterController.isGrounded);
@@ -449,7 +451,10 @@ public class StagMovement : BaseClass
         {
             if (jumpTimePoint < Time.time - 0.4f) //så den inte ska fucka och resetta dirr efter man hoppat
             {
-                ySpeed = minimumGravity; //nollställer ej helt // grounded character has vSpeed = 0...
+                if (ySpeed < 0.0f) //man vill inte resetta om man har upforce
+                {
+                    ySpeed = minimumGravity; //nollställer ej helt // grounded character has vSpeed = 0...
+                }
             }
         }
         if (controlManager.didJump)

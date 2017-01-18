@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Rotater : MonoBehaviour {
     public Vector3 axis = Vector3.up;
-    public float speed = 10;
+    public float speed = 100;
 	// Use this for initialization
 	void Start () {
 	
@@ -11,6 +11,6 @@ public class Rotater : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Rotate(axis, speed);
+        transform.Rotate(axis, speed * Time.deltaTime);
 	}
 }
