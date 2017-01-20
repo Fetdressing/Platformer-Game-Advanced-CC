@@ -531,7 +531,10 @@ public class StagMovement : BaseClass
                     dashUsed = false; //den resettas även när man landar på marken nu! MEN om man dashar från marken så får man cd
                     AddJumpsAvaible(jumpAmount, jumpAmount);
                     //jumpsAvaible = jumpAmount;
-                    ySpeed = minimumGravity; //nollställer ej helt // grounded character has vSpeed = 0...
+                    if (ySpeed < 0.0f) //man vill inte resetta om man har upforce
+                    {
+                        ySpeed = minimumGravity; //nollställer ej helt // grounded character has vSpeed = 0...
+                    }
                 }
             }
 

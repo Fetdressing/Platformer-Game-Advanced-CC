@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class PowerManager : BaseClass {
     private Camera activeCamera;
     public Renderer hornRenderer;
+    public Renderer stagRenderer;
     private Renderer[] allRenderers;
     private StagMovement stagMovement;
     private CameraShaker cameraShaker;
@@ -17,6 +18,7 @@ public class PowerManager : BaseClass {
     public float lightsMaxIntensity = 2;
 
     public Material emissiveStagMaterial; //det som fadeas ut när denne tappar powernn
+    protected Material emiStagMat; //den materialet som moddas (istället för emissiveStagMaterial så man slipper gitta ändringarna)
     public Renderer emissiveStagRenderer;
     public Material damagedMaterial;
     List<List<Material>> originalMats = new List<List<Material>>(); //så man kan återställa efter changemat
@@ -48,6 +50,9 @@ public class PowerManager : BaseClass {
         stagMovement = GetComponent<StagMovement>();
         cameraShaker = activeCamera.GetComponent<CameraShaker>();
 
+        emiStagMat = new Material(emissiveStagMaterial);
+        emiStagMat.CopyPropertiesFromMaterial(emissiveStagMaterial);
+        stagRenderer.material = emiStagMat; //ger den det nya temp materialet så jag inte moddar originalet
         allRenderers = GetComponentsInChildren<Renderer>();
 
         for (int i = 0; i < changeMatRenderers.Length; i++)
@@ -112,10 +117,14 @@ public class PowerManager : BaseClass {
         float offsetV = (currPower / maxPower);
 
         hornRenderer.material.SetTextureOffset("_MainTex", new Vector2(uvStartOffsetHorns[0], uvStartOffsetHorns[1] - (offsetV * uvOffsetMult)));
-        emissiveStagMaterial.SetColor("_EmissionColor", new Color(1,1,1) * offsetV);
+        emiStagMat.SetColor("_EmissionColor", new Color(1,1,1) * offsetV);
         for (int i = 0; i < lifeLights.Length; i++)
         {
             lifeLights[i].intensity = (lightsMaxIntensity * currPower) - 0.3f;
+        }
+        if (changeMatIE == null)
+        {
+            stagRenderer.material = emiStagMat;
         }
     }
 
@@ -145,10 +154,14 @@ public class PowerManager : BaseClass {
         float offsetV = (currPower / maxPower);
 
         hornRenderer.material.SetTextureOffset("_MainTex", new Vector2(uvStartOffsetHorns[0], uvStartOffsetHorns[1] - (offsetV * uvOffsetMult)));
-        emissiveStagMaterial.SetColor("_EmissionColor", new Color(1, 1, 1) * offsetV);
+        emiStagMat.SetColor("_EmissionColor", new Color(1, 1, 1) * offsetV);
         for (int i = 0; i < lifeLights.Length; i++)
         {
             lifeLights[i].intensity = (lightsMaxIntensity * currPower) - 0.3f;
+        }
+        if (changeMatIE == null)
+        {
+            stagRenderer.material = emiStagMat;
         }
     }
 

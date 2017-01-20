@@ -4177,11 +4177,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLocked: 0
+  isCCed: 0
   cameraHolder: {fileID: 4000010914960778}
   unitDetectionCamera: {fileID: 20000013890690064}
+  yMiddlePointOffset: {x: 0, y: 3, z: 0}
   speedBreaker: {fileID: 0}
   stagRootJoint: {fileID: 4000010653670334}
   stagObject: {fileID: 4000011412557584}
+  minimumGravity: -30
   currGravityModifier: 1
   currExternalSpeedMult: 1
   ySpeed: 0
@@ -4200,6 +4203,7 @@ MonoBehaviour:
   activePlatform: {fileID: 0}
   dashVel: {x: 0, y: 0, z: 0}
   currMomentum: {x: 0, y: 0, z: 0}
+  currLimitSpeed: 0
   moveStackText: {fileID: 114000012092135568}
   movementStacks: 0
   pullField: {fileID: 114000010577849772}
@@ -5153,6 +5157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   hornRenderer: {fileID: 137000013060747340}
+  stagRenderer: {fileID: 137000010550600080}
   lifeLights:
   - {fileID: 108000013787727152}
   lightsMaxIntensity: 2
