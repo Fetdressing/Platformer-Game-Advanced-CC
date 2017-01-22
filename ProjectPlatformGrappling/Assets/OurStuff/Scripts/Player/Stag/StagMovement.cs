@@ -296,6 +296,12 @@ public class StagMovement : BaseClass
         Vector3 secondComparePoint = transform.position + new Vector3(0, 2, 0) + -sideVecToMom * characterController.radius;
         AngleToAvoid(ref currMomentum, mainComparePoint, firstComparePoint, secondComparePoint, characterController.radius + 0.9f, true); //korrekt riktningen så man inte "springer in i väggar"
 
+        ///en längre ned?
+        //mainComparePoint = transform.position + new Vector3(0, 0.5f, 0);
+        //firstComparePoint = transform.position + new Vector3(0, 0.5f, 0) + sideVecToMom * characterController.radius;
+        //secondComparePoint = transform.position + new Vector3(0, 0.5f, 0) + -sideVecToMom * characterController.radius;
+        //AngleToAvoid(ref currMomentum, mainComparePoint, firstComparePoint, secondComparePoint, characterController.radius + 0.9f, true); //korrekt riktningen så man inte "springer in i väggar"
+
         // YYYYY
         //Debug.Log(characterController.isGrounded);
         // apply gravity acceleration to vertical speed:
@@ -1065,6 +1071,7 @@ public class StagMovement : BaseClass
         ToggleDashEffect(false);
         unitDetectionCamera.transform.localRotation = Quaternion.identity; //nollställ
         unitDetectionCamera.transform.localPosition = Vector3.zero;
+        speedBreaker.UnIgnoreLastUnitHit();
         
         if (dashVel.magnitude > 1.0f)
         {
@@ -1320,7 +1327,7 @@ public class StagMovement : BaseClass
                 dirMod = ((dashTarget.position + groundOffset + dashTargetOffset) - (transform.position + groundOffset)).normalized;
             }
             dashVel = dirMod * dashSpeed; //styra under dashen
-            stagObject.transform.forward = dashVel;
+            stagObject.transform.forward = dashVel.normalized;
             currDashTime = Time.time - startDashTime - extendedTime;
 
             //ySpeed = -gravity * 0.01f; //nollställer ej helt

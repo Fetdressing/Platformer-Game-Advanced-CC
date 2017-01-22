@@ -6,6 +6,7 @@ using DigitalRuby.SimpleLUT;
 [RequireComponent(typeof(StagMovement))]
 
 public class PowerManager : BaseClass {
+    public bool godMode = false;
     private Camera activeCamera;
     public Renderer hornRenderer;
     public Renderer stagRenderer;
@@ -100,6 +101,11 @@ public class PowerManager : BaseClass {
 
     public void AddPower(float p, bool showDamageMat = false)
     {
+        if(godMode)
+        {
+            p = Mathf.Abs(p);
+        }
+
         currPower += p;
 
         if (showDamageMat)
@@ -138,6 +144,10 @@ public class PowerManager : BaseClass {
     {
         if (p > 0 && ((currPower / maxPower) * 100) > maxPercentage) return; //kolla oxå så att värdet är positivt, dvs INTE gör skada
 
+        if (godMode)
+        {
+            p = Mathf.Abs(p);
+        }
         currPower += p;
 
         if (showDamageMat)
