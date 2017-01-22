@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using DigitalRuby.SimpleLUT;
 
 [RequireComponent(typeof(StagMovement))]
 
@@ -11,6 +12,9 @@ public class PowerManager : BaseClass {
     private Renderer[] allRenderers;
     private StagMovement stagMovement;
     private CameraShaker cameraShaker;
+
+    private SimpleLUT sLut;
+    private float startSaturation = 0; //man ändrar saturationen när man tappar mkt power
 
     private float[] uvStartOffsetHorns = { 0, 1.0f};
     private float uvOffsetMult = 0.3f; //hur mkt power från hornen som ska tas bort
@@ -49,6 +53,7 @@ public class PowerManager : BaseClass {
         activeCamera = GameObject.FindGameObjectWithTag("Manager").GetComponent<CameraManager>().cameraPlayerFollow;
         stagMovement = GetComponent<StagMovement>();
         cameraShaker = activeCamera.GetComponent<CameraShaker>();
+        sLut = activeCamera.GetComponent<SimpleLUT>();
 
         emiStagMat = new Material(emissiveStagMaterial);
         emiStagMat.CopyPropertiesFromMaterial(emissiveStagMaterial);
@@ -114,10 +119,11 @@ public class PowerManager : BaseClass {
             Die();
         }
 
-        float offsetV = (currPower / maxPower);
+        float currPowerPer = (currPower / maxPower);
+        CalculateSaturation(currPowerPer);
 
-        hornRenderer.material.SetTextureOffset("_MainTex", new Vector2(uvStartOffsetHorns[0], uvStartOffsetHorns[1] - (offsetV * uvOffsetMult)));
-        emiStagMat.SetColor("_EmissionColor", new Color(1,1,1) * offsetV);
+        hornRenderer.material.SetTextureOffset("_MainTex", new Vector2(uvStartOffsetHorns[0], uvStartOffsetHorns[1] - (currPowerPer * uvOffsetMult)));
+        emiStagMat.SetColor("_EmissionColor", new Color(1,1,1) * currPowerPer);
         for (int i = 0; i < lifeLights.Length; i++)
         {
             lifeLights[i].intensity = (lightsMaxIntensity * currPower) - 0.3f;
@@ -151,10 +157,11 @@ public class PowerManager : BaseClass {
             Die();
         }
 
-        float offsetV = (currPower / maxPower);
+        float currPowerPer = (currPower / maxPower);
+        CalculateSaturation(currPowerPer);
 
-        hornRenderer.material.SetTextureOffset("_MainTex", new Vector2(uvStartOffsetHorns[0], uvStartOffsetHorns[1] - (offsetV * uvOffsetMult)));
-        emiStagMat.SetColor("_EmissionColor", new Color(1, 1, 1) * offsetV);
+        hornRenderer.material.SetTextureOffset("_MainTex", new Vector2(uvStartOffsetHorns[0], uvStartOffsetHorns[1] - (currPowerPer * uvOffsetMult)));
+        emiStagMat.SetColor("_EmissionColor", new Color(1, 1, 1) * currPowerPer);
         for (int i = 0; i < lifeLights.Length; i++)
         {
             lifeLights[i].intensity = (lightsMaxIntensity * currPower) - 0.3f;
@@ -305,5 +312,19 @@ public class PowerManager : BaseClass {
         //    }
         //    changeMatRenderers[i].materials = matsSetTemp;
         //}
+    }
+
+    void CalculateSaturation(float f) //hur mycket procent power man har kvar
+    {
+        float bSatVal = 0.8f; //hur mycket den ska utgå ifrån
+        float perThreshold = 0.3f; //under detta värde på f så kommer det att bli lägre saturation
+        float satValue = 0;
+
+        if (f < perThreshold)
+        {
+            satValue = bSatVal - f;
+        }
+
+        sLut.Saturation = startSaturation - satValue;
     }
 }
