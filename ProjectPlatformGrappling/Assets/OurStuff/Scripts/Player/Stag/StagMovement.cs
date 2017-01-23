@@ -107,6 +107,7 @@ public class StagMovement : BaseClass
     protected Vector3 finalMoveDir = new Vector3(0, 0, 0);
     protected Vector3 externalVel = new Vector3(0, 0, 0);
     [HideInInspector] public Vector3 currMomentum = Vector3.zero; //så man behåller fart även efter man släppt på styrning
+    protected Vector3 nextMove = Vector3.zero; //denna sätts i fixedupdate, sen körs move i update av detta värdet. Så man får frame independency
     protected float startLimitSpeed = 60;
     [HideInInspector]public float currLimitSpeed; //max momentumen, hämtas från script som WallJumpObj
     protected Vector3 updateTrans;
@@ -316,6 +317,7 @@ public class StagMovement : BaseClass
 
         DashUpdate();
 
+        nextMove += (currMomentum + dashVel + externalVel + yVector) * 0.01f;
     }
 
     void Update()
@@ -472,7 +474,9 @@ public class StagMovement : BaseClass
         AngleY(ref yVector, transform.position + new Vector3(0, characterController.height * 0.5f, 0), 6);
         // YYYYY
 
-        characterController.Move((currMomentum + dashVel + externalVel + yVector) * deltaTime);
+        //characterController.Move((currMomentum + dashVel + externalVel + yVector) * deltaTime);
+        characterController.Move(nextMove); //nextMove kalkuleras i fixedupdate
+        nextMove = Vector3.zero; //nollställer den varje update
 
         currFrameMovespeed = (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(lastFramePos.x, 0, lastFramePos.z)) * deltaTime) * 100;
         //Debug.Log((currFrameMovespeed).ToString());
