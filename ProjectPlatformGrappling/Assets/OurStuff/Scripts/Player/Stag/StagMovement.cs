@@ -134,7 +134,7 @@ public class StagMovement : BaseClass
 
     public LayerMask groundCheckLM;
     protected float groundedTimePoint = 0; //när man blev grounded
-    protected float maxSlopeGrounded = 70; //vilken vinkel det som mest får skilja på ytan och vector3.down när man kollar grounded
+    protected float maxSlopeGrounded = 80; //vilken vinkel det som mest får skilja på ytan och vector3.down när man kollar grounded
     protected float groundedSlope = 0;
     protected Vector3 groundedNormal = Vector3.zero;
     protected GroundChecker groundChecker; //så man kan resetta stuff till camerashake tex
