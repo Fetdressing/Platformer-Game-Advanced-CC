@@ -12,6 +12,7 @@ public class GameManager : BaseClass {
     public GameObject goalDisplay; //aktiveras när man går i mål
 
     float lastTimeScale = 1.0f; //spara ned den timescalen som var innan man körde igång menyn
+    bool lastFrame_was_Paused = false;
 	// Use this for initialization
 	void Start () {
         Init();
@@ -28,7 +29,19 @@ public class GameManager : BaseClass {
 
     // Update is called once per frame
     void Update () {
-        deltaTime = Mathf.Min(Time.deltaTime, maxDeltaTime);
+        if (!lastFrame_was_Paused)
+        {
+            deltaTime = Mathf.Min(Time.deltaTime, maxDeltaTime);
+        }
+        else
+        {
+            deltaTime = 0;
+        }
+
+        if (Time.timeScale > 0.0001f)
+        {
+            ingame_Realtime += deltaTime / Time.timeScale;
+        }
 
         if (isLocked) return;
 
@@ -42,6 +55,15 @@ public class GameManager : BaseClass {
             goalDisplay.SetActive(true);
             Time.timeScale = 0;
             Cursor.visible = true;
+        }
+
+        if(Time.timeScale < 0.0001f)
+        {
+            lastFrame_was_Paused = true;
+        }
+        else
+        {
+            lastFrame_was_Paused = false;
         }
 	}
 

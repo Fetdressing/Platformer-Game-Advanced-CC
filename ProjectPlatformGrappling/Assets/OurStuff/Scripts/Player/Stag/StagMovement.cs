@@ -104,7 +104,6 @@ public class StagMovement : BaseClass
     protected Vector3 lastV_Vector = Vector3.zero; //senast som verVector hade ett värde (dvs inte vector3.zero)
     protected float hor, ver;
     [HideInInspector] public Vector3 dashVel = new Vector3(0, 0, 0); //vill kunna komma åt denna, så därför public
-    protected Vector3 finalMoveDir = new Vector3(0, 0, 0);
     protected Vector3 externalVel = new Vector3(0, 0, 0);
     [HideInInspector] public Vector3 currMomentum = Vector3.zero; //så man behåller fart även efter man släppt på styrning
     protected Vector3 nextMove = Vector3.zero; //denna sätts i fixedupdate, sen körs move i update av detta värdet. Så man får frame independency
@@ -357,7 +356,9 @@ public class StagMovement : BaseClass
         isGroundedRaycast = GetGrounded(groundCheckObject);
         //Debug.Log(GetGroundedDuration().ToString());
 
-        if (movementStackResetTimer < Time.time)
+        Debug.Log(ingame_Realtime.ToString() + "\n" + Time.realtimeSinceStartup.ToString());
+
+        if (movementStackResetTimer < ingame_Realtime)
         {
             //movementStacks = 1;
             AddMovementStack(-2);
@@ -770,11 +771,12 @@ public class StagMovement : BaseClass
         Vector3 horVectorNoY = new Vector3(horVector.x, 0, horVector.z);
         Vector3 verVectorNoY = new Vector3(verVector.x, 0, verVector.z); //denna behöver vara under dash så att man kan dasha upp/ned oxå
 
-        finalMoveDir = (horVectorNoY + verVectorNoY).normalized * stagSpeedMultiplier * currMovementSpeed * (Mathf.Max(0.8f, powerManager.currPower) * 1.2f);
+        Vector3 momA = new Vector3(0, 0, 0); //accelerationen
+        momA = (horVectorNoY + verVectorNoY).normalized * stagSpeedMultiplier * currMovementSpeed;
 
         if(!isGrounded)
         {
-            finalMoveDir *= 0.7f; //mindre aircontrol
+            momA *= 0.7f; //mindre aircontrol
         }
 
         //poängen i början ska dock vara värda mer!!
@@ -795,14 +797,14 @@ public class StagMovement : BaseClass
         currLimitSpeed = startLimitSpeed * bonusStageSpeed * currExternalSpeedMult;
 
         //currMomentum += finalMoveDir * 0.01f * bonusStageSpeed * (1 + flatMoveStacksSpeedBonues); //om inte man är uppe i hög speed så kan man alltid köra currMomentum = finalMoveDir som vanligt
-        Vector3 tempMomentum = finalMoveDir * 0.01f * bonusStageSpeed * (1 + flatMoveStacksSpeedBonues);
+        Vector3 tempMomentum = momA * 0.01f * bonusStageSpeed * (1 + flatMoveStacksSpeedBonues);
         float momY = currMomentum.y;
 
         Vector3 currMomXZ = new Vector3(currMomentum.x, 0, currMomentum.z);
 
         Vector3 breakVec = Vector3.zero;
 
-        if (currMomXZ.magnitude > currLimitSpeed)
+        if (currMomXZ.magnitude > currLimitSpeed) //dessa kanske bör ligga separat utanför denna funktionen eftersom jag ändrade om denna funktion
         {
             breakVec = Break((25 - movementStacks * 0.3f), currMomXZ);
 
@@ -1433,12 +1435,12 @@ public class StagMovement : BaseClass
             groundedReduceValue = 0;
         }
         //Debug.Log(groundedReduceValue.ToString());
-        movementStackResetTimer = Time.time + movementStackResetTime - (timeReduceValue); //gör det svårare o svårare!
+        movementStackResetTimer = ingame_Realtime + movementStackResetTime - (timeReduceValue); //gör det svårare o svårare!
         movementStackGroundedTimer = GetGroundedDuration() + movementStackGroundedTime - (groundedReduceValue); //inte plus tid för den ligger redan inräknad
 
         //lite minimum värden, så man kan stacka högt
         //Debug.Log((timeReduceValue).ToString());
-        movementStackResetTimer = Mathf.Max(0.4f + Time.time, movementStackResetTimer); //ska som minst vara x sekunder
+        movementStackResetTimer = Mathf.Max(0.4f + ingame_Realtime, movementStackResetTimer); //ska som minst vara x sekunder
         movementStackGroundedTimer = Mathf.Max(0.3f, movementStackGroundedTimer); //ska som minst vara x sekunder
 
         //Debug.Log(movementStacks.ToString() + "  " + (movementStackResetTimer - Time.time).ToString());
