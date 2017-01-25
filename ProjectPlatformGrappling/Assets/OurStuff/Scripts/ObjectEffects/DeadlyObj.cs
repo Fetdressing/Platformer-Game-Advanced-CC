@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class DeadlyObj : MonoBehaviour {
-
+    public bool canBeBlocked = false;
 	// Use this for initialization
 	void Start () {
 	
@@ -15,6 +15,15 @@ public class DeadlyObj : MonoBehaviour {
 
         if(pM != null)
         {
+            StagMovement sM = col.GetComponent<StagMovement>();
+            if (canBeBlocked)
+            {
+                if (sM.speedBreaker.active == true)
+                {
+                    return;
+                }
+            }
+
             pM.Die();
         }
     }
@@ -25,6 +34,15 @@ public class DeadlyObj : MonoBehaviour {
 
         if (pM != null)
         {
+            StagMovement sM = col.gameObject.GetComponent<StagMovement>();
+            if (canBeBlocked)
+            {
+                if (sM.speedBreaker.active == true)
+                {
+                    return;
+                }
+            }
+
             pM.Die();
         }
     }
