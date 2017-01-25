@@ -17,6 +17,7 @@ public class BaseClass : MonoBehaviour {
     [HideInInspector]
     public static float maxDeltaTime = 0.09f; //annars kan man få skumma värden om en frame varar för länge
     [HideInInspector] public static float deltaTime = 0.01f; //räknas ut sen i GameManager, den får ett startvärde så den inte ska vara null just
+    public static float lastFixedUpdate_Timepoint = 0.0f;
 
     public static float ingame_Realtime = 0.0f; //håller tiden, utan Time.timescale (unless spelet är pausat, moddas i GameManager)
 }

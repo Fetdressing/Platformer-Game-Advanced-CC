@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 public class AINavmesh : AIMoveable {
-    protected NavMeshAgent agent;
+    protected UnityEngine.AI.NavMeshAgent agent;
 
-    protected NavMeshPath currPath;
+    protected UnityEngine.AI.NavMeshPath currPath;
     protected float standStillTimePoint = 0.0f; //för att kolla ifall den stått still för länge, dvs den klarar ej pathen
 	// Use this for initialization
 	void Start () {
@@ -20,7 +20,7 @@ public class AINavmesh : AIMoveable {
 
         base.Init();
 
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
     public override void Reset()
@@ -57,8 +57,8 @@ public class AINavmesh : AIMoveable {
             {
                 //helt random
                 tempPatrol = startPosition + Random.insideUnitSphere * randomPatrol_MaxDistance;
-                NavMeshHit navHit;
-                if(NavMesh.Raycast(tempPatrol + Vector3.up * 150, tempPatrol + Vector3.down * 200, out navHit, NavMesh.AllAreas))
+                UnityEngine.AI.NavMeshHit navHit;
+                if(UnityEngine.AI.NavMesh.Raycast(tempPatrol + Vector3.up * 150, tempPatrol + Vector3.down * 200, out navHit, UnityEngine.AI.NavMesh.AllAreas))
                 {
                     tempPatrol = navHit.position;
                 }
@@ -70,13 +70,13 @@ public class AINavmesh : AIMoveable {
                 tempPatrol = patrolPoints[currPatrolPointIndex].position;
             }
                         
-            NavMeshHit hitH;
-            if (NavMesh.SamplePosition(tempPatrol, out hitH, 2.0f, NavMesh.AllAreas)) //rangen är bara runt den positionen man redan valt
+            UnityEngine.AI.NavMeshHit hitH;
+            if (UnityEngine.AI.NavMesh.SamplePosition(tempPatrol, out hitH, 2.0f, UnityEngine.AI.NavMesh.AllAreas)) //rangen är bara runt den positionen man redan valt
             {
-                NavMeshPath path = new NavMeshPath();
+                UnityEngine.AI.NavMeshPath path = new UnityEngine.AI.NavMeshPath();
                 agent.CalculatePath(hitH.position, path); //kolla ifall det är en legit path
 
-                if (path.status == NavMeshPathStatus.PathComplete)
+                if (path.status == UnityEngine.AI.NavMeshPathStatus.PathComplete)
                 {
                     pos = hitH.position;
                     return true;
@@ -94,9 +94,9 @@ public class AINavmesh : AIMoveable {
     public override bool IsValidMove(Vector3 pos)
     {
         if (agent.pathPending) return true;
-        NavMeshPath path = new NavMeshPath();
+        UnityEngine.AI.NavMeshPath path = new UnityEngine.AI.NavMeshPath();
         agent.CalculatePath(pos, path);
-        if (path.status != NavMeshPathStatus.PathComplete)
+        if (path.status != UnityEngine.AI.NavMeshPathStatus.PathComplete)
         {
             return false;
         }

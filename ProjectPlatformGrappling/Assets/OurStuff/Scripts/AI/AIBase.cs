@@ -11,7 +11,7 @@ public class AIBase : BaseRagdoll {
 
     public Transform agentTransform;
     [HideInInspector]
-    public NavMeshAgent agent;
+    public UnityEngine.AI.NavMeshAgent agent;
 
     [HideInInspector]
     public Transform target;
@@ -36,7 +36,7 @@ public class AIBase : BaseRagdoll {
         base.Init();
         thisTransform = this.transform;
         thisHealth = thisTransform.GetComponent<Health>();
-        agent = agentTransform.GetComponent<NavMeshAgent>();
+        agent = agentTransform.GetComponent<UnityEngine.AI.NavMeshAgent>();
         //animationH = thisTransform.GetComponent<Animation>();
         initTimes++;
 
@@ -91,8 +91,8 @@ public class AIBase : BaseRagdoll {
     {
         if (!IsReadyToMove()) return;
         
-        NavMeshHit nhit;
-        if (NavMesh.SamplePosition(thisTransform.position, out nhit, 5.0f, NavMesh.AllAreas))
+        UnityEngine.AI.NavMeshHit nhit;
+        if (UnityEngine.AI.NavMesh.SamplePosition(thisTransform.position, out nhit, 5.0f, UnityEngine.AI.NavMesh.AllAreas))
         {
             //Debug.Log(nhit.position.ToString() + " " + thisTransform.position.ToString());
             agent.Warp(thisTransform.position);
@@ -104,8 +104,8 @@ public class AIBase : BaseRagdoll {
         for (int i = 0; i < 30; i++)
         {
             Vector3 randomPoint = center + Random.insideUnitSphere * range;
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            UnityEngine.AI.NavMeshHit hit;
+            if (UnityEngine.AI.NavMesh.SamplePosition(randomPoint, out hit, 1.0f, UnityEngine.AI.NavMesh.AllAreas))
             {
                 result = hit.position;
                 return true;

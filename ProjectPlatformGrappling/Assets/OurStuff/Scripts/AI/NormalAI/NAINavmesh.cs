@@ -2,12 +2,12 @@
 using System.Collections;
 
 public class NAINavmesh : NAIBase {
-    protected NavMeshAgent agent;
+    protected UnityEngine.AI.NavMeshAgent agent;
 
     public override void Init()
     {
         base.Init();
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
     public override void Move(Vector3 pos)

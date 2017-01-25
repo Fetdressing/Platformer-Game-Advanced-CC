@@ -480,8 +480,8 @@ public class StagMovement : BaseClass
         // YYYYY
 
         //characterController.Move((currMomentum + dashVel + externalVel + yVector) * deltaTime);
-        characterController.Move(nextMove); //nextMove kalkuleras i fixedupdate
-        nextMove = Vector3.zero; //nollställer den varje update
+        characterController.Move(nextMove * Time.timeScale); //nextMove kalkuleras i fixedupdate
+        nextMove *= 1 - Time.timeScale; //nollställer den varje update
 
         currFrameMovespeed = (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(lastFramePos.x, 0, lastFramePos.z)) * deltaTime) * 100;
         //Debug.Log((currFrameMovespeed).ToString());

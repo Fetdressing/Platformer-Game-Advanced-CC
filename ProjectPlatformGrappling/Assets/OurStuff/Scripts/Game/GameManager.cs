@@ -27,6 +27,11 @@ public class GameManager : BaseClass {
         ToggleMenu(false);
     }
 
+    void FixedUpdate()
+    {
+        lastFixedUpdate_Timepoint = Time.time;
+    }
+
     // Update is called once per frame
     void Update () {
         if (!lastFrame_was_Paused)
