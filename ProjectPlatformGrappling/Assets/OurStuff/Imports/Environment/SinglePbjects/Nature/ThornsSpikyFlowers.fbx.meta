@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cbbcef04b587b3c42ab71c842af0b4bb
+guid: aebb592a0a8ce184eb87a3de8dcfbeae
 timeCreated: 1485367189
 licenseType: Free
 ModelImporter:
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Thorns
+    4300000: ThornsFlowers
   materials:
     importMaterials: 1
     materialName: 0

@@ -97,6 +97,12 @@ public class PowerManager : BaseClass {
     void Update () {
         if (isLocked) return;
         AddPower(powerDecay * Time.deltaTime);
+
+        if(godMode)
+        {
+            stagMovement.dashUsed = false;
+            stagMovement.jumpAmount = 1000;
+        }
 	}
 
     public void AddPower(float p, bool showDamageMat = false)

@@ -61,7 +61,7 @@ public class StagMovement : BaseClass
     [HideInInspector]public float dashTimePoint; //mud påverkar denna så att man inte kan dasha
     protected float dashGlobalCooldown = 0.3f;
     protected float dashGroundCooldown = 1f; //går igång ifall man dashar från marken
-    protected float dashSpeed = 400;
+    protected float dashSpeed = 450;
     protected float startMaxDashTime = 0.08f; //den går att utöka
     [HideInInspector] public float maxDashTime;
     protected float dashPowerCost = 0.1f; //hur mycket power det drar varje gång man dashar
@@ -135,6 +135,7 @@ public class StagMovement : BaseClass
     public LayerMask groundCheckLM;
     protected float groundedTimePoint = 0; //när man blev grounded
     protected float maxSlopeGrounded = 80; //vilken vinkel det som mest får skilja på ytan och vector3.down när man kollar grounded
+    protected float maxSlopeDash = 65; //vilken vinkel som dash ska staggeras mot
     protected float groundedSlope = 0;
     protected Vector3 groundedNormal = Vector3.zero;
     protected GroundChecker groundChecker; //så man kan resetta stuff till camerashake tex
@@ -314,7 +315,7 @@ public class StagMovement : BaseClass
             //ySpeed = 0; //behöver inte lägga på gravity när man står på moving platform, varför funkar inte grounded? lol
         }
 
-        DashUpdate();
+        DashFixedUpdate();
 
         nextMove += (currMomentum + dashVel + externalVel + yVector) * 0.01f;
     }
@@ -356,7 +357,7 @@ public class StagMovement : BaseClass
         isGroundedRaycast = GetGrounded(groundCheckObject);
         //Debug.Log(GetGroundedDuration().ToString());
 
-        Debug.Log(ingame_Realtime.ToString() + "\n" + Time.realtimeSinceStartup.ToString());
+        //Debug.Log(ingame_Realtime.ToString() + "\n" + Time.realtimeSinceStartup.ToString());
 
         if (movementStackResetTimer < ingame_Realtime)
         {
@@ -425,7 +426,10 @@ public class StagMovement : BaseClass
                 Dash(false, false);
             }
         }
-        
+
+        //om man dashar
+        DashUpdate();
+
         //// YYYYY SKA JU LIGGA INNAN MOVING PLATFORM OM MAN VILL HA Y-MOVING PLATFORMS
         ////Debug.Log(characterController.isGrounded);
         //// apply gravity acceleration to vertical speed:
@@ -1073,7 +1077,7 @@ public class StagMovement : BaseClass
     public void BreakDash(bool instantDisable = true) //instant disable stänger av dashobjektet dirr
     {
         currDashTime = Mathf.Infinity;
-        currDashUpdates = dashUpdates + 1; //så att den ska sluta köra DashUpdate()
+        currDashUpdates = dashUpdates + 1; //så att den ska sluta köra DashFixedUpdate()
         ToggleDashEffect(false);
         unitDetectionCamera.transform.localRotation = Quaternion.identity; //nollställ
         unitDetectionCamera.transform.localPosition = Vector3.zero;
@@ -1258,6 +1262,7 @@ public class StagMovement : BaseClass
         {
             dirMod = biasedDir;
         }
+        dashVel = dirMod * dashSpeed;
 
         currDashTime = 0.0f;
 
@@ -1317,7 +1322,7 @@ public class StagMovement : BaseClass
         //Debug.Log(cameraObj.forward.ToString() + " " + dirMod.ToString() + "  " + biasedDir.ToString() + " " + lastUnitHit.ToString());
     }
 
-    void DashUpdate() //körs medans man dashar
+    void DashFixedUpdate() //körs medans man dashar i FixedUpdate
     {
         if (currDashIE == null) return;
 
@@ -1339,7 +1344,7 @@ public class StagMovement : BaseClass
             //ySpeed = -gravity * 0.01f; //nollställer ej helt
 
             Vector3 hitNormal = Vector3.zero;
-            if (!IsWalkable(1.0f, characterController.radius + 1.0f, dashVel, maxSlopeGrounded, ref hitNormal)) //så den slutar dasha när den går emot en vägg
+            if (!IsWalkable(1.0f, characterController.radius + 1.0f, dashVel, maxSlopeDash, ref hitNormal)) //så den slutar dasha när den går emot en vägg
             {
                 BreakDash(false);
                 Stagger(0.12f);
@@ -1350,6 +1355,23 @@ public class StagMovement : BaseClass
             BreakDash(false);
         }
 
+    }
+
+    void DashUpdate() //körs i vanliga update, för att få en mer frekvent check på stuff
+    {
+        if (currDashIE == null) return;
+
+        if (currDashUpdates < dashUpdates)
+        {
+            stagObject.transform.forward = dashVel.normalized;
+
+            Vector3 hitNormal = Vector3.zero;
+            if (!IsWalkable(1.0f, characterController.radius + 1.0f, dashVel, maxSlopeDash, ref hitNormal)) //så den slutar dasha när den går emot en vägg
+            {
+                BreakDash(false);
+                Stagger(0.12f);
+            }
+        }
     }
 
     void CenterRectangle(ref Rect someRect)
