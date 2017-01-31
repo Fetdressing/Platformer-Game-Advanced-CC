@@ -445,8 +445,9 @@ GameObject:
   - component: {fileID: 114239554262744022}
   - component: {fileID: 143963816643464312}
   - component: {fileID: 114562824498557796}
-  - component: {fileID: 114719301307997334}
   - component: {fileID: 82451009201587332}
+  - component: {fileID: 114495990885001724}
+  - component: {fileID: 135461496341455186}
   m_Layer: 22
   m_Name: TreantFlyerImmortal
   m_TagString: Untagged
@@ -1436,6 +1437,19 @@ MonoBehaviour:
   run: {fileID: 7400000, guid: be9806e49cfa3d74c9fc2040a30193c8, type: 3}
   idleSpeed: 1
   runSpeed: 2.2
+--- !u!114 &114495990885001724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1743409756252902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLocked: 0
+  canBeBlocked: 1
 --- !u!114 &114562824498557796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1471,27 +1485,18 @@ MonoBehaviour:
     type: 2}
   nrDropObjects: 3
   dropObjLifeTime: 10
---- !u!114 &114719301307997334
-MonoBehaviour:
+--- !u!135 &135461496341455186
+SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1743409756252902}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a35b63ed7135f824381abf51064a43fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isLocked: 0
-  isContinuous: 0
-  pushAway: 1
-  pushForce: 100
-  animPlayer: {fileID: 0}
-  pushAnim: {fileID: 0}
-  animationSpeed: 1
-  audioSource: {fileID: 82603462715916402}
-  canBeBlocked: 1
-  powerAddPercentage: -0.4
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 6, z: 0}
 --- !u!137 &137869994797158796
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

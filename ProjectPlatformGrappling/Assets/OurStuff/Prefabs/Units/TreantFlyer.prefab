@@ -22,8 +22,9 @@ GameObject:
   - component: {fileID: 114000012332538610}
   - component: {fileID: 143000013754810038}
   - component: {fileID: 114000014020557108}
-  - component: {fileID: 114000010959236534}
   - component: {fileID: 82000013709349444}
+  - component: {fileID: 114583043384640302}
+  - component: {fileID: 135614314692481188}
   m_Layer: 22
   m_Name: TreantFlyer
   m_TagString: Untagged
@@ -1412,27 +1413,6 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 1
---- !u!114 &114000010959236534
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010120548474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a35b63ed7135f824381abf51064a43fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isLocked: 0
-  isContinuous: 0
-  pushAway: 1
-  pushForce: 100
-  animPlayer: {fileID: 0}
-  pushAnim: {fileID: 0}
-  animationSpeed: 1
-  audioSource: {fileID: 82000010619103320}
-  canBeBlocked: 1
-  powerAddPercentage: -0.2
 --- !u!114 &114000012332538610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1447,9 +1427,10 @@ MonoBehaviour:
   isLocked: 0
   rotater: {fileID: 0}
   movePosIntervalTime: 8
-  speed: 20
+  speed: 5
   chaseSpeed: 80
-  checkDistanceThreshhold: 7
+  checkDistanceThreshhold: 20
+  patrolPoints: []
   playerChaseDistance: 140
   animH: {fileID: 111000011418022244}
   idle: {fileID: 7400000, guid: cb2e6222b408a4c4686435cf1819c97e, type: 3}
@@ -1491,6 +1472,31 @@ MonoBehaviour:
     type: 2}
   nrDropObjects: 3
   dropObjLifeTime: 10
+--- !u!114 &114583043384640302
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010120548474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLocked: 0
+  canBeBlocked: 1
+--- !u!135 &135614314692481188
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010120548474}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 6, z: 0}
 --- !u!137 &137000011531837698
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

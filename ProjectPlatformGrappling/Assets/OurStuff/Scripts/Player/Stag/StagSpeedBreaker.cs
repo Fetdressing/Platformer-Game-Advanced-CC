@@ -14,6 +14,7 @@ public class StagSpeedBreaker : BaseClass {
     int min_DistanceThreshhold = 4; //hur nära man får vara activationPoint för att kollidea
     Vector3 activationPoint = Vector3.zero;
 
+    bool lastUnitHit_Viable = true; //ifall jag kan träffa internalLastUnitHit igen, för att hantera så man inte knockar i samma unit om den har dubbla colliders tex
     Transform internalLastUnitHit; //används för o mecka collision
 
     private int powerGained = 10;
@@ -34,6 +35,17 @@ public class StagSpeedBreaker : BaseClass {
         initTimes++;
     }
 
+    void Update()
+    {
+        if(internalLastUnitHit != null && lastUnitHit_Viable == false)
+        {
+            if(Vector3.Distance(stagMovement.transform.position, internalLastUnitHit.position) > 25) //ett värde där jag tror spelaren är utanför collidern
+            {
+                lastUnitHit_Viable = true;
+            }
+        }
+    }
+
     public void UnIgnoreLastUnitHit()
     {
         stagMovement.IgnoreCollider(false, internalLastUnitHit);
@@ -48,6 +60,7 @@ public class StagSpeedBreaker : BaseClass {
             stagMovement.IgnoreCollider(false, internalLastUnitHit);
 
             internalLastUnitHit = col.transform;
+            lastUnitHit_Viable = false;
             stagMovement.lastUnitHit = col.transform;
             stagMovement.IgnoreCollider(2f, col.transform); //så man inte collidar med den när man åker igenom, sätter högre tid på den nu, för den SKA ta bort ignoren när dashen slutar
             //stagMovement.IgnoreCollider(true, col.transform);

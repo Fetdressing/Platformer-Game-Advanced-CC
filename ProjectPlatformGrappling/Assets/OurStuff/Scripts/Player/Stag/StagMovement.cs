@@ -1268,7 +1268,7 @@ public class StagMovement : BaseClass
         //***DASHSTYRNIG***
 
         //SJÄLVSTYRNING, FAN VA ENKELT ALLT ÄR!!
-        float minimumFinalValue = 1.6f; //måste vara högre än denna för det ska gå
+        float minimumFinalValue = 1.0f; //måste vara högre än denna för det ska gå
         if (biasedDir != Vector3.zero && bestFinalValue > minimumFinalValue) //har en fiende hittats som ska styras mot
         {
             dirMod = biasedDir;

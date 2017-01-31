@@ -5,13 +5,13 @@ public class DeadlyObj : BaseClass {
     public bool canBeBlocked = false;
 	// Use this for initialization
 	void Start () {
-	
+        Init();
 	}
 
     public override void Init()
     {
         base.Init();
-        bActivated = true;
+        Reset();
     }
 
     public override void Deactivate()
