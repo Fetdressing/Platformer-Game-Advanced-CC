@@ -93,6 +93,8 @@ public class HealthSpirit : BaseClass
     public override void Reset()
     {
         base.Reset();
+        StopAllCoroutines();
+
         maxHealth = startHealth; //maxHealth kan påverkas av andra faktorer also
         isAlive = true;
         SetHealth(maxHealth);
@@ -107,6 +109,13 @@ public class HealthSpirit : BaseClass
 
         //ApplyMaterial(damagedMaterial, 0.1f);
         ResetChangeMat();
+
+        BaseClass[] baseclassObj = GetComponentsInChildren<BaseClass>();
+        for (int i = 0; i < baseclassObj.Length; i++)
+        {
+            if (baseclassObj[i] == this) continue;
+            baseclassObj[i].Reset();
+        }
     }
 
     // Update is called once per frame
@@ -148,7 +157,13 @@ public class HealthSpirit : BaseClass
     public virtual bool AddHealth(int h)
     {
         if (isAlive == false) return false;
-        if (isIndestructable == true) return false;
+        if (isIndestructable == true)
+        {
+            if (h < 0.0f)
+            {
+                ApplyMaterial(damagedMaterial, 0.01f);
+            }
+            return false; }
 
         currHealth += h;
         if (h < 0.0f)

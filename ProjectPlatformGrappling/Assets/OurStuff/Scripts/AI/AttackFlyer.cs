@@ -12,6 +12,10 @@ public class AttackFlyer : BaseClass {
     public float speed = 4;
     public float chaseSpeed = 14;
     public float checkDistanceThreshhold = 20;
+
+    public Transform[] patrolPoints; //kan lämnas tom för random movement
+    protected int currPatrolPointID = 0;
+
     public float playerChaseDistance = 100;
 
     private bool chasing = false;
@@ -67,69 +71,97 @@ public class AttackFlyer : BaseClass {
     // Update is called once per frame
     void Update()
     {
-        float playerDistance = Vector3.Distance(player.position, transform.position);
-        if(playerDistance < playerChaseDistance)
-        {
-            chasing = true;
-        }
-        else
-        {
-            chasing = false;
-        }
-
         Vector3 dir = transform.forward;
-        if (chasing)
+
+        if (patrolPoints.Length > 0) //man har patrolpoints
         {
-
-            if (animH != null)
+            if (Vector3.Distance(transform.position, currMovePos) < 5) //nästa patrolposition
             {
-                animH.CrossFade(run.name);
+                currPatrolPointID += 1;
+                if (currPatrolPointID >= patrolPoints.Length)
+                    currPatrolPointID = 0;
+
+                currMovePos = patrolPoints[currPatrolPointID].position;
             }
 
-            dir = (player.position - transform.position).normalized;
-            cController.Move(dir * Time.deltaTime * chaseSpeed);
-            if (Vector3.Distance(startPosition, transform.position) < 5)
-            {
-                chasing = false;
-            }
-
-        }
-        else
-        {
-
-            if (movePosIntervalTimer < Time.time)
-            {
-                movePosIntervalTimer = movePosIntervalTime + Time.time;
-                currMovePos = GetRandomVector() + transform.position;
-            }
-
-            if (Vector3.Distance(transform.position, startPosition) > checkDistanceThreshhold * 3 && returning == false)
-            {
-                returning = true;
-                currMovePos = GetRandomVector() + transform.position;
-            }
-
-            if (returning == true)
-            {
-                dir = (startPosition - transform.position).normalized;
-                cController.Move(dir * Time.deltaTime * speed);
-                if (Vector3.Distance(startPosition, transform.position) < 5)
-                {
-                    returning = false;
-                }
-            }
-            else
-            {
-                dir = (transform.position - currMovePos).normalized;
-                cController.Move(dir * Time.deltaTime * speed);
-            }
+            dir = (currMovePos - transform.position).normalized;
+            cController.Move(dir * Time.deltaTime * speed);
 
             if (animH != null)
             {
                 animH.CrossFade(idle.name);
             }
+        }
+        else
+        {
+            //utan patrolpoints
+            float playerDistance = Vector3.Distance(player.position, transform.position);
+            if (playerDistance < playerChaseDistance)
+            {
+                chasing = true;
+            }
+            else
+            {
+                chasing = false;
+            }
 
-            
+
+            if (chasing)
+            {
+
+                if (animH != null)
+                {
+                    animH.CrossFade(run.name);
+                }
+
+                dir = (player.position - transform.position).normalized;
+                cController.Move(dir * Time.deltaTime * chaseSpeed);
+                if (Vector3.Distance(startPosition, transform.position) < 5)
+                {
+                    chasing = false;
+                }
+
+            }
+            else
+            {
+                if (movePosIntervalTimer < Time.time)
+                {
+                    movePosIntervalTimer = movePosIntervalTime + Time.time;
+                    currMovePos = GetRandomVector() + transform.position;
+                }
+
+                if (Vector3.Distance(transform.position, startPosition) > checkDistanceThreshhold * 3 && returning == false) //för långt ifrån start positionen, hem igen!
+                {
+                    returning = true;
+                    currMovePos = GetRandomVector() + transform.position;
+                }
+                else if (Vector3.Distance(transform.position, currMovePos) < 5) //nått målet! nästa patrolposition
+                {
+                    currMovePos = GetRandomVector() + transform.position;
+                }
+
+                if (returning == true)
+                {
+                    dir = (startPosition - transform.position).normalized;
+                    cController.Move(dir * Time.deltaTime * speed);
+                    if (Vector3.Distance(startPosition, transform.position) < 5)
+                    {
+                        returning = false;
+                    }
+                }
+                else
+                {
+                    dir = (currMovePos - transform.position).normalized;
+                    cController.Move(dir * Time.deltaTime * speed);
+                }
+
+                if (animH != null)
+                {
+                    animH.CrossFade(idle.name);
+                }
+
+
+            }
         }
 
         Vector3 dirNoY = new Vector3(dir.x, rotater.forward.y, dir.z);

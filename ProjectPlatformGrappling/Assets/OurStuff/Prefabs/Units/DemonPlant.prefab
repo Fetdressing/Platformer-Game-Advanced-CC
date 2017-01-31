@@ -349,7 +349,7 @@ MonoBehaviour:
   startHealthRegAmount: 0
   healthRegAmount: 1
   destroyOnDeath: 0
-  respawn: 0
+  respawn: 1
   animationObj: {fileID: 1000013039317298}
   deathAnimation: {fileID: 7400004, guid: 9cfad5d6d76c30948bf3c5ab5f8b7093, type: 3}
   deathParticleSystemObj: {fileID: 0}
@@ -406,6 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   canBeBlocked: 1
 --- !u!136 &136000012488231508
 CapsuleCollider:

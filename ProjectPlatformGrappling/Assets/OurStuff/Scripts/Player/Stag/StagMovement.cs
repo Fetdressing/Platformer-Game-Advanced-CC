@@ -50,7 +50,7 @@ public class StagMovement : BaseClass
     protected float jumpTimePoint = -5; //när man hoppas så den inte ska resetta stuff dirr efter man hoppat
     [HideInInspector] public int jumpAmount = 2; //hur många hopp man får
     protected int jumpsAvaible = 0; //så man kan hoppa i luften also, förutsatt att man resettat den på marken
-    protected float jumpCooldown = 0.15f;
+    protected float jumpCooldown = 0.1f;
     public GameObject jumpEffectObject;
     [HideInInspector] public float currFrameMovespeed = 0; //hur snabbt man rört sig denna framen
     protected Vector3 lastFramePos = Vector3.zero;
@@ -61,7 +61,8 @@ public class StagMovement : BaseClass
     [HideInInspector]public float dashTimePoint; //mud påverkar denna så att man inte kan dasha
     protected float dashGlobalCooldown = 0.3f;
     protected float dashGroundCooldown = 1f; //går igång ifall man dashar från marken
-    protected float dashSpeed = 450;
+    protected float dashSpeed = 400;
+    int dashUpdates = 18; //hur många fixedupdates som dash ska köra, detta gör den consistent i hur långt den åker oavsett framerate. Kanske en skum lösning men det funkar asbra!
     protected float startMaxDashTime = 0.08f; //den går att utöka
     [HideInInspector] public float maxDashTime;
     protected float dashPowerCost = 0.1f; //hur mycket power det drar varje gång man dashar
@@ -82,7 +83,6 @@ public class StagMovement : BaseClass
     float currDashTime;
     float startDashTime = 0.0f;
     float extendedTime = 0.0f;
-    int dashUpdates = 20; //hur många fixedupdates som dash ska köra, detta gör den consistent i hur långt den åker oavsett framerate. Kanske en skum lösning men det funkar asbra!
     int currDashUpdates = 0;
 
     protected float knockForceMovingPlatform = 420; //om man hamnar på fel sidan av moving platform så knuffas man bort lite
@@ -899,6 +899,17 @@ public class StagMovement : BaseClass
                 BreakDash();
                 AddMovementStack(1);
                 PlayJumpEffect();
+                
+                float jumpGroundCheckTimeWindowCLOSE = 1.0f;
+                float addedJumpSpeed = 0;
+
+                if (dashTimePoint < jumpTimePoint) //se till så att man använde jump senast och inte dash
+                {
+                    if ((jumpTimePoint + jumpGroundCheckTimeWindowCLOSE) > Time.time && isGroundedRaycast) //man är fortfarande grounded efter förra hoppet, öka höjden!
+                    {
+                        addedJumpSpeed = 40;
+                    }
+                }
 
                 //jumpsAvaible = Mathf.Max(0, (jumpsAvaible - 1));
                 AddJumpsAvaible(-1);
@@ -916,11 +927,11 @@ public class StagMovement : BaseClass
 
                 if (ySpeed <= 0)
                 {
-                    ySpeed += jumpSpeed;
+                    ySpeed += jumpSpeed + addedJumpSpeed;
                 }
                 else
                 {
-                    ySpeed += (jumpSpeed * 0.8f); //mindre force när man redan har force
+                    ySpeed += (jumpSpeed * 0.8f) + addedJumpSpeed; //mindre force när man redan har force
                 }
                 //animationH.Play(jump.name);
                 //animationH[jump.name].weight = 1.0f;
