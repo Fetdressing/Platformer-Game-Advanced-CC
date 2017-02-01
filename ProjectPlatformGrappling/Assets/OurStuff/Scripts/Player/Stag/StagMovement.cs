@@ -801,7 +801,7 @@ public class StagMovement : BaseClass
         currLimitSpeed = startLimitSpeed * bonusStageSpeed * currExternalSpeedMult;
 
         //currMomentum += finalMoveDir * 0.01f * bonusStageSpeed * (1 + flatMoveStacksSpeedBonues); //om inte man är uppe i hög speed så kan man alltid köra currMomentum = finalMoveDir som vanligt
-        Vector3 tempMomentum = momA * 0.01f * bonusStageSpeed * (1 + flatMoveStacksSpeedBonues);
+        Vector3 tempMomentum = momA * 0.0075f * bonusStageSpeed * (1 + flatMoveStacksSpeedBonues);
         float momY = currMomentum.y;
 
         Vector3 currMomXZ = new Vector3(currMomentum.x, 0, currMomentum.z);
