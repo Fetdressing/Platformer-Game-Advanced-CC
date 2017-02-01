@@ -18,6 +18,7 @@ public class StagSpeedBreaker : BaseClass {
     Transform internalLastUnitHit; //används för o mecka collision
 
     private int powerGained = 10;
+    bool ready = true; //så man bara träffar ett target/dash
 	// Use this for initialization
 	void Start () {
         Init();
@@ -35,6 +36,12 @@ public class StagSpeedBreaker : BaseClass {
         initTimes++;
     }
 
+    public override void Reset()
+    {
+        base.Reset();
+        ready = true;
+    }
+
     void Update()
     {
         if(internalLastUnitHit != null && lastUnitHit_Viable == false)
@@ -46,16 +53,19 @@ public class StagSpeedBreaker : BaseClass {
         }
     }
 
-    public void UnIgnoreLastUnitHit()
+    public void UnIgnoreLastUnitHit() //unignorerar collidern
     {
         stagMovement.IgnoreCollider(false, internalLastUnitHit);
     }
 
     void OnTriggerEnter(Collider col)
     {
+        if (lastUnitHit_Viable == false && col.transform == internalLastUnitHit) return;
+        if (!ready) return;
         HealthSpirit h = col.GetComponent<HealthSpirit>();
         if(h != null && h.IsAlive())
         {
+            ready = false;
             stagMovement.BreakDash(false);
             stagMovement.IgnoreCollider(false, internalLastUnitHit);
 
@@ -84,11 +94,12 @@ public class StagSpeedBreaker : BaseClass {
 
     //}
 
-    public void Activate()
+    public void Activate(bool force = false) //force gör så att man slipper checken
     {
-        if (active) return;
+        if (!force && active) return;
         activationPoint = transform.position;
 
+        ready = true;
         active = true;
         ToggleColliders(true);
         ToggleRenderers(true);
@@ -105,6 +116,8 @@ public class StagSpeedBreaker : BaseClass {
 
         fadeOut = FadeOut(0.5f);
         StartCoroutine(fadeOut);
+
+        active = false;
     }
 
     public void InstantDisable()

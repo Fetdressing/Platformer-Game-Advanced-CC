@@ -1268,7 +1268,10 @@ public class StagMovement : BaseClass
         //***DASHSTYRNIG***
 
         //SJÄLVSTYRNING, FAN VA ENKELT ALLT ÄR!!
-        float minimumFinalValue = 1.0f; //måste vara högre än denna för det ska gå
+        speedBreakerTimer = Time.time + speedBreakerTime; //speedbreakern aktiveras sedan i update
+        speedBreaker.Activate(true);
+
+        float minimumFinalValue = 0.0f; //måste vara högre än denna för det ska gå
         if (biasedDir != Vector3.zero && bestFinalValue > minimumFinalValue) //har en fiende hittats som ska styras mot
         {
             dirMod = biasedDir;
@@ -1287,9 +1290,6 @@ public class StagMovement : BaseClass
         }
 
         currDashUpdates = 0 - (int)(extraDashTime * 70); //lägger till extraDashTime
-
-        speedBreakerTimer = Time.time + speedBreakerTime; //speedbreakern aktiveras sedan i update
-        speedBreaker.Activate();
 
         yield break;
 
