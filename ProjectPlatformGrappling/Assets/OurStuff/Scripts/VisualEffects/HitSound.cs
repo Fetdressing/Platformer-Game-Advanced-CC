@@ -4,6 +4,7 @@ using System.Collections;
 //[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Collider))]
 public class HitSound : BaseClass {
+    public RandomSound rSound;
     private AudioSource audioSource;
     public AudioClip audioClip;
     public float volume = 0.4f;
@@ -37,13 +38,27 @@ public class HitSound : BaseClass {
         {
             if (lastHit != col.transform)
             {
-                audioSource.PlayOneShot(audioClip, volume);
+                if (rSound != null)
+                {
+                    rSound.Play();
+                }
+                else
+                {
+                    audioSource.PlayOneShot(audioClip, volume);
+                }
             }
             lastHit = col.transform;
         }
         else
         {
-            audioSource.PlayOneShot(audioClip, volume);
+            if (rSound != null)
+            {
+                rSound.Play();
+            }
+            else
+            {
+                audioSource.PlayOneShot(audioClip, volume);
+            }
         }
     }
 }
