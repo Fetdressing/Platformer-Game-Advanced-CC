@@ -22,6 +22,7 @@ public class StagMovement : BaseClass
     public Vector3 yMiddlePointOffset = new Vector3(0, 3, 0);
 
     protected int fUpdatesPassed = 0; //hur många fixedupdates det har gått sedan senaste updaten
+    protected int maxFUpdatesOnUpdate = 5; //just för movement så man inte ska få sådana mega spike förflyttningar
 
     [HideInInspector] public StagSpeedBreaker speedBreaker;
     protected float speedBreakerActiveSpeed = 1.8f; //vid vilken fart den går igång
@@ -279,6 +280,8 @@ public class StagMovement : BaseClass
             activePlatform = null; //kolla om platformen fortfarande finns under mig eller ej
         }
 
+        if (fUpdatesPassed > maxFUpdatesOnUpdate) return; //så man inte får dessa mega spikes i movement
+
         Vector3 tempExternalVal = externalVel; //spara värdet innan man minskar för att kunna lägga på det på momentum
         //externalVel = Vector3.Lerp(externalVel, Vector3.zero, 0.01f * 5); //ta sakta bort den externa forcen
         Break(5, ref externalVel);
@@ -511,6 +514,8 @@ public class StagMovement : BaseClass
         }
 
         PlayAnimationStates();
+
+        fUpdatesPassed = 0;
 
     }
 
@@ -1344,11 +1349,17 @@ public class StagMovement : BaseClass
 
             speedBreakerTimer = Time.time + speedBreakerTime; //speedbreakern aktiveras sedan i update
 
+            float modDashSpeed = dashSpeed;
             if (dashTarget != null)
             {
                 dirMod = ((dashTarget.position + groundOffset + dashTargetOffset) - (transform.position + groundOffset)).normalized;
+
+                if(Vector3.Distance(transform.position, dashTarget.position) < 25) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
+                {
+                    modDashSpeed = dashSpeed * 2;
+                }
             }
-            dashVel = dirMod * dashSpeed; //styra under dashen
+            dashVel = dirMod * modDashSpeed; //styra under dashen
             stagObject.transform.forward = dashVel.normalized;
             currDashTime = Time.time - startDashTime - extendedTime;
 
