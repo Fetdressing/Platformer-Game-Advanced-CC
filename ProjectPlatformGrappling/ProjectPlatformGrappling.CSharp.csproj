@@ -514,6 +514,7 @@
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\ParticleTimed.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\RandomSound.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\Rotater.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\VisualEffects\SimpleAnimationPlayer.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\UVDisplacer.cs" />
   </ItemGroup>
   <ItemGroup>

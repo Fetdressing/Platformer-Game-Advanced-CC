@@ -20,6 +20,11 @@ public class HitSound : BaseClass {
     {
         base.Init();
         audioSource = GetComponent<AudioSource>();
+
+        if(rSound == null)
+        {
+            rSound = GetComponent<RandomSound>();
+        }
     }
 
     void OnTriggerEnter(Collider col)
