@@ -52,6 +52,9 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -66,6 +69,9 @@
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Purchasing">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
@@ -425,6 +431,11 @@
     <Compile Include="Assets\ExternalAssets\Quantum Theory\Polyworld\Scripts\Utility Scripts\QT_MeshCombineUtility.cs" />
     <Compile Include="Assets\ExternalAssets\QuickSetObjectPlacer\Scripts\QuickSetObjectPlacer.cs" />
     <Compile Include="Assets\ExternalAssets\SimpleLUT\Script\SimpleLUT.cs" />
+    <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\Imported\ParticleSystems\Sripts\BoosterGlobeHandler.cs" />
+    <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\Imported\ParticleSystems\Sripts\ObjectTriggeredSeekAndEmit.cs" />
+    <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\Imported\ParticleSystems\Sripts\ParticlePlexus.cs" />
+    <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\Imported\ParticleSystems\Sripts\ParticleSeekTriggered.cs" />
+    <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\Imported\ParticleSystems\Sripts\StopSiblings.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\AIBase.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\AttackFlyer.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\BaseUnit.cs" />
@@ -547,6 +558,7 @@
     <None Include="Assets\ExternalAssets\SimpleLUT\Shader\SimpleLUT.shader" />
     <None Include="Assets\ExternalAssets\SimpleLUT\_HereVR Color Grading Demo\Readme - HVR Color Grading Demo.txt" />
     <None Include="Assets\OurStuff\2D\Shaders\Hologram.shader" />
+    <None Include="Assets\OurStuff\Prefabs\VisualsEffects\Imported\ParticleSystems\Materials\DistortModified.shader" />
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />
