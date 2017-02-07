@@ -52,9 +52,6 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -69,9 +66,6 @@
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
@@ -462,12 +456,14 @@
     <Compile Include="Assets\OurStuff\Scripts\BaseRigidbody.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\CameraManager.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\ControlManager.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\Game\CustomFixedUpdate.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\GameManager.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\GameSettings.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\LevelLoader.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\MainMenu.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\SceneHandler.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\SpawnManager.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\Game\Spawnpoint.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Health.cs" />
     <Compile Include="Assets\OurStuff\Scripts\HealthSpirit.cs" />
     <Compile Include="Assets\OurStuff\Scripts\MagneticForces\MagneticBall.cs" />
@@ -503,17 +499,14 @@
     <Compile Include="Assets\OurStuff\Scripts\Player\Camera\ThirdPersonLike\ImThirdPerson.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Camera\ThirdPersonLike\ThirdPersonCamera.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Camera\WoWCCamera.cs" />
-    <Compile Include="Assets\OurStuff\Scripts\Player\MagneticPlacer.cs" />
-    <Compile Include="Assets\OurStuff\Scripts\Player\Movement.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Old\MagneticHandler.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\Player\Old\MagneticPlacer.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Old\PlayerMovement.cs" />
-    <Compile Include="Assets\OurStuff\Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\GroundChecker.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\PowerManager.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagMovement.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagShooter.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagSpeedBreaker.cs" />
-    <Compile Include="Assets\OurStuff\Scripts\Spawnpoint.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Specials\ObjectActivator.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\AnimStandardPlayer.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\AnimationSpeedModifier.cs" />

@@ -8,7 +8,7 @@ public class WoWCCamera : BaseClass
 
     public Transform target;
     private float currSpeed = 0.0f;
-    private Vector3 currFrameTargetPos = new Vector3();
+    private Vector3 currFrameTargetPos = new Vector3(); //flytta kameran bak ifall spelaren rör sig snabbare
     private Vector3 lastFrameTargetPos = new Vector3();
 
     public float targetHeight = 12.0f;
@@ -36,6 +36,10 @@ public class WoWCCamera : BaseClass
     public float rotationDampening = 3.0f;
 
     public float theta2 = 0.5f;
+
+    private float xMom = 0.0f;
+    private float yMom = 0.0f;
+    Vector2 stackedMom = Vector2.zero; //stackas upp och töms sedan vid varje update, hur långt man ska röra sig vid nästa update
 
     private float x = 0.0f;
     private float y = 0.0f;
@@ -114,8 +118,8 @@ public class WoWCCamera : BaseClass
         float yn = 30;
         while(settingRotation != null && Mathf.Abs(x - xn) + Mathf.Abs(y - yn) > 2f)
         {
-            x = Mathf.Lerp(x, xn, Time.deltaTime * 8);
-            y = Mathf.Lerp(y, yn, Time.deltaTime * 8);
+            x = Mathf.Lerp(x, xn, Time.unscaledDeltaTime * 8);
+            y = Mathf.Lerp(y, yn, Time.unscaledDeltaTime * 8);
             
             Quaternion rotation = Quaternion.Euler(y, x, 0);
             Vector3 position = target.position - (rotation * Vector3.forward * (distance) + new Vector3(0, -targetHeight, 0));
@@ -133,6 +137,18 @@ public class WoWCCamera : BaseClass
         settingRotation = null;
     }
 
+    void FixedUpdate() //behöver unscaled fixedupdate!
+    {
+        xMom += controlManager.horAxisView * xSpeed * 0.2f * speedMultiplier;
+        yMom += controlManager.verAxisView * ySpeed * 0.2f * speedMultiplier;
+
+        float slowDownMult = 15; //slöa ner momentumen
+        xMom = Mathf.Lerp(xMom, 0, (0.01f * slowDownMult) / Time.timeScale);
+        yMom = Mathf.Lerp(yMom, 0, (0.01f * slowDownMult) / Time.timeScale);
+
+        //stackedMom += new Vector2(xMom, yMom);
+    }
+
     void LateUpdate()
     {
         if (movingToPos == true) return;
@@ -145,18 +161,20 @@ public class WoWCCamera : BaseClass
         if (lastFrameTargetPos != Vector3.zero)
         {
             var valueSpeed = Mathf.Abs(Mathf.Abs(lastFrameTargetPos.magnitude) - Mathf.Abs(currFrameTargetPos.magnitude)) * 2;
-            extraDistance = Mathf.Lerp(extraDistance, valueSpeed, Time.deltaTime * 10f); 
+            extraDistance = Mathf.Lerp(extraDistance, valueSpeed, deltaTime_Unscaled * 10f); 
         }
         else
         {
-            extraDistance = Mathf.Lerp(extraDistance, 0, Time.deltaTime * 10f);
+            extraDistance = Mathf.Lerp(extraDistance, 0, deltaTime_Unscaled * 10f);
         }
 
-        x += controlManager.horAxisView * xSpeed * 0.02f * speedMultiplier;
-        y -= controlManager.verAxisView * ySpeed * 0.02f * speedMultiplier;
+        x += xMom * deltaTime_Unscaled;
+        y -= yMom * deltaTime_Unscaled;
+
+        //stackedMom = Vector2.zero;
 
 
-        distance -= (Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime) * zoomRate * Mathf.Abs(distance);
+        distance -= (Input.GetAxis("Mouse ScrollWheel") * deltaTime_Unscaled) * zoomRate * Mathf.Abs(distance);
         distance = Mathf.Clamp(distance, minDistance, maxDistance);
 
         y = ClampAngle(y, yMinLimit, yMaxLimit);
@@ -183,7 +201,6 @@ public class WoWCCamera : BaseClass
         //        StartCoroutine(goToPrefAngleCo);
         //    }
         //}
-
         Quaternion rotation = Quaternion.Euler(y, x, 0);
         Vector3 position = target.position - (rotation * Vector3.forward * (distance + extraDistance) + new Vector3(0, -targetHeight, 0));
 
@@ -243,7 +260,7 @@ public class WoWCCamera : BaseClass
         //    distance = h1.magnitude;
         //}  
 
-        //position = Vector3.Slerp(transform.position, position, Time.deltaTime * 100);
+        //position = Vector3.Slerp(transform.position, position, deltaTime_Unscaled * 100);
 
         transform.rotation = rotation;
         transform.position = position;
@@ -262,7 +279,7 @@ public class WoWCCamera : BaseClass
                 yield break;
             }
 
-            y = Mathf.Lerp(y, prefAngle, Time.deltaTime * 1);
+            y = Mathf.Lerp(y, prefAngle, deltaTime_Unscaled * 1);
             yield return new WaitForEndOfFrame();
         }
     }

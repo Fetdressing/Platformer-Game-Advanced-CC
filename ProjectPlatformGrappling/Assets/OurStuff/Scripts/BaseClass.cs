@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class BaseClass : MonoBehaviour {
+public class BaseClass : MonoBehaviour
+{
     protected int initTimes = 0;
     [HideInInspector]
     public bool isLocked;
@@ -16,8 +18,12 @@ public class BaseClass : MonoBehaviour {
     public virtual void Deactivate() { }
     [HideInInspector]
     public static float maxDeltaTime = 0.09f; //annars kan man få skumma värden om en frame varar för länge
-    [HideInInspector] public static float deltaTime = 0.01f; //räknas ut sen i GameManager, den får ett startvärde så den inte ska vara null just
+    [HideInInspector]
+    public static float deltaTime = 0.01f; //räknas ut sen i GameManager, den får ett startvärde så den inte ska vara null just
+    [HideInInspector]
+    public static float deltaTime_Unscaled = 0.01f;
     public static float lastFixedUpdate_Timepoint = 0.0f;
 
     public static float ingame_Realtime = 0.0f; //håller tiden, utan Time.timescale (unless spelet är pausat, moddas i GameManager)
+
 }

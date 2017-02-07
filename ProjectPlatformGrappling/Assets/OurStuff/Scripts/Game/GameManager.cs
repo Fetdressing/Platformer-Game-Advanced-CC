@@ -34,12 +34,15 @@ public class GameManager : BaseClass {
 
     // Update is called once per frame
     void Update () {
+
         if (!lastFrame_was_Paused)
         {
             deltaTime = Mathf.Min(Time.deltaTime, maxDeltaTime);
+            deltaTime_Unscaled = Mathf.Min(Time.unscaledDeltaTime, maxDeltaTime);
         }
         else
         {
+            deltaTime_Unscaled = 0;
             deltaTime = 0;
         }
 

@@ -1244,6 +1244,7 @@ public class StagMovement : BaseClass
             if (currDistance < closeDistanceThreshhold) continue;
 
             float minDistanceFromEdges = 0.3f; //hur nära kanten den max får vara
+            Debug.Log("Kan behöva kollas igenom sen, kanske göra en cirkulär check istället för en box");
             if (currViewPos.x < (1.0f - minDistanceFromEdges) && currViewPos.x > (0.0f + minDistanceFromEdges) && currViewPos.y < (1.0f - minDistanceFromEdges) && currViewPos.y > (0.0f + minDistanceFromEdges) && currViewPos.z > 0.0f) //kolla så att den är innanför viewen
             {
                 //Debug.Log(potTargets[i].name + " " + currFinalValue.ToString());
