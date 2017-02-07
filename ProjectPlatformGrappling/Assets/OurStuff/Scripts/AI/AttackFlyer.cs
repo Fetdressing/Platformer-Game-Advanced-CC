@@ -72,10 +72,11 @@ public class AttackFlyer : BaseClass {
     void Update()
     {
         Vector3 dir = transform.forward;
+        float distanceToMovePos = Vector3.Distance(transform.position, currMovePos);
 
         if (patrolPoints.Length > 0) //man har patrolpoints
         {
-            if (Vector3.Distance(transform.position, currMovePos) < 5) //nästa patrolposition
+            if (distanceToMovePos < 5) //nästa patrolposition
             {
                 currPatrolPointID += 1;
                 if (currPatrolPointID >= patrolPoints.Length)
@@ -164,10 +165,13 @@ public class AttackFlyer : BaseClass {
             }
         }
 
-        Vector3 dirNoY = new Vector3(dir.x, rotater.forward.y, dir.z);
-        Quaternion lookRotation = Quaternion.LookRotation(dirNoY);
-        //Quaternion lookRotation = Quaternion.LookRotation(new Vector3(cameraHolder.forward.x, 0, cameraHolder.forward.z));
-        rotater.rotation = Quaternion.Slerp(rotater.rotation, lookRotation, deltaTime * 5);
+        if (distanceToMovePos > 15) //nästa patrolposition
+        {
+            Vector3 dirNoY = new Vector3(dir.x, rotater.forward.y, dir.z);
+            Quaternion lookRotation = Quaternion.LookRotation(dirNoY);
+            //Quaternion lookRotation = Quaternion.LookRotation(new Vector3(cameraHolder.forward.x, 0, cameraHolder.forward.z));
+            rotater.rotation = Quaternion.Slerp(rotater.rotation, lookRotation, deltaTime * 5);
+        }
     }
 
     public Vector3 GetRandomVector()

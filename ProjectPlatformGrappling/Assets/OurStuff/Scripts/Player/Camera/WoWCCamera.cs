@@ -18,8 +18,8 @@ public class WoWCCamera : BaseClass
     public float maxDistance = 20;
     public float minDistance = 2.5f;
 
-    public float xSpeed = 250.0f;
-    public float ySpeed = 120.0f;
+    float xSpeed = 600;
+    float ySpeed = 400;
     [HideInInspector]
     public float speedMultiplier = 1;
 
@@ -65,9 +65,14 @@ public class WoWCCamera : BaseClass
     public bool movingToPos = false;
     //@script AddComponentMenu("Camera-Control/WoW Camera")
 
+    CustomFixedUpdate fUpdate;
     void Start()
     {
         controlManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<ControlManager>();
+
+        System.Action upd = UnscaledFixedUpdate;
+        fUpdate = new CustomFixedUpdate(0.02f, upd);
+
         var angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
@@ -137,22 +142,40 @@ public class WoWCCamera : BaseClass
         settingRotation = null;
     }
 
-    void FixedUpdate() //behöver unscaled fixedupdate!
+    void UnscaledFixedUpdate()
     {
         xMom += controlManager.horAxisView * xSpeed * 0.2f * speedMultiplier;
         yMom += controlManager.verAxisView * ySpeed * 0.2f * speedMultiplier;
 
-        float slowDownMult = 15; //slöa ner momentumen
-        xMom = Mathf.Lerp(xMom, 0, (0.01f * slowDownMult) / Time.timeScale);
-        yMom = Mathf.Lerp(yMom, 0, (0.01f * slowDownMult) / Time.timeScale);
+        float slowDownMult = 25; //slöa ner momentumen
+        xMom = Mathf.Lerp(xMom, 0, 0.01f * slowDownMult);
+        yMom = Mathf.Lerp(yMom, 0, 0.01f * slowDownMult);
 
+        ///VARFÖR RÖR DEN SIG ÅT SIDAN VAFAN?!?!!!!!!!!!!!!!!!!!!!!!!????????????????????????????????
         //stackedMom += new Vector2(xMom, yMom);
     }
+
+    void Update()
+    {
+        fUpdate.UpdateF(Time.unscaledDeltaTime); //updatera unscaled fixed updaten
+    }
+
+    //void FixedUpdate() //behöver unscaled fixedupdate!
+    //{
+    //    xMom += controlManager.horAxisView * xSpeed * 0.2f * speedMultiplier;
+    //    yMom += controlManager.verAxisView * ySpeed * 0.2f * speedMultiplier;
+
+    //    float slowDownMult = 15; //slöa ner momentumen
+    //    xMom = Mathf.Lerp(xMom, 0, (0.01f * slowDownMult) / Time.timeScale);
+    //    yMom = Mathf.Lerp(yMom, 0, (0.01f * slowDownMult) / Time.timeScale);
+
+    //    //stackedMom += new Vector2(xMom, yMom);
+    //}
 
     void LateUpdate()
     {
         if (movingToPos == true) return;
-        if (Time.timeScale == 0) return;
+        //if (Time.timeScale == 0) return;
 
         if (!target)
             return;
@@ -168,8 +191,8 @@ public class WoWCCamera : BaseClass
             extraDistance = Mathf.Lerp(extraDistance, 0, deltaTime_Unscaled * 10f);
         }
 
-        x += xMom * deltaTime_Unscaled;
-        y -= yMom * deltaTime_Unscaled;
+        x += xMom * 0.01f;
+        y -= yMom * 0.01f;
 
         //stackedMom = Vector2.zero;
 

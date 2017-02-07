@@ -23,12 +23,12 @@ public class CustomFixedUpdate : MonoBehaviour {
         updateFunction = aFixecUpdateCallback;
     }
 
-    public bool Update() //viktigt att denna endast körs från ett ställe
+    public bool UpdateF(float freq) //viktigt att denna endast körs från ett ställe
     {
         m_Timeout.Reset();
         m_Timeout.Start();
 
-        reachingTime += Time.unscaledDeltaTime;
+        reachingTime += freq;
         while (reacherTime < reachingTime)
         {
             reacherTime += ufDeltaTime;

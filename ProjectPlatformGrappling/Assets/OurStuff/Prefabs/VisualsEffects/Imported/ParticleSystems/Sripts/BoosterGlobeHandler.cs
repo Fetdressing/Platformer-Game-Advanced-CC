@@ -25,7 +25,8 @@ public class BoosterGlobeHandler : MonoBehaviour
     {
         if (m_playerTransform == null)
         {
-            Debug.Log("Player transform not set");
+            //Debug.Log("Player transform not set");
+            m_playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         }
         
         m_particleCollider = GetComponent<SphereCollider>();
