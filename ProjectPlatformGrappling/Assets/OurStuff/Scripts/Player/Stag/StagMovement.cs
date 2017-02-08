@@ -63,6 +63,8 @@ public class StagMovement : BaseClass
     protected float dashGlobalCooldown = 0.3f;
     protected float dashGroundCooldown = 1f; //går igång ifall man dashar från marken
     protected float dashSpeed = 400;
+    protected float modDashSpeed; //blir dashspeeden men kan sedan ökas när man närmar sig dashtargets
+    protected float dashHelpDistance = 55; //avståndet som karaktären börjar försöka nå dashtarget mer (ökar speeden tex)
     int dashUpdates = 18; //hur många fixedupdates som dash ska köra, detta gör den consistent i hur långt den åker oavsett framerate. Kanske en skum lösning men det funkar asbra!
     protected float startMaxDashTime = 0.08f; //den går att utöka
     [HideInInspector] public float maxDashTime;
@@ -108,7 +110,7 @@ public class StagMovement : BaseClass
     protected Vector3 externalVel = new Vector3(0, 0, 0);
     [HideInInspector] public Vector3 currMomentum = Vector3.zero; //så man behåller fart även efter man släppt på styrning
     protected Vector3 nextMove = Vector3.zero; //denna sätts i fixedupdate, sen körs move i update av detta värdet. Så man får frame independency
-    protected float startLimitSpeed = 60;
+    protected float startLimitSpeed = 70;
     [HideInInspector]public float currLimitSpeed; //max momentumen, hämtas från script som WallJumpObj
     protected Vector3 updateTrans;
 
@@ -292,6 +294,23 @@ public class StagMovement : BaseClass
 
         Vector3 tempMomentum = HandleMovement(); //moddar finalMoveDir
         currMomentum += tempMomentum;
+
+        Vector3 currMomXZ = new Vector3(currMomentum.x, 0, currMomentum.z);
+
+        if (currMomXZ.magnitude > currLimitSpeed) //dessa kanske bör ligga separat utanför denna funktionen eftersom jag ändrade om denna funktion
+        {
+            Break((25 - movementStacks * 0.3f), ref currMomXZ);
+
+        }
+        else
+        {
+            if (isGroundedRaycast) //släppt kontrollerna, då kan man deaccelerera snabbare! : finalMoveDir.magnitude <= 0.0f
+            {
+                Break((4 - movementStacks * 0.15f), ref currMomXZ);
+                //Break(2, ref currMomXZ);
+            }
+        }
+        currMomentum = new Vector3(currMomXZ.x, currMomentum.y, currMomXZ.z);
 
         Vector3 sideVecToMom = Vector3.Cross(currMomentum, transform.up).normalized; //ger en vektor som är åt höger/vänster av momentumen, (innan använde jag transform.right)
 
@@ -810,24 +829,25 @@ public class StagMovement : BaseClass
         float momY = currMomentum.y;
 
         Vector3 currMomXZ = new Vector3(currMomentum.x, 0, currMomentum.z);
+        
+        //görs inte här längre, utan utanför
+        //Vector3 breakVec = Vector3.zero;
 
-        Vector3 breakVec = Vector3.zero;
+        //if (currMomXZ.magnitude > currLimitSpeed) //dessa kanske bör ligga separat utanför denna funktionen eftersom jag ändrade om denna funktion
+        //{
+        //    breakVec = Break((25 - movementStacks * 0.3f), currMomXZ);
 
-        if (currMomXZ.magnitude > currLimitSpeed) //dessa kanske bör ligga separat utanför denna funktionen eftersom jag ändrade om denna funktion
-        {
-            breakVec = Break((25 - movementStacks * 0.3f), currMomXZ);
-
-        }
-        else
-        {
-            if (isGroundedRaycast) //släppt kontrollerna, då kan man deaccelerera snabbare! : finalMoveDir.magnitude <= 0.0f
-            {
-                breakVec = Break((6 - movementStacks * 0.2f), currMomXZ);
-                //Break(2, ref currMomXZ);
-            }
-        }
-        breakVec.y = 0;
-        tempMomentum += breakVec;
+        //}
+        //else
+        //{
+        //    if (isGroundedRaycast) //släppt kontrollerna, då kan man deaccelerera snabbare! : finalMoveDir.magnitude <= 0.0f
+        //    {
+        //        breakVec = Break((6 - movementStacks * 0.2f), currMomXZ);
+        //        //Break(2, ref currMomXZ);
+        //    }
+        //}
+        //breakVec.y = 0;
+        //tempMomentum += breakVec;
         return tempMomentum;
         //currMomentum = new Vector3(currMomXZ.x, momY, currMomXZ.z);
 
@@ -1282,7 +1302,8 @@ public class StagMovement : BaseClass
         {
             dirMod = biasedDir;
         }
-        dashVel = dirMod * dashSpeed;
+        modDashSpeed = dashSpeed;
+        dashVel = dirMod * modDashSpeed;
 
         currDashTime = 0.0f;
 
@@ -1349,16 +1370,18 @@ public class StagMovement : BaseClass
             currMomentum = Vector3.zero;
 
             speedBreakerTimer = Time.time + speedBreakerTime; //speedbreakern aktiveras sedan i update
-
-            float modDashSpeed = dashSpeed;
+            
             if (dashTarget != null)
             {
                 dirMod = ((dashTarget.position + groundOffset + dashTargetOffset) - (transform.position + groundOffset)).normalized;
-
-                float helpDistance = 45;
-                if(Vector3.Distance(transform.position, dashTarget.position) < helpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
+                
+                if(Vector3.Distance(transform.position, dashTarget.position) < dashHelpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
                 {
                     modDashSpeed = dashSpeed * 2;
+                }
+                else
+                {
+                    modDashSpeed = dashSpeed;
                 }
             }
             dashVel = dirMod * modDashSpeed; //styra under dashen
@@ -1387,6 +1410,18 @@ public class StagMovement : BaseClass
 
         if (currDashUpdates < dashUpdates)
         {
+            if (dashTarget != null)
+            {                
+                if (Vector3.Distance(transform.position, dashTarget.position) < dashHelpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
+                {
+                    modDashSpeed = dashSpeed * 2;
+                }
+                else
+                {
+                    modDashSpeed = dashSpeed;
+                }
+            }
+
             stagObject.transform.forward = dashVel.normalized;
 
             Vector3 hitNormal = Vector3.zero;
