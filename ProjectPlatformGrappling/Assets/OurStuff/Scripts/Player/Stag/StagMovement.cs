@@ -1355,7 +1355,7 @@ public class StagMovement : BaseClass
             {
                 dirMod = ((dashTarget.position + groundOffset + dashTargetOffset) - (transform.position + groundOffset)).normalized;
 
-                float helpDistance = 35;
+                float helpDistance = 45;
                 if(Vector3.Distance(transform.position, dashTarget.position) < helpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
                 {
                     modDashSpeed = dashSpeed * 2;
