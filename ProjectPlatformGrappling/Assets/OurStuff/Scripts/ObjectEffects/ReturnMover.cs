@@ -7,6 +7,7 @@ public class ReturnMover : BaseClass { //används till tex våger
     Vector3 startPos;
     public Transform movePos;
     public Transform moveObject;
+    public GameObject disableRootObj; //ifall man har en root som oxå ska disablas
 
     public float moveSpeed = 10;
 
@@ -30,7 +31,7 @@ public class ReturnMover : BaseClass { //används till tex våger
 	
 	// Update is called once per frame
 	void Update () {
-        if (gameObject.activeSelf == false) return;
+        //if (gameObject.activeSelf == false) return;
 
         moveObject.localPosition = Vector3.MoveTowards(moveObject.localPosition, movePos.localPosition, deltaTime * moveSpeed);
 
@@ -38,6 +39,10 @@ public class ReturnMover : BaseClass { //används till tex våger
         {
             if(disableOnLap)
             {
+                if(disableRootObj != null)
+                {
+                    disableRootObj.SetActive(false);
+                }
                 gameObject.SetActive(false);
             }
             moveObject.localPosition = startPos;
@@ -53,6 +58,6 @@ public class ReturnMover : BaseClass { //används till tex våger
     void OnDisable()
     {
         if (initTimes == 0) return;
-        moveObject.localPosition = startPos;
+        //moveObject.localPosition = startPos;
     }
 }

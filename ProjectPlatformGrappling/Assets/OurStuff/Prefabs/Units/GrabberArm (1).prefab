@@ -535,7 +535,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1202724092772150}
   m_LocalRotation: {x: -0, y: 0.032781858, z: -0, w: 0.99946254}
-  m_LocalPosition: {x: 4320.8667, y: -192, z: 2881.808}
+  m_LocalPosition: {x: 7055.349, y: -723.9597, z: 6040.7725}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4731282888730402}
@@ -1042,8 +1042,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 45
-  m_Center: {x: -14.59, y: 11.06, z: 0}
+  m_Radius: 30
+  m_Center: {x: -14.59, y: -0.4, z: 8.25}
 --- !u!137 &137425772291013270
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

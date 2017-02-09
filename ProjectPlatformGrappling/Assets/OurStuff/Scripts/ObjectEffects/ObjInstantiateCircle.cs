@@ -108,10 +108,13 @@ public class ObjInstantiateCircle : BaseClass { //spawnar objekt som sedan tas b
 
                 objToSpawn.SetActive(true);
 
-                BreakerObject breakObj = objToSpawn.GetComponent<BreakerObject>();
-                if (breakObj != null)
+                BreakerObject[] breakObjs = objToSpawn.GetComponentsInChildren<BreakerObject>(true);
+                for (int i = 0; i < breakObjs.Length; i++)
                 {
-                    breakObj.ReturnInInstant();
+                    if (breakObjs[i] != null)
+                    {
+                        breakObjs[i].ReturnInInstant();
+                    }
                 }
 
                 Rigidbody o_Rigidbody = objToSpawn.GetComponent<Rigidbody>();

@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class BreakerObject : BaseClass {
+    public GameObject disableRootObj; //ifall man har en root som oxå ska disablas
     private Transform thisTransform;
     public Renderer thisRenderer;
     private Collider[] thisColliders;
@@ -37,6 +38,13 @@ public class BreakerObject : BaseClass {
     // Use this for initialization
     void Start()
     {
+        if (initTimes != 0) return;
+        Init();
+    }
+
+    void Awake()
+    {
+        if (initTimes != 0) return;
         Init();
     }
 
@@ -83,6 +91,10 @@ public class BreakerObject : BaseClass {
         Color c = thisRenderer.material.color;
         thisRenderer.material.color = new Color(c.r, c.g, c.b, currAlpha);
         gameObject.SetActive(true);
+        if(disableRootObj != null)
+        {
+            disableRootObj.SetActive(true);
+        }
         //StartCoroutine(PhaseLifetime());
     }
 
@@ -148,6 +160,12 @@ public class BreakerObject : BaseClass {
     {
         if (initTimes == 0) return;
 
+        gameObject.SetActive(true);
+        if (disableRootObj != null)
+        {
+            disableRootObj.SetActive(true);
+        }
+
         if (fadeOut != null)
         {
             StopCoroutine(fadeOut);
@@ -211,6 +229,10 @@ public class BreakerObject : BaseClass {
         else
         {
             gameObject.SetActive(false);
+            if (disableRootObj != null)
+            {
+                disableRootObj.SetActive(false);
+            }
         }
 
         if(deathPar != null)
@@ -225,6 +247,10 @@ public class BreakerObject : BaseClass {
     IEnumerator FadeIn()
     {
         gameObject.SetActive(true);
+        if (disableRootObj != null)
+        {
+            disableRootObj.SetActive(true);
+        }
 
         Color wC;
         Color c;
@@ -300,6 +326,14 @@ public class BreakerObject : BaseClass {
                 Break();
                 return;
             }
+        }
+    }
+
+    void OnDisable()
+    {
+        if (!refresh)
+        {
+            StopAllCoroutines();
         }
     }
 }
