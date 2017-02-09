@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CustomFixedUpdate : MonoBehaviour {
+public class CustomFixedUpdate {
     private System.Action updateFunction;
     private static System.Diagnostics.Stopwatch m_Timeout = new System.Diagnostics.Stopwatch();
 

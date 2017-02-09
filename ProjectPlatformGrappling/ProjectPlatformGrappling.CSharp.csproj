@@ -486,6 +486,7 @@
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Projectiles\HoomingProjectile.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Projectiles\ProjectileBase.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Projectiles\ReturnProjectile.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\ReturnMover.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\SpeedMultiplier.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Teleport.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Triggers\Conversation.cs" />

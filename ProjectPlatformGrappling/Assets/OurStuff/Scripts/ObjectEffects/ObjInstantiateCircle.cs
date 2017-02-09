@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class ObjInstantiateCircle : BaseClass { //spawnar objekt som sedan tas bort vid en viss position (eller efter en tid?)
-    public Transform spawnLocation;
+    public Transform spawnLocation; //om man bara har en spawnplats
+    public Transform[] spawnLocations; //använd annars denna
+    public int spawnIndex = 0;
+
     public GameObject o_object;
     public GameObject particleEffect;
     public int poolSize = 5;
@@ -24,21 +27,24 @@ public class ObjInstantiateCircle : BaseClass { //spawnar objekt som sedan tas b
     {
         base.Init();
 
-        if(spawnLocation == null)
+        if (spawnLocation == null)
         {
             spawnLocation = transform;
         }
 
-        for(int i = 0; i < poolSize; i++)
+        for (int i = 0; i < poolSize; i++)
         {
             GameObject tO = Instantiate(o_object.gameObject);
             objPool.Add(tO);
             tO.SetActive(false);
         }
 
-        foreach (AnimationState state in animH)
+        if (animH != null)
         {
-            state.speed = animSpeed;
+            foreach (AnimationState state in animH)
+            {
+                state.speed = animSpeed;
+            }
         }
 
         StartCoroutine(Spawn());
@@ -84,7 +90,20 @@ public class ObjInstantiateCircle : BaseClass { //spawnar objekt som sedan tas b
                     Destroy(tempPar.gameObject, 3);
                 }
 
-                objToSpawn.transform.position = spawnLocation.position;
+                if (spawnLocations.Length > 0)
+                {
+                    objToSpawn.transform.position = spawnLocations[spawnIndex].position;
+                    spawnIndex++;
+                    if (spawnIndex >= spawnLocations.Length)
+                    {
+                        spawnIndex = 0;
+                    }
+                }
+                else
+                {
+                    objToSpawn.transform.position = spawnLocation.position;
+                }
+
                 objToSpawn.SetActive(true);
 
                 BreakerObject breakObj = objToSpawn.GetComponent<BreakerObject>();
