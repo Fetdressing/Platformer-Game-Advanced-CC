@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class ObjInstantiateCircle : BaseClass { //spawnar objekt som sedan tas bort vid en viss position (eller efter en tid?)
     public Transform spawnLocation; //om man bara har en spawnplats
     public Transform[] spawnLocations; //använd annars denna
-    public int spawnIndex = 0;
+    protected int spawnIndex = 0;
 
     public GameObject o_object;
     public GameObject particleEffect;
@@ -93,6 +93,7 @@ public class ObjInstantiateCircle : BaseClass { //spawnar objekt som sedan tas b
                 if (spawnLocations.Length > 0)
                 {
                     objToSpawn.transform.position = spawnLocations[spawnIndex].position;
+                    objToSpawn.transform.rotation = spawnLocations[spawnIndex].rotation;
                     spawnIndex++;
                     if (spawnIndex >= spawnLocations.Length)
                     {
@@ -102,6 +103,7 @@ public class ObjInstantiateCircle : BaseClass { //spawnar objekt som sedan tas b
                 else
                 {
                     objToSpawn.transform.position = spawnLocation.position;
+                    objToSpawn.transform.rotation = spawnLocation.rotation;
                 }
 
                 objToSpawn.SetActive(true);

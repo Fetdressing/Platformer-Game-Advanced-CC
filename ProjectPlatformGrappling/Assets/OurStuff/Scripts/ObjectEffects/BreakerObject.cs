@@ -8,6 +8,8 @@ public class BreakerObject : BaseClass {
 
     public bool refresh = true; //ifall den ska komma tillbaks av sig själv efter den försvunnit
     public string[] collisionFadeLayers = { };
+    public string[] fadeTags;
+    public GameObject particleEffect; //when hitting stuff
 
     private Material startMaterial;
     public Material phaseOutMaterial;
@@ -52,12 +54,15 @@ public class BreakerObject : BaseClass {
 
         thisColliders = thisTransform.GetComponentsInChildren<Collider>();
 
-        if (animationH == null)
+        if (animationH == null && breakingAnim != null)
         {
             animationH = transform.GetComponent<Animation>();
             if (animationH != null)
             {
-                animationH[breakingAnim.name].speed = idleASpeed;
+                if (breakingAnim != null)
+                {
+                    animationH[breakingAnim.name].speed = idleASpeed;
+                }
             }
         }
 
@@ -253,9 +258,25 @@ public class BreakerObject : BaseClass {
 
     void OnTriggerEnter(Collider col)
     {
-        for(int i = 0; i < collisionFadeLayers.Length; i++)
+        //for(int i = 0; i < collisionFadeLayers.Length; i++)
+        //{
+        //    if(LayerMask.LayerToName(col.gameObject.layer) == collisionFadeLayers[i])
+        //    {
+        //        Break();
+        //        return;
+        //    }
+        //}
+
+        if (particleEffect != null)
         {
-            if(LayerMask.LayerToName(col.gameObject.layer) == collisionFadeLayers[i])
+            GameObject tempPar = Instantiate(particleEffect.gameObject);
+            tempPar.transform.position = col.transform.position;
+            Destroy(tempPar.gameObject, 3);
+        }
+
+        for (int i = 0; i < fadeTags.Length; i++)
+        {
+            if(col.tag == fadeTags[i])
             {
                 Break();
                 return;
@@ -265,9 +286,16 @@ public class BreakerObject : BaseClass {
 
     void OnCollisionEnter(Collision col)
     {
-        for (int i = 0; i < collisionFadeLayers.Length; i++)
+        if (particleEffect != null)
         {
-            if (LayerMask.LayerToName(col.gameObject.layer) == collisionFadeLayers[i])
+            GameObject tempPar = Instantiate(particleEffect.gameObject);
+            tempPar.transform.position = col.transform.position;
+            Destroy(tempPar.gameObject, 3);
+        }
+
+        for (int i = 0; i < fadeTags.Length; i++)
+        {
+            if (col.gameObject.tag == fadeTags[i])
             {
                 Break();
                 return;

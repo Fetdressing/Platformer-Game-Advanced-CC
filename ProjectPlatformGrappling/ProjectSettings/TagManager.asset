@@ -12,6 +12,7 @@ TagManager:
   - SpawnPoint
   - PowerGlobe
   - WallJump
+  - InteractEnvironment
   layers:
   - Default
   - TransparentFX

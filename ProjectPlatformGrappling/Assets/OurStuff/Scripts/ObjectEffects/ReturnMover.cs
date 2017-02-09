@@ -11,16 +11,20 @@ public class ReturnMover : BaseClass { //används till tex våger
     public float moveSpeed = 10;
 
     public bool disableOnLap = false;
+
 	// Use this for initialization
 	void Start () {
         if (startPosT == null)
         {
-            startPos = moveObject.position;
+            startPos = moveObject.localPosition;
         }
         else
         {
-            startPos = startPosT.position;
+            startPos = startPosT.localPosition;
         }
+
+        moveObject.localPosition = startPos;
+
         initTimes++;
 	}
 	
@@ -28,27 +32,27 @@ public class ReturnMover : BaseClass { //används till tex våger
 	void Update () {
         if (gameObject.activeSelf == false) return;
 
-        moveObject.position = Vector3.MoveTowards(moveObject.position, movePos.position, deltaTime * moveSpeed);
+        moveObject.localPosition = Vector3.MoveTowards(moveObject.localPosition, movePos.localPosition, deltaTime * moveSpeed);
 
-        if(Vector3.Distance(movePos.position, moveObject.position) < 5)
+        if(Vector3.Distance(movePos.localPosition, moveObject.localPosition) < 5)
         {
             if(disableOnLap)
             {
                 gameObject.SetActive(false);
             }
-            moveObject.position = startPos;
+            moveObject.localPosition = startPos;
         }
 	}
 
     void OnEnable()
     {
         if (initTimes == 0) return;
-        moveObject.position = startPos;
+        moveObject.localPosition = startPos;
     }
 
     void OnDisable()
     {
         if (initTimes == 0) return;
-        moveObject.position = startPos;
+        moveObject.localPosition = startPos;
     }
 }

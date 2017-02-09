@@ -46,7 +46,7 @@ public class StagSpeedBreaker : BaseClass {
     {
         if(internalLastUnitHit != null && lastUnitHit_Viable == false)
         {
-            float reqDistance = 35; //avståndet som spelaren måste komma ifrån senaste targetet för att man ska kunna dasha på den igen
+            float reqDistance = 55; //avståndet som spelaren måste komma ifrån senaste targetet för att man ska kunna dasha på den igen
             if(Vector3.Distance(stagMovement.transform.position, internalLastUnitHit.position) > reqDistance) //ett värde där jag tror spelaren är utanför collidern
             {
                 lastUnitHit_Viable = true;

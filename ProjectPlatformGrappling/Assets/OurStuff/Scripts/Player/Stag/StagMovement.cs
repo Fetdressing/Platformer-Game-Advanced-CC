@@ -36,7 +36,7 @@ public class StagMovement : BaseClass
 
     protected float startSpeed = 190;
     protected float jumpSpeed = 100;
-    protected float gravity = 160;
+    protected float gravity = 180;
     [HideInInspector]public float minimumGravity = -30;
     [HideInInspector]public float currGravityModifier = 1.0f;
     protected Vector3 yVector;
