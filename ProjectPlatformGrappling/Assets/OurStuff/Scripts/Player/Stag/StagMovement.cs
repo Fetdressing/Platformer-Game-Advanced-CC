@@ -65,7 +65,7 @@ public class StagMovement : BaseClass
     protected float dashSpeed = 400;
     protected float modDashSpeed; //blir dashspeeden men kan sedan ökas när man närmar sig dashtargets
     protected float dashHelpDistance = 55; //avståndet som karaktären börjar försöka nå dashtarget mer (ökar speeden tex)
-    int dashUpdates = 18; //hur många fixedupdates som dash ska köra, detta gör den consistent i hur långt den åker oavsett framerate. Kanske en skum lösning men det funkar asbra!
+    int dashUpdates = 20; //hur många fixedupdates som dash ska köra, detta gör den consistent i hur långt den åker oavsett framerate. Kanske en skum lösning men det funkar asbra!
     protected float startMaxDashTime = 0.08f; //den går att utöka
     [HideInInspector] public float maxDashTime;
     protected float dashPowerCost = 0.1f; //hur mycket power det drar varje gång man dashar
