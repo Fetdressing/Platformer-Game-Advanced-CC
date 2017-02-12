@@ -37,6 +37,7 @@ public class StagMovement : BaseClass
     protected float startSpeed = 190;
     protected float jumpSpeed = 100;
     protected float gravity = 180;
+    float addedGravity = 0.0f; //läggs till gravity om man har mer momentum
     [HideInInspector]public float minimumGravity = -30;
     [HideInInspector]public float currGravityModifier = 1.0f;
     protected Vector3 yVector;
@@ -304,12 +305,14 @@ public class StagMovement : BaseClass
         }
         else
         {
-            if (isGroundedRaycast) //släppt kontrollerna, då kan man deaccelerera snabbare! : finalMoveDir.magnitude <= 0.0f
+            if (GetGrounded(groundCheckObject)) //släppt kontrollerna, då kan man deaccelerera snabbare! : finalMoveDir.magnitude <= 0.0f
             {
-                Break((4 - movementStacks * 0.15f), ref currMomXZ);
+                Break((4 - movementStacks * 0.12f), ref currMomXZ);
                 //Break(2, ref currMomXZ);
             }
         }
+        //börja breaka hela tiden, även i luften med        
+        Break((0.3f), ref currMomXZ); //flat break
         currMomentum = new Vector3(currMomXZ.x, currMomentum.y, currMomXZ.z);
 
         Vector3 sideVecToMom = Vector3.Cross(currMomentum, transform.up).normalized; //ger en vektor som är åt höger/vänster av momentumen, (innan använde jag transform.right)
@@ -328,9 +331,15 @@ public class StagMovement : BaseClass
         // YYYYY
         //Debug.Log(characterController.isGrounded);
         // apply gravity acceleration to vertical speed:
+        addedGravity = currMomentum.magnitude * 0.1f;
+        if(ySpeed > 0)
+        {
+            addedGravity = 0;
+        }
+
         if (activePlatform == null && !characterController.isGrounded)
         {
-            ySpeed -= gravity * 0.01f * currGravityModifier;
+            ySpeed -= (gravity + addedGravity) * 0.01f * currGravityModifier;
         }
         else
         {
