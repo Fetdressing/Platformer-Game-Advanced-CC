@@ -1530,7 +1530,7 @@ public class StagMovement : BaseClass
 
         //lite minimum värden, så man kan stacka högt
         //Debug.Log((timeReduceValue).ToString());
-        movementStackResetTimer = Mathf.Max(0.4f + ingame_Realtime, movementStackResetTimer); //ska som minst vara x sekunder
+        movementStackResetTimer = Mathf.Max(0.3f + ingame_Realtime, movementStackResetTimer); //ska som minst vara x sekunder
         movementStackGroundedTimer = Mathf.Max(0.3f, movementStackGroundedTimer); //ska som minst vara x sekunder
 
         //Debug.Log(movementStacks.ToString() + "  " + (movementStackResetTimer - Time.time).ToString());

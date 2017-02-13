@@ -1,0 +1,236 @@
+fileFormatVersion: 2
+guid: adde9f6a4d206214cadfc6a780afaed0
+timeCreated: 1487006488
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: ikHandle1
+    100002: ikHandle2
+    100004: ikHandle3
+    100006: ikHandle4
+    100008: joint1
+    100010: legjoint1
+    100012: legjoint10
+    100014: legjoint11
+    100016: legjoint12
+    100018: legjoint2
+    100020: legjoint3
+    100022: legjoint4
+    100024: legjoint5
+    100026: legjoint6
+    100028: legjoint7
+    100030: legjoint8
+    100032: legjoint9
+    100034: mouthjoint1
+    100036: mouthjoint2
+    100038: mouthjoint3
+    100040: mouthjoint4
+    100042: nurbsCircle1
+    100044: nurbsCircle2
+    100046: nurbsCircle3
+    100048: nurbsCircle4
+    100050: pPlane5
+    100052: SpiderFace
+    100054: //RootNode
+    100056: SpideyFaceR
+    100058: spinejoint1
+    100060: spinejoint2
+    100062: spinejoint3
+    400000: ikHandle1
+    400002: ikHandle2
+    400004: ikHandle3
+    400006: ikHandle4
+    400008: joint1
+    400010: legjoint1
+    400012: legjoint10
+    400014: legjoint11
+    400016: legjoint12
+    400018: legjoint2
+    400020: legjoint3
+    400022: legjoint4
+    400024: legjoint5
+    400026: legjoint6
+    400028: legjoint7
+    400030: legjoint8
+    400032: legjoint9
+    400034: mouthjoint1
+    400036: mouthjoint2
+    400038: mouthjoint3
+    400040: mouthjoint4
+    400042: nurbsCircle1
+    400044: nurbsCircle2
+    400046: nurbsCircle3
+    400048: nurbsCircle4
+    400050: pPlane5
+    400052: SpiderFace
+    400054: //RootNode
+    400056: SpideyFaceR
+    400058: spinejoint1
+    400060: spinejoint2
+    400062: spinejoint3
+    4300000: SpiderFace
+    7400000: SpiderFace_Idle
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: SpiderFace
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: SpiderFace_Idle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 11
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: pPlane5
+        weight: 1
+      - path: pPlane5/SpiderFace
+        weight: 1
+      - path: SpideyFaceR
+        weight: 1
+      - path: SpideyFaceR/nurbsCircle1
+        weight: 1
+      - path: SpideyFaceR/nurbsCircle1/ikHandle1
+        weight: 1
+      - path: SpideyFaceR/nurbsCircle2
+        weight: 1
+      - path: SpideyFaceR/nurbsCircle2/ikHandle2
+        weight: 1
+      - path: SpideyFaceR/nurbsCircle3
+        weight: 1
+      - path: SpideyFaceR/nurbsCircle3/ikHandle4
+        weight: 1
+      - path: SpideyFaceR/nurbsCircle4
+        weight: 1
+      - path: SpideyFaceR/nurbsCircle4/ikHandle3
+        weight: 1
+      - path: SpideyFaceR/spinejoint1
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/legjoint1
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/legjoint1/legjoint2
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/legjoint1/legjoint2/legjoint3
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/legjoint4
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/legjoint4/legjoint5
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/legjoint4/legjoint5/legjoint6
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/legjoint7
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/legjoint7/legjoint8
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/legjoint7/legjoint8/legjoint9
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/legjoint10
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/legjoint10/legjoint11
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/legjoint10/legjoint11/legjoint12
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/spinejoint2
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/spinejoint2/joint1
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/spinejoint2/joint1/mouthjoint1
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/spinejoint2/joint1/mouthjoint2
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/spinejoint2/joint1/mouthjoint3
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/spinejoint2/joint1/mouthjoint4
+        weight: 1
+      - path: SpideyFaceR/spinejoint1/spinejoint2/spinejoint3
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 300
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

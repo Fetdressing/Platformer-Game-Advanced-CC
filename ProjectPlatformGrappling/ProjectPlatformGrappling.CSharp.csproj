@@ -437,6 +437,7 @@
     <Compile Include="Assets\OurStuff\Scripts\AI\NormalAI\NAIBase.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\NormalAI\NAIInvisibleNavmesh.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\NormalAI\NAINavmesh.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\AI\SpiderAttacker.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\StateMachineAI\AIEntity.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\StateMachineAI\AIMoveable.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\StateMachineAI\CharacterControllerAI\AICharacterController.cs" />
@@ -450,6 +451,7 @@
     <Compile Include="Assets\OurStuff\Scripts\AI\StateMachineAI\States\GuardPState.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\StateMachineAI\States\PatrolState.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\TowerShooter.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\AI\WallMovement.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\Wisp.cs" />
     <Compile Include="Assets\OurStuff\Scripts\BaseClass.cs" />
     <Compile Include="Assets\OurStuff\Scripts\BaseRagdoll.cs" />

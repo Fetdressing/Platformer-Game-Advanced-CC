@@ -44,6 +44,7 @@ public class StagSpeedBreaker : BaseClass {
 
     void Update()
     {
+        if (initTimes == 0) return;
         if(internalLastUnitHit != null && lastUnitHit_Viable == false)
         {
             float reqDistance = 55; //avståndet som spelaren måste komma ifrån senaste targetet för att man ska kunna dasha på den igen
@@ -56,11 +57,13 @@ public class StagSpeedBreaker : BaseClass {
 
     public void UnIgnoreLastUnitHit() //unignorerar collidern
     {
+        if (initTimes == 0) return;
         stagMovement.IgnoreCollider(false, internalLastUnitHit);
     }
 
     void OnTriggerEnter(Collider col)
     {
+        if (initTimes == 0) return;
         if (lastUnitHit_Viable == false && col.transform == internalLastUnitHit) return;
         if (!ready) return;
         HealthSpirit h = col.GetComponent<HealthSpirit>();
@@ -97,6 +100,7 @@ public class StagSpeedBreaker : BaseClass {
 
     public void Activate(bool force = false) //force gör så att man slipper checken
     {
+        if (initTimes == 0) return;
         if (!force && active) return;
         activationPoint = transform.position;
 
@@ -110,6 +114,7 @@ public class StagSpeedBreaker : BaseClass {
 
     public void Disable()
     {
+        if (initTimes == 0) return;
         if (initTimes == 0) return;
         if (fadeOut != null || renderers[0].enabled == false) return;
 
