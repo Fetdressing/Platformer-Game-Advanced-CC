@@ -12,18 +12,17 @@ public class WallMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Move(Vector3.right, Time.deltaTime * 100);
+        Move(Vector3.right, Time.deltaTime * 20);
 	}
 
     public void Move(Vector3 dir, float speed) //keep me on wall
     {
         RaycastHit rHit;
         float checkDistance = 25;
-        if(!Physics.Raycast(transform.position, Vector3.down, out rHit, checkDistance + 5, groundLM))
-        {
-            dir = Vector3.down;
-        }
-
+        //if(!Physics.Raycast(transform.position, Vector3.down, out rHit, checkDistance, groundLM))
+        //{
+        //    dir = Vector3.down;
+        //}
         if (Physics.Raycast(transform.position, dir, out rHit, checkDistance, groundLM))
         {
             Vector3 cross1 = Vector3.Cross(rHit.normal, Vector3.up);
@@ -35,7 +34,18 @@ public class WallMovement : MonoBehaviour {
         if(rotater != null)
         {
             Vector3 c = Vector3.Cross(Vector3.right, dir);
-            rotater.up = c;
+            //rotater.up = c;
+            Vector3 upDir = Vector3.up;
+            if(rHit.collider != null)
+            {
+                upDir = rHit.normal;
+            }
+
+            Quaternion newQuat = Quaternion.LookRotation(dir, upDir);
+            if (newQuat != rotater.rotation)
+            {
+                rotater.rotation = Quaternion.Lerp(rotater.rotation, newQuat, speed);
+            }
         }
 
         transform.Translate(dir * speed);
