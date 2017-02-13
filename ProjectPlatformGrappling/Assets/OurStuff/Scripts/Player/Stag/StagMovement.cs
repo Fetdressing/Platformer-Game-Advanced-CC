@@ -1254,6 +1254,7 @@ public class StagMovement : BaseClass
             hSpirit = potTargets[i].GetComponent<HealthSpirit>();
             if (hSpirit == null || hSpirit.IsAlive() == false) continue;
             if (potTargets[i].transform == lastUnitHit) { continue; }//så man inte fastnar på infinite dash
+            if(!hSpirit.isDashTarget) { continue; }
 
             Vector3 TToTar = ((potTargets[i].transform.position + groundOffset) - (transform.position + groundOffset)).normalized;
             Vector3 CToTar = (potTargets[i].transform.position - cameraHolder.position).normalized;

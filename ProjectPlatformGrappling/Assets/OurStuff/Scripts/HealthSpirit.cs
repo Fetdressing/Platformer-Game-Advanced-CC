@@ -44,6 +44,7 @@ public class HealthSpirit : BaseClass
     [HideInInspector]
     public bool isAlive = true;
     public bool isIndestructable = false;
+    public bool isDashTarget = true; //om man ska dras/staggera till denna eller ej
 
     [Header("Drop on death")]
     public GameObject dropDeathObject;

@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 135847169039534758}
   - component: {fileID: 114505221817667018}
   - component: {fileID: 114545459759561190}
+  - component: {fileID: 114270717457557046}
   m_Layer: 22
   m_Name: SpiderFace
   m_TagString: Untagged
@@ -846,7 +847,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1502807902009986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8441.1, y: -1254, z: 755.088}
+  m_LocalPosition: {x: 8582, y: -1254, z: 187}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4785724089204586}
@@ -1081,6 +1082,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 536870913
   rotater: {fileID: 4191658960308150}
+--- !u!114 &114270717457557046
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1502807902009986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLocked: 0
+  canBeBlocked: 1
 --- !u!114 &114505221817667018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1098,7 +1112,7 @@ MonoBehaviour:
   damagedMaterial: {fileID: 2100000, guid: 5a5a1a50a180c2246b70601cbc08ebef, type: 2}
   middlePoint: {x: 0, y: 0, z: 0}
   middlePointOffsetY: 0.5
-  startHealth: 3
+  startHealth: 1
   maxHealth: 3
   fadeOnDamage: 0
   startHealthRegAmount: 1
@@ -1107,10 +1121,12 @@ MonoBehaviour:
   respawn: 0
   animationObj: {fileID: 0}
   deathAnimation: {fileID: 0}
-  deathParticleSystemObj: {fileID: 0}
+  deathParticleSystemObj: {fileID: 1000011423989948, guid: 6b453d14dbdea454eb1a56f2291884cf,
+    type: 2}
   delayedDeathTime: 0
   isAlive: 1
   isIndestructable: 0
+  isDashTarget: 0
   dropDeathObject: {fileID: 0}
   nrDropObjects: 0
   dropObjLifeTime: 0
