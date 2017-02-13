@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpiderAttacker : BaseClass {
-    public Transform rotater;
+    WallMovement movementH;
     private Vector3 startPosition;
     private Vector3 currMovePos;
     public float movePosIntervalTime = 8;
@@ -27,6 +27,9 @@ public class SpiderAttacker : BaseClass {
     public AnimationClip run;
     public float idleSpeed = 1.0f;
     public float runSpeed = 1.5f;
+
+    float currSpeed = 0.0f;
+    Vector3 lastFramePos;
     // Use this for initialization
     void Start()
     {
@@ -37,21 +40,19 @@ public class SpiderAttacker : BaseClass {
     {
         base.Init();
 
-        if (rotater == null)
-        {
-            rotater = transform;
-        }
+        float randomAddedSpeed = Random.Range(-speed * 0.2f, speed * 0.2f); //för att få lite variation
+        speed += randomAddedSpeed;
+        chaseSpeed += randomAddedSpeed;
+
+        movementH = GetComponent<WallMovement>();
 
         startPosition = transform.position;
         currMovePos = transform.position;
 
-        if (animH == null)
+        if (animH != null)
         {
-            if (animH != null)
-            {
-                animH[idle.name].speed = idleSpeed;
-                animH[run.name].speed = runSpeed;
-            }
+            animH[idle.name].speed = idleSpeed + randomAddedSpeed * 0.003f;
+            animH[run.name].speed = runSpeed + randomAddedSpeed * 0.003f;
         }
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -85,12 +86,8 @@ public class SpiderAttacker : BaseClass {
             }
 
             dir = (currMovePos - transform.position).normalized;
-            //cController.Move(dir * Time.deltaTime * speed);
-
-            if (animH != null)
-            {
-                animH.CrossFade(idle.name);
-            }
+            movementH.Move(dir, Time.deltaTime * speed);
+            
         }
         else
         {
@@ -109,13 +106,8 @@ public class SpiderAttacker : BaseClass {
             if (chasing)
             {
 
-                if (animH != null)
-                {
-                    animH.CrossFade(run.name);
-                }
-
                 dir = (player.position - transform.position).normalized;
-                //cController.Move(dir * Time.deltaTime * chaseSpeed);
+                movementH.Move(dir, Time.deltaTime * chaseSpeed);
                 if (Vector3.Distance(startPosition, transform.position) < 5)
                 {
                     chasing = false;
@@ -143,7 +135,7 @@ public class SpiderAttacker : BaseClass {
                 if (returning == true)
                 {
                     dir = (startPosition - transform.position).normalized;
-                    //cController.Move(dir * Time.deltaTime * speed);
+                    movementH.Move(dir, Time.deltaTime * speed);
                     if (Vector3.Distance(startPosition, transform.position) < 5)
                     {
                         returning = false;
@@ -152,24 +144,25 @@ public class SpiderAttacker : BaseClass {
                 else
                 {
                     dir = (currMovePos - transform.position).normalized;
-                    //cController.Move(dir * Time.deltaTime * speed);
+                    movementH.Move(dir, Time.deltaTime * speed);
                 }
-
-                if (animH != null)
-                {
-                    animH.CrossFade(idle.name);
-                }
-
 
             }
         }
 
-        if (distanceToMovePos > 15) //nästa patrolposition
+        currSpeed = (lastFramePos - transform.position).magnitude;
+        lastFramePos = transform.position;
+        if(animH != null)
         {
-            Vector3 dirNoY = new Vector3(dir.x, rotater.forward.y, dir.z);
-            Quaternion lookRotation = Quaternion.LookRotation(dirNoY);
-            //Quaternion lookRotation = Quaternion.LookRotation(new Vector3(cameraHolder.forward.x, 0, cameraHolder.forward.z));
-            rotater.rotation = Quaternion.Slerp(rotater.rotation, lookRotation, deltaTime * 5);
+
+            if(currSpeed > 0.1f)
+            {
+                animH.CrossFade(run.name);
+            }
+            else
+            {
+                animH.CrossFade(idle.name);
+            }
         }
     }
 
