@@ -331,7 +331,7 @@ public class StagMovement : BaseClass
         // YYYYY
         //Debug.Log(characterController.isGrounded);
         // apply gravity acceleration to vertical speed:
-        addedGravity = currMomentum.magnitude * 0.1f;
+        addedGravity = currMomentum.magnitude * 0.0f; //0.1f
         if(ySpeed > 0)
         {
             addedGravity = 0;
@@ -818,7 +818,7 @@ public class StagMovement : BaseClass
 
         //poängen i början ska dock vara värda mer!!
         float flatMoveStacksSpeedBonues = Mathf.Max(1, Mathf.Log(movementStacks, 1.01f));
-        flatMoveStacksSpeedBonues *= 0.003f;
+        flatMoveStacksSpeedBonues *= 0.0024f; //hjälper accelerationen
         //Debug.Log(flatMoveStacksSpeedBonues.ToString());
 
         float bonusStageSpeed = 1.0f; //ökar för vart X stacks
