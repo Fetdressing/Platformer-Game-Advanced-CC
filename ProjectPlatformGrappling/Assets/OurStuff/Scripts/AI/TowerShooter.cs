@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class TowerShooter : BaseClass {
     private Transform target;
+    public Transform rotater;
     public Transform shooterObj;
     public Animation animationH;
 
@@ -35,11 +36,16 @@ public class TowerShooter : BaseClass {
     {
         base.Init();
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        emissiveActivasionMaterial = emissionActivasionObject.material;
+        //emissiveActivasionMaterial = emissionActivasionObject.material;
 
         if (shooterObj == null)
         {
             shooterObj = transform;
+        }
+
+        if(rotater == null)
+        {
+            rotater = transform;
         }
 
         for (int i = 0; i < poolSize; i++)
@@ -91,7 +97,7 @@ public class TowerShooter : BaseClass {
             }
         }
         
-        emissiveActivasionMaterial.SetColor("_EmissionColor", new Color(1, 1, 1) * 0); //lys igång
+        //emissiveActivasionMaterial.SetColor("_EmissionColor", new Color(1, 1, 1) * 0); //lys igång
     }
 
     void Update()
@@ -100,8 +106,9 @@ public class TowerShooter : BaseClass {
         if (initTimes == 0) return;
         if (Vector3.Distance(target.position, transform.position) < maxShootRange)
         {
-            if(animationH != null)
-                animationH.CrossFade(aggressiveA.name, activasionTime);
+            rotater.LookAt(new Vector3(target.position.x, rotater.position.y, target.position.z));
+            //if(animationH != null)
+            //    animationH.CrossFade(aggressiveA.name, activasionTime);
 
             if (activasionTimer < Time.time)
             {
@@ -112,18 +119,23 @@ public class TowerShooter : BaseClass {
         {
             activasionTimer = Time.time + activasionTime;
 
-            if (animationH != null)
-                animationH.CrossFade(idleA.name, activasionTime);
+            //if (animationH != null)
+            //    animationH.CrossFade(idleA.name, activasionTime);
         }
 
         float emissionValue = (1 - (activasionTimer - Time.time));
-        emissiveActivasionMaterial.SetColor("_EmissionColor", new Color(1, 1, 1) * emissionValue); //lys igång
+        //emissiveActivasionMaterial.SetColor("_EmissionColor", new Color(1, 1, 1) * emissionValue); //lys igång
     }
 
     void Fire()
     {
         if (cooldonwTimer > Time.time) return;
         cooldonwTimer = Time.time + cooldown_Time;
+
+        if(animationH != null)
+        {
+            animationH.CrossFade(aggressiveA.name);
+        }
 
         GameObject currProj = null;
         for (int i = 0; i < projectilePool.Count; i++)
@@ -139,7 +151,7 @@ public class TowerShooter : BaseClass {
         ProjectileBase currProjectile = currProj.GetComponent<ProjectileBase>();
 
         
-        Vector3 vecToTarget = ((target.position + new Vector3(0, offsetYAim, 0)) - transform.position).normalized;
+        Vector3 vecToTarget = ((target.position + new Vector3(0, offsetYAim, 0)) - shooterObj.position).normalized;
 
         currProj.transform.position = shooterObj.position; //kommer från en random riktning kanske?
         currProj.transform.forward = vecToTarget;
