@@ -22,6 +22,7 @@ public class TowerShooter : BaseClass {
     private int poolSize = 100;
     private List<GameObject> projectilePool = new List<GameObject>();
 
+    bool isActivated = true; //används för att spela animationer
     public float activasionTime = 2.0f;
     private float activasionTimer = 0.0f;
 
@@ -65,6 +66,7 @@ public class TowerShooter : BaseClass {
         cooldonwTimer = 0.0f;
         activasionTimer = 0.0f;
         bActivated = true;
+        isActivated = false;
 
         for (int i = 0; i < projectilePool.Count; i++)
         {
@@ -112,6 +114,7 @@ public class TowerShooter : BaseClass {
 
             if (activasionTimer < Time.time)
             {
+                isActivated = true;
                 Fire();
             }
         }
@@ -119,8 +122,10 @@ public class TowerShooter : BaseClass {
         {
             activasionTimer = Time.time + activasionTime;
 
-            //if (animationH != null)
-            //    animationH.CrossFade(idleA.name, activasionTime);
+            if (animationH != null && isActivated == true)
+                animationH.CrossFade(idleA.name, activasionTime);
+
+            isActivated = false;
         }
 
         float emissionValue = (1 - (activasionTimer - Time.time));

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 529b739f1333af949951a87ba5153fed
-timeCreated: 1487095197
+guid: 316f2a40c662fa745a8ff32e7b3e02c8
+timeCreated: 1487095196
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -26,7 +26,7 @@ ModelImporter:
     400016: SpitterTreeHead
     400018: //RootNode
     4300000: SpitterTreeHead
-    7400000: SpitterTreeHead_Spit
+    7400000: SpitterTreeHead_Hide
     9500000: //RootNode
     11100000: //RootNode
     13700000: SpitterTreeHead
@@ -48,15 +48,15 @@ ModelImporter:
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
-    animationWrapMode: 1
+    animationWrapMode: 4
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: SpitterTreeHead_Spit
+      name: SpitterTreeHead_Hide
       takeName: Take 001
-      firstFrame: 1
-      lastFrame: 15
-      wrapMode: 0
+      firstFrame: 16
+      lastFrame: 25
+      wrapMode: 8
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
