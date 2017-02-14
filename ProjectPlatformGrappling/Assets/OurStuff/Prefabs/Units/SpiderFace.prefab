@@ -1133,7 +1133,7 @@ MonoBehaviour:
   movePosIntervalTime: 8
   speed: 380
   chaseSpeed: 450
-  checkDistanceThreshhold: 20
+  checkDistanceThreshhold: 0
   patrolPoints: []
   playerChaseDistance: 400
   animH: {fileID: 111128986590471120}

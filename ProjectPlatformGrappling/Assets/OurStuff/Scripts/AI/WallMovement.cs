@@ -125,10 +125,13 @@ public class WallMovement : BaseClass {
                 upDir = rHit.normal;
             }
 
-            Quaternion newQuat = Quaternion.LookRotation(dir, upDir);
-            if (newQuat != rotater.rotation)
+            if (dir != Vector3.zero)
             {
-                rotater.rotation = Quaternion.Lerp(rotater.rotation, newQuat, speed * 0.01f);
+                Quaternion newQuat = Quaternion.LookRotation(dir, upDir);
+                if (newQuat != rotater.rotation)
+                {
+                    rotater.rotation = Quaternion.Lerp(rotater.rotation, newQuat, speed * 0.01f);
+                }
             }
         }
 

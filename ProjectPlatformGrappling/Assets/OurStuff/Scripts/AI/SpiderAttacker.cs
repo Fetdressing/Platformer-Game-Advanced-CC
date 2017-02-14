@@ -69,8 +69,11 @@ public class SpiderAttacker : BaseClass {
 
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        float cullFunctionDistance = 1000;
+        if (Vector3.Distance(transform.position, player.position) > cullFunctionDistance) return;
+
         if (!movementH.jumping)
         {
             float randomr = Random.Range(0, 500);
@@ -94,7 +97,7 @@ public class SpiderAttacker : BaseClass {
             }
 
             dir = (currMovePos - transform.position).normalized;
-            movementH.Move(dir, Time.deltaTime * speed);
+            movementH.Move(dir, Time.fixedDeltaTime * speed);
             
         }
         else
@@ -115,7 +118,7 @@ public class SpiderAttacker : BaseClass {
             {
 
                 dir = (player.position - transform.position).normalized;
-                movementH.Move(dir, Time.deltaTime * chaseSpeed);
+                movementH.Move(dir, Time.fixedDeltaTime * chaseSpeed);
                 if (Vector3.Distance(startPosition, transform.position) < 5)
                 {
                     chasing = false;
@@ -124,7 +127,7 @@ public class SpiderAttacker : BaseClass {
             }
             else
             {
-                if (movePosIntervalTimer < Time.time)
+                if (movePosIntervalTimer < Time.time && checkDistanceThreshhold > 1)
                 {
                     movePosIntervalTimer = movePosIntervalTime + Time.time;
                     currMovePos = GetRandomVector() + transform.position;
@@ -143,7 +146,7 @@ public class SpiderAttacker : BaseClass {
                 if (returning == true)
                 {
                     dir = (startPosition - transform.position).normalized;
-                    movementH.Move(dir, Time.deltaTime * speed);
+                    movementH.Move(dir, Time.fixedDeltaTime * speed);
                     if (Vector3.Distance(startPosition, transform.position) < 5)
                     {
                         returning = false;
@@ -152,7 +155,7 @@ public class SpiderAttacker : BaseClass {
                 else
                 {
                     dir = (currMovePos - transform.position).normalized;
-                    movementH.Move(dir, Time.deltaTime * speed);
+                    movementH.Move(dir, Time.fixedDeltaTime * speed);
                 }
 
             }
