@@ -1468,6 +1468,7 @@ MonoBehaviour:
   delayedDeathTime: 0
   isAlive: 1
   isIndestructable: 0
+  isDashTarget: 1
   dropDeathObject: {fileID: 1000011286707946, guid: aad862bd58299a24995f2c0e07f9133c,
     type: 2}
   nrDropObjects: 3
@@ -1485,6 +1486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 1
+  killsEnemies: 0
 --- !u!135 &135614314692481188
 SphereCollider:
   m_ObjectHideFlags: 1

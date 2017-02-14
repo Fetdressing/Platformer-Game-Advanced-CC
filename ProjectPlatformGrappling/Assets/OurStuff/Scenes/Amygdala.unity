@@ -446,7 +446,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 662653713}
     m_Modifications:
     - target: {fileID: 4531539827893618, guid: 2d9512ec33f99af40b64492f4930e16c, type: 2}
       propertyPath: m_LocalPosition.x
@@ -462,15 +462,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4531539827893618, guid: 2d9512ec33f99af40b64492f4930e16c, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4531539827893618, guid: 2d9512ec33f99af40b64492f4930e16c, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4531539827893618, guid: 2d9512ec33f99af40b64492f4930e16c, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4531539827893618, guid: 2d9512ec33f99af40b64492f4930e16c, type: 2}
       propertyPath: m_LocalRotation.w
@@ -478,7 +478,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4531539827893618, guid: 2d9512ec33f99af40b64492f4930e16c, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 71
       objectReference: {fileID: 0}
     - target: {fileID: 1372567299405510, guid: 2d9512ec33f99af40b64492f4930e16c, type: 2}
       propertyPath: m_Name
@@ -4180,6 +4180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &302729697
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5495,6 +5496,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &361685349
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7745,6 +7747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &488814266
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8394,6 +8397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &516851695
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8827,6 +8831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &526350580
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9089,6 +9094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &539962787
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10647,26 +10653,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 16
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012710952270, guid: c1bb7fa26b4123c47bf75316edfd2ca7, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 109.743004
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012710952270, guid: c1bb7fa26b4123c47bf75316edfd2ca7, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -38.597
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012710952270, guid: c1bb7fa26b4123c47bf75316edfd2ca7, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -7.057
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012710952270, guid: c1bb7fa26b4123c47bf75316edfd2ca7, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012710952270, guid: c1bb7fa26b4123c47bf75316edfd2ca7, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c1bb7fa26b4123c47bf75316edfd2ca7, type: 2}
   m_IsPrefabParent: 0
@@ -10976,6 +10962,8 @@ Transform:
   - {fileID: 2075163535}
   - {fileID: 526454008}
   - {fileID: 1949642016}
+  - {fileID: 1525791080}
+  - {fileID: 984458301}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12959,6 +12947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &800917401
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14613,6 +14602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &916346031
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15508,6 +15498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &976080051
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15757,6 +15748,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 984093188}
   m_Mesh: {fileID: 4300000, guid: 1a87c54d41d27a64e95b692a9256b95a, type: 2}
+--- !u!4 &984458301 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4531539827893618, guid: 2d9512ec33f99af40b64492f4930e16c,
+    type: 2}
+  m_PrefabInternal: {fileID: 34210166}
 --- !u!1 &984996671
 GameObject:
   m_ObjectHideFlags: 0
@@ -22180,6 +22176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &1389359440
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22437,6 +22434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &1401570518
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23593,6 +23591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &1470503935
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24414,6 +24413,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1523443696}
   m_Mesh: {fileID: 4300000, guid: 17d8a26fa27cb18478ba91bed1fd704e, type: 2}
+--- !u!4 &1525791080 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4531539827893618, guid: 2d9512ec33f99af40b64492f4930e16c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1792159595}
 --- !u!1 &1530320966
 GameObject:
   m_ObjectHideFlags: 0
@@ -25115,6 +25119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &1563961743
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25660,6 +25665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &1580713147
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29183,30 +29189,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 4000013659604464, guid: 6602388369628a14da8b1c408a8f06ae, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 80.40401
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013659604464, guid: 6602388369628a14da8b1c408a8f06ae, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.7895347
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013659604464, guid: 6602388369628a14da8b1c408a8f06ae, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.7895352
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013659604464, guid: 6602388369628a14da8b1c408a8f06ae, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1.7895348
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013659604464, guid: 6602388369628a14da8b1c408a8f06ae, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -2.0800002
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013659604464, guid: 6602388369628a14da8b1c408a8f06ae, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 186.33699
-      objectReference: {fileID: 0}
     - target: {fileID: 1000013384094696, guid: 6602388369628a14da8b1c408a8f06ae, type: 2}
       propertyPath: m_Name
       value: ThornsSpiky (4)
@@ -29283,6 +29265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &1789067772
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29411,7 +29394,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 662653713}
     m_Modifications:
     - target: {fileID: 4531539827893618, guid: 2d9512ec33f99af40b64492f4930e16c, type: 2}
       propertyPath: m_LocalPosition.x
@@ -29427,15 +29410,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4531539827893618, guid: 2d9512ec33f99af40b64492f4930e16c, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4531539827893618, guid: 2d9512ec33f99af40b64492f4930e16c, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4531539827893618, guid: 2d9512ec33f99af40b64492f4930e16c, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4531539827893618, guid: 2d9512ec33f99af40b64492f4930e16c, type: 2}
       propertyPath: m_LocalRotation.w
@@ -29443,7 +29426,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4531539827893618, guid: 2d9512ec33f99af40b64492f4930e16c, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d9512ec33f99af40b64492f4930e16c, type: 2}
@@ -29548,6 +29531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &1794643696
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31495,6 +31479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &1911293923
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32310,6 +32295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &1985861638
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34989,6 +34975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 0
+  killsEnemies: 1
 --- !u!23 &2112625262
 MeshRenderer:
   m_ObjectHideFlags: 0

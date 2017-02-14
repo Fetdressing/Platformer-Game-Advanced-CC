@@ -1154,6 +1154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   canBeBlocked: 1
+  killsEnemies: 0
 --- !u!135 &135847169039534758
 SphereCollider:
   m_ObjectHideFlags: 1

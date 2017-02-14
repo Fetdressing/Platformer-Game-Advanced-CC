@@ -3,6 +3,7 @@ using System.Collections;
 
 public class DeadlyObj : BaseClass {
     public bool canBeBlocked = false;
+    public bool killsEnemies = true;
 	// Use this for initialization
 	void Start () {
         Init();
@@ -43,6 +44,16 @@ public class DeadlyObj : BaseClass {
             }
 
             pM.Die();
+            return;
+        }
+
+        if (killsEnemies)
+        {
+            HealthSpirit hs = col.GetComponent<HealthSpirit>();
+            if (hs != null)
+            {
+                hs.Die();
+            }
         }
     }
 
@@ -63,6 +74,16 @@ public class DeadlyObj : BaseClass {
             }
 
             pM.Die();
+            return;
+        }
+
+        if (killsEnemies)
+        {
+            HealthSpirit hs = col.gameObject.GetComponent<HealthSpirit>();
+            if (hs != null)
+            {
+                hs.Die();
+            }
         }
     }
 }
