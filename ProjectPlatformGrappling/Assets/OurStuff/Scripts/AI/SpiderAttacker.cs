@@ -9,8 +9,8 @@ public class SpiderAttacker : BaseClass {
     public float movePosIntervalTime = 8;
     private float movePosIntervalTimer = 0.0f;
 
-    public float speed = 4;
-    public float chaseSpeed = 14;
+    public float speed = 150;
+    public float chaseSpeed = 200;
     public float checkDistanceThreshhold = 20;
 
     public Transform[] patrolPoints; //kan lämnas tom för random movement
@@ -40,7 +40,7 @@ public class SpiderAttacker : BaseClass {
     {
         base.Init();
 
-        float randomAddedSpeed = Random.Range(-speed * 0.2f, speed * 0.2f); //för att få lite variation
+        float randomAddedSpeed = Random.Range(-speed * 0.4f, speed * 0.4f); //för att få lite variation
         speed += randomAddedSpeed;
         chaseSpeed += randomAddedSpeed;
 
@@ -71,6 +71,14 @@ public class SpiderAttacker : BaseClass {
     // Update is called once per frame
     void Update()
     {
+        if (!movementH.jumping)
+        {
+            float randomr = Random.Range(0, 500);
+
+            if(randomr < 10)
+                movementH.Jump(75);
+        }
+
         Vector3 dir = transform.forward;
         float distanceToMovePos = Vector3.Distance(transform.position, currMovePos);
 

@@ -9,8 +9,15 @@ public class WallMovement : BaseClass {
     public Transform checkerT; //vart man kastar raycastsen
     public LayerMask groundLM;
     public Transform rotater;
-	// Use this for initialization
-	void Start () {
+
+    bool isGrounded = false;
+    [HideInInspector]public bool jumping = false;
+    float maxYSpeed = 0.1f;
+    float gravityBoost = 100;
+
+    IEnumerator jumpIE = null;
+    // Use this for initialization
+    void Start () {
         Init();
 	}
 
@@ -22,12 +29,66 @@ public class WallMovement : BaseClass {
             checkerT = transform;
         }
         m_Rigidbody = GetComponent<Rigidbody>();
+
+        Reset();
     }
 
- //   // Update is called once per frame
- //   void Update () {
- //       Move(Vector3.right, Time.deltaTime * 20);
-	//}
+    public override void Reset()
+    {
+        base.Reset();
+        jumping = false;
+        StopAllCoroutines();
+        jumpIE = null;
+    }
+
+    //   // Update is called once per frame
+    //   void Update () {
+    //       Move(Vector3.right, Time.deltaTime * 20);
+    //}
+
+    void Update()
+    {       
+        if(Physics.Raycast(checkerT.position, Vector3.down, 8, groundLM))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+            
+            m_Rigidbody.AddForce(Vector3.down * gravityBoost);
+        }
+         
+        if (m_Rigidbody.velocity.y > maxYSpeed && !jumping) //hantera Y separat, behöver inte oroa mig om gravitationen för denna bara limitar om velocityn är positiv!
+        {
+            m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x, maxYSpeed, m_Rigidbody.velocity.z);
+        }
+    }
+
+    public void Jump(float jumpForce)
+    {
+        if (jumpIE != null) return;
+        if (!isGrounded) return;
+        if (jumping) return;
+
+        jumpIE = PerformJump(jumpForce);
+        StartCoroutine(jumpIE);
+    }
+
+    IEnumerator PerformJump(float jumpForce)
+    {
+        jumping = true;
+        m_Rigidbody.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
+        float maxTime = 4;
+        float timerT = Time.time + maxTime;
+        //yield return new WaitForSeconds(maxTime);
+        while (m_Rigidbody.velocity.y > 0.01f && Time.time < timerT)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        jumping = false;
+        jumpIE = null;
+    }
 
     public void Move(Vector3 dir, float speed) //keep me on wall
     {
@@ -71,6 +132,11 @@ public class WallMovement : BaseClass {
             }
         }
 
+        if(jumping)
+        {
+            dir.y = 0;
+        }
+
         m_Rigidbody.AddForce(dir * speed * 1000);
         Vector3 forceXZ = new Vector3(m_Rigidbody.velocity.x, m_Rigidbody.velocity.y, m_Rigidbody.velocity.z);
         if(forceXZ.magnitude > maxSpeed)
@@ -78,10 +144,6 @@ public class WallMovement : BaseClass {
             forceXZ = m_Rigidbody.velocity.normalized * maxSpeed;
             m_Rigidbody.velocity = new Vector3(forceXZ.x, m_Rigidbody.velocity.y, forceXZ.z);
 
-            if(m_Rigidbody.velocity.y > maxSpeed * 0.333f) //hantera Y separat, behöver inte oroa mig om gravitationen för denna bara limitar om velocityn är positiv!
-            {
-                m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x, maxSpeed * 0.333f, m_Rigidbody.velocity.z);
-            }
         }
     }
 }

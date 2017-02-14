@@ -3018,6 +3018,10 @@ Prefab:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1502807902009986, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
   m_IsPrefabParent: 0
@@ -3063,6 +3067,10 @@ Prefab:
     - target: {fileID: 1502807902009986, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
       propertyPath: m_Name
       value: SpiderFace (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502807902009986, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
@@ -3469,6 +3477,10 @@ Prefab:
     - target: {fileID: 54493027537576390, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0,
         type: 2}
       propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502807902009986, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5719,6 +5731,10 @@ Prefab:
     - target: {fileID: 1502807902009986, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
       propertyPath: m_Name
       value: SpiderFace (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502807902009986, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
@@ -11295,6 +11311,10 @@ Prefab:
       propertyPath: m_Name
       value: SpiderFace (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1502807902009986, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
   m_IsPrefabParent: 0
@@ -12103,6 +12123,10 @@ Prefab:
     - target: {fileID: 1502807902009986, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
       propertyPath: m_Name
       value: SpiderFace (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502807902009986, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
@@ -18933,6 +18957,10 @@ Prefab:
       propertyPath: m_Name
       value: SpiderFace (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1502807902009986, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
   m_IsPrefabParent: 0
@@ -20760,6 +20788,10 @@ Prefab:
       propertyPath: m_Name
       value: SpiderFace (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1502807902009986, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
   m_IsPrefabParent: 0
@@ -20814,6 +20846,10 @@ Prefab:
     - target: {fileID: 54493027537576390, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0,
         type: 2}
       propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502807902009986, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -25490,6 +25526,10 @@ Prefab:
       propertyPath: m_Name
       value: SpiderFace (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1502807902009986, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
   m_IsPrefabParent: 0
@@ -27683,6 +27723,10 @@ Prefab:
     - target: {fileID: 54493027537576390, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0,
         type: 2}
       propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502807902009986, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -30286,6 +30330,10 @@ Prefab:
     - target: {fileID: 1502807902009986, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
       propertyPath: m_Name
       value: SpiderFace (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1502807902009986, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1981d3a6fef4dfe4c9e365e3f0d8d1f0, type: 2}

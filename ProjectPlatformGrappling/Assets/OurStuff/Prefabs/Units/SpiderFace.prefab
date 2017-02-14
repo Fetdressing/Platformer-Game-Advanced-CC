@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 135847169039534758}
   - component: {fileID: 114505221817667018}
   - component: {fileID: 114545459759561190}
-  - component: {fileID: 114270717457557046}
+  - component: {fileID: 114593130212397860}
   m_Layer: 22
   m_Name: SpiderFace
   m_TagString: Untagged
@@ -847,7 +847,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1502807902009986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8582, y: -1254, z: 187}
+  m_LocalPosition: {x: 8441.1, y: -1254, z: 755.088}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4785724089204586}
@@ -1082,19 +1082,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 536870913
   rotater: {fileID: 4191658960308150}
---- !u!114 &114270717457557046
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1502807902009986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isLocked: 0
-  canBeBlocked: 1
+  jumping: 0
 --- !u!114 &114505221817667018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1143,8 +1131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLocked: 0
   movePosIntervalTime: 8
-  speed: 180
-  chaseSpeed: 300
+  speed: 380
+  chaseSpeed: 450
   checkDistanceThreshhold: 20
   patrolPoints: []
   playerChaseDistance: 400
@@ -1153,6 +1141,19 @@ MonoBehaviour:
   run: {fileID: 7400000, guid: 1699e7bae3bc692469b4cac17c7222bc, type: 3}
   idleSpeed: 1
   runSpeed: 1.5
+--- !u!114 &114593130212397860
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1502807902009986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLocked: 0
+  canBeBlocked: 1
 --- !u!135 &135847169039534758
 SphereCollider:
   m_ObjectHideFlags: 1
