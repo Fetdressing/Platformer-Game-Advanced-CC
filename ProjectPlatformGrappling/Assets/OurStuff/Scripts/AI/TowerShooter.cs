@@ -10,6 +10,7 @@ public class TowerShooter : BaseClass {
 
     public AnimationClip idleA;
     public AnimationClip aggressiveA;
+    public float aggressiveASpeed = 1.5f;
 
     public float maxShootRange = 50;
     public float shootForce = 120;
@@ -55,6 +56,11 @@ public class TowerShooter : BaseClass {
             projectilePool.Add(temp);
             temp.GetComponent<ProjectileBase>().SetShooter(transform);
             temp.SetActive(false);
+        }
+
+        if(animationH != null)
+        {
+            animationH[aggressiveA.name].speed = aggressiveASpeed;
         }
 
         Reset();
