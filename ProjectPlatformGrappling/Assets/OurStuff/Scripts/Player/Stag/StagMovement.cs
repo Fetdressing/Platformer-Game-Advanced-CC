@@ -296,24 +296,35 @@ public class StagMovement : BaseClass
         Vector3 tempMomentum = HandleMovement(); //moddar finalMoveDir
         currMomentum += tempMomentum;
 
+        //**BREAK**
         Vector3 currMomXZ = new Vector3(currMomentum.x, 0, currMomentum.z);
+        float currMomY = currMomentum.y; ///inkluderar Y nu oxå, testa
 
         if (currMomXZ.magnitude > currLimitSpeed) //dessa kanske bör ligga separat utanför denna funktionen eftersom jag ändrade om denna funktion
         {
             Break((25 - movementStacks * 0.3f), ref currMomXZ);
-
         }
         else
         {
             if (GetGrounded(groundCheckObject)) //släppt kontrollerna, då kan man deaccelerera snabbare! : finalMoveDir.magnitude <= 0.0f
             {
                 Break((4 - movementStacks * 0.12f), ref currMomXZ);
-                //Break(2, ref currMomXZ);
             }
+            Break((0.3f), ref currMomXZ); //flat break, //börja breaka hela tiden, även i luften med
         }
-        //börja breaka hela tiden, även i luften med        
-        Break((0.3f), ref currMomXZ); //flat break
+
+        ////Break Y
+        if (currMomY > currLimitSpeed * 0.333f) //dessa kanske bör ligga separat utanför denna funktionen eftersom jag ändrade om denna funktion
+        {
+            Break((25 - movementStacks * 0.3f), ref currMomY);
+        }
+        else
+        {
+            Break((0.3f), ref currMomY); //flat break, //börja breaka hela tiden, även i luften med
+        }
+
         currMomentum = new Vector3(currMomXZ.x, currMomentum.y, currMomXZ.z);
+        //**BREAK**
 
         Vector3 sideVecToMom = Vector3.Cross(currMomentum, transform.up).normalized; //ger en vektor som är åt höger/vänster av momentumen, (innan använde jag transform.right)
 
@@ -498,6 +509,7 @@ public class StagMovement : BaseClass
                 if (ySpeed < 0.0f) //man vill inte resetta om man har upforce
                 {
                     ySpeed = minimumGravity; //nollställer ej helt // grounded character has vSpeed = 0...
+                    currMomentum.y = 0; ///inte säker på om currmomentum ska hantera någon Y, men denna bör inte skada oavsett
                 }
             }
         }
@@ -582,6 +594,7 @@ public class StagMovement : BaseClass
                     if (ySpeed < 0.0f) //man vill inte resetta om man har upforce
                     {
                         ySpeed = minimumGravity; //nollställer ej helt // grounded character has vSpeed = 0...
+                        currMomentum.y = 0; ///inte säker på om currmomentum ska hantera någon Y, men denna bör inte skada oavsett
                     }
                 }
             }
@@ -871,6 +884,15 @@ public class StagMovement : BaseClass
         vec = Vector3.Lerp(vec, Vector3.zero, 0.01f * breakamount); //detta är inte braa!
     }
 
+    void Break(float breakamount, ref float f) //bromsa, fast bara ett flyttal
+    {
+        if (breakamount < 0)
+        {
+            breakamount = 0.1f;
+        }
+        f = Mathf.Lerp(f, 0, 0.01f * breakamount); //detta är inte braa!
+    }
+
     Vector3 Break(float breakamount, Vector3 vec) //returnerar vektorn som breakas med
     {
         Vector3 vectemp = Vector3.Lerp(vec, Vector3.zero, 0.01f * breakamount);
@@ -950,6 +972,8 @@ public class StagMovement : BaseClass
                 dashUsed = false; //när man blir grounded så kan man använda dash igen, men oxå när man hoppar, SKILLZ!!!
                 activePlatform = null; //när man hoppar så är man ej längre attached till movingplatform
                 jumpTimePoint = Time.time;
+
+                currMomentum.y = 0; ///inte säker på om currmomentum ska hantera någon Y, men denna bör inte skada oavsett
 
                 if (ySpeed < 0) //ska motverka gravitationen, behövs ej atm?
                     ySpeed = 0;
@@ -1130,7 +1154,7 @@ public class StagMovement : BaseClass
         
         if (dashVel.magnitude > 1.0f)
         {
-            currMomentum = new Vector3(dashVel.x, 0, dashVel.z);
+            currMomentum = new Vector3(dashVel.x, 0, dashVel.z); ///vill jag ha med Y här? verkar inte vara jättelegit
         }
 
         dashVel = Vector3.zero;
@@ -1531,7 +1555,7 @@ public class StagMovement : BaseClass
 
         //lite minimum värden, så man kan stacka högt
         //Debug.Log((timeReduceValue).ToString());
-        movementStackResetTimer = Mathf.Max(0.3f + ingame_Realtime, movementStackResetTimer); //ska som minst vara x sekunder
+        movementStackResetTimer = Mathf.Max(0.35f + ingame_Realtime, movementStackResetTimer); //ska som minst vara x sekunder
         movementStackGroundedTimer = Mathf.Max(0.3f, movementStackGroundedTimer); //ska som minst vara x sekunder
 
         //Debug.Log(movementStacks.ToString() + "  " + (movementStackResetTimer - Time.time).ToString());
