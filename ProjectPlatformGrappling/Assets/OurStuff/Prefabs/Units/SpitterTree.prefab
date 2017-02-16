@@ -863,7 +863,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1372567299405510}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 8114.623, y: -1128, z: 1525.117}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1253,7 +1253,7 @@ MonoBehaviour:
   thisRenderer:
   - {fileID: 137830389904048838}
   - {fileID: 137336008241955858}
-  damagedMaterial: {fileID: 0}
+  damagedMaterial: {fileID: 2100000, guid: 5a5a1a50a180c2246b70601cbc08ebef, type: 2}
   middlePoint: {x: 0, y: 0, z: 0}
   middlePointOffsetY: 15
   startHealth: 1
@@ -1265,7 +1265,7 @@ MonoBehaviour:
   respawn: 0
   animationObj: {fileID: 0}
   deathAnimation: {fileID: 0}
-  deathParticleSystemObj: {fileID: 1000010212710648, guid: a915930ee2302f048b877d4eba119dd4,
+  deathParticleSystemObj: {fileID: 1000013848181366, guid: fdf0bafb66b5bdf45b8bdfc763325b82,
     type: 2}
   delayedDeathTime: 0
   isAlive: 1
