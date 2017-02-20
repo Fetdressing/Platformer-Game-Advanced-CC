@@ -144,6 +144,7 @@ public class WoWCCamera : BaseClass
 
     void UnscaledFixedUpdate()
     {
+        if (movingToPos == true || Time.timeScale == 0) return; ///kanske vill kunna rotera i meny o sånt?? specielt för när man testar mousemovement i settings??
         xMom += controlManager.horAxisView * xSpeed * 0.2f * speedMultiplier;
         yMom += controlManager.verAxisView * ySpeed * 0.2f * speedMultiplier;
 
@@ -151,7 +152,6 @@ public class WoWCCamera : BaseClass
         xMom = Mathf.Lerp(xMom, 0, 0.01f * slowDownMult);
         yMom = Mathf.Lerp(yMom, 0, 0.01f * slowDownMult);
 
-        ///VARFÖR RÖR DEN SIG ÅT SIDAN VAFAN?!?!!!!!!!!!!!!!!!!!!!!!!????????????????????????????????
         //stackedMom += new Vector2(xMom, yMom);
     }
 
@@ -174,7 +174,7 @@ public class WoWCCamera : BaseClass
 
     void LateUpdate()
     {
-        if (movingToPos == true) return;
+        if (movingToPos == true || Time.timeScale == 0) return;
         //if (Time.timeScale == 0) return;
 
         if (!target)
