@@ -108,6 +108,7 @@ public class StagMovement : BaseClass
     protected Vector3 lastV_Vector = Vector3.zero; //senast som verVector hade ett värde (dvs inte vector3.zero)
     protected float hor, ver;
     [HideInInspector] public Vector3 dashVel = new Vector3(0, 0, 0); //vill kunna komma åt denna, så därför public
+    Vector3 lastDashDir = Vector3.zero; //används i dashupdates för att använda den senaste legit dashvelocityn
     protected Vector3 externalVel = new Vector3(0, 0, 0);
     [HideInInspector] public Vector3 currMomentum = Vector3.zero; //så man behåller fart även efter man släppt på styrning
     protected Vector3 nextMove = Vector3.zero; //denna sätts i fixedupdate, sen körs move i update av detta värdet. Så man får frame independency
@@ -1338,6 +1339,7 @@ public class StagMovement : BaseClass
         }
         modDashSpeed = dashSpeed;
         dashVel = dirMod * modDashSpeed;
+        lastDashDir = dirMod;
 
         currDashTime = 0.0f;
 
@@ -1404,23 +1406,32 @@ public class StagMovement : BaseClass
             currMomentum = Vector3.zero;
 
             speedBreakerTimer = Time.time + speedBreakerTime; //speedbreakern aktiveras sedan i update
-            
+
+            bool closeToTarget = false;
+
             if (dashTarget != null)
             {
                 dirMod = ((dashTarget.position + groundOffset + dashTargetOffset) - (transform.position + groundOffset)).normalized;
-                
+
                 if(Vector3.Distance(transform.position, dashTarget.position) < dashHelpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
                 {
                     modDashSpeed = dashSpeed * 2;
+                    dirMod = lastDashDir; //man är för nära för att leta efter en ny velocity
+                    closeToTarget = true;
                 }
                 else
                 {
                     modDashSpeed = dashSpeed;
+                    lastDashDir = dirMod;
                 }
             }
             dashVel = dirMod * modDashSpeed; //styra under dashen
-            stagObject.transform.forward = dashVel.normalized;
             currDashTime = Time.time - startDashTime - extendedTime;
+
+            if(!closeToTarget)
+            {
+                stagObject.transform.forward = dashVel.normalized;
+            }
 
             //ySpeed = -gravity * 0.01f; //nollställer ej helt
 
@@ -1444,19 +1455,26 @@ public class StagMovement : BaseClass
 
         if (currDashUpdates < dashUpdates)
         {
+            bool closeToTarget = false;
             if (dashTarget != null)
             {                
                 if (Vector3.Distance(transform.position, dashTarget.position) < dashHelpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
                 {
                     modDashSpeed = dashSpeed * 2;
+                    dirMod = lastDashDir; //man är för nära för att leta efter en ny velocity
+                    closeToTarget = true;
                 }
                 else
                 {
                     modDashSpeed = dashSpeed;
+                    lastDashDir = dirMod;
                 }
             }
 
-            stagObject.transform.forward = dashVel.normalized;
+            if (!closeToTarget)
+            {
+                stagObject.transform.forward = dashVel.normalized;
+            }
 
             Vector3 hitNormal = Vector3.zero;
             if (!IsWalkable(1.0f, characterController.radius + 1.0f, dashVel, maxSlopeDash, ref hitNormal)) //så den slutar dasha när den går emot en vägg
