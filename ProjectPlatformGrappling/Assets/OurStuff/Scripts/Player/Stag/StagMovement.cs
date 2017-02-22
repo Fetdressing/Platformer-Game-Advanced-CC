@@ -61,7 +61,7 @@ public class StagMovement : BaseClass
     [HideInInspector]public IEnumerator staggDashIE; //sätts även ifrån andra script som StagSpeedBreaker
     [HideInInspector]public IEnumerator staggIE; //normala stag grejen
     [HideInInspector]public float dashTimePoint; //mud påverkar denna så att man inte kan dasha
-    protected float dashGlobalCooldown = 0.3f;
+    protected float dashGlobalCooldown = 0.1f;
     protected float dashGroundCooldown = 1f; //går igång ifall man dashar från marken
     protected float dashSpeed = 400;
     protected float modDashSpeed; //blir dashspeeden men kan sedan ökas när man närmar sig dashtargets
@@ -1188,7 +1188,11 @@ public class StagMovement : BaseClass
         maxDashTime = startMaxDashTime + extraDashTime; //den kan utökas sen
         AddMovementStack(1);
         cameraShaker.ChangeFOV(0.05f, 5);
-        ySpeed = minimumGravity; //nollställer ej helt
+        if(ySpeed > 0)
+        {///kanske jag vill göra det oavsett vad ens tidigare ySpeed är!
+            ySpeed = minimumGravity; //nollställer ej helt
+        }
+        //ySpeed = minimumGravity; //nollställer ej helt
         ToggleDashEffect(true);
         dashTimePoint = Time.time;
         dashVel = Vector3.zero;
