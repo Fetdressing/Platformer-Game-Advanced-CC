@@ -35,7 +35,7 @@ public class StagMovement : BaseClass
     public Transform stagObject; //denna roteras så det står korrekt
 
     protected float startSpeed = 190;
-    protected float jumpSpeed = 100;
+    protected float jumpSpeed = 110;
     protected float gravity = 180;
     float addedGravity = 0.0f; //läggs till gravity om man har mer momentum
     [HideInInspector]public float minimumGravity = -30;
@@ -1425,6 +1425,7 @@ public class StagMovement : BaseClass
                     lastDashDir = dirMod;
                 }
             }
+            //modDashSpeed += (movementStacks * 0.1f); //lägger på extra dashspeed när man har högre stacks
             dashVel = dirMod * modDashSpeed; //styra under dashen
             currDashTime = Time.time - startDashTime - extendedTime;
 
