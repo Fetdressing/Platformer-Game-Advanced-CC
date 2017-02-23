@@ -96,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1584792920135400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 87, y: 0, z: 1756}
+  m_LocalPosition: {x: 87, y: 0, z: 2391}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4657829237680706}
@@ -214,8 +214,8 @@ MonoBehaviour:
   - {fileID: 4777028818334762}
   o_object: {fileID: 1600683347788694, guid: e6059ff7af253ef49a54fa5b86007070, type: 2}
   particleEffect: {fileID: 0}
-  poolSize: 5
-  spawnInterval: 5
+  poolSize: 7
+  spawnInterval: 3
   animH: {fileID: 0}
   animSpeed: 1.2
   idleClip: {fileID: 0}

@@ -108,7 +108,7 @@ public class WoWCCamera : BaseClass
 
         float xn = Vector3.Angle(transform.forward, newDir);
 
-        if(Vector3.Dot(transform.right, newDir) < 0.0f)
+        if(Vector3.Dot(transform.right, newDir) < 0.0f) //kolla åt vilket håll den ska rotera, höger eller vänster
         {
             xn = -xn;
         }

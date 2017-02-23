@@ -111,14 +111,14 @@ public class SpawnManager : BaseClass {
     public void StartSpawn()
     {
         if (startSpawn == null) return;
-        if (isRespawning == true) return;
+        //if (isRespawning == true) return;
         
         isRespawning = true;
         stagMovement.isLocked = true;
 
         player.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         SetLatestSpawn(startSpawn);
-        StartCoroutine(SpawnPlayerAtLocation(startSpawn.position, true));
+        StartCoroutine(SpawnPlayerAtLocation(latestSpawn.position, true));
     }
 
     public void Respawn(Vector3 playerDeathPos)
@@ -175,9 +175,9 @@ public class SpawnManager : BaseClass {
         }
         //Vector3 forwNoY = new Vector3(mainCameraS.transform.forward.x, 0, mainCameraS.transform.forward.z);
         yield return mainCameraS.SetRot(latestSpawn.forward, false);
-        player.GetComponent<StagMovement>().currMomentum = latestSpawn.forward * 100;
+        stagMovement.currMomentum = latestSpawn.forward * 100;
         player.GetComponent<PowerManager>().Reset();
-        player.GetComponent<StagMovement>().Reset();
+        stagMovement.Reset();
         //player.GetComponent<StagShooter>().Reset();
         player.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 

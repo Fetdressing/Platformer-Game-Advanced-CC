@@ -203,6 +203,7 @@ public class StagMovement : BaseClass
     public override void Reset()
     {
         base.Reset();
+        //isLocked resettas inte då den kanske är viktig till stuff
         isCCed = false;
         Time.timeScale = 1.0f;
         ToggleDashEffect(false);
@@ -216,6 +217,7 @@ public class StagMovement : BaseClass
         lastH_Vector = Vector3.zero; //senast som horVector hade ett värde (dvs inte vector3.zero)
         lastV_Vector = Vector3.zero;
         ySpeed = minimumGravity; //nollställer ej helt
+        //currMomentum = Vector3.zero; nej den sätts i spawnmanagern istället
         //currGravityModifier = 1.0f; jag vill nog inte resetta denna vid spawn
         currExternalSpeedMult = 1.0f;
         currLimitSpeed = startLimitSpeed;
@@ -1303,8 +1305,12 @@ public class StagMovement : BaseClass
             if (currDistance < closeDistanceThreshhold) continue;
 
             float minDistanceFromEdges = 0.3f; //hur nära kanten den max får vara
-            Debug.Log("Kan behöva kollas igenom sen, kanske göra en cirkulär check istället för en box");
-            if (currViewPos.x < (1.0f - minDistanceFromEdges) && currViewPos.x > (0.0f + minDistanceFromEdges) && currViewPos.y < (1.0f - minDistanceFromEdges) && currViewPos.y > (0.0f + minDistanceFromEdges) && currViewPos.z > 0.0f) //kolla så att den är innanför viewen
+            float maxDistanceFromCenter = 0.2f;
+            Debug.Log("Kan behöva kollas igenom sen, kanske göra en cirkulär check istället för en box, BERÄKNA HYPOTENUSAN, eller får man vektorn om man bara adderar dem?");
+            //if (currViewPos.x < (1.0f - minDistanceFromEdges) && currViewPos.x > (0.0f + minDistanceFromEdges) && currViewPos.y < (1.0f - minDistanceFromEdges) && currViewPos.y > (0.0f + minDistanceFromEdges) && currViewPos.z > 0.0f) //kolla så att den är innanför viewen
+            Vector2 viewPosFromCenter = new Vector2(Mathf.Abs(0.5f - currViewPos.x), Mathf.Abs(0.5f - currViewPos.y));
+            float hypoDistance = Mathf.Sqrt(Mathf.Pow(viewPosFromCenter.x, 2) + Mathf.Pow(viewPosFromCenter.y, 2));
+            if (currViewPos.z > 0.0f && hypoDistance < maxDistanceFromCenter)
             {
                 //Debug.Log(potTargets[i].name + " " + currFinalValue.ToString());
                 RaycastHit rHit;
