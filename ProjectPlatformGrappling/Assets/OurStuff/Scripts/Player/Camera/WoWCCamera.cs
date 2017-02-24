@@ -120,7 +120,7 @@ public class WoWCCamera : BaseClass
     IEnumerator SettingRot(float xn, bool unlock)
     {
         xn = xn + x;
-        float yn = 30;
+        float yn = 15;
         while(settingRotation != null && Mathf.Abs(x - xn) + Mathf.Abs(y - yn) > 2f)
         {
             x = Mathf.Lerp(x, xn, Time.unscaledDeltaTime * 8);
