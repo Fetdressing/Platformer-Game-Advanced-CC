@@ -108,22 +108,42 @@ public class StagSpeedBreaker : BaseClass {
 
     public void Activate(bool force = false) //force gör så att man slipper checken
     {
+        if (initTimes == 0) return; //
+        if (!force && active) return; // :D
         activationPoint = transform.position;
 
         ready = true;
         active = true;
         ToggleColliders(true);
+        ToggleRenderers(true);  
 
         stagMovement.IgnoreLayer(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Unit"), true); //ignorera all kollision mellan spelarobjektet och alla fiender, så man inte studsar mot dem under dash
     }
 
     public void Disable()
     {
+        if (initTimes == 0) return; //lol
         if (initTimes == 0) return;
+<<<<<<< HEAD
+        if (!active) return;
+        //if (fadeOut != null) return;
+
+        stagMovement.IgnoreLayer(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Unit"), false);
+
+        if(fadeOut != null)
+        {
+            StopCoroutine(fadeOut);
+        }
+        fadeOut = FadeOut(0.5f);
+        StartCoroutine(fadeOut);
+=======
         //if (fadeOut != null || renderers[0].enabled == false) return;
 
         stagMovement.IgnoreLayer(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Unit"), false);
 
+        //fadeOut = FadeOut(0.5f);
+        //StartCoroutine(fadeOut);
+>>>>>>> some partikal stuff
 
         active = false;
     }
