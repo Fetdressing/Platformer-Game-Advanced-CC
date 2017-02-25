@@ -1201,8 +1201,8 @@ public class StagMovement : BaseClass
         unitDetectionCamera.transform.localRotation = Quaternion.identity; //nollställ
         unitDetectionCamera.transform.localPosition = Vector3.zero;
 
-        if (GetGrounded(groundCheckObject, 3)) //extra cooldown för att man dashar från marken! FY PÅ DEJ!! (varit airbourne i X sekunder)if(Mathf.Abs(jumpTimePoint - Time.time) > 0.08f)
-        {
+        if (GetGrounded(groundCheckObject, 3) && extraDashTime == 0) //extra cooldown för att man dashar från marken! FY PÅ DEJ!! (varit airbourne i X sekunder)if(Mathf.Abs(jumpTimePoint - Time.time) > 0.08f)
+        { //använder extraDashTime och antar att det är när man dashar vidare från objekt, behöver en mer solid check kanske?
             dashTimePoint += dashGroundCooldown;
         }
 
