@@ -63,11 +63,16 @@ public class StagSpeedBreaker : BaseClass {
 
     void OnTriggerEnter(Collider col)
     {
+        DashHit(col.transform);
+    }
+
+    public void DashHit(Transform col)
+    {
         if (initTimes == 0) return;
         if (lastUnitHit_Viable == false && col.transform == internalLastUnitHit) return;
         if (!ready) return;
         HealthSpirit h = col.GetComponent<HealthSpirit>();
-        if(h != null && h.IsAlive())
+        if (h != null && h.IsAlive())
         {
             if (h.isDashTarget)
             {
@@ -92,7 +97,7 @@ public class StagSpeedBreaker : BaseClass {
                 stagMovement.AddJumpsAvaible(stagMovement.jumpAmount, stagMovement.jumpAmount);
                 pm.AddPower(1, 80);
             }
-            h.AddHealth(-2);            
+            h.AddHealth(-2);
         }
     }
 
