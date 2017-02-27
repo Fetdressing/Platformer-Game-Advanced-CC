@@ -517,6 +517,7 @@
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\EnvironmentChanger.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\FadingLight.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\FogColorChanger.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\VisualEffects\FollowObj.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\HitSound.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\ParticleTimed.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\RandomSound.cs" />
