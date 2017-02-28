@@ -65,7 +65,7 @@ public class StagMovement : BaseClass
     protected float dashGroundCooldown = 1f; //går igång ifall man dashar från marken
     protected float dashSpeed = 400;
     protected float modDashSpeed; //blir dashspeeden men kan sedan ökas när man närmar sig dashtargets
-    protected float dashHelpDistance = 55; //avståndet som karaktären börjar försöka nå dashtarget mer (ökar speeden tex)
+    protected float dashHelpDistance = 70; //avståndet som karaktären börjar försöka nå dashtarget mer (ökar speeden tex)
     int dashUpdates = 20; //hur många fixedupdates som dash ska köra, detta gör den consistent i hur långt den åker oavsett framerate. Kanske en skum lösning men det funkar asbra!
     protected float startMaxDashTime = 0.08f; //den går att utöka
     [HideInInspector] public float maxDashTime;
@@ -108,7 +108,7 @@ public class StagMovement : BaseClass
     protected Vector3 lastV_Vector = Vector3.zero; //senast som verVector hade ett värde (dvs inte vector3.zero)
     protected float hor, ver;
     [HideInInspector] public Vector3 dashVel = new Vector3(0, 0, 0); //vill kunna komma åt denna, så därför public
-    Vector3 lastDashDir = Vector3.zero; //används i dashupdates för att använda den senaste legit dashvelocityn
+    Vector3 startDashDir = Vector3.zero; //används i dashupdates för att använda den senaste (den första nu istället) legit dashvelocityn
     protected Vector3 externalVel = new Vector3(0, 0, 0);
     [HideInInspector] public Vector3 currMomentum = Vector3.zero; //så man behåller fart även efter man släppt på styrning
     protected Vector3 nextMove = Vector3.zero; //denna sätts i fixedupdate, sen körs move i update av detta värdet. Så man får frame independency
@@ -345,7 +345,7 @@ public class StagMovement : BaseClass
         // YYYYY
         //Debug.Log(characterController.isGrounded);
         // apply gravity acceleration to vertical speed:
-        addedGravity = currMomentum.magnitude * 0.0f; //0.1f
+        addedGravity = currMomentum.magnitude * 0.1f; //0.1f
         if(ySpeed > 0)
         {
             addedGravity = 0;
@@ -1349,7 +1349,7 @@ public class StagMovement : BaseClass
         }
         modDashSpeed = dashSpeed;
         dashVel = dirMod * modDashSpeed;
-        lastDashDir = dirMod;
+        startDashDir = dirMod; //sätts kanske bara en gång så att man kan återgå till ursprungs riktningen
 
         currDashTime = 0.0f;
 
@@ -1425,14 +1425,14 @@ public class StagMovement : BaseClass
 
                 if(Vector3.Distance(transform.position, dashTarget.position) < dashHelpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
                 {
-                    modDashSpeed = dashSpeed * 2;
-                    dirMod = lastDashDir; //man är för nära för att leta efter en ny velocity
+                    modDashSpeed = dashSpeed * 1.2f;
+                    dirMod = startDashDir; //man är för nära för att leta efter en ny velocity
                     closeToTarget = true;
                 }
                 else
                 {
                     modDashSpeed = dashSpeed;
-                    lastDashDir = dirMod;
+                    //startDashDir = dirMod;
                 }
             }
             //modDashSpeed += (movementStacks * 0.1f); //lägger på extra dashspeed när man har högre stacks
@@ -1471,14 +1471,14 @@ public class StagMovement : BaseClass
             {                
                 if (Vector3.Distance(transform.position, dashTarget.position) < dashHelpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
                 {
-                    modDashSpeed = dashSpeed * 2;
-                    dirMod = lastDashDir; //man är för nära för att leta efter en ny velocity
+                    modDashSpeed = dashSpeed * 1.2f;
+                    dirMod = startDashDir; //man är för nära för att leta efter en ny velocity
                     closeToTarget = true;
                 }
                 else
                 {
                     modDashSpeed = dashSpeed;
-                    lastDashDir = dirMod;
+                    //startDashDir = dirMod;
                 }
             }
 
@@ -1584,7 +1584,7 @@ public class StagMovement : BaseClass
 
         //lite minimum värden, så man kan stacka högt
         //Debug.Log((timeReduceValue).ToString());
-        movementStackResetTimer = Mathf.Max(0.35f + ingame_Realtime, movementStackResetTimer); //ska som minst vara x sekunder
+        movementStackResetTimer = Mathf.Max(0.4f + ingame_Realtime, movementStackResetTimer); //ska som minst vara x sekunder
         movementStackGroundedTimer = Mathf.Max(0.3f, movementStackGroundedTimer); //ska som minst vara x sekunder
 
         //Debug.Log(movementStacks.ToString() + "  " + (movementStackResetTimer - Time.time).ToString());
