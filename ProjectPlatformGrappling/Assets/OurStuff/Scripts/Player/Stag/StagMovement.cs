@@ -1425,6 +1425,7 @@ public class StagMovement : BaseClass
 
                 if(Vector3.Distance(transform.position, dashTarget.position) < dashHelpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
                 {
+                    transform.position = Vector3.Lerp(transform.position, dashTarget.position, 10 * Time.fixedDeltaTime);
                     modDashSpeed = dashSpeed * 1.2f;
                     dirMod = startDashDir; //man är för nära för att leta efter en ny velocity
                     closeToTarget = true;
