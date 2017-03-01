@@ -38,7 +38,7 @@ public class Wisp : BaseClass {
         if (fleeing)
         {
             Vector3 dir = (transform.position - fleeingUnit.position).normalized;
-            transform.position = Vector3.Slerp(transform.position, dir, Time.deltaTime * speed * 6);
+            transform.position = Vector3.Lerp(transform.position, dir, Time.deltaTime * speed * 6);
             if (Vector3.Distance(startPosition, transform.position) < 5)
             {
                 fleeing = false;
@@ -62,7 +62,7 @@ public class Wisp : BaseClass {
 
         if(returning == true)
         {
-            transform.position = Vector3.Slerp(transform.position, startPosition, Time.deltaTime * speed);
+            transform.position = Vector3.Lerp(transform.position, startPosition, Time.deltaTime * speed);
             if(Vector3.Distance(startPosition, transform.position) < 5)
             {
                 returning = false;
@@ -71,7 +71,7 @@ public class Wisp : BaseClass {
         else
         {
             Vector3 dir = (transform.position - currMovePos).normalized;
-            transform.position = Vector3.Slerp(transform.position, currMovePos, Time.deltaTime * speed);
+            transform.position = Vector3.Lerp(transform.position, currMovePos, Time.deltaTime * speed);
         }
 	}
 

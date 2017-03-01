@@ -447,6 +447,7 @@ GameObject:
   - component: {fileID: 114562824498557796}
   - component: {fileID: 82451009201587332}
   - component: {fileID: 135461496341455186}
+  - component: {fileID: 114585524326674256}
   m_Layer: 22
   m_Name: TreantFlyerImmortal
   m_TagString: Untagged
@@ -991,7 +992,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1743409756252902}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3649.1, y: -384.91, z: 2906.5}
+  m_LocalPosition: {x: 3649.1, y: -384.91, z: 2640}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4009294320482468}
@@ -1429,7 +1430,9 @@ MonoBehaviour:
   speed: 110
   chaseSpeed: 80
   checkDistanceThreshhold: 7
-  patrolPoints: []
+  patrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
   playerChaseDistance: 140
   animH: {fileID: 111581656249911296}
   idle: {fileID: 7400000, guid: cb2e6222b408a4c4686435cf1819c97e, type: 3}
@@ -1467,10 +1470,25 @@ MonoBehaviour:
   delayedDeathTime: 0
   isAlive: 1
   isIndestructable: 1
+  isDashTarget: 1
   dropDeathObject: {fileID: 1000011286707946, guid: aad862bd58299a24995f2c0e07f9133c,
     type: 2}
   nrDropObjects: 3
   dropObjLifeTime: 10
+--- !u!114 &114585524326674256
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1743409756252902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLocked: 0
+  canBeBlocked: 1
+  killsEnemies: 0
 --- !u!135 &135461496341455186
 SphereCollider:
   m_ObjectHideFlags: 1
