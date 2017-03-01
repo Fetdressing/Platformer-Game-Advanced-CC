@@ -145,6 +145,7 @@
     <None Include="Assets\ExternalAssets\SimpleLUT\_HereVR Color Grading Demo\Readme - HVR Color Grading Demo.txt" />
     <None Include="Assets\OurStuff\2D\Shaders\Hologram.shader" />
     <None Include="Assets\OurStuff\Prefabs\VisualsEffects\Imported\ParticleSystems\Materials\DistortModified.shader" />
+    <None Include="Assets\OurStuff\Prefabs\VisualsEffects\LayeredFog\NykrLayeredFog.shader" />
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />

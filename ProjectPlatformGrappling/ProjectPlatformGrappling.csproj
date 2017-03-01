@@ -430,6 +430,7 @@
     <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\Imported\ParticleSystems\Sripts\ParticlePlexus.cs" />
     <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\Imported\ParticleSystems\Sripts\ParticleSeekTriggered.cs" />
     <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\Imported\ParticleSystems\Sripts\StopSiblings.cs" />
+    <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\LayeredFog\NykrLayeredFog.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\AIBase.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\AttackFlyer.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\BaseUnit.cs" />
@@ -437,6 +438,7 @@
     <Compile Include="Assets\OurStuff\Scripts\AI\NormalAI\NAIBase.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\NormalAI\NAIInvisibleNavmesh.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\NormalAI\NAINavmesh.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\AI\SpiderAttacker.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\StateMachineAI\AIEntity.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\StateMachineAI\AIMoveable.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\StateMachineAI\CharacterControllerAI\AICharacterController.cs" />
@@ -450,18 +452,21 @@
     <Compile Include="Assets\OurStuff\Scripts\AI\StateMachineAI\States\GuardPState.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\StateMachineAI\States\PatrolState.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\TowerShooter.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\AI\WallMovement.cs" />
     <Compile Include="Assets\OurStuff\Scripts\AI\Wisp.cs" />
     <Compile Include="Assets\OurStuff\Scripts\BaseClass.cs" />
     <Compile Include="Assets\OurStuff\Scripts\BaseRagdoll.cs" />
     <Compile Include="Assets\OurStuff\Scripts\BaseRigidbody.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\CameraManager.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\ControlManager.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\Game\CustomFixedUpdate.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\GameManager.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\GameSettings.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\LevelLoader.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\MainMenu.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\SceneHandler.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\SpawnManager.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\Game\Spawnpoint.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Health.cs" />
     <Compile Include="Assets\OurStuff\Scripts\HealthSpirit.cs" />
     <Compile Include="Assets\OurStuff\Scripts\MagneticForces\MagneticBall.cs" />
@@ -484,6 +489,7 @@
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Projectiles\HoomingProjectile.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Projectiles\ProjectileBase.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Projectiles\ReturnProjectile.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\ReturnMover.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\SpeedMultiplier.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Teleport.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Triggers\Conversation.cs" />
@@ -497,17 +503,14 @@
     <Compile Include="Assets\OurStuff\Scripts\Player\Camera\ThirdPersonLike\ImThirdPerson.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Camera\ThirdPersonLike\ThirdPersonCamera.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Camera\WoWCCamera.cs" />
-    <Compile Include="Assets\OurStuff\Scripts\Player\MagneticPlacer.cs" />
-    <Compile Include="Assets\OurStuff\Scripts\Player\Movement.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Old\MagneticHandler.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\Player\Old\MagneticPlacer.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Old\PlayerMovement.cs" />
-    <Compile Include="Assets\OurStuff\Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\GroundChecker.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\PowerManager.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagMovement.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagShooter.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagSpeedBreaker.cs" />
-    <Compile Include="Assets\OurStuff\Scripts\Spawnpoint.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Specials\ObjectActivator.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\AnimStandardPlayer.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\AnimationSpeedModifier.cs" />
@@ -515,10 +518,12 @@
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\EnvironmentChanger.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\FadingLight.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\FogColorChanger.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\VisualEffects\FollowObj.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\HitSound.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\ParticleTimed.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\RandomSound.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\Rotater.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\VisualEffects\SimpleAnimationPlayer.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\UVDisplacer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -552,6 +557,7 @@
     <None Include="Assets\ExternalAssets\SimpleLUT\_HereVR Color Grading Demo\Readme - HVR Color Grading Demo.txt" />
     <None Include="Assets\OurStuff\2D\Shaders\Hologram.shader" />
     <None Include="Assets\OurStuff\Prefabs\VisualsEffects\Imported\ParticleSystems\Materials\DistortModified.shader" />
+    <None Include="Assets\OurStuff\Prefabs\VisualsEffects\LayeredFog\NykrLayeredFog.shader" />
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlurEffectConeTaps.shader" />
