@@ -1305,8 +1305,8 @@ public class StagMovement : BaseClass
             if (currDistance < closeDistanceThreshhold) continue;
 
             float minDistanceFromEdges = 0.3f; //hur nära kanten den max får vara
-            float maxDistanceFromCenter = 0.2f;
-            Debug.Log("Kan behöva kollas igenom sen, kanske göra en cirkulär check istället för en box, BERÄKNA HYPOTENUSAN, eller får man vektorn om man bara adderar dem?");
+            float maxDistanceFromCenter = 0.25f;
+
             //if (currViewPos.x < (1.0f - minDistanceFromEdges) && currViewPos.x > (0.0f + minDistanceFromEdges) && currViewPos.y < (1.0f - minDistanceFromEdges) && currViewPos.y > (0.0f + minDistanceFromEdges) && currViewPos.z > 0.0f) //kolla så att den är innanför viewen
             Vector2 viewPosFromCenter = new Vector2(Mathf.Abs(0.5f - currViewPos.x), Mathf.Abs(0.5f - currViewPos.y));
             float hypoDistance = Mathf.Sqrt(Mathf.Pow(viewPosFromCenter.x, 2) + Mathf.Pow(viewPosFromCenter.y, 2));
