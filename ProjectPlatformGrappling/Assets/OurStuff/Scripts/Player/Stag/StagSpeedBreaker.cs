@@ -123,11 +123,15 @@ public class StagSpeedBreaker : BaseClass {
     public void Disable()
     {
         if (initTimes == 0) return;
-        if (initTimes == 0) return;
-        if (fadeOut != null || renderers[0].enabled == false) return;
+        if (!active) return;
+        //if (fadeOut != null) return;
 
         stagMovement.IgnoreLayer(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Unit"), false);
 
+        if(fadeOut != null)
+        {
+            StopCoroutine(fadeOut);
+        }
         fadeOut = FadeOut(0.5f);
         StartCoroutine(fadeOut);
 
@@ -167,11 +171,15 @@ public class StagSpeedBreaker : BaseClass {
             currAlpha -= startAlpha / ((startAlpha / Time.deltaTime) * time);
             if (currAlpha < 0) currAlpha = 0;
 
-            for (int i = 0; i < renderers.Length; i++)
+            if (renderers.Length != 0) //kan man inkludera particlesystem oxå om man vill fadea deras transparency!
             {
-                Color c = renderers[i].material.color;
-                renderers[i].material.color = new Color(c.r, c.g, c.b, currAlpha);
+                for (int i = 0; i < renderers.Length; i++)
+                {
+                    Color c = renderers[i].material.color;
+                    renderers[i].material.color = new Color(c.r, c.g, c.b, currAlpha);
+                }
             }
+
             yield return new WaitForEndOfFrame();
         }
         ToggleColliders(false);
