@@ -13,6 +13,7 @@ public class PowerManager : BaseClass {
     private Renderer[] allRenderers;
     private StagMovement stagMovement;
     private CameraShaker cameraShaker;
+    private CharacterController cController;
 
     private SimpleLUT sLut;
     private float startSaturation = 0; //man ändrar saturationen när man tappar mkt power
@@ -55,6 +56,7 @@ public class PowerManager : BaseClass {
         stagMovement = GetComponent<StagMovement>();
         cameraShaker = activeCamera.GetComponent<CameraShaker>();
         sLut = activeCamera.GetComponent<SimpleLUT>();
+        cController = GetComponent<CharacterController>();
 
         emiStagMat = new Material(emissiveStagMaterial);
         emiStagMat.CopyPropertiesFromMaterial(emissiveStagMaterial);
@@ -81,6 +83,7 @@ public class PowerManager : BaseClass {
     {
         base.Reset();
         StopAllCoroutines();
+        cController.enabled = true;
         transform.gameObject.SetActive(true);
         
         AddPower(maxPower);
@@ -225,6 +228,7 @@ public class PowerManager : BaseClass {
 
         stagMovement.isLocked = true; //så man inte kan styra
         stagMovement.speedBreaker.Disable();
+        cController.enabled = false;
         //stagShooter.isLocked = true;
 
         deathLocation = transform.position;

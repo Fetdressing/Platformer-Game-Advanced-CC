@@ -83,7 +83,7 @@ public class PowerPickup : BaseClass {
     //    {
     //        Vector3 dir = (player.position - this.transform.position).normalized;
     //        thisRigidbody.AddForce(dir * playerChaseSpeed * Time.deltaTime, ForceMode.Force);
-    //        //pickUpObj.transform.position = Vector3.Slerp(pickUpObj.transform.position, player.position, Time.deltaTime * playerChaseSpeed);
+    //        //pickUpObj.transform.position = Vector3.Lerp(pickUpObj.transform.position, player.position, Time.deltaTime * playerChaseSpeed);
     //    }
     //    else if (Vector3.Distance(startPos, this.transform.position) > (playerChaseDistance))
     //    {
@@ -96,7 +96,7 @@ public class PowerPickup : BaseClass {
     //    }
     //}
 
-    void Update()
+    void FixedUpdate()
     {
         if (!pickUpObjFollow && pickUpObj.gameObject.activeSelf == false) return;
         if (isAlive == false && particlePicked.gameObject.activeSelf == false) return;
@@ -108,7 +108,7 @@ public class PowerPickup : BaseClass {
         float distanceToPlayer = Vector3.Distance(player.position, this.transform.position);
         if (distanceToPlayer < playerChaseDistance && cooldownChase < Time.time)
         {
-            transform.position = Vector3.Slerp(this.transform.position, player.position + stagMovement.yMiddlePointOffset, Time.deltaTime * playerChaseSpeed / distanceToPlayer);
+            transform.position = Vector3.Lerp(this.transform.position, player.position + stagMovement.yMiddlePointOffset, Time.fixedDeltaTime * playerChaseSpeed / distanceToPlayer);
         }
         else if (moveToWantedPos) //en external position
         {
@@ -117,11 +117,11 @@ public class PowerPickup : BaseClass {
                 moveToWantedPos = false;
             }
 
-            this.transform.position = Vector3.Slerp(this.transform.position, wantedPos, Time.deltaTime * playerChaseSpeed * 0.1f);
+            this.transform.position = Vector3.Lerp(this.transform.position, wantedPos, Time.fixedDeltaTime * playerChaseSpeed * 0.1f);
         }
         else if (Vector3.Distance(startPos, this.transform.position) > (playerChaseDistance) && returnToStartPos)
         {
-            transform.position = Vector3.Slerp(this.transform.position, startPos, Time.deltaTime * playerChaseSpeed);
+            transform.position = Vector3.Lerp(this.transform.position, startPos, Time.fixedDeltaTime * playerChaseSpeed);
         }
     }
 

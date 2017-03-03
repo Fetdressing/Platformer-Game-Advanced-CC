@@ -516,8 +516,18 @@ public class QuickObjectEditor : Editor
 			go.transform.position = targetPoint + offset.vector3Value;
             Vector3 randomYRot = new Vector3(0, UnityEngine.Random.Range(0, 360), 0);
 			go.transform.rotation = Quaternion.Euler(rotation.vector3Value + randomYRot);
-			go.transform.localScale += scale.vector3Value + new Vector3(UnityEngine.Random.Range(-scale.vector3Value.x * 0.1f, scale.vector3Value.x * 0.1f), UnityEngine.Random.Range(-scale.vector3Value.y * 0.1f, scale.vector3Value.y * 0.1f), UnityEngine.Random.Range(-scale.vector3Value.z * 0.1f, scale.vector3Value.z * 0.1f)); ; //lägg på istället för o sätta direkt tror jag är bättre
-			if(parent.objectReferenceValue)
+
+            if (scale.vector3Value == Vector3.zero) //skalan
+            {
+                //go.transform.localScale = new Vector3(1, 1, 1);
+                //vill man låta den vara som den är
+            }
+            else
+            {
+                go.transform.localScale += scale.vector3Value + new Vector3(UnityEngine.Random.Range(-scale.vector3Value.x * 0.1f, scale.vector3Value.x * 0.1f), UnityEngine.Random.Range(-scale.vector3Value.y * 0.1f, scale.vector3Value.y * 0.1f), UnityEngine.Random.Range(-scale.vector3Value.z * 0.1f, scale.vector3Value.z * 0.1f)); ; //lägg på istället för o sätta direkt tror jag är bättre
+            }
+
+            if (parent.objectReferenceValue)
 			{
 				Transform par = parent.objectReferenceValue as Transform;
 				if(par.gameObject.activeInHierarchy)
