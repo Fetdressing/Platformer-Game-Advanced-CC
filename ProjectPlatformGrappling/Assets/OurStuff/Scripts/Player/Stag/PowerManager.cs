@@ -336,15 +336,16 @@ public class PowerManager : BaseClass {
 
     void CalculateSaturation(float f) //hur mycket procent power man har kvar
     {
-        float bSatVal = 0.8f; //hur mycket den ska utgå ifrån
+        //float bSatVal = 0.8f; //hur mycket den ska utgå ifrån
         float perThreshold = 0.3f; //under detta värde på f så kommer det att bli lägre saturation
         float satValue = 0;
+        float satDecreaseMult = 2.9f;
 
         if (f < perThreshold)
         {
-            satValue = bSatVal - f;
+            satValue = perThreshold - f;
         }
 
-        sLut.Saturation = startSaturation - satValue;
+        sLut.Saturation = startSaturation - satValue * satDecreaseMult;
     }
 }
