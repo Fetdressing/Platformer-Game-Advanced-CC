@@ -69,7 +69,7 @@ public class StagMovement : BaseClass
     int dashUpdates = 20; //hur många fixedupdates som dash ska köra, detta gör den consistent i hur långt den åker oavsett framerate. Kanske en skum lösning men det funkar asbra!
     protected float startMaxDashTime = 0.08f; //den går att utöka
     [HideInInspector] public float maxDashTime;
-    protected float dashPowerCost = 0.1f; //hur mycket power det drar varje gång man dashar
+    protected float dashPowerCost = 0.06f; //hur mycket power det drar varje gång man dashar
     [HideInInspector]public bool dashUsed = false; //så att man måste bli grounded innan man kan använda den igen
     public GameObject dashEffectObject;
     public ParticleSystem dashReadyPS; //particlesystem som körs när dash är redo att användas
@@ -108,6 +108,7 @@ public class StagMovement : BaseClass
     protected Vector3 lastV_Vector = Vector3.zero; //senast som verVector hade ett värde (dvs inte vector3.zero)
     protected float hor, ver;
     [HideInInspector] public Vector3 dashVel = new Vector3(0, 0, 0); //vill kunna komma åt denna, så därför public
+    private Vector3 lastDashVel = new Vector3(0,0,0); //när jag lerpar till dashtargets så vill jag fortfarande kunna ha en velocity att mata över till currmomentum
     Vector3 startDashDir = Vector3.zero; //används i dashupdates för att använda den senaste (den första nu istället) legit dashvelocityn
     protected Vector3 externalVel = new Vector3(0, 0, 0);
     [HideInInspector] public Vector3 currMomentum = Vector3.zero; //så man behåller fart även efter man släppt på styrning
@@ -130,7 +131,7 @@ public class StagMovement : BaseClass
     [Header("Ground Check")]
     public Transform groundCheckObject;
     protected float groundedCheckOffsetY = 0.6f;
-    protected float groundedCheckDistance = 10f;
+    protected float groundedCheckDistance = 13f;
     [HideInInspector]
     public bool isGrounded;
     [HideInInspector]
@@ -262,6 +263,8 @@ public class StagMovement : BaseClass
         if (isLocked) return;
         if (isCCed) return;
 
+        CheckGroundTouch(); //hanterar jumpresets tex
+
         fUpdatesPassed++; //resettas vid varje vanlig update, så man vet hur många FixedUpdates som har passerat
         if (activePlatform != null)
         {
@@ -345,7 +348,7 @@ public class StagMovement : BaseClass
         // YYYYY
         //Debug.Log(characterController.isGrounded);
         // apply gravity acceleration to vertical speed:
-        addedGravity = currMomentum.magnitude * 0.1f; //0.1f
+        addedGravity = currMomentum.magnitude * 0.4f; //0.1f
         if(ySpeed > 0)
         {
             addedGravity = 0;
@@ -420,29 +423,7 @@ public class StagMovement : BaseClass
 
         distanceToGround = GetDistanceToGround(groundCheckObject);
 
-        if (isGroundedRaycast) //använd endast GetGrounded här, annars kommer man få samma problem när gravitationen slutar verka pga lång raycast
-        {
-            if (jumpTimePoint < Time.time - 0.4f) //så den inte ska fucka och resetta dirr efter man hoppat
-            {
-                //dessa resetsen görs här eftersom denna groundchecken är mycket mer pålitlig
-                //dashUsed = true; //resettar bara med riktigt grounded så det ska vara mer "snällt"
-                AddJumpsAvaible(jumpAmount, jumpAmount);
-            }
-
-            if (groundedSlope > maxSlopeGrounded) //denna checken görs här när man är grounded och i charactercontrollerhit när man INTE är grounded
-            {
-                //if(groundedRaycastObject.tag == "WallJump") görs nu i separat script
-                //{
-                //    AddJumpsAvaible(jumpAmount, jumpAmount);
-                //}
-                //ApplyExternalForce(groundedNormal * 20); // så man glider för slopes
-                //currMomentum = Vector3.zero;
-            }
-        }
-        else
-        {
-            groundChecker.Reset(groundedTimePoint);
-        }
+        CheckGroundTouch(); //hanterar jumpresets tex
 
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -937,6 +918,33 @@ public class StagMovement : BaseClass
         staggIE = null;
     }
 
+    void CheckGroundTouch()
+    {
+        if (GetGrounded(groundCheckObject)) //använd endast GetGrounded här, annars kommer man få samma problem när gravitationen slutar verka pga lång raycast
+        {
+            if (jumpTimePoint < Time.time - 0.4f) //så den inte ska fucka och resetta dirr efter man hoppat
+            {
+                //dessa resetsen görs här eftersom denna groundchecken är mycket mer pålitlig
+                //dashUsed = true; //resettar bara med riktigt grounded så det ska vara mer "snällt"
+                AddJumpsAvaible(jumpAmount, jumpAmount);
+            }
+
+            if (groundedSlope > maxSlopeGrounded) //denna checken görs här när man är grounded och i charactercontrollerhit när man INTE är grounded
+            {
+                //if(groundedRaycastObject.tag == "WallJump") görs nu i separat script
+                //{
+                //    AddJumpsAvaible(jumpAmount, jumpAmount);
+                //}
+                //ApplyExternalForce(groundedNormal * 20); // så man glider för slopes
+                //currMomentum = Vector3.zero;
+            }
+        }
+        else
+        {
+            groundChecker.Reset(groundedTimePoint);
+        }
+    }
+
     public void AddJumpsAvaible(int amount, int maxCount = 1000000000)
     {
         if ((jumpsAvaible + amount) < 0) { jumpsAvaible = 0; return; }
@@ -1157,10 +1165,11 @@ public class StagMovement : BaseClass
         
         if (dashVel.magnitude > 1.0f)
         {
-            currMomentum = new Vector3(dashVel.x, 0, dashVel.z); ///vill jag ha med Y här? verkar inte vara jättelegit
+            currMomentum = new Vector3(lastDashVel.x, 0, lastDashVel.z); ///vill jag ha med Y här? verkar inte vara jättelegit
         }
 
         dashVel = Vector3.zero;
+        lastDashVel = Vector3.zero;
 
         if (currDashIE != null)
         {
@@ -1198,6 +1207,7 @@ public class StagMovement : BaseClass
         ToggleDashEffect(true);
         dashTimePoint = Time.time;
         dashVel = Vector3.zero;
+        lastDashVel = Vector3.zero;
         unitDetectionCamera.transform.localRotation = Quaternion.identity; //nollställ
         unitDetectionCamera.transform.localPosition = Vector3.zero;
 
@@ -1348,7 +1358,7 @@ public class StagMovement : BaseClass
             dirMod = biasedDir;
         }
         modDashSpeed = dashSpeed;
-        dashVel = dirMod * modDashSpeed;
+        SetDashVelocity(dirMod * modDashSpeed);
         startDashDir = dirMod; //sätts kanske bara en gång så att man kan återgå till ursprungs riktningen
 
         currDashTime = 0.0f;
@@ -1419,15 +1429,16 @@ public class StagMovement : BaseClass
 
             bool closeToTarget = false;
 
-            if (dashTarget != null)
+            if (dashTarget != null) //om jag har dashTarget så lerpa endast
             {
                 dirMod = ((dashTarget.position + groundOffset + dashTargetOffset) - (transform.position + groundOffset)).normalized;
 
-                if(Vector3.Distance(transform.position, dashTarget.position) < dashHelpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
+                transform.position = Vector3.Lerp(transform.position, dashTarget.position, (modDashSpeed / 40) * Time.fixedDeltaTime);
+
+                if (Vector3.Distance(transform.position, dashTarget.position) < dashHelpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
                 {
-                    transform.position = Vector3.Lerp(transform.position, dashTarget.position, 10 * Time.fixedDeltaTime);
-                    modDashSpeed = dashSpeed * 1.2f;
                     dirMod = startDashDir; //man är för nära för att leta efter en ny velocity
+                    lastDashVel = dirMod * modDashSpeed;
                     closeToTarget = true;
                 }
                 else
@@ -1436,8 +1447,11 @@ public class StagMovement : BaseClass
                     //startDashDir = dirMod;
                 }
             }
-            //modDashSpeed += (movementStacks * 0.1f); //lägger på extra dashspeed när man har högre stacks
-            dashVel = dirMod * modDashSpeed; //styra under dashen
+            else
+            {
+                //modDashSpeed += (movementStacks * 0.1f); //lägger på extra dashspeed när man har högre stacks
+                SetDashVelocity(dirMod * modDashSpeed); //styra under dashen
+            }
             currDashTime = Time.time - startDashTime - extendedTime;
 
             if(!closeToTarget)
@@ -1472,8 +1486,8 @@ public class StagMovement : BaseClass
             {                
                 if (Vector3.Distance(transform.position, dashTarget.position) < dashHelpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
                 {
-                    modDashSpeed = dashSpeed * 1.2f;
                     dirMod = startDashDir; //man är för nära för att leta efter en ny velocity
+                    lastDashVel = dirMod * modDashSpeed;
                     closeToTarget = true;
                 }
                 else
@@ -1495,6 +1509,12 @@ public class StagMovement : BaseClass
                 Stagger(0.12f);
             }
         }
+    }
+
+    void SetDashVelocity(Vector3 newDashVel) //så man sätter lastdashvel oxå
+    {
+        dashVel = newDashVel;
+        lastDashVel = dashVel;
     }
 
     void CenterRectangle(ref Rect someRect)

@@ -17,6 +17,7 @@ public class PowerManager : BaseClass {
 
     private SimpleLUT sLut;
     private float startSaturation = 0; //man ändrar saturationen när man tappar mkt power
+    private float wantedSaturation;
 
     private float[] uvStartOffsetHorns = { 0, 1.0f};
     private float uvOffsetMult = 0.3f; //hur mkt power från hornen som ska tas bort
@@ -34,7 +35,7 @@ public class PowerManager : BaseClass {
     private float maxPower = 1;
     [HideInInspector] public float currPower;
     [HideInInspector]
-    public float powerDecay = -0.02f;
+    public float powerDecay = -0.1f;
 
     [HideInInspector]
     public bool isAlive;
@@ -62,6 +63,8 @@ public class PowerManager : BaseClass {
         emiStagMat.CopyPropertiesFromMaterial(emissiveStagMaterial);
         stagRenderer.material = emiStagMat; //ger den det nya temp materialet så jag inte moddar originalet
         allRenderers = GetComponentsInChildren<Renderer>();
+
+        wantedSaturation = startSaturation;
 
         for (int i = 0; i < changeMatRenderers.Length; i++)
         {
@@ -100,6 +103,7 @@ public class PowerManager : BaseClass {
     void Update () {
         if (isLocked) return;
         AddPower(powerDecay * Time.deltaTime);
+        LerpToWantedSaturation();
 
         if(godMode)
         {
@@ -337,7 +341,7 @@ public class PowerManager : BaseClass {
     void CalculateSaturation(float f) //hur mycket procent power man har kvar
     {
         //float bSatVal = 0.8f; //hur mycket den ska utgå ifrån
-        float perThreshold = 0.3f; //under detta värde på f så kommer det att bli lägre saturation
+        float perThreshold = 0.35f; //under detta värde på f så kommer det att bli lägre saturation
         float satValue = 0;
         float satDecreaseMult = 2.9f;
 
@@ -346,6 +350,13 @@ public class PowerManager : BaseClass {
             satValue = perThreshold - f;
         }
 
-        sLut.Saturation = startSaturation - satValue * satDecreaseMult;
+        wantedSaturation = startSaturation - satValue * satDecreaseMult;
+        //sLut.Saturation = startSaturation - satValue * satDecreaseMult;
+    }
+
+    void LerpToWantedSaturation()
+    {
+        float lerpSpeed = 1.2f;
+        sLut.Saturation = Mathf.Lerp(sLut.Saturation, wantedSaturation, Time.deltaTime * lerpSpeed);
     }
 }
