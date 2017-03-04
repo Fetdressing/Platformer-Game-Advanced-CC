@@ -78,9 +78,9 @@ public class SpawnManager : BaseClass {
     {
         if(!levelStarted)
         {
-            if(stagMovement.movementStacks > 5)
+            if(stagMovement.realMovementStacks.value > 5)
             {
-                stagMovement.movementStacks = 5; //innan spelet har börjat så kan man inte stacka en massa
+                stagMovement.realMovementStacks.value = 5; //innan spelet har börjat så kan man inte stacka en massa
             }
             
         }

@@ -26,4 +26,8 @@ public class BaseClass : MonoBehaviour
 
     public static float ingame_Realtime = 0.0f; //håller tiden, utan Time.timescale (unless spelet är pausat, moddas i GameManager)
 
+    public class Pointer<T>
+    {
+        public T value;
+    }
 }

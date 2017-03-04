@@ -124,7 +124,13 @@ public class StagMovement : BaseClass
 
     protected float movementStackResetTimer = 0.0f;
     protected float movementStackResetTime = 2.0f;
-    [HideInInspector]public int movementStacks = 0; //får mer stacks när man dashar och hoppar mycket
+    //[HideInInspector]public int currMovementStacks.value = 0; //får mer stacks när man dashar och hoppar mycket
+    [HideInInspector]
+    public Pointer<int> currMovementStacks;
+    [HideInInspector]
+    public Pointer<int> hiddenMovementStacks = new Pointer<int>();//används när man slutat använda så mkt input
+    [HideInInspector]
+    public Pointer<int> realMovementStacks = new Pointer<int>();//används när man dashar, hoppar och är aktiv
 
 
     public PullField pullField; //som drar till sig grejer till spelaren, infinite gravity!
@@ -232,7 +238,11 @@ public class StagMovement : BaseClass
         //ToggleInfiniteGravity(false);
         dashUsed = false;
         jumpsAvaible = jumpAmount;
-        movementStacks = 1;
+
+        realMovementStacks.value = 1;
+        hiddenMovementStacks.value = 1;
+
+        currMovementStacks = realMovementStacks;
         AddMovementStack(5); //start värde
 
         //isGrounded = false;
@@ -311,13 +321,13 @@ public class StagMovement : BaseClass
 
         if (currMomXZ.magnitude > currLimitSpeed) //dessa kanske bör ligga separat utanför denna funktionen eftersom jag ändrade om denna funktion
         {
-            Break((25 - movementStacks * 0.3f), ref currMomXZ);
+            Break((25 - currMovementStacks.value * 0.3f), ref currMomXZ);
         }
         else
         {
             if (GetGrounded(groundCheckObject)) //släppt kontrollerna, då kan man deaccelerera snabbare! : finalMoveDir.magnitude <= 0.0f
             {
-                Break((4 - movementStacks * 0.12f), ref currMomXZ);
+                Break((4 - currMovementStacks.value * 0.12f), ref currMomXZ);
             }
             Break((0.3f), ref currMomXZ); //flat break, //börja breaka hela tiden, även i luften med
         }
@@ -325,7 +335,7 @@ public class StagMovement : BaseClass
         ////Break Y
         if (currMomY > currLimitSpeed * 0.333f) //dessa kanske bör ligga separat utanför denna funktionen eftersom jag ändrade om denna funktion
         {
-            Break((25 - movementStacks * 0.3f), ref currMomY);
+            Break((25 - currMovementStacks.value * 0.3f), ref currMomY);
         }
         else
         {
@@ -412,9 +422,20 @@ public class StagMovement : BaseClass
 
         if (movementStackResetTimer < ingame_Realtime)
         {
-            //movementStacks = 1;
-            AddMovementStack(-2);
+            AddMovementStack(-2); //ändrar realMovementStacks
         }
+
+        if(GetGroundedDuration() > 0.1f)
+        {
+            currMovementStacks = hiddenMovementStacks;
+            hiddenMovementStacks.value = CalculateHiddenStacks();
+        }
+        else if(GetTimeSinceLastDash() < 5.0f)
+        {
+            currMovementStacks = realMovementStacks;
+        }
+
+        moveStackText.text = currMovementStacks.value.ToString();
 
         //if (isGroundedRaycast && (GetGroundedDuration() > movementStackGroundedTimer)) //efter att ha tappat ett poäng så fortsätter still GetGroundedDuration att öka, därför det minskar poäng snabbare o snabbare, för att man STILL är grounded
         //{
@@ -817,12 +838,12 @@ public class StagMovement : BaseClass
         }
 
         //poängen i början ska dock vara värda mer!!
-        float flatMoveStacksSpeedBonues = Mathf.Max(1, Mathf.Log(movementStacks, 1.01f));
+        float flatMoveStacksSpeedBonues = Mathf.Max(1, Mathf.Log(currMovementStacks.value, 1.01f));
         flatMoveStacksSpeedBonues *= 0.0024f; //hjälper accelerationen
         //Debug.Log(flatMoveStacksSpeedBonues.ToString());
 
         float bonusStageSpeed = 1.0f; //ökar för vart X stacks
-        bonusStageSpeed = movementStacks / 3;
+        bonusStageSpeed = currMovementStacks.value / 3;
         bonusStageSpeed = Mathf.Floor(bonusStageSpeed);
         bonusStageSpeed = Mathf.Max(1, bonusStageSpeed);
 
@@ -844,14 +865,14 @@ public class StagMovement : BaseClass
 
         //if (currMomXZ.magnitude > currLimitSpeed) //dessa kanske bör ligga separat utanför denna funktionen eftersom jag ändrade om denna funktion
         //{
-        //    breakVec = Break((25 - movementStacks * 0.3f), currMomXZ);
+        //    breakVec = Break((25 - currMovementStacks.value * 0.3f), currMomXZ);
 
         //}
         //else
         //{
         //    if (isGroundedRaycast) //släppt kontrollerna, då kan man deaccelerera snabbare! : finalMoveDir.magnitude <= 0.0f
         //    {
-        //        breakVec = Break((6 - movementStacks * 0.2f), currMomXZ);
+        //        breakVec = Break((6 - currMovementStacks.value * 0.2f), currMomXZ);
         //        //Break(2, ref currMomXZ);
         //    }
         //}
@@ -1013,7 +1034,7 @@ public class StagMovement : BaseClass
 
     public void Slam()
     {
-        if (!characterController.isGrounded && !isGroundedRaycast && movementStacks < 5) return;
+        if (!characterController.isGrounded && !isGroundedRaycast && currMovementStacks.value < 5) return;
 
         RaycastHit rHit;
         float slamMaxDistance = 200;
@@ -1039,9 +1060,9 @@ public class StagMovement : BaseClass
             yield return new WaitForEndOfFrame();
         }
         Debug.Log(Time.time.ToString());
-        cameraShaker.ShakeCamera(0.3f + (movementStacks * 0.1f), 2 + (movementStacks * 0.2f), true, true);
+        cameraShaker.ShakeCamera(0.3f + (currMovementStacks.value * 0.1f), 2 + (currMovementStacks.value * 0.2f), true, true);
         //Slam!
-        AddMovementStack(-movementStacks);
+        AddMovementStack(-currMovementStacks.value);
     }
 
     public virtual bool Dash(bool useCameraDir, float extraDashTime = 0)
@@ -1452,7 +1473,7 @@ public class StagMovement : BaseClass
             }
             else
             {
-                //modDashSpeed += (movementStacks * 0.1f); //lägger på extra dashspeed när man har högre stacks
+                //modDashSpeed += (currMovementStacks.value * 0.1f); //lägger på extra dashspeed när man har högre stacks
                 SetDashVelocity(dirMod * modDashSpeed); //styra under dashen
             }
             currDashTime = Time.time - startDashTime - extendedTime;
@@ -1581,17 +1602,33 @@ public class StagMovement : BaseClass
         Physics.IgnoreLayerCollision(layer1, layer2, ignore);
     }
 
-    void AddMovementStack(int i)
-    {
-        movementStacks += i;
 
-        if (movementStacks < 1)
+    int CalculateHiddenStacks()
+    {
+        int dec_multiplier = 14;
+        int minStacks = 10;
+
+        if(realMovementStacks.value < minStacks)
         {
-            movementStacks = 1;
+            minStacks = realMovementStacks.value;
         }
 
-        float timeReduceValue = Mathf.Max(0, Mathf.Pow(movementStacks, 1.4f)); //ju mindre upphöjt värde ju högra kommer den öka
-        float groundedReduceValue = Mathf.Max(0, Mathf.Pow(movementStacks, 1.7f)); //den ska börja litet o bli större o större
+        int newHiddenStacks = realMovementStacks.value - (int)((GetGroundedDuration() * dec_multiplier));
+        newHiddenStacks = Mathf.Max(minStacks, newHiddenStacks);
+        return newHiddenStacks;
+    }
+
+    void AddMovementStack(int i)
+    {
+        realMovementStacks.value += i;
+
+        if (realMovementStacks.value < 1)
+        {
+            realMovementStacks.value = 1;
+        }
+
+        float timeReduceValue = Mathf.Max(0, Mathf.Pow(realMovementStacks.value, 1.4f)); //ju mindre upphöjt värde ju högra kommer den öka
+        float groundedReduceValue = Mathf.Max(0, Mathf.Pow(realMovementStacks.value, 1.7f)); //den ska börja litet o bli större o större
         timeReduceValue *= 0.013f;
         groundedReduceValue *= 0.04f;
         if (float.IsNaN(timeReduceValue))
@@ -1611,10 +1648,10 @@ public class StagMovement : BaseClass
         movementStackResetTimer = Mathf.Max(0.4f + ingame_Realtime, movementStackResetTimer); //ska som minst vara x sekunder
         movementStackGroundedTimer = Mathf.Max(0.3f, movementStackGroundedTimer); //ska som minst vara x sekunder
 
-        //Debug.Log(movementStacks.ToString() + "  " + (movementStackResetTimer - Time.time).ToString());
-        //Debug.Log(movementStacks.ToString() + "  " + (movementStackGroundedTimer).ToString());
+        //Debug.Log(currMovementStacks.value.ToString() + "  " + (movementStackResetTimer - Time.time).ToString());
+        //Debug.Log(currMovementStacks.value.ToString() + "  " + (movementStackGroundedTimer).ToString());
 
-        moveStackText.text = movementStacks.ToString();
+        //moveStackText.text = currMovementStacks.value.ToString();
     }
 
 
@@ -2023,6 +2060,12 @@ public class StagMovement : BaseClass
         //if (Time.time - groundedTimePoint > 2)
         //    Debug.Log((Time.time - groundedTimePoint).ToString());
         return Time.time - groundedTimePoint;
+    }
+
+    public float GetTimeSinceLastDash()
+    {
+        float t = Time.time - dashTimePoint;
+        return t;
     }
 
     public float GetDistanceToGround()
