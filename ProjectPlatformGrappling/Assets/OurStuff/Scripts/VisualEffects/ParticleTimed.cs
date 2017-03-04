@@ -4,6 +4,7 @@ using System.Collections;
 public class ParticleTimed : BaseClass {
     private GameObject thisObject;
     private ParticleSystem ps;
+    public bool onlyOnGrounded = true;
     public float lifeTime = 1;
 
     public bool deactivateAfter = true; //ska den stänga av objektet eller köra ps.stop
@@ -28,8 +29,9 @@ public class ParticleTimed : BaseClass {
         isReady = true;
     }
 
-    public void StartParticleSystem()
+    public void StartParticleSystem(bool grounded = true)
     {
+        if (!grounded && onlyOnGrounded) return;
         if (isReady == false) return;
         StopAllCoroutines();
         thisObject.SetActive(true);

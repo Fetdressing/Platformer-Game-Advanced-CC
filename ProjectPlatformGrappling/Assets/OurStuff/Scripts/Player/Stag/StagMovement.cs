@@ -1716,7 +1716,7 @@ public class StagMovement : BaseClass
 
     public virtual void PlayJumpEffect()
     {
-        if (gameObject.activeSelf == false || !isGroundedRaycast ) return;
+        if (gameObject.activeSelf == false) return;
 
         AudioSource dAS = jumpEffectObject.GetComponent<AudioSource>();
 
@@ -1731,7 +1731,7 @@ public class StagMovement : BaseClass
         {
             for(int i = 0; i < jumpEffects.Length; i++)
             {
-                jumpEffects[i].StartParticleSystem();
+                    jumpEffects[i].StartParticleSystem(isGroundedRaycast);
             }
             
         }
