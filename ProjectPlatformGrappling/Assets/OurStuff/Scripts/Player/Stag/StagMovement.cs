@@ -696,7 +696,7 @@ public class StagMovement : BaseClass
     public void Redirect(ref Vector3 incomingDir, Vector3 checkPoint, float length, float sphereChechRadius)
     {
         RaycastHit mainHit;
-        if (!Physics.SphereCast(checkPoint, 4, incomingDir, out mainHit, length, groundCheckLM))
+        if (!Physics.SphereCast(checkPoint, sphereChechRadius, incomingDir, out mainHit, length, groundCheckLM))
         {
             return;
         }
