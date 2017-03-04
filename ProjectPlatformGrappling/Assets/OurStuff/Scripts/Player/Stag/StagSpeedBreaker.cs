@@ -113,6 +113,7 @@ public class StagSpeedBreaker : BaseClass {
         ready = true;
         active = true;
         ToggleColliders(true);
+        ToggleRenderers(true);
 
         stagMovement.IgnoreLayer(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Unit"), true); //ignorera all kollision mellan spelarobjektet och alla fiender, så man inte studsar mot dem under dash
     }
@@ -123,7 +124,8 @@ public class StagSpeedBreaker : BaseClass {
         //if (fadeOut != null || renderers[0].enabled == false) return;
 
         stagMovement.IgnoreLayer(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Unit"), false);
-
+        ToggleColliders(false);
+        ToggleRenderers(false);
 
         active = false;
     }
@@ -182,9 +184,9 @@ public class StagSpeedBreaker : BaseClass {
     {
         for (int i = 0; i < renderers.Length; i++)
         {
-            //renderers[i].enabled = b;
-            //Color c = renderers[i].material.color;
-            //renderers[i].material.color = new Color(c.r, c.g, c.b, startAlpha);
+            renderers[i].enabled = b;
+            Color c = renderers[i].material.color;
+            renderers[i].material.color = new Color(c.r, c.g, c.b, startAlpha);
         }
     }
 }
