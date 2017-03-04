@@ -693,6 +693,23 @@ public class StagMovement : BaseClass
         }
     }
 
+    public void Redirect(ref Vector3 incomingDir, Vector3 checkPoint, float length, float sphereChechRadius)
+    {
+        RaycastHit mainHit;
+        if (!Physics.SphereCast(checkPoint, 4, incomingDir, out mainHit, length, groundCheckLM))
+        {
+            return;
+        }
+
+        //Vector3 cross1 = Vector3.Cross(mainHit.normal, Vector3.up);
+        //Vector3 cross2 = Vector3.Cross(cross1, mainHit.normal); //en vektor upp längs med normalen
+
+        Vector3 c = Vector3.Cross(incomingDir, mainHit.normal);
+        Vector3 u = Vector3.Cross(incomingDir, c);
+
+        incomingDir = u;
+    }
+
     public void AngleToAvoid(ref Vector3 dir, Vector3 mainComparePoint, Vector3 firstComparePoint, Vector3 secondComparePoint, float length, bool checkMaxSlope = false)
     {
         Vector3 dirN = dir.normalized;

@@ -121,13 +121,12 @@ public class StagSpeedBreaker : BaseClass {
     public void Disable()
     {
         if (initTimes == 0) return;
-        //if (fadeOut != null || renderers[0].enabled == false) return;
+        if (fadeOut != null || renderers[0].enabled == false) return;
+
+        fadeOut = FadeOut(0.5f);
+        StartCoroutine(fadeOut);
 
         stagMovement.IgnoreLayer(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Unit"), false);
-        ToggleColliders(false);
-        ToggleRenderers(false);
-
-        active = false;
     }
 
     public void InstantDisable()
