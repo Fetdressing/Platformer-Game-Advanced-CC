@@ -4,7 +4,7 @@ using System.Collections;
 public class ParticleTimed : BaseClass {
     private GameObject thisObject;
     private ParticleSystem ps;
-    public float lifeTime = 3;
+    public float lifeTime = 1;
 
     public bool deactivateAfter = true; //ska den stänga av objektet eller köra ps.stop
 

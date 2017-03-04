@@ -54,6 +54,7 @@ public class StagMovement : BaseClass
     protected int jumpsAvaible = 0; //så man kan hoppa i luften also, förutsatt att man resettat den på marken
     protected float jumpCooldown = 0.1f;
     public GameObject jumpEffectObject;
+    private ParticleTimed[] jumpEffects;
     [HideInInspector] public float currFrameMovespeed = 0; //hur snabbt man rört sig denna framen
     protected Vector3 lastFramePos = Vector3.zero;
 
@@ -197,6 +198,8 @@ public class StagMovement : BaseClass
         animationH[jump.name].speed = animationSpeedMult;
 
         stagRootJointStartY = stagRootJoint.localPosition.y;
+
+        InitJumpEffects();
 
         Reset();
     }
@@ -1686,11 +1689,37 @@ public class StagMovement : BaseClass
         externalVel = moveDir;
     }
 
+    public virtual void InitJumpEffects()
+    {
+        Transform jumpEffectObjectTransform = jumpEffectObject.GetComponent<Transform>();
+        int childCount = jumpEffectObjectTransform.childCount;
+        ParticleTimed[] childSystems = new ParticleTimed[childCount];
+        int numberOfSystems = 0;
+        for (int i = 0; i < jumpEffectObjectTransform.childCount; i++)
+        {
+            ParticleTimed timedSystem = jumpEffectObjectTransform.GetChild(i).GetComponent<ParticleTimed>();
+            if(timedSystem != null)
+            {
+                childSystems[i] = timedSystem;
+                numberOfSystems++;
+            } 
+        }
+        if(numberOfSystems > 0)
+        {
+            jumpEffects = new ParticleTimed[numberOfSystems];
+            for(int i = 0; i<numberOfSystems; i++)
+            {
+                jumpEffects[i] = childSystems[i];
+            }
+        }
+    }
+
     public virtual void PlayJumpEffect()
     {
-        if (gameObject.activeSelf == false) return;
+        if (gameObject.activeSelf == false || !isGroundedRaycast ) return;
 
         AudioSource dAS = jumpEffectObject.GetComponent<AudioSource>();
+
         ParticleTimed psTimed = jumpEffectObject.GetComponentInChildren<ParticleTimed>();
 
         if (dAS != null)
@@ -1698,9 +1727,13 @@ public class StagMovement : BaseClass
             dAS.Play();
         }
 
-        if (psTimed != null)
+        if (jumpEffects.Length > 0)
         {
-            psTimed.StartParticleSystem();
+            for(int i = 0; i < jumpEffects.Length; i++)
+            {
+                jumpEffects[i].StartParticleSystem();
+            }
+            
         }
         
     }
