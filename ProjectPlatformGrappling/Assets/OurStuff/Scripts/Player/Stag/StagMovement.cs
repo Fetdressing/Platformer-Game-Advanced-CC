@@ -148,7 +148,7 @@ public class StagMovement : BaseClass
     public LayerMask groundCheckLM;
     protected float groundedTimePoint = 0; //när man blev grounded
     protected float maxSlopeGrounded = 80; //vilken vinkel det som mest får skilja på ytan och vector3.down när man kollar grounded
-    protected float maxSlopeDash = 65; //vilken vinkel som dash ska staggeras mot
+    protected float staggForce = 40; //hur långt man knuffas av stagg
     protected float groundedSlope = 0;
     protected Vector3 groundedNormal = Vector3.zero;
     protected GroundChecker groundChecker; //så man kan resetta stuff till camerashake tex
@@ -206,6 +206,8 @@ public class StagMovement : BaseClass
         stagRootJointStartY = stagRootJoint.localPosition.y;
 
         InitJumpEffects();
+
+        maxSlopeGrounded = characterController.slopeLimit;
 
         Reset();
     }
@@ -379,6 +381,9 @@ public class StagMovement : BaseClass
         DashFixedUpdate();
 
         nextMove += (currMomentum + dashVel + externalVel + yVector) * 0.01f;
+        //print(nextMove);
+        //Redirect(ref nextMove, transform.position + new Vector3(0, 2, 0), characterController.radius + 0.9f, 2);
+        //print(nextMove + "   2");
     }
 
     void Update()
@@ -531,6 +536,7 @@ public class StagMovement : BaseClass
         // YYYYY
 
         //characterController.Move((currMomentum + dashVel + externalVel + yVector) * deltaTime);
+        //Redirect(ref nextMove, transform.position + new Vector3(0, 2, 0), characterController.radius + 5f, 0.5f);
         characterController.Move(nextMove * Time.timeScale); //nextMove kalkuleras i fixedupdate
         nextMove *= 1 - Time.timeScale; //nollställer den varje update
 
@@ -693,10 +699,12 @@ public class StagMovement : BaseClass
         }
     }
 
-    public void Redirect(ref Vector3 incomingDir, Vector3 checkPoint, float length, float sphereChechRadius)
+    public void Redirect(ref Vector3 incomingDir, Vector3 castPoint, float length, float sphereChechRadius)
     {
+        float storedMag = incomingDir.magnitude;
         RaycastHit mainHit;
-        if (!Physics.SphereCast(checkPoint, sphereChechRadius, incomingDir, out mainHit, length, groundCheckLM))
+        //Debug.DrawLine(castPoint, castPoint + new Vector3(incomingDir.x, 0, incomingDir.z) * 30, Color.red);
+        if (!Physics.SphereCast(castPoint, sphereChechRadius, new Vector3(incomingDir.normalized.x, 0, incomingDir.normalized.z), out mainHit, length, groundCheckLM))
         {
             return;
         }
@@ -704,10 +712,11 @@ public class StagMovement : BaseClass
         //Vector3 cross1 = Vector3.Cross(mainHit.normal, Vector3.up);
         //Vector3 cross2 = Vector3.Cross(cross1, mainHit.normal); //en vektor upp längs med normalen
 
-        Vector3 c = Vector3.Cross(incomingDir, mainHit.normal);
-        Vector3 u = Vector3.Cross(incomingDir, c);
+        Vector3 c = Vector3.Cross(incomingDir.normalized, mainHit.normal);
+        Vector3 u = Vector3.Cross(mainHit.normal, c);
 
-        incomingDir = u;
+        incomingDir = u.normalized * storedMag;
+        Debug.DrawLine(castPoint, castPoint + new Vector3(incomingDir.x, incomingDir.y, incomingDir.z) * 30, Color.red);
     }
 
     public void AngleToAvoid(ref Vector3 dir, Vector3 mainComparePoint, Vector3 firstComparePoint, Vector3 secondComparePoint, float length, bool checkMaxSlope = false)
@@ -924,7 +933,7 @@ public class StagMovement : BaseClass
         return vectemp - vec;
     }
 
-    public void Stagger(float staggTime) //låser spelaren kvickt
+    public void Stagger(float staggTime, Vector3 staggDir = default(Vector3)) //låser spelaren kvickt
     {
         cameraShaker.ShakeCamera(staggTime, 1f, true, true);
 
@@ -933,12 +942,12 @@ public class StagMovement : BaseClass
             StopCoroutine(staggIE);
         }
 
-        staggIE = DoStagg(staggTime);
+        staggIE = DoStagg(staggTime, staggDir);
 
         StartCoroutine(staggIE);
     }
 
-    IEnumerator DoStagg(float staggTime)
+    IEnumerator DoStagg(float staggTime, Vector3 staggDir = default(Vector3))
     {
         isCCed = true;
         Time.timeScale = 0.2f;
@@ -946,6 +955,7 @@ public class StagMovement : BaseClass
         Time.timeScale = 1.0f;
         isCCed = false;
         staggIE = null;
+        ApplyExternalForce(staggDir, true);
     }
 
     void BreakNormalStagg() //breakar den normala staggen
@@ -1501,13 +1511,18 @@ public class StagMovement : BaseClass
             }
 
             //ySpeed = -gravity * 0.01f; //nollställer ej helt
-
-            Vector3 hitNormal = Vector3.zero;
-            if (!IsWalkable(1.0f, characterController.radius + 1.0f, dashVel, maxSlopeDash, ref hitNormal)) //så den slutar dasha när den går emot en vägg
+            if (IsFaceplant(1.0f, dirMod, characterController.radius + 1.0f))
             {
                 BreakDash(false);
-                Stagger(0.12f);
+                Stagger(0.12f, -dirMod * staggForce);
             }
+
+            //Vector3 hitNormal = Vector3.zero;
+            //if (!IsWalkable(1.0f, characterController.radius + 1.0f, dashVel, maxSlopeDash, ref hitNormal)) //så den slutar dasha när den går emot en vägg
+            //{
+            //    BreakDash(false);
+            //    Stagger(0.12f);
+            //}
         }
         else
         {
@@ -1543,12 +1558,17 @@ public class StagMovement : BaseClass
                 stagObject.transform.forward = dashVel.normalized;
             }
 
-            Vector3 hitNormal = Vector3.zero;
-            if (!IsWalkable(1.0f, characterController.radius + 1.0f, dashVel, maxSlopeDash, ref hitNormal)) //så den slutar dasha när den går emot en vägg
+            if(IsFaceplant(1.0f, dirMod, characterController.radius + 1.0f))
             {
                 BreakDash(false);
-                Stagger(0.12f);
+                Stagger(0.12f, -dirMod * staggForce);
             }
+            //Vector3 hitNormal = Vector3.zero;
+            //if (!IsWalkable(1.0f, characterController.radius + 1.0f, dashVel, maxSlopeDash, ref hitNormal)) //så den slutar dasha när den går emot en vägg
+            //{
+            //    BreakDash(false);
+            //    Stagger(0.12f);
+            //}
         }
     }
 
@@ -1909,17 +1929,6 @@ public class StagMovement : BaseClass
 
     public virtual bool IsWalkable(float yOffset, float distance, Vector3 direction, float maxSlope, ref Vector3 hitNormal) //man kan få tillbaks väggens normal
     {
-        //if(isGroundedRaycast)
-        //{
-        //    if (groundedSlope > maxSlopeGrounded) //lutning
-        //    {
-        //        if (Physics.Raycast(transform.position + new Vector3(0, yOffset, 0), direction, distance, groundCheckLM))
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    return true; //man står på marken utan lutning, då ska man kunna gå
-        //}
         RaycastHit rHit;
         if (Physics.Raycast(transform.position + new Vector3(0, yOffset, 0), direction, out rHit, distance, groundCheckLM))
         {
@@ -1936,6 +1945,19 @@ public class StagMovement : BaseClass
             }
         }
         return true;
+    }
+
+    public bool IsFaceplant(float yOffset, Vector3 direction, float distance, float threshholdValue = -0.93f)
+    {
+        RaycastHit rHit;
+        if (Physics.Raycast(transform.position + new Vector3(0, yOffset, 0), direction, out rHit, distance, groundCheckLM))
+        {
+            if(Vector3.Dot(rHit.normal, direction) < threshholdValue)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public virtual bool GetGrounded()
