@@ -525,6 +525,7 @@
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\Rotater.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\SimpleAnimationPlayer.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\UVDisplacer.cs" />
+    <Compile Include="Assets\ParticleVelocityTrails.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ExternalAssets\InControl\Readme\README.txt" />
