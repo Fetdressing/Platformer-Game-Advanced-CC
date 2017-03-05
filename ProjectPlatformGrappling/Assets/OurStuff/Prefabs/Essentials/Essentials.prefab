@@ -4539,7 +4539,6 @@ MonoBehaviour:
   currMomentum: {x: 0, y: 0, z: 0}
   currLimitSpeed: 0
   moveStackText: {fileID: 114000012092135568}
-  movementStacks: 0
   pullField: {fileID: 114000010577849772}
   groundCheckObject: {fileID: 4000011840728454}
   isGrounded: 0
@@ -6349,7 +6348,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 3.72
   m_Radius: 1.27
-  m_SlopeLimit: 65
+  m_SlopeLimit: 75
   m_StepOffset: 1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001

@@ -6,9 +6,9 @@ using UnityEngine.UI;
 //[RequireComponent(typeof(CharacterController))]
 public class StagMovement : BaseClass
 {
-    [HideInInspector]
+    [System.NonSerialized]
     public bool isCCed = false;
-    [HideInInspector]
+    [System.NonSerialized]
     //public bool isLocked = false; //förhindrar alla actions, ligger i baseclass
     public Transform cameraHolder; //den som förflyttas när man rör sig med musen
     protected Transform cameraObj; //kameran själv
@@ -18,13 +18,13 @@ public class StagMovement : BaseClass
     protected CharacterController characterController;
     protected PowerManager powerManager;
     protected ControlManager controlManager;
-    [HideInInspector]
+    [System.NonSerialized]
     public Vector3 yMiddlePointOffset = new Vector3(0, 3, 0);
 
     protected int fUpdatesPassed = 0; //hur många fixedupdates det har gått sedan senaste updaten
     protected int maxFUpdatesOnUpdate = 5; //just för movement så man inte ska få sådana mega spike förflyttningar
 
-    [HideInInspector] public StagSpeedBreaker speedBreaker;
+    [System.NonSerialized] public StagSpeedBreaker speedBreaker;
     protected float speedBreakerActiveSpeed = 1.8f; //vid vilken fart den går igång
     protected float speedBreakerTime = 0.2f; //endel tid i själva StagSpeedBreaker scriptet
     protected float speedBreakerTimer = 0.0f;
@@ -38,40 +38,40 @@ public class StagMovement : BaseClass
     protected float jumpSpeed = 110;
     protected float gravity = 180;
     float addedGravity = 0.0f; //läggs till gravity om man har mer momentum
-    [HideInInspector]public float minimumGravity = -30;
-    [HideInInspector]public float currGravityModifier = 1.0f;
+    [System.NonSerialized]public float minimumGravity = -30;
+    [System.NonSerialized]public float currGravityModifier = 1.0f;
     protected Vector3 yVector;
     protected float stagSpeedMultMax = 1.5f;
     protected float stagSpeedMultMin = 0.85f;
 
     protected float currMovementSpeed; //movespeeden, kan påverkas av slows
-    [HideInInspector]public float currExternalSpeedMult = 1.0f; //100% movespeed, påverkar slows n shit
+    [System.NonSerialized]public float currExternalSpeedMult = 1.0f; //100% movespeed, påverkar slows n shit
     protected float moveSpeedMultTimePoint = -5; //när extern slow/speed-up var applyat
     protected float moveSpeedMultDuration;
-    [HideInInspector]public float ySpeed; //aktiv variable för vad som händer med gravitation/jump
+    [System.NonSerialized]public float ySpeed; //aktiv variable för vad som händer med gravitation/jump
     protected float jumpTimePoint = -5; //när man hoppas så den inte ska resetta stuff dirr efter man hoppat
-    [HideInInspector] public int jumpAmount = 2; //hur många hopp man får
+    [System.NonSerialized] public int jumpAmount = 2; //hur många hopp man får
     protected int jumpsAvaible = 0; //så man kan hoppa i luften also, förutsatt att man resettat den på marken
     protected float jumpCooldown = 0.1f;
     public GameObject jumpEffectObject;
     private ParticleTimed[] jumpEffects;
-    [HideInInspector] public float currFrameMovespeed = 0; //hur snabbt man rört sig denna framen
+    [System.NonSerialized] public float currFrameMovespeed = 0; //hur snabbt man rört sig denna framen
     protected Vector3 lastFramePos = Vector3.zero;
 
     private IEnumerator currDashIE; //så man kan avbryta den
-    [HideInInspector]public IEnumerator staggDashIE; //sätts även ifrån andra script som StagSpeedBreaker
-    [HideInInspector]public IEnumerator staggIE; //normala stag grejen
-    [HideInInspector]public float dashTimePoint; //mud påverkar denna så att man inte kan dasha
-    protected float dashGlobalCooldown = 0.1f;
+    [System.NonSerialized]public IEnumerator staggDashIE; //sätts även ifrån andra script som StagSpeedBreaker
+    [System.NonSerialized]public IEnumerator staggIE; //normala stag grejen
+    [System.NonSerialized]public float dashTimePoint; //mud påverkar denna så att man inte kan dasha
+    protected float dashGlobalCooldown = 0.05f;
     protected float dashGroundCooldown = 1f; //går igång ifall man dashar från marken
     protected float dashSpeed = 400;
     protected float modDashSpeed; //blir dashspeeden men kan sedan ökas när man närmar sig dashtargets
     protected float dashHelpDistance = 70; //avståndet som karaktären börjar försöka nå dashtarget mer (ökar speeden tex)
     int dashUpdates = 20; //hur många fixedupdates som dash ska köra, detta gör den consistent i hur långt den åker oavsett framerate. Kanske en skum lösning men det funkar asbra!
     protected float startMaxDashTime = 0.08f; //den går att utöka
-    [HideInInspector] public float maxDashTime;
-    protected float dashPowerCost = 0.06f; //hur mycket power det drar varje gång man dashar
-    [HideInInspector]public bool dashUsed = false; //så att man måste bli grounded innan man kan använda den igen
+    [System.NonSerialized] public float maxDashTime;
+    protected float dashPowerCost = 0.045f; //hur mycket power det drar varje gång man dashar
+    [System.NonSerialized]public bool dashUsed = false; //så att man måste bli grounded innan man kan använda den igen
     public GameObject dashEffectObject;
     public ParticleSystem dashReadyPS; //particlesystem som körs när dash är redo att användas
     protected int currDashCombo = 0; //hur många dashes som gjorts i streck, används för att öka kostnaden tex
@@ -80,7 +80,7 @@ public class StagMovement : BaseClass
     protected float dashComboResetTimer = 0.0f;
     public LayerMask unitCheckLM; //fiender o liknande som dash ska styras mot
     //during dash
-    [HideInInspector] public Transform lastUnitHit; //så att man inte träffar samma igen
+    [System.NonSerialized] public Transform lastUnitHit; //så att man inte träffar samma igen
     Transform dashTarget = null;
     Vector3 dirMod = Vector3.zero;
     Vector3 groundOffset = new Vector3(0, 0.4f, 0);
@@ -94,7 +94,7 @@ public class StagMovement : BaseClass
 
     //moving platform
 
-    [HideInInspector] public Transform activePlatform;
+    [System.NonSerialized] public Transform activePlatform;
 
     protected Vector3 activeGlobalPlatformPoint;
     protected Vector3 activeLocalPlatformPoint;
@@ -108,14 +108,14 @@ public class StagMovement : BaseClass
     protected Vector3 lastH_Vector = Vector3.zero; //senast som horVector hade ett värde (dvs inte vector3.zero)
     protected Vector3 lastV_Vector = Vector3.zero; //senast som verVector hade ett värde (dvs inte vector3.zero)
     protected float hor, ver;
-    [HideInInspector] public Vector3 dashVel = new Vector3(0, 0, 0); //vill kunna komma åt denna, så därför public
+    [System.NonSerialized] public Vector3 dashVel = new Vector3(0, 0, 0); //vill kunna komma åt denna, så därför public
     private Vector3 lastDashVel = new Vector3(0,0,0); //när jag lerpar till dashtargets så vill jag fortfarande kunna ha en velocity att mata över till currmomentum
     Vector3 startDashDir = Vector3.zero; //används i dashupdates för att använda den senaste (den första nu istället) legit dashvelocityn
     protected Vector3 externalVel = new Vector3(0, 0, 0);
-    [HideInInspector] public Vector3 currMomentum = Vector3.zero; //så man behåller fart även efter man släppt på styrning
+    [System.NonSerialized] public Vector3 currMomentum = Vector3.zero; //så man behåller fart även efter man släppt på styrning
     protected Vector3 nextMove = Vector3.zero; //denna sätts i fixedupdate, sen körs move i update av detta värdet. Så man får frame independency
     protected float startLimitSpeed = 70;
-    [HideInInspector]public float currLimitSpeed; //max momentumen, hämtas från script som WallJumpObj
+    [System.NonSerialized]public float currLimitSpeed; //max momentumen, hämtas från script som WallJumpObj
     protected Vector3 updateTrans;
 
     public Text moveStackText;
@@ -124,12 +124,12 @@ public class StagMovement : BaseClass
 
     protected float movementStackResetTimer = 0.0f;
     protected float movementStackResetTime = 2.0f;
-    //[HideInInspector]public int currMovementStacks.value = 0; //får mer stacks när man dashar och hoppar mycket
-    [HideInInspector]
+    //[System.NonSerialized]public int currMovementStacks.value = 0; //får mer stacks när man dashar och hoppar mycket
+    [System.NonSerialized]
     public Pointer<int> currMovementStacks;
-    [HideInInspector]
+    [System.NonSerialized]
     public Pointer<int> hiddenMovementStacks = new Pointer<int>();//används när man slutat använda så mkt input
-    [HideInInspector]
+    [System.NonSerialized]
     public Pointer<int> realMovementStacks = new Pointer<int>();//används när man dashar, hoppar och är aktiv
 
 
@@ -139,9 +139,9 @@ public class StagMovement : BaseClass
     public Transform groundCheckObject;
     protected float groundedCheckOffsetY = 0.6f;
     protected float groundedCheckDistance = 13f;
-    [HideInInspector]
+    [System.NonSerialized]
     public bool isGrounded;
-    [HideInInspector]
+    [System.NonSerialized]
     public bool isGroundedRaycast;
     protected Transform groundedRaycastObject; //objektet som man blev grounded med raycast på
 

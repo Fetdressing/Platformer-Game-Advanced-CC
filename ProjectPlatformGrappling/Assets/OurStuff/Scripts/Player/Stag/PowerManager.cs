@@ -33,13 +33,13 @@ public class PowerManager : BaseClass {
     IEnumerator changeMatIE;
 
     private float maxPower = 1;
-    [HideInInspector] public float currPower;
-    [HideInInspector]
-    public float powerDecay = -0.1f;
+    [System.NonSerialized] public float currPower;
+    [System.NonSerialized]
+    public float powerDecay = -0.05f;
 
-    [HideInInspector]
+    [System.NonSerialized]
     public bool isAlive;
-    [HideInInspector]
+    [System.NonSerialized]
     public Vector3 deathLocation;
     public GameObject deathParticleSystemObj;
     public float delayedDeathTime = 0;

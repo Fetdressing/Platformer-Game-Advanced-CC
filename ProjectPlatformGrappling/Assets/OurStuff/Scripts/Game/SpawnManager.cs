@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SpawnManager : BaseClass {
     public int maxLives = 3;
-    [HideInInspector]
+    [System.NonSerialized]
     public int currLives;
 
     public Transform player;
@@ -20,10 +20,10 @@ public class SpawnManager : BaseClass {
 
     private bool isRespawning;
 
-    [HideInInspector]
+    [System.NonSerialized]
     public bool levelStarted = false;
     private float timePointLevelStarted = 0;
-    [HideInInspector] public float timePassed = 0;
+    [System.NonSerialized] public float timePassed = 0;
     public Text timeText;
 
     public Text powerGlobeText;

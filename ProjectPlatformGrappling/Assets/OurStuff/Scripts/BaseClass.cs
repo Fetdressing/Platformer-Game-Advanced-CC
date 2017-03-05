@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class BaseClass : MonoBehaviour
 {
     protected int initTimes = 0;
-    [HideInInspector]
+    [System.NonSerialized]
     public bool isLocked;
     protected bool bActivated; //för att kolla med deactivate funktionen
     public virtual void Init()
@@ -16,11 +16,11 @@ public class BaseClass : MonoBehaviour
     public virtual void Reset() { }
     public virtual void UpdateLoop() { }
     public virtual void Deactivate() { }
-    [HideInInspector]
+    [System.NonSerialized]
     public static float maxDeltaTime = 0.09f; //annars kan man få skumma värden om en frame varar för länge
-    [HideInInspector]
+    [System.NonSerialized]
     public static float deltaTime = 0.01f; //räknas ut sen i GameManager, den får ett startvärde så den inte ska vara null just
-    [HideInInspector]
+    [System.NonSerialized]
     public static float deltaTime_Unscaled = 0.01f;
     public static float lastFixedUpdate_Timepoint = 0.0f;
 
