@@ -31,7 +31,7 @@ public class ParticleTimed : BaseClass {
 
     public void StartParticleSystem(bool grounded = true)
     {
-        if (!grounded && onlyOnGrounded) return;
+        if (!grounded && onlyOnGrounded || thisObject == null) return;
         if (isReady == false) return;
         StopAllCoroutines();
         thisObject.SetActive(true);
