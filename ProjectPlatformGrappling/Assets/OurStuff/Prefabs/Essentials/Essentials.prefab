@@ -4029,7 +4029,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6425c2189048784788fcdad61697631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   onlyOnGrounded: 1
   lifeTime: 0.6
   deactivateAfter: 1
@@ -4151,7 +4150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782ecbeaa85fec24c9a0b04f57affc5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
 --- !u!114 &114000010514155844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4163,7 +4161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bcd4305d7b25cb4b8b81a31650e4ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   rSound: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 7eafcd8b22d119841922845ea25231ad, type: 3}
   volume: 0.4
@@ -4322,7 +4319,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aca12bbc6ee7b5459402aa4ad0b279d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   currRigidbody: {fileID: 0}
   thisRigidbody: {fileID: 0}
   thisCollider: {fileID: 0}
@@ -4404,7 +4400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c975f4ec5b22b33439c3296372225c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   target: {fileID: 4000011412557584}
   cameraC: {fileID: 0}
   distance: 22
@@ -4496,7 +4491,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5635b513bc33e4a86fc9c8b8a7456e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   stagObject: {fileID: 4000011412557584}
   touchGroundPS: {fileID: 114000010390454838}
 --- !u!114 &114000011163655248
@@ -4510,39 +4504,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41a9e27da9fad0740a6a33f17406b20e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
-  isCCed: 0
-  cameraHolder: {fileID: 4000010914960778}
   unitDetectionCamera: {fileID: 20000013890690064}
-  yMiddlePointOffset: {x: 0, y: 3, z: 0}
-  speedBreaker: {fileID: 0}
   stagRootJoint: {fileID: 4000010653670334}
   stagObject: {fileID: 4000011412557584}
-  minimumGravity: -30
-  currGravityModifier: 1
-  currExternalSpeedMult: 1
-  ySpeed: 0
-  jumpAmount: 2
   jumpEffectObject: {fileID: 1000013884809932}
-  currFrameMovespeed: 0
-  dashTimePoint: 0
-  maxDashTime: 0
-  dashUsed: 0
   dashEffectObject: {fileID: 1000013548107072}
   dashReadyPS: {fileID: 198000010572112006}
   unitCheckLM:
     serializedVersion: 2
     m_Bits: 4194304
-  lastUnitHit: {fileID: 0}
-  activePlatform: {fileID: 0}
-  dashVel: {x: 0, y: 0, z: 0}
-  currMomentum: {x: 0, y: 0, z: 0}
-  currLimitSpeed: 0
   moveStackText: {fileID: 114000012092135568}
   pullField: {fileID: 114000010577849772}
   groundCheckObject: {fileID: 4000011840728454}
-  isGrounded: 0
-  isGroundedRaycast: 0
   groundCheckLM:
     serializedVersion: 2
     m_Bits: 536870913
@@ -4566,7 +4539,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36fe763ec61329d4b8a03cc9778d85dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   gameUIPanel: {fileID: 1000012785473202}
   menuUIPanel: {fileID: 1000014287911808}
   settingsUIPanel: {fileID: 1000012226659496}
@@ -4583,7 +4555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bcd4305d7b25cb4b8b81a31650e4ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   rSound: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 886e3b4c8b0ecda4aab71e216fbe7f1b, type: 3}
   volume: 0.4
@@ -4660,7 +4631,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6425c2189048784788fcdad61697631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   onlyOnGrounded: 1
   lifeTime: 0.5
   deactivateAfter: 0
@@ -4842,7 +4812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a178af597971e4c4d82ede980fd2acf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   cameraPlayerFollow: {fileID: 20000010582969338}
   currCamera: {fileID: 0}
 --- !u!114 &114000012092135568
@@ -5041,7 +5010,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bcd4305d7b25cb4b8b81a31650e4ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   rSound: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 7eafcd8b22d119841922845ea25231ad, type: 3}
   volume: 0.4
@@ -5127,7 +5095,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bcd4305d7b25cb4b8b81a31650e4ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   rSound: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 886e3b4c8b0ecda4aab71e216fbe7f1b, type: 3}
   volume: 0.4
@@ -5177,7 +5144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6425c2189048784788fcdad61697631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   onlyOnGrounded: 1
   lifeTime: 0.6
   deactivateAfter: 1
@@ -5438,7 +5404,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c673890f95dec0e469a9de4a372d98e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   collisionLayerMask:
     serializedVersion: 2
     m_Bits: 536870913
@@ -5493,7 +5458,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c53dc872e23014fb5b578d49a8dc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   godMode: 0
   hornRenderer: {fileID: 137000013060747340}
   stagRenderer: {fileID: 137000010550600080}
@@ -5506,10 +5470,6 @@ MonoBehaviour:
   damagedMaterial: {fileID: 2100000, guid: 5a5a1a50a180c2246b70601cbc08ebef, type: 2}
   changeMatRenderers:
   - {fileID: 137000010550600080}
-  currPower: 0
-  powerDecay: -0.02
-  isAlive: 0
-  deathLocation: {x: 0, y: 0, z: 0}
   deathParticleSystemObj: {fileID: 1000010274308688, guid: e907b77c346d0e642893adef41c4035a,
     type: 2}
   delayedDeathTime: 2
@@ -5588,8 +5548,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62e8676cb7b84547a80c2de42b0191f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
-  active: 0
 --- !u!114 &114000013454058472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5740,7 +5698,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d221092a2a40e234ca83db579d3bf9c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   settingsPanel: {fileID: 1000012226659496}
   gammaSlider: {fileID: 114000012102937328}
   mouseSpeedSlider: {fileID: 114000014051644404}
@@ -5755,15 +5712,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc8a827a77618c46adbbd5b62ac07a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   maxLives: 3
-  currLives: 0
   player: {fileID: 4000011412557584}
   mainCameraS: {fileID: 114000013162039704}
   startSpawn: {fileID: 0}
   spawnEffectObject: {fileID: 0}
-  levelStarted: 0
-  timePassed: 0
   timeText: {fileID: 114000013813014650}
   powerGlobeText: {fileID: 114000013215213358}
 --- !u!114 &114000013984679992
@@ -6013,7 +5966,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6425c2189048784788fcdad61697631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   onlyOnGrounded: 0
   lifeTime: 1
   deactivateAfter: 1
@@ -6348,8 +6300,8 @@ CharacterController:
   serializedVersion: 2
   m_Height: 3.72
   m_Radius: 1.27
-  m_SlopeLimit: 75
-  m_StepOffset: 1
+  m_SlopeLimit: 80
+  m_StepOffset: 2
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.4, z: 0}

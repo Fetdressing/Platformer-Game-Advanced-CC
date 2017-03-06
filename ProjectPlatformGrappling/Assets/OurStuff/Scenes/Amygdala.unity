@@ -5749,7 +5749,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ecf0ca39eff284fb3f1ac62d051d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   fogColors:
   - {r: 0.22731848, g: 0.09142519, b: 0.6544118, a: 0}
   - {r: 0.26899835, g: 0.1407872, b: 0.45588237, a: 0}
@@ -15827,7 +15826,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &302729697
@@ -16881,7 +16879,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1961.5
+      value: 1957.4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16889,7 +16887,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4530.4
+      value: 4561.3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalRotation.x
@@ -16925,7 +16923,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4.2862377
+      value: 5.281879
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.y
@@ -16933,7 +16931,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.91254
+      value: 3.4257529
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_Name
@@ -18579,7 +18577,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &361685349
@@ -25579,7 +25576,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &488814266
@@ -27101,7 +27097,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &516851695
@@ -27407,7 +27402,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &526350580
@@ -28225,7 +28219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &539962787
@@ -35786,7 +35779,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &687790155
@@ -36965,7 +36957,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1137.6
+      value: -1152
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -37005,15 +36997,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.19691
+      value: 3.5858958
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.16074
+      value: 1.8946123
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.14446
+      value: 3.5002844
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_Name
@@ -38649,7 +38641,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1136.6
+      value: -1149.6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -38689,15 +38681,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.1969109
+      value: 3.290024
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.16074
+      value: 1.7382869
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.6491104
+      value: 2.4696546
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_Name
@@ -42014,7 +42006,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &800917401
@@ -42378,7 +42369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &806044819
@@ -45393,6 +45383,7 @@ Transform:
   - {fileID: 560317850}
   - {fileID: 1357908960}
   - {fileID: 614424286}
+  - {fileID: 1795868726}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46281,7 +46272,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &882405201
@@ -48113,7 +48103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &916346031
@@ -50705,7 +50694,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &976080051
@@ -51782,7 +51770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &1003232879
@@ -52678,7 +52665,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1145.3
+      value: -1157.8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -52718,15 +52705,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.3466966
+      value: 4.453265
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.76823
+      value: 2.3528862
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.5121868
+      value: 3.3428283
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_Name
@@ -59709,7 +59696,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -567
+      value: -589
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -59749,15 +59736,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.56371
+      value: 3.5370154
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.58738
+      value: 3.5696719
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.91254
+      value: 2.6386306
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_Name
@@ -63434,7 +63421,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &1243342639
@@ -70279,7 +70265,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1136.6
+      value: -1153.1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -70319,15 +70305,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.1969109
+      value: 3.6381238
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.16074
+      value: 1.9222057
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.6491106
+      value: 2.7309558
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_Name
@@ -71220,7 +71206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &1389359440
@@ -71879,7 +71864,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &1401570518
@@ -75978,7 +75962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &1470503935
@@ -83833,7 +83816,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &1563961743
@@ -84359,7 +84341,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &1570700987
@@ -84843,7 +84824,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &1580713147
@@ -92201,27 +92181,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -477.6
+      value: -486.1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4638.8
+      value: 4648.9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.072217524
+      value: 0.06234812
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.97682816
+      value: -0.9729946
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.051787965
+      value: 0.10078022
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.19470353
+      value: 0.19808467
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_RootOrder
@@ -92241,15 +92221,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.6503744
+      value: 2.994923
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.58738
+      value: 2.9237392
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.4189246
+      value: 2.7333848
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_Name
@@ -92257,15 +92237,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -157.91
+      value: -157.52101
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 7.4290004
+      value: 12.757001
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -7.004
+      value: -4.788
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
@@ -95375,7 +95355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &1789067772
@@ -95810,7 +95789,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &1794643696
@@ -96062,6 +96040,84 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1795594098}
   m_Mesh: {fileID: 4300000, guid: 31dbc4e59061fe341b8d4828b664522d, type: 2}
+--- !u!1001 &1795868725
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 873019429}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2624
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -667
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4439
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.8269739
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.56224036
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+      propertyPath: m_RootOrder
+      value: 115
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 75cab9037f325c34a8a9ff0bf946cf93, type: 2}
+    - target: {fileID: 100000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.6896331
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.689632
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.689632
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+      propertyPath: m_Name
+      value: PillarSmallFlatSurface (42)
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -111.578
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+  m_IsPrefabParent: 0
+--- !u!4 &1795868726 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 384e7e735f7ab9c48831a2a25045ca7f, type: 3}
+  m_PrefabInternal: {fileID: 1795868725}
 --- !u!1001 &1796653603
 Prefab:
   m_ObjectHideFlags: 0
@@ -102233,7 +102289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &1911293923
@@ -106627,7 +106682,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &1985861638
@@ -111641,7 +111695,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &2097590586
@@ -112430,7 +112483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &2112625262
@@ -113411,7 +113463,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 1
 --- !u!23 &2121584212

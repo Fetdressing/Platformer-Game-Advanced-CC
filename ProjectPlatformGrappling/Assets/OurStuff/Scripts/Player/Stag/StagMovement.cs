@@ -70,7 +70,7 @@ public class StagMovement : BaseClass
     int dashUpdates = 20; //hur många fixedupdates som dash ska köra, detta gör den consistent i hur långt den åker oavsett framerate. Kanske en skum lösning men det funkar asbra!
     protected float startMaxDashTime = 0.08f; //den går att utöka
     [System.NonSerialized] public float maxDashTime;
-    protected float dashPowerCost = 0.045f; //hur mycket power det drar varje gång man dashar
+    protected float dashPowerCost = 0.05f; //hur mycket power det drar varje gång man dashar
     [System.NonSerialized]public bool dashUsed = false; //så att man måste bli grounded innan man kan använda den igen
     public GameObject dashEffectObject;
     public ParticleSystem dashReadyPS; //particlesystem som körs när dash är redo att användas
@@ -138,7 +138,7 @@ public class StagMovement : BaseClass
     [Header("Ground Check")]
     public Transform groundCheckObject;
     protected float groundedCheckOffsetY = 0.6f;
-    protected float groundedCheckDistance = 13f;
+    protected float groundedCheckDistance = 14f;
     [System.NonSerialized]
     public bool isGrounded;
     [System.NonSerialized]
@@ -1964,7 +1964,7 @@ public class StagMovement : BaseClass
     {
         RaycastHit rHit;
 
-        if (Physics.Raycast(this.transform.position + new Vector3(0, groundedCheckOffsetY, 0), Vector3.down, out rHit, groundedCheckDistance, groundCheckLM))
+        if (Physics.SphereCast(characterController.center + new Vector3(0, groundedCheckOffsetY, 0), characterController.radius, Vector3.down, out rHit, groundedCheckDistance, groundCheckLM)) //spherecast istället?
         {
             if (rHit.transform == this.transform || rHit.normal.y < 0.5f) {  return false; } //MEH DEN SKA EJ COLLIDA MED SIG SJÄLV
 
