@@ -91,14 +91,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012961054914}
-  m_LocalRotation: {x: -0, y: 0.99669427, z: -0, w: 0.0812443}
+  m_LocalRotation: {x: -0, y: 0.99991995, z: -0, w: -0.012654712}
   m_LocalPosition: {x: 3614.3, y: -299.1, z: 3533.9}
   m_LocalScale: {x: 0.9999999, y: 1, z: 0.9999999}
   m_Children:
   - {fileID: 4000012911199500}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 170.68001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 181.45, z: 0}
 --- !u!4 &4000012787229782
 Transform:
   m_ObjectHideFlags: 1
@@ -202,7 +202,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 900, y: 300, z: 40}
+  m_Size: {x: 600, y: 450, z: 40}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &82000010651142404
 AudioSource:
@@ -344,7 +344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 873f5f7cea7b428429d49180e4cca11b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   isPassed: 0
   thisRenderer: {fileID: 23000010873991180}
   takenMaterial: {fileID: 2100000, guid: 03d4902037ad56b4bbc95c16b9e74c60, type: 2}
@@ -360,7 +359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ff407f431cfdf4b9b298c11fa6a471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   phaseTime: 0
   phaseCooldown: 1.5
   startTime: 0

@@ -16,12 +16,19 @@ public class HealthSpirit : BaseClass
 
     private Vector3 startPos;
 
-    [HideInInspector]
-    public Vector3 middlePoint; //var dennas mittpunkt ligger
     public float middlePointOffsetY = 0.5f;
+    [System.NonSerialized]
+    protected Vector3 middlePoint; //var dennas mittpunkt ligger
+    public Vector3 MiddlePoint
+    {
+        get
+        {
+            return new Vector3(thisTransform.position.x, thisTransform.position.y + middlePointOffsetY, thisTransform.position.z);
+        }
+    }
 
     public int startHealth = 3;
-    [HideInInspector]
+    [System.NonSerialized]
     public int maxHealth; //public för att den skall kunna moddas från tex AgentStats
     private int currHealth;
     private Vector3 deathLocation; //spara ned vart denna dog, används för respawn
@@ -29,7 +36,7 @@ public class HealthSpirit : BaseClass
     private float transparentValue = 1; //hur mkt denna fadeas ut
 
     public int startHealthRegAmount = 1;
-    [HideInInspector]
+    [System.NonSerialized]
     public int healthRegAmount;
     private float healthRegIntervall = 5.0f;
     private float healthRegTimer = 0.0f;
@@ -41,7 +48,7 @@ public class HealthSpirit : BaseClass
     public AnimationClip deathAnimation;
     public GameObject deathParticleSystemObj;
     public float delayedDeathTime = 0;
-    [HideInInspector]
+    [System.NonSerialized]
     public bool isAlive = true;
     public bool isIndestructable = false;
     public bool isDashTarget = true; //om man ska dras/staggera till denna eller ej
@@ -144,8 +151,6 @@ public class HealthSpirit : BaseClass
             return;
         }
 
-        middlePoint = new Vector3(thisTransform.position.x, thisTransform.position.y + middlePointOffsetY, thisTransform.position.z);
-
         if (healthRegTimer < Time.time)
         {
             healthRegTimer = Time.time + healthRegIntervall;
@@ -237,7 +242,7 @@ public class HealthSpirit : BaseClass
         if (deathParticleSystemObj != null)
         {
             GameObject deathParticleSystemSpawned = GameObject.Instantiate(deathParticleSystemObj.gameObject);
-            deathParticleSystemSpawned.transform.position = middlePoint;
+            deathParticleSystemSpawned.transform.position = MiddlePoint;
             deathParticleSystemSpawned.GetComponent<ParticleTimed>().StartParticleSystem();
             Destroy(deathParticleSystemSpawned, 5);
         }

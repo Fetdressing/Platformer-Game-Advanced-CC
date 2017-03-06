@@ -70,7 +70,7 @@ public class StagMovement : BaseClass
     int dashUpdates = 20; //hur många fixedupdates som dash ska köra, detta gör den consistent i hur långt den åker oavsett framerate. Kanske en skum lösning men det funkar asbra!
     protected float startMaxDashTime = 0.08f; //den går att utöka
     [System.NonSerialized] public float maxDashTime;
-    protected float dashPowerCost = 0.05f; //hur mycket power det drar varje gång man dashar
+    protected float dashPowerCost = 0.048f; //hur mycket power det drar varje gång man dashar
     [System.NonSerialized]public bool dashUsed = false; //så att man måste bli grounded innan man kan använda den igen
     public GameObject dashEffectObject;
     public ParticleSystem dashReadyPS; //particlesystem som körs när dash är redo att användas
@@ -82,9 +82,9 @@ public class StagMovement : BaseClass
     //during dash
     [System.NonSerialized] public Transform lastUnitHit; //så att man inte träffar samma igen
     Transform dashTarget = null;
+    HealthSpirit dashTargetHS = null;
     Vector3 dirMod = Vector3.zero;
     Vector3 groundOffset = new Vector3(0, 0.4f, 0);
-    Vector3 dashTargetOffset = Vector3.zero; //sätts av middlepoint av unitet
     float currDashTime;
     float startDashTime = 0.0f;
     float extendedTime = 0.0f;
@@ -138,7 +138,7 @@ public class StagMovement : BaseClass
     [Header("Ground Check")]
     public Transform groundCheckObject;
     protected float groundedCheckOffsetY = 0.6f;
-    protected float groundedCheckDistance = 14f;
+    protected const float groundedCheckDistance = 16f;
     [System.NonSerialized]
     public bool isGrounded;
     [System.NonSerialized]
@@ -419,8 +419,7 @@ public class StagMovement : BaseClass
         if (Time.timeScale == 0) return;
         if (isLocked) return;
         if (isCCed) return;
-
-        isGroundedRaycast = GetGrounded(groundCheckObject);
+        
         //Debug.Log(GetGroundedDuration().ToString());
 
         //Debug.Log(ingame_Realtime.ToString() + "\n" + Time.realtimeSinceStartup.ToString());
@@ -583,20 +582,20 @@ public class StagMovement : BaseClass
         {
             if (slope > maxSlopeGrounded)
             {
-                if (isGroundedRaycast || isGrounded)
-                {
-                    if (groundedSlope > maxSlopeGrounded)
-                    {
-                        //ApplyExternalForce(hit.normal * currMomentum.magnitude);
-                        currMomentum = hit.normal * currMomentum.magnitude; //BOUNCE!!
-                        //currMomentum = Vector3.zero;
-                    }
-                }
-                else //om man inte är grounded så använder man ju en gammal slope? denna kan vara farlig att ha här
-                {
-                    //ApplyExternalForce(hit.normal * 20); // så man glider för slopes
-                    //currMomentum = Vector3.zero;
-                }
+                //if (isGroundedRaycast || isGrounded)
+                //{
+                //    if (groundedSlope > maxSlopeGrounded)
+                //    {
+                //        //ApplyExternalForce(hit.normal * currMomentum.magnitude);
+                //        currMomentum = hit.normal * currMomentum.magnitude; //BOUNCE!!
+                //        //currMomentum = Vector3.zero;
+                //    }
+                //}
+                //else //om man inte är grounded så använder man ju en gammal slope? denna kan vara farlig att ha här
+                //{
+                //    //ApplyExternalForce(hit.normal * 20); // så man glider för slopes
+                //    //currMomentum = Vector3.zero;
+                //}
             }
             else if (slope <= maxSlopeGrounded) //ingen slope, dvs man står på marken, resetta stuff!
             {
@@ -971,7 +970,7 @@ public class StagMovement : BaseClass
 
     void CheckGroundTouch()
     {
-        if (GetGrounded(groundCheckObject)) //använd endast GetGrounded här, annars kommer man få samma problem när gravitationen slutar verka pga lång raycast
+        if (GetGrounded()) //använd endast GetGrounded här, annars kommer man få samma problem när gravitationen slutar verka pga lång raycast
         {
             if (jumpTimePoint < Time.time - 0.4f) //så den inte ska fucka och resetta dirr efter man hoppat
             {
@@ -1023,7 +1022,7 @@ public class StagMovement : BaseClass
 
                 if (dashTimePoint < jumpTimePoint) //se till så att man använde jump senast och inte dash
                 {
-                    if ((jumpTimePoint + jumpGroundCheckTimeWindowCLOSE) > Time.time && isGroundedRaycast) //man är fortfarande grounded efter förra hoppet, öka höjden!
+                    if ((jumpTimePoint + jumpGroundCheckTimeWindowCLOSE) > Time.time && GetGrounded()) //man är fortfarande grounded efter förra hoppet, öka höjden!
                     {
                         addedJumpSpeed = 40;
                     }
@@ -1242,6 +1241,9 @@ public class StagMovement : BaseClass
             speedBreaker.InstantDisable();
 
         }
+
+        dashTargetHS = null;
+        dashTarget = null;
     }
 
     protected virtual IEnumerator MoveDash(bool useCameraDir, float extraDashTime = 0)
@@ -1348,14 +1350,14 @@ public class StagMovement : BaseClass
             if (potTargets[i].transform == lastUnitHit) { continue; }//så man inte fastnar på infinite dash
             if(!hSpirit.isDashTarget) { continue; }
 
-            Vector3 TToTar = ((potTargets[i].transform.position + groundOffset) - (transform.position + groundOffset)).normalized;
-            Vector3 CToTar = (potTargets[i].transform.position - cameraHolder.position).normalized;
+            Vector3 TToTar = ((hSpirit.MiddlePoint) - (transform.position + groundOffset)).normalized;
+            Vector3 CToTar = (hSpirit.MiddlePoint - cameraHolder.position).normalized;
 
-            Vector3 currViewPos = checkCamera.WorldToViewportPoint(potTargets[i].transform.position); //använder en kamera för att se ifall den ser några fiender!
+            Vector3 currViewPos = checkCamera.WorldToViewportPoint(hSpirit.MiddlePoint); //använder en kamera för att se ifall den ser några fiender!
 
             if (currViewPlayerPos.z > currViewPos.z) continue; //ligger mellan kameran o spelaren och då ska man inte dasha
 
-            float currDistance = Vector3.Distance(transform.position, potTargets[i].transform.position); //jämför med den senaste outputen
+            float currDistance = Vector3.Distance(transform.position, hSpirit.MiddlePoint); //jämför med den senaste outputen
             float currToMidValue = (Mathf.Abs(0.5f - currViewPos.x) + Mathf.Abs(0.5f - currViewPos.y)); //hur nära mitten är den? ju lägra destu närmre
 
             float currDistanceValue = currDistance / distanceCheck; //denna kommer bli pissliten
@@ -1383,7 +1385,7 @@ public class StagMovement : BaseClass
                     bestFinalValue = currFinalValue;
                     biasedDir = TToTar;
                     dashTarget = potTargets[i].transform;
-                    hSpirit = dashTarget.GetComponent<HealthSpirit>();
+                    dashTargetHS = hSpirit;
                     //bestDashTransform = potTargets[i].transform; //denna måste dock resettas efter en kort tid så att man återigen kan dasha på denna, detta bör göras när man kör en vanlig dash, dvs en som går på cd o liknande
                 }
             }
@@ -1416,12 +1418,6 @@ public class StagMovement : BaseClass
 
         startDashTime = Time.time;
         extendedTime = 0.0f;
-
-        dashTargetOffset = Vector3.zero;
-        if (hSpirit != null)
-        {
-            dashTargetOffset = new Vector3(0, hSpirit.middlePointOffsetY, 0);
-        }
 
         currDashUpdates = 0 - (int)(extraDashTime * 70); //lägger till extraDashTime
 
@@ -1482,11 +1478,11 @@ public class StagMovement : BaseClass
 
             if (dashTarget != null) //om jag har dashTarget så lerpa endast
             {
-                dirMod = ((dashTarget.position + groundOffset + dashTargetOffset) - (transform.position + groundOffset)).normalized;
+                dirMod = ((dashTargetHS.MiddlePoint + groundOffset) - (transform.position + groundOffset)).normalized;
 
-                transform.position = Vector3.Lerp(transform.position, dashTarget.position, (modDashSpeed / 40) * Time.fixedDeltaTime);
+                transform.position = Vector3.Lerp(transform.position, dashTargetHS.MiddlePoint, (modDashSpeed / 40) * Time.fixedDeltaTime);
 
-                if (Vector3.Distance(transform.position, dashTarget.position) < dashHelpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
+                if (Vector3.Distance(transform.position, dashTargetHS.MiddlePoint) < dashHelpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
                 {
                     dirMod = startDashDir; //man är för nära för att leta efter en ny velocity
                     lastDashVel = dirMod * modDashSpeed;
@@ -1540,7 +1536,7 @@ public class StagMovement : BaseClass
             bool closeToTarget = false;
             if (dashTarget != null)
             {                
-                if (Vector3.Distance(transform.position, dashTarget.position) < dashHelpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
+                if (Vector3.Distance(transform.position, dashTargetHS.MiddlePoint) < dashHelpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
                 {
                     dirMod = startDashDir; //man är för nära för att leta efter en ny velocity
                     lastDashVel = dirMod * modDashSpeed;
@@ -1960,23 +1956,59 @@ public class StagMovement : BaseClass
         return false;
     }
 
-    public virtual bool GetGrounded()
+    //de riktiga checkarna!
+    public virtual bool GetGrounded(Vector3 checkerPoint, float distance = groundedCheckDistance) //från en annan utgångspunkt
     {
         RaycastHit rHit;
+        bool isGHit = false;
 
-        if (Physics.SphereCast(characterController.center + new Vector3(0, groundedCheckOffsetY, 0), characterController.radius, Vector3.down, out rHit, groundedCheckDistance, groundCheckLM)) //spherecast istället?
+        if (Physics.SphereCast(checkerPoint, characterController.radius, Vector3.down, out rHit, distance, groundCheckLM))
         {
-            if (rHit.transform == this.transform || rHit.normal.y < 0.5f) {  return false; } //MEH DEN SKA EJ COLLIDA MED SIG SJÄLV
+            groundedSlope = GetSlope(rHit.normal);
+            groundedNormal = rHit.normal;
+
+            if (rHit.transform == this.transform || rHit.normal.y < 0.5f) { isGHit = false; } //MEH DEN SKA EJ COLLIDA MED SIG SJÄLV
+            else if (groundedSlope > maxSlopeGrounded) { isGHit = false; }
+            else
+            {
+                groundedRaycastObject = rHit.transform;
+                isGHit = true;
+            }
+        }
+        else
+        {
+            isGHit = false;
+        }
+
+        if (!isGHit)
+        {
+            isGHit = GetGroundedSingleRay(checkerPoint); //kolla från en single ray oxå istället för spherecast
+        }
+
+        if (isGroundedRaycast == false) //om man inte var grounded innan
+        {
+            if (isGHit)
+            {
+                groundedTimePoint = Time.time;
+                Debug.Log(groundedTimePoint);
+            }
+        }
+
+        isGroundedRaycast = isGHit;
+
+        return isGHit;
+    }
+    public bool GetGroundedSingleRay(Vector3 checkerPoint, float distance = groundedCheckDistance)
+    {
+        RaycastHit rHit;
+        if (Physics.Raycast(checkerPoint, Vector3.down, out rHit, distance, groundCheckLM))
+        {
+            if (rHit.transform == this.transform || rHit.normal.y < 0.5f) { return false; } //MEH DEN SKA EJ COLLIDA MED SIG SJÄLV
 
             groundedSlope = GetSlope(rHit.normal);
             groundedNormal = rHit.normal;
 
-            if (groundedSlope > maxSlopeGrounded) {  return false; }
-
-            if (isGroundedRaycast == false) //om man inte var grounded innan
-            {
-                groundedTimePoint = Time.time;
-            }
+            if (groundedSlope > maxSlopeGrounded) { return false; }
 
             groundedRaycastObject = rHit.transform;
             return true;
@@ -1985,58 +2017,26 @@ public class StagMovement : BaseClass
         {
             return false;
         }
+    }
+    //de riktiga checkarna!
+
+    public virtual bool GetGrounded()
+    {
+        Vector3 checkerPoint = transform.position + characterController.center + new Vector3(0, groundedCheckOffsetY, 0);
+
+        return GetGrounded(checkerPoint);
     }
 
     public virtual bool GetGrounded(Transform tChecker) //från en annan utgångspunkt
     {
-        RaycastHit rHit;
-        if (Physics.Raycast(tChecker.position + new Vector3(0, groundedCheckOffsetY, 0), Vector3.down, out rHit, groundedCheckDistance, groundCheckLM))
-        {
-            if (rHit.transform == this.transform || rHit.normal.y < 0.5f) { return false; } //MEH DEN SKA EJ COLLIDA MED SIG SJÄLV
-
-            groundedSlope = GetSlope(rHit.normal);
-            groundedNormal = rHit.normal;
-
-            if (groundedSlope > maxSlopeGrounded) { return false; }
-
-            if (isGroundedRaycast == false) //om man inte var grounded innan
-            {
-                groundedTimePoint = Time.time;
-            }
-            groundedRaycastObject = rHit.transform;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return GetGrounded(tChecker.position);
     }
-
 
     public virtual bool GetGrounded(Transform tChecker, float distance) //från en annan utgångspunkt och med en specifik längd
     {
-        RaycastHit rHit;
-        if (Physics.Raycast(tChecker.position + new Vector3(0, groundedCheckOffsetY, 0), Vector3.down, out rHit, distance, groundCheckLM))
-        {
-            if (rHit.transform == this.transform || rHit.normal.y < 0.5f) { return false; } //MEH DEN SKA EJ COLLIDA MED SIG SJÄLV
-
-            groundedSlope = GetSlope(rHit.normal);
-            groundedNormal = rHit.normal;
-
-            if (groundedSlope > maxSlopeGrounded) { return false; }
-
-            if (isGroundedRaycast == false) //om man inte var grounded innan
-            {
-                groundedTimePoint = Time.time;
-            }
-            groundedRaycastObject = rHit.transform;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return GetGrounded(tChecker.position, distance);
     }
+
 
     public virtual Transform GetGroundedTransform(Transform tChecker) //får den transformen man står på, från en annan utgångspunkt
     {
