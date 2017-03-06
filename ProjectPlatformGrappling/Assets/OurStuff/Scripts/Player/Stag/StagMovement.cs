@@ -353,6 +353,7 @@ public class StagMovement : BaseClass
         Vector3 firstComparePoint = transform.position + new Vector3(0, 2, 0) + sideVecToMom * characterController.radius;
         Vector3 secondComparePoint = transform.position + new Vector3(0, 2, 0) + -sideVecToMom * characterController.radius;
         AngleToAvoid(ref currMomentum, mainComparePoint, firstComparePoint, secondComparePoint, characterController.radius + 0.9f, true); //korrekt riktningen så man inte "springer in i väggar"
+        ///man vill kanske tryckas ned oxå när man träffar väggar like this?
 
         ///en längre ned?
         //mainComparePoint = transform.position + new Vector3(0, 0.5f, 0);
@@ -1990,7 +1991,6 @@ public class StagMovement : BaseClass
             if (isGHit)
             {
                 groundedTimePoint = Time.time;
-                Debug.Log(groundedTimePoint);
             }
         }
 

@@ -14,6 +14,7 @@ public class WoWCCamera : BaseClass
     public float targetHeight = 12.0f;
     public float distance = 5.0f;
     public float extraDistance = 0.0f;
+    protected float lastFrameDistance = 0.0f; //så man kan välja att klampa beroende på hur den påverkats
 
     public float maxDistance = 20;
     public float minDistance = 2.5f;
@@ -224,6 +225,7 @@ public class WoWCCamera : BaseClass
         //        StartCoroutine(goToPrefAngleCo);
         //    }
         //}
+
         Quaternion rotation = Quaternion.Euler(y, x, 0);
         Vector3 position = target.position - (rotation * Vector3.forward * (distance + extraDistance) + new Vector3(0, -targetHeight, 0));
 
@@ -235,7 +237,31 @@ public class WoWCCamera : BaseClass
         Vector3 yOffset = new Vector3(0, 1.5f, 0);
         CompensateForWalls(target.position + yOffset, position, ref newDistance);
 
-        if(newDistance > 0.01f)
+        float wantedDistance;
+        if (newDistance > 0.01f)
+        {
+            wantedDistance = newDistance;
+        }
+        else
+        {
+            wantedDistance = distance + extraDistance;
+        }
+        float usingDistance = 0; //den som kommer användas
+
+        float currDistance = lastFrameDistance;
+
+        if ((lastFrameDistance) < wantedDistance)
+        {
+            currDistance = Mathf.Lerp(lastFrameDistance, wantedDistance, Time.deltaTime * 2);
+            usingDistance = currDistance;
+        }
+        else
+        {
+            usingDistance = wantedDistance;
+        }
+
+
+        if (newDistance > 0.01f)
         {
             position = target.position - (rotation * Vector3.forward * (newDistance) + new Vector3(0, -targetHeight, 0));
         }
@@ -290,6 +316,8 @@ public class WoWCCamera : BaseClass
 
         lastFrameTargetPos = target.position;
 
+        lastFrameDistance = usingDistance;
+        //lastFrameDistance = Vector3.Distance(target.position - new Vector3(0, -targetHeight, 0), transform.position);
 
     }
 
