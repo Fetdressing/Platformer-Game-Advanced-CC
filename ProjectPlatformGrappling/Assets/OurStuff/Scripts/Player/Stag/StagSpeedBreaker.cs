@@ -116,7 +116,8 @@ public class StagSpeedBreaker : BaseClass {
     public void Disable()
     {
         if (initTimes == 0) return;
-        if (fadeOut != null || renderers[0].enabled == false) return;
+
+        if (fadeOut != null || (renderers.Length <= 0)) return;
 
         fadeOut = FadeOut(0.5f);
         StartCoroutine(fadeOut);
