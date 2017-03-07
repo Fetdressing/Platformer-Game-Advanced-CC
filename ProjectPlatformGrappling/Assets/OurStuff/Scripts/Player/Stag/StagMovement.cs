@@ -70,12 +70,12 @@ public class StagMovement : BaseClass
     int dashUpdates = 20; //hur många fixedupdates som dash ska köra, detta gör den consistent i hur långt den åker oavsett framerate. Kanske en skum lösning men det funkar asbra!
     protected float startMaxDashTime = 0.08f; //den går att utöka
     [System.NonSerialized] public float maxDashTime;
-    protected float dashPowerCost = 0.048f; //hur mycket power det drar varje gång man dashar
+    protected float dashPowerCost = 0.058f; //hur mycket power det drar varje gång man dashar
     [System.NonSerialized]public bool dashUsed = false; //så att man måste bli grounded innan man kan använda den igen
     public GameObject dashEffectObject;
     public ParticleSystem dashReadyPS; //particlesystem som körs när dash är redo att användas
     protected int currDashCombo = 0; //hur många dashes som gjorts i streck, används för att öka kostnaden tex
-    protected float dashComboMult = 0.011f;
+    protected float dashComboMult = 0.008f;
     protected float dashComboResetTime = 0.85f;
     protected float dashComboResetTimer = 0.0f;
     public LayerMask unitCheckLM; //fiender o liknande som dash ska styras mot
@@ -1265,7 +1265,7 @@ public class StagMovement : BaseClass
         unitDetectionCamera.transform.localRotation = Quaternion.identity; //nollställ
         unitDetectionCamera.transform.localPosition = Vector3.zero;
 
-        if (GetGrounded(groundCheckObject, 3) && extraDashTime == 0) //extra cooldown för att man dashar från marken! FY PÅ DEJ!! (varit airbourne i X sekunder)if(Mathf.Abs(jumpTimePoint - Time.time) > 0.08f)
+        if (GetGrounded(groundCheckObject, 0.7f) && extraDashTime == 0) //extra cooldown för att man dashar från marken! FY PÅ DEJ!! (varit airbourne i X sekunder)if(Mathf.Abs(jumpTimePoint - Time.time) > 0.08f)
         { //använder extraDashTime och antar att det är när man dashar vidare från objekt, behöver en mer solid check kanske?
             dashTimePoint += dashGroundCooldown;
         }
@@ -1480,18 +1480,18 @@ public class StagMovement : BaseClass
             if (dashTarget != null) //om jag har dashTarget så lerpa endast
             {
                 dirMod = ((dashTargetHS.MiddlePoint + groundOffset) - (transform.position + groundOffset)).normalized;
+                SetDashVelocity(dirMod * modDashSpeed);
 
                 transform.position = Vector3.Lerp(transform.position, dashTargetHS.MiddlePoint, (modDashSpeed / 40) * Time.fixedDeltaTime);
 
                 if (Vector3.Distance(transform.position, dashTargetHS.MiddlePoint) < dashHelpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
-                {
-                    dirMod = startDashDir; //man är för nära för att leta efter en ny velocity
-                    lastDashVel = dirMod * modDashSpeed;
+                {                   
+                    SetDashVelocity(startDashDir * modDashSpeed); //man är för nära för att leta efter en ny velocity
                     closeToTarget = true;
                 }
                 else
                 {
-                    modDashSpeed = dashSpeed;
+                    modDashSpeed = dashSpeed + currMovementStacks.value * 0.15f;
                     //startDashDir = dirMod;
                 }
             }
@@ -1539,14 +1539,7 @@ public class StagMovement : BaseClass
             {                
                 if (Vector3.Distance(transform.position, dashTargetHS.MiddlePoint) < dashHelpDistance) //nästan där! skynda! så att man ska träffa mer frekvent och inte stanna precis innan
                 {
-                    dirMod = startDashDir; //man är för nära för att leta efter en ny velocity
-                    lastDashVel = dirMod * modDashSpeed;
                     closeToTarget = true;
-                }
-                else
-                {
-                    modDashSpeed = dashSpeed;
-                    //startDashDir = dirMod;
                 }
             }
 
