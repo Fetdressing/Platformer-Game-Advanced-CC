@@ -158,7 +158,7 @@ public class WoWCCamera : BaseClass
 
     void Update()
     {
-        fUpdate.UpdateF(Time.unscaledDeltaTime); //updatera unscaled fixed updaten
+        fUpdate.UpdateF(deltaTime_Unscaled); //updatera unscaled fixed updaten
     }
 
     //void FixedUpdate() //behöver unscaled fixedupdate!
@@ -236,7 +236,7 @@ public class WoWCCamera : BaseClass
 
         Vector3 yOffset = new Vector3(0, 1.5f, 0);
         CompensateForWalls(target.position + yOffset, position, ref newDistance);
-
+        
         float wantedDistance;
         if (newDistance > 0.01f)
         {
@@ -252,7 +252,8 @@ public class WoWCCamera : BaseClass
 
         if ((lastFrameDistance) < wantedDistance)
         {
-            currDistance = Mathf.Lerp(lastFrameDistance, wantedDistance, Time.deltaTime * 2);
+            float cLerpSpeed = 4f;
+            currDistance = Mathf.Lerp(lastFrameDistance, wantedDistance, deltaTime_Unscaled * cLerpSpeed);
             usingDistance = currDistance;
         }
         else
@@ -260,11 +261,11 @@ public class WoWCCamera : BaseClass
             usingDistance = wantedDistance;
         }
 
-
-        if (newDistance > 0.01f)
-        {
-            position = target.position - (rotation * Vector3.forward * (newDistance) + new Vector3(0, -targetHeight, 0));
-        }
+        position = target.position - (rotation * Vector3.forward * (usingDistance) + new Vector3(0, -targetHeight, 0));
+        //if (newDistance > 0.01f)
+        //{
+        //    position = target.position - (rotation * Vector3.forward * (newDistance) + new Vector3(0, -targetHeight, 0));
+        //}
         //// Check to see if we have a collision
         //collisionVector = AdjustLineOfSight(transform.position, position);
 
