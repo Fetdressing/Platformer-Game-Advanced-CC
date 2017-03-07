@@ -973,10 +973,11 @@ public class StagMovement : BaseClass
     {
         if (GetGrounded()) //använd endast GetGrounded här, annars kommer man få samma problem när gravitationen slutar verka pga lång raycast
         {
-            if (jumpTimePoint < Time.time - 0.4f) //så den inte ska fucka och resetta dirr efter man hoppat
+            if (jumpTimePoint < Time.time - 0.4f) //så den inte ska fucka och resetta dirr efter man hoppat, kanske kolla ifall yspeed < 0 ??
             {
                 //dessa resetsen görs här eftersom denna groundchecken är mycket mer pålitlig
                 //dashUsed = true; //resettar bara med riktigt grounded så det ska vara mer "snällt"
+                dashUsed = false;
                 AddJumpsAvaible(jumpAmount, jumpAmount);
             }
 
@@ -1051,7 +1052,7 @@ public class StagMovement : BaseClass
                 }
                 else
                 {
-                    ySpeed += (jumpSpeed * 0.8f) + addedJumpSpeed; //mindre force när man redan har force
+                    ySpeed += (jumpSpeed * 1.0f) + addedJumpSpeed; //mindre force när man redan har force
                 }
                 //animationH.Play(jump.name);
                 //animationH[jump.name].weight = 1.0f;

@@ -1424,7 +1424,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b409028cc80da894b83943c53f357571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   rotater: {fileID: 0}
   movePosIntervalTime: 8
   speed: 110
@@ -1437,7 +1436,7 @@ MonoBehaviour:
   animH: {fileID: 111581656249911296}
   idle: {fileID: 7400000, guid: cb2e6222b408a4c4686435cf1819c97e, type: 3}
   run: {fileID: 7400000, guid: be9806e49cfa3d74c9fc2040a30193c8, type: 3}
-  idleSpeed: 1
+  idleSpeed: 1.5
   runSpeed: 2.2
 --- !u!114 &114562824498557796
 MonoBehaviour:
@@ -1450,17 +1449,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0d8d3e0e7d4488468a3fafda699239d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   thisRenderer:
   - {fileID: 137869994797158796}
   damagedMaterial: {fileID: 2100000, guid: 5a5a1a50a180c2246b70601cbc08ebef, type: 2}
-  middlePoint: {x: 0, y: 0, z: 0}
   middlePointOffsetY: 7
   startHealth: 1
-  maxHealth: 3
   fadeOnDamage: 0
   startHealthRegAmount: 1
-  healthRegAmount: 1
   destroyOnDeath: 0
   respawn: 1
   animationObj: {fileID: 0}
@@ -1468,7 +1463,6 @@ MonoBehaviour:
   deathParticleSystemObj: {fileID: 1000011467355800, guid: cde71cae4950c5e4ab130591809c542d,
     type: 2}
   delayedDeathTime: 0
-  isAlive: 1
   isIndestructable: 1
   isDashTarget: 1
   dropDeathObject: {fileID: 1000011286707946, guid: aad862bd58299a24995f2c0e07f9133c,
@@ -1486,7 +1480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 1
   killsEnemies: 0
 --- !u!135 &135461496341455186
