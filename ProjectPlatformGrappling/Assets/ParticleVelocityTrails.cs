@@ -1,7 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+    [System.Serializable]
+    public class ParticleVelocitySettings
+    {
+        public float minVelocity;
+        public float maxVelocity;
+        public int maxParticles;
+        public float trailTimeMin;
+        public float trailTimeMax;
+    }
 public class ParticleVelocityTrails : BaseClass {
 
     // Components
@@ -10,6 +18,8 @@ public class ParticleVelocityTrails : BaseClass {
     private ParticleSystem.TrailModule trailModule;
     private ParticleSystem.EmissionModule emissionModule;
     private ParticleSystem.MainModule mainModule;
+
+    
 
     public int ShowParticlesAtStep = -1; // Show the particles at this step. Disabled at -1
 
@@ -33,6 +43,7 @@ public class ParticleVelocityTrails : BaseClass {
     public float step4StartMag = -1.0f;
     public Vector2 step4Values;
 
+    public ParticleVelocitySettings test;
     // Use this for initialization
     void Start () {
 		playerMovementObject = GameObject.FindGameObjectWithTag("Player").GetComponent<StagMovement>();
