@@ -52,7 +52,7 @@ public class StagMovement : BaseClass
     protected float jumpTimePoint = -5; //när man hoppas så den inte ska resetta stuff dirr efter man hoppat
     [System.NonSerialized] public int jumpAmount = 2; //hur många hopp man får
     protected int jumpsAvaible = 0; //så man kan hoppa i luften also, förutsatt att man resettat den på marken
-    protected float jumpCooldown = 0.1f;
+    protected float jumpCooldown = 0.05f;
     public GameObject jumpEffectObject;
     private ParticleTimed[] jumpEffects;
     [System.NonSerialized] public float currFrameMovespeed = 0; //hur snabbt man rört sig denna framen
@@ -1370,7 +1370,7 @@ public class StagMovement : BaseClass
             if (currDistance < closeDistanceThreshhold) continue;
 
             float minDistanceFromEdges = 0.3f; //hur nära kanten den max får vara
-            float maxDistanceFromCenter = 0.25f;
+            float maxDistanceFromCenter = 0.2f;
 
             //if (currViewPos.x < (1.0f - minDistanceFromEdges) && currViewPos.x > (0.0f + minDistanceFromEdges) && currViewPos.y < (1.0f - minDistanceFromEdges) && currViewPos.y > (0.0f + minDistanceFromEdges) && currViewPos.z > 0.0f) //kolla så att den är innanför viewen
             Vector2 viewPosFromCenter = new Vector2(Mathf.Abs(0.5f - currViewPos.x), Mathf.Abs(0.5f - currViewPos.y));
