@@ -1097,16 +1097,15 @@ public class StagMovement : BaseClass
 
     public virtual bool Dash(bool useCameraDir, float extraDashTime = 0)
     {
-        if (!IsDashReady(dashPowerCost + ((float)(currDashCombo++) * dashComboMult)))
+        float finalDashCost = dashPowerCost + ((float)(currDashCombo++) * dashComboMult);
+        if (!IsDashReady(finalDashCost + (finalDashCost * 0.3f))) //lite marginal
         {
             cameraShaker.ShakeCamera(0.2f, 1, true);
             return false;
         }
 
         dashComboResetTimer = dashComboResetTime + Time.time;
-        currDashCombo++;
-
-        float finalDashCost = dashPowerCost + ((float)currDashCombo * dashComboMult);
+        currDashCombo++; //lägg till det till nästa dash
 
         //if (!powerManager.SufficentPower(-finalDashCost, true)) return false; //camerashake, konstig syntax kanske du tycker, men palla göra det fancy!
         powerManager.AddPower(-finalDashCost);
@@ -1127,16 +1126,15 @@ public class StagMovement : BaseClass
     {
         if(!free)
         {
-            if (!IsDashReady(dashPowerCost + ((float)(currDashCombo++) * dashComboMult)))
+            float finalDashCost = dashPowerCost + ((float)(currDashCombo++) * dashComboMult);
+            if (!IsDashReady(finalDashCost + (finalDashCost * 0.3f))) //lite marginal
             {
                 cameraShaker.ShakeCamera(0.2f, 1, true);
                 return false;
             }
 
             dashComboResetTimer = dashComboResetTime + Time.time;
-            currDashCombo++;
-
-            float finalDashCost = dashPowerCost + ((float)currDashCombo * dashComboMult);
+            currDashCombo++; //lägg till det till nästa dash
 
             //if (!powerManager.SufficentPower(-finalDashCost, true)) return false; //camerashake, konstig syntax kanske du tycker, men palla göra det fancy!
             powerManager.AddPower(-finalDashCost);
