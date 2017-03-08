@@ -52,7 +52,8 @@ public class StagMovement : BaseClass
     protected float jumpTimePoint = -5; //när man hoppas så den inte ska resetta stuff dirr efter man hoppat
     [System.NonSerialized] public int jumpAmount = 2; //hur många hopp man får
     protected int jumpsAvaible = 0; //så man kan hoppa i luften also, förutsatt att man resettat den på marken
-    protected float jumpCooldown = 0.05f;
+    protected float jumpCooldown = 0.08f;
+    protected float jumpGroundResetCooldown = 0.3f;
     public GameObject jumpEffectObject;
     private ParticleTimed[] jumpEffects;
     [System.NonSerialized] public float currFrameMovespeed = 0; //hur snabbt man rört sig denna framen
@@ -517,7 +518,7 @@ public class StagMovement : BaseClass
         // YYYYY
         if (characterController.isGrounded) //dessa if-satser skall vara separata
         {
-            if (jumpTimePoint < Time.time - 0.4f) //så den inte ska fucka och resetta dirr efter man hoppat
+            if (jumpTimePoint < Time.time - jumpGroundResetCooldown) //så den inte ska fucka och resetta dirr efter man hoppat
             {
                 if (ySpeed < 0.0f) //man vill inte resetta om man har upforce
                 {
@@ -600,7 +601,7 @@ public class StagMovement : BaseClass
             }
             else if (slope <= maxSlopeGrounded) //ingen slope, dvs man står på marken, resetta stuff!
             {
-                if (jumpTimePoint < Time.time - 0.4f) //så den inte ska fucka och resetta dirr efter man hoppat
+                if (ySpeed < 0 || jumpTimePoint < Time.time - jumpGroundResetCooldown) //så den inte ska fucka och resetta dirr efter man hoppat
                 {
                     dashUsed = false; //den resettas även när man landar på marken nu! MEN om man dashar från marken så får man cd
                     AddJumpsAvaible(jumpAmount, jumpAmount);
@@ -973,7 +974,7 @@ public class StagMovement : BaseClass
     {
         if (GetGrounded()) //använd endast GetGrounded här, annars kommer man få samma problem när gravitationen slutar verka pga lång raycast
         {
-            if (jumpTimePoint < Time.time - 0.4f) //så den inte ska fucka och resetta dirr efter man hoppat, kanske kolla ifall yspeed < 0 ??
+            if (ySpeed < 0 || jumpTimePoint < Time.time - jumpGroundResetCooldown) //så den inte ska fucka och resetta dirr efter man hoppat, kanske kolla ifall yspeed < 0 ??
             {
                 //dessa resetsen görs här eftersom denna groundchecken är mycket mer pålitlig
                 //dashUsed = true; //resettar bara med riktigt grounded så det ska vara mer "snällt"
@@ -1019,12 +1020,13 @@ public class StagMovement : BaseClass
                 AddMovementStack(1);
                 PlayJumpEffect();
                 
-                float jumpGroundCheckTimeWindowCLOSE = 1.0f;
+                float jumpGroundCheckTimeWindowCLOSE = 0.3f;
                 float addedJumpSpeed = 0;
 
                 if (dashTimePoint < jumpTimePoint) //se till så att man använde jump senast och inte dash
                 {
-                    if ((jumpTimePoint + jumpGroundCheckTimeWindowCLOSE) > Time.time && GetGrounded()) //man är fortfarande grounded efter förra hoppet, öka höjden!
+                    //kanske bara låta en hoppa extra högt om man drar båda dirr efter varann
+                    if ((jumpTimePoint + jumpGroundCheckTimeWindowCLOSE) > Time.time) //man är fortfarande grounded efter förra hoppet, öka höjden!  && GetGrounded()
                     {
                         addedJumpSpeed = 40;
                     }
@@ -2103,27 +2105,25 @@ public class StagMovement : BaseClass
 
     public float GetDistanceToGround()
     {
-        RaycastHit rHit;
-        if (Physics.Raycast(this.transform.position + new Vector3(0, groundedCheckOffsetY, 0), Vector3.down, out rHit, Mathf.Infinity, groundCheckLM))
-        {
-            return Vector3.Distance(this.transform.position + new Vector3(0, groundedCheckOffsetY, 0), rHit.point);
-        }
-        else
-        {
-            return 10000000;
-        }
+        Vector3 checkerPoint = transform.position + characterController.center + new Vector3(0, groundedCheckOffsetY, 0); //viktigt att den här default funktionen använder samma som i GetGrounded's default
+        return GetGroundedDistance(checkerPoint);
     }
 
     public float GetDistanceToGround(Transform tChecker)
     {
+        return GetGroundedDistance(tChecker.position);
+    }
+
+    public float GetGroundedDistance(Vector3 checkerPoint)
+    {
         RaycastHit rHit;
-        if (Physics.Raycast(tChecker.position + new Vector3(0, groundedCheckOffsetY, 0), Vector3.down, out rHit, Mathf.Infinity, groundCheckLM))
+        if (Physics.Raycast(checkerPoint, Vector3.down, out rHit, 1000000, groundCheckLM))
         {
-            return Vector3.Distance(tChecker.position + new Vector3(0, groundedCheckOffsetY, 0), rHit.point);
+            return Vector3.Distance(checkerPoint, rHit.point);
         }
         else
         {
-            return 10000000;
+            return Mathf.Infinity;
         }
     }
 }
