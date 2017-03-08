@@ -1020,13 +1020,13 @@ public class StagMovement : BaseClass
                 AddMovementStack(1);
                 PlayJumpEffect();
                 
-                float jumpGroundCheckTimeWindowCLOSE = 0.3f;
+                float jumpGroundCheckTimeWindowCLOSE = 0.8f;
                 float addedJumpSpeed = 0;
 
                 if (dashTimePoint < jumpTimePoint) //se till så att man använde jump senast och inte dash
                 {
                     //kanske bara låta en hoppa extra högt om man drar båda dirr efter varann
-                    if ((jumpTimePoint + jumpGroundCheckTimeWindowCLOSE) > Time.time) //man är fortfarande grounded efter förra hoppet, öka höjden!  && GetGrounded()
+                    if ((jumpTimePoint + jumpGroundCheckTimeWindowCLOSE) > Time.time && GetGrounded(1)) //man är fortfarande grounded efter förra hoppet, öka höjden!
                     {
                         addedJumpSpeed = 40;
                     }
@@ -1054,7 +1054,7 @@ public class StagMovement : BaseClass
                 }
                 else
                 {
-                    ySpeed += (jumpSpeed * 1.0f) + addedJumpSpeed; //mindre force när man redan har force
+                    ySpeed += (jumpSpeed * 0.8f) + addedJumpSpeed; //mindre force när man redan har force
                 }
                 //animationH.Play(jump.name);
                 //animationH[jump.name].weight = 1.0f;
@@ -1954,7 +1954,7 @@ public class StagMovement : BaseClass
     }
 
     //de riktiga checkarna!
-    public virtual bool GetGrounded(Vector3 checkerPoint, float distance = groundedCheckDistance) //från en annan utgångspunkt
+    public bool GetGrounded(Vector3 checkerPoint, float distance = groundedCheckDistance) //från en annan utgångspunkt
     {
         RaycastHit rHit;
         bool isGHit = false;
@@ -2016,21 +2016,27 @@ public class StagMovement : BaseClass
     }
     //de riktiga checkarna!
 
-    public virtual bool GetGrounded()
+    public bool GetGrounded()
     {
         Vector3 checkerPoint = transform.position + characterController.center + new Vector3(0, groundedCheckOffsetY, 0);
 
         return GetGrounded(checkerPoint);
     }
 
-    public virtual bool GetGrounded(Transform tChecker) //från en annan utgångspunkt
+    public bool GetGrounded(Transform tChecker) //från en annan utgångspunkt
     {
         return GetGrounded(tChecker.position);
     }
 
-    public virtual bool GetGrounded(Transform tChecker, float distance) //från en annan utgångspunkt och med en specifik längd
+    public bool GetGrounded(Transform tChecker, float distance) //från en annan utgångspunkt och med en specifik längd
     {
         return GetGrounded(tChecker.position, distance);
+    }
+
+    public virtual bool GetGrounded(float distance) //från en annan utgångspunkt och med en specifik längd
+    {
+        Vector3 checkerPoint = transform.position + characterController.center + new Vector3(0, groundedCheckOffsetY, 0);
+        return GetGrounded(checkerPoint, distance);
     }
 
 
