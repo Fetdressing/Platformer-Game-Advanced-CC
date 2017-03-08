@@ -336,26 +336,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0d8d3e0e7d4488468a3fafda699239d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   thisRenderer:
   - {fileID: 137000013153227596}
   - {fileID: 137000012807644526}
   damagedMaterial: {fileID: 2100000, guid: 5a5a1a50a180c2246b70601cbc08ebef, type: 2}
-  middlePoint: {x: 0, y: 0, z: 0}
   middlePointOffsetY: 0.5
   startHealth: 1
-  maxHealth: 3
   fadeOnDamage: 1
   startHealthRegAmount: 0
-  healthRegAmount: 1
   destroyOnDeath: 0
   respawn: 1
   animationObj: {fileID: 1000013039317298}
   deathAnimation: {fileID: 7400004, guid: 9cfad5d6d76c30948bf3c5ab5f8b7093, type: 3}
   deathParticleSystemObj: {fileID: 0}
   delayedDeathTime: 4
-  isAlive: 1
   isIndestructable: 0
+  isDashTarget: 1
   dropDeathObject: {fileID: 0}
   nrDropObjects: 0
   dropObjLifeTime: 0
@@ -382,11 +378,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b690847d1c46f541932e46c8c1383eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  rotater: {fileID: 0}
   shooterObj: {fileID: 0}
   animationH: {fileID: 111000012311457988}
   idleA: {fileID: 7400000, guid: 9cfad5d6d76c30948bf3c5ab5f8b7093, type: 3}
   aggressiveA: {fileID: 7400002, guid: 9cfad5d6d76c30948bf3c5ab5f8b7093, type: 3}
+  aggressiveASpeed: 1.5
   maxShootRange: 220
   shootForce: 150
   cooldown_Time: 1
@@ -406,8 +403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 1
+  killsEnemies: 0
 --- !u!136 &136000012488231508
 CapsuleCollider:
   m_ObjectHideFlags: 1
