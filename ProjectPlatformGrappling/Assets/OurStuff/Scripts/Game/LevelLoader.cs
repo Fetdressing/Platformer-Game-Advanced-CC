@@ -21,6 +21,16 @@ public class LevelLoader : MonoBehaviour {
         isLoading = false;
     }
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += this.LevelLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= this.LevelLoaded;
+    }
+
     void Update()
     {
         if (isLoading == false) return;
@@ -58,7 +68,7 @@ public class LevelLoader : MonoBehaviour {
         Debug.Log("Loading complete");
     }
 
-    void OnLevelWasLoaded()
+    void LevelLoaded(Scene scene, LoadSceneMode sceneMode) //istället för OnLevelWasLoaded
     {
 
         Debug.Log("Ny scene");

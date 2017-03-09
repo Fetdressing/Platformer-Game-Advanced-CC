@@ -52,8 +52,8 @@ public class ObjectSpawner : BaseClass {
         spawnObject.position = spawnPoint.position;
         spawnObject.gameObject.SetActive(true);
 
-        GameObject parTemp2 = GameObject.Instantiate(particleEffect.gameObject);
-        parTemp.transform.position = spawnObject.position;
-        Destroy(parTemp, 3);
+        //GameObject parTemp2 = GameObject.Instantiate(particleEffect.gameObject);
+        //parTemp2.transform.position = spawnObject.position;
+        //Destroy(parTemp2, 3);
     }
 }

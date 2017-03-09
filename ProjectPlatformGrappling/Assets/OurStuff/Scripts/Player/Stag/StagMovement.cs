@@ -1338,8 +1338,8 @@ public class StagMovement : BaseClass
 
         float bestFinalValue = -Mathf.Infinity; //det dashTarget med högst värde är den som väljs
 
-        Vector3 horVectorNoY = new Vector3(horVector.x, 0, horVector.z);
-        Vector3 verVectorNoY = new Vector3(verVector.x, 0, verVector.z);
+        //Vector3 horVectorNoY = new Vector3(horVector.x, 0, horVector.z);
+        //Vector3 verVectorNoY = new Vector3(verVector.x, 0, verVector.z);
 
         Vector3 currViewPlayerPos = checkCamera.WorldToViewportPoint(transform.position); //spelarens position i kamera spacet
 
@@ -1903,8 +1903,8 @@ public class StagMovement : BaseClass
         RaycastHit rHit;
         if(Physics.Raycast(transform.position + new Vector3(0, yOffset, 0), direction, out rHit, distance, groundCheckLM))
         {
-            Vector3 dirNoY = new Vector3(direction.x, 0, direction.y);
-            Vector3 normNoY = new Vector3(rHit.normal.x, 0, rHit.normal.z);
+            //Vector3 dirNoY = new Vector3(direction.x, 0, direction.y);
+            //Vector3 normNoY = new Vector3(rHit.normal.x, 0, rHit.normal.z);
 
             float angleValue = Vector3.Angle(rHit.normal, Vector3.up);
             //Debug.Log(angleValue.ToString());
@@ -1923,8 +1923,8 @@ public class StagMovement : BaseClass
         RaycastHit rHit;
         if (Physics.Raycast(transform.position + new Vector3(0, yOffset, 0), direction, out rHit, distance, groundCheckLM))
         {
-            Vector3 dirNoY = new Vector3(direction.x, 0, direction.y);
-            Vector3 normNoY = new Vector3(rHit.normal.x, 0, rHit.normal.z);
+            //Vector3 dirNoY = new Vector3(direction.x, 0, direction.y);
+            //Vector3 normNoY = new Vector3(rHit.normal.x, 0, rHit.normal.z);
 
             hitNormal = rHit.normal;
             float angleValue = Vector3.Angle(rHit.normal, Vector3.up);

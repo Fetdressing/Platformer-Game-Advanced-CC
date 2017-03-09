@@ -11,9 +11,6 @@ public class StagSpeedBreaker : BaseClass {
     IEnumerator fadeOut;
     float startAlpha = 0.6f;
 
-    int min_DistanceThreshhold = 4; //hur nära man får vara activationPoint för att kollidea
-    Vector3 activationPoint = Vector3.zero;
-
     bool lastUnitHit_Viable = true; //ifall jag kan träffa internalLastUnitHit igen, för att hantera så man inte knockar i samma unit om den har dubbla colliders tex
     Transform internalLastUnitHit; //används för o mecka collision
 
@@ -108,8 +105,6 @@ public class StagSpeedBreaker : BaseClass {
 
     public void Activate(bool force = false) //force gör så att man slipper checken
     {
-        activationPoint = transform.position;
-
         ready = true;
         active = true;
         ToggleColliders(true);

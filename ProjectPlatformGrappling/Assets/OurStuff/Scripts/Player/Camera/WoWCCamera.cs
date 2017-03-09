@@ -231,7 +231,6 @@ public class WoWCCamera : BaseClass
 
         float newDistance = 0.000f;
         
-        Vector3 toTar = (position - target.position);
         //Debug.DrawRay(target.position, toTar, Color.red);
 
         Vector3 yOffset = new Vector3(0, 1.5f, 0);

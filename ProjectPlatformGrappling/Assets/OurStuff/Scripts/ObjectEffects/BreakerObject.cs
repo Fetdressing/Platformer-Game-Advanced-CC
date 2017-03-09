@@ -251,8 +251,7 @@ public class BreakerObject : BaseClass {
         {
             disableRootObj.SetActive(true);
         }
-
-        Color wC;
+        
         Color c;
 
         c = thisRenderer.material.color;
