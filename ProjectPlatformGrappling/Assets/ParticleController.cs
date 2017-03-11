@@ -32,7 +32,7 @@ public class ParticleController : BaseClass
     void Start()
     {
         playerMovementObject = GameObject.FindGameObjectWithTag("Player").GetComponent<StagMovement>();
-        Debug.Log(velocityText);
+        //Debug.Log(velocityText);
         Init();
 
     }
