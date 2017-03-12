@@ -145,6 +145,7 @@ public class StagMovement : BaseClass
     [System.NonSerialized]
     public bool isGroundedRaycast;
     protected Transform groundedRaycastObject; //objektet som man blev grounded med raycast på
+    protected const float dotValueFaceplant = -0.9f; //vilket värde som mot en väggs normal räknas som en faceplant
 
     public LayerMask groundCheckLM;
     protected float groundedTimePoint = 0; //när man blev grounded
@@ -350,9 +351,9 @@ public class StagMovement : BaseClass
 
         Vector3 sideVecToMom = Vector3.Cross(currMomentum, transform.up).normalized; //ger en vektor som är åt höger/vänster av momentumen, (innan använde jag transform.right)
 
-        Vector3 mainComparePoint = transform.position + new Vector3(0, 2, 0);
-        Vector3 firstComparePoint = transform.position + new Vector3(0, 2, 0) + sideVecToMom * characterController.radius;
-        Vector3 secondComparePoint = transform.position + new Vector3(0, 2, 0) + -sideVecToMom * characterController.radius;
+        Vector3 mainComparePoint = transform.position + new Vector3(0, characterController.stepOffset, 0);
+        Vector3 firstComparePoint = transform.position + new Vector3(0, characterController.stepOffset, 0) + sideVecToMom * characterController.radius;
+        Vector3 secondComparePoint = transform.position + new Vector3(0, characterController.stepOffset, 0) + -sideVecToMom * characterController.radius;
         AngleToAvoid(ref currMomentum, mainComparePoint, firstComparePoint, secondComparePoint, characterController.radius + 0.9f, true); //korrekt riktningen så man inte "springer in i väggar"
         ///man vill kanske tryckas ned oxå när man träffar väggar like this?
 
@@ -746,7 +747,7 @@ public class StagMovement : BaseClass
         }
 
         if (hitLengthMain == Mathf.Infinity && hitLengthFirst == Mathf.Infinity && hitLengthSecond == Mathf.Infinity) { return; } //alla är lika långa == ingen sne vägg eller liknande
-        if (Vector3.Dot(dirN, mainHit.normal) < -0.98f) { dir = Vector3.zero; return; } //lutad nästan rakt mot väggen
+        if (Vector3.Dot(dirN, mainHit.normal) < dotValueFaceplant) { dir = Vector3.zero; return; } //lutad nästan rakt mot väggen
         if (checkMaxSlope && GetSlope(mainHit.normal) < maxSlopeGrounded) return;
 
         if (hitLengthFirst > hitLengthSecond) //rotera mot second
@@ -801,7 +802,7 @@ public class StagMovement : BaseClass
         }
 
         if (noHits) return;
-        if (Vector3.Dot(dirN, mainHit.normal) < -0.98f) return; //lutad nästan rakt mot väggen/golvet
+        if (Vector3.Dot(dirN, mainHit.normal) < dotValueFaceplant) return; //lutad nästan rakt mot väggen/golvet
         if (checkMaxSlope && GetSlope(mainHit.normal) < maxSlopeGrounded) return;
 
         if (smallest)
@@ -1945,7 +1946,7 @@ public class StagMovement : BaseClass
         return true;
     }
 
-    public bool IsFaceplant(float yOffset, Vector3 direction, float distance, float threshholdValue = -0.93f)
+    public bool IsFaceplant(float yOffset, Vector3 direction, float distance, float threshholdValue = dotValueFaceplant)
     {
         RaycastHit rHit;
         if (Physics.Raycast(transform.position + new Vector3(0, yOffset, 0), direction, out rHit, distance, groundCheckLM))
