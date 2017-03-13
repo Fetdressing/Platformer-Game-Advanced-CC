@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33000010493527468}
   - component: {fileID: 23000010818283752}
   - component: {fileID: 95000012572594418}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: RootBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 114000012734096766}
   - component: {fileID: 114000010378022248}
   - component: {fileID: 114000011775272376}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: RootBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db46663437f9d5a45a935e1f34b2afb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   canBeBlocked: 0
   killsEnemies: 0
 --- !u!114 &114000012734096766
@@ -203,7 +202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1fef09f5df193b4f8a8c1c6839bf0ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   disableRootObj: {fileID: 0}
   thisRenderer: {fileID: 23000010818283752}
   refresh: 0

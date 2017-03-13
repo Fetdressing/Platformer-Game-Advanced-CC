@@ -1027,7 +1027,7 @@ public class StagMovement : BaseClass
                 if (dashTimePoint < jumpTimePoint) //se till så att man använde jump senast och inte dash
                 {
                     //kanske bara låta en hoppa extra högt om man drar båda dirr efter varann
-                    if ((jumpTimePoint + jumpGroundCheckTimeWindowCLOSE) > Time.time && GetGrounded(1)) //man är fortfarande grounded efter förra hoppet, öka höjden!
+                    if ((jumpTimePoint + jumpGroundCheckTimeWindowCLOSE) > Time.time && GetGrounded(0.4f)) //man är fortfarande grounded efter förra hoppet, öka höjden!
                     {
                         addedJumpSpeed = 40;
                     }
@@ -1675,8 +1675,9 @@ public class StagMovement : BaseClass
         //lite minimum värden, så man kan stacka högt
         //Debug.Log((timeReduceValue).ToString());
         float minimumTime = 0.4f;
+        int softLimitStacks = 48;
 
-        if(realMovementStacks.value > 45)
+        if(realMovementStacks.value > softLimitStacks)
         {
             minimumTime = 0.3f;
         }
