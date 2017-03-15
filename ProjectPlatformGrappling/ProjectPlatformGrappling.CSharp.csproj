@@ -463,8 +463,9 @@
     <Compile Include="Assets\OurStuff\Scripts\Game\GameManager.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\GameSettings.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\LevelLoader.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\Game\LevelManager.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\MainMenu.cs" />
-    <Compile Include="Assets\OurStuff\Scripts\Game\SceneHandler.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\Game\ScoreManager.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\SpawnManager.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\Spawnpoint.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Health.cs" />

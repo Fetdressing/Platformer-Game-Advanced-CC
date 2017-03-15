@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelLoader : MonoBehaviour {
+    LevelManager levelManager;
+    private static Level activeLevel;
+
     private AsyncOperation async = null;
     private bool isLoading = false;
 
@@ -15,6 +18,7 @@ public class LevelLoader : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         DontDestroyOnLoad(transform);
+        levelManager = GetComponent<LevelManager>();
         allB = FindObjectsOfType(typeof(BaseClass)) as BaseClass[];
 
         loadingScreenObject.SetActive(false);
@@ -41,22 +45,33 @@ public class LevelLoader : MonoBehaviour {
         }
     }
 
-    public void LoadLevel(string name)
+
+    public void LoadNextLevel()
     {
-        if (isLoading == true) return;
-        loadingScreenObject.SetActive(true);
-        isLoading = true;
-        StartCoroutine(LoadScene(name));
+        Level levelToBeLoaded = levelManager.GetNextLevel(activeLevel);
+        LoadLevel(levelToBeLoaded);
     }
 
-    IEnumerator LoadScene(string name)
+
+    public bool LoadLevel(Level lv)
+    {
+        if (isLoading == true) return false;
+        if (lv.isLocked) { print("Secretmap, this map will not be loaded"); return false; } //låst secret map
+        loadingScreenObject.SetActive(true);
+        isLoading = true;
+        StartCoroutine(LoadScene(lv));
+        return true;
+    }
+
+    IEnumerator LoadScene(Level lv)
     {
 
         for (int i = 0; i < allB.Length; i++)
         {
             allB[i].isLocked = true;
         }
-        async = SceneManager.LoadSceneAsync(name);
+        async = SceneManager.LoadSceneAsync(lv.loadName);
+        activeLevel = lv;
         yield return async;
 
         loadingScreenObject.SetActive(false);
@@ -78,5 +93,15 @@ public class LevelLoader : MonoBehaviour {
         {
             allB[i].isLocked = false;
         }
+    }
+
+    public string GetCurrLevelName()
+    {
+        return activeLevel.name;
+    }
+
+    public Level GetCurrLevel()
+    {
+        return activeLevel;
     }
 }

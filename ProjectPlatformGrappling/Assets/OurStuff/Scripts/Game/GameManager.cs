@@ -129,13 +129,16 @@ public class GameManager : BaseClass {
     {
         if (isLocked) return;
         LevelLoader lLoader = FindObjectOfType(typeof(LevelLoader)) as LevelLoader;
-        string sceneToLoad = SceneManager.GetActiveScene().name;
-        lLoader.LoadLevel(sceneToLoad);
+        //string sceneToLoad = SceneManager.GetActiveScene().name;
+        lLoader.LoadLevel(lLoader.GetCurrLevel());
     }
 
     public void ExitGame()
     {
         if (isLocked) return;
+        //LevelLoader lLoader = FindObjectOfType(typeof(LevelLoader)) as LevelLoader;
+        //lLoader.LoadNextLevel();
+        //return;
         Application.Quit();
     }
 }

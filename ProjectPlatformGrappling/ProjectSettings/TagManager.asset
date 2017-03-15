@@ -13,6 +13,7 @@ TagManager:
   - PowerGlobe
   - WallJump
   - InteractEnvironment
+  - LevelManager
   layers:
   - Default
   - TransparentFX

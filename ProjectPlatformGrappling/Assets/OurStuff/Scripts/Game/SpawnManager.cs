@@ -93,7 +93,7 @@ public class SpawnManager : BaseClass {
         if(levelStarted)
         {
             timePassed = Time.time - timePointLevelStarted;
-            timeText.text = timePassed.ToString("F1");
+            timeText.text = timePassed.ToString("F1"); //format
         }
     }
 
