@@ -72,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011286707946}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -296.46265, y: -23.793598, z: 232.88486}
+  m_LocalPosition: {x: 5826.6084, y: -448.50146, z: 4579.284}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 4000012423000702}
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6425c2189048784788fcdad61697631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  onlyOnGrounded: 1
   lifeTime: 3
   deactivateAfter: 1
   isReady: 1
@@ -265,7 +265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fdeef4288544c14085f473eaa13e872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
   pickUpObj: {fileID: 1000011418654882}
   pickUpObjFollow: 1
   hasBeenPicked: 0
@@ -358,12 +357,12 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 646343223
+  randomSeed: 1743209133
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
-      scalar: 0.6
+      scalar: 0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2954,7 +2953,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89

@@ -211,6 +211,13 @@ public class StagMovement : BaseClass
 
         maxSlopeGrounded = characterController.slopeLimit;
 
+        //resettar inte dessa vid reset då jag vill behålla mina stacks efter respawn
+        realMovementStacks.value = 1;
+        hiddenMovementStacks.value = 1;
+
+        currMovementStacks = realMovementStacks;
+        AddMovementStack(5); //startvärde
+
         Reset();
     }
 
@@ -242,12 +249,6 @@ public class StagMovement : BaseClass
         //ToggleInfiniteGravity(false);
         dashUsed = false;
         jumpsAvaible = jumpAmount;
-
-        realMovementStacks.value = 1;
-        hiddenMovementStacks.value = 1;
-
-        currMovementStacks = realMovementStacks;
-        AddMovementStack(5); //start värde
 
         //isGrounded = false;
         isGroundedRaycast = false;
@@ -1647,7 +1648,7 @@ public class StagMovement : BaseClass
         return newHiddenStacks;
     }
 
-    void AddMovementStack(int i)
+    public void AddMovementStack(int i)
     {
         realMovementStacks.value += i;
 

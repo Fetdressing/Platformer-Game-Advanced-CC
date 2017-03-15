@@ -232,6 +232,7 @@ public class PowerManager : BaseClass {
 
         stagMovement.isLocked = true; //så man inte kan styra
         stagMovement.speedBreaker.Disable();
+        stagMovement.AddMovementStack(-(int)(stagMovement.realMovementStacks.value * 0.3f)); //tappar för man dör, den updateras inte dirr i texten dock ifall du undrar varför det inte försvinner dirr :)
         cController.enabled = false;
         //stagShooter.isLocked = true;
 
