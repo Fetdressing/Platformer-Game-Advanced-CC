@@ -58,7 +58,7 @@ public class PowerPickup : BaseClass {
         }
         catch
         {
-            Debug.Log("Hittade ingen spawnmanager");
+            Debug.Log("Hittade ingen scoremanager");
         }
         startPos = this.transform.position;
 

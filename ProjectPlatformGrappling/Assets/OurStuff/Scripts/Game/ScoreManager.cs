@@ -37,6 +37,16 @@ public class ScoreManager : BaseClass {
         return currLevel.bestGlobesCollected;
     }
 
+    public float GetBestTime()
+    {
+        Level currLevel = levelLoader.GetCurrLevel();
+        if (currLevel.bestTime > spawnManager.timePassed)
+        {
+            return spawnManager.timePassed;
+        }
+        return currLevel.bestTime;
+    }
+
 
     public void PowerGlobeCollected(int value)
     {
@@ -44,7 +54,7 @@ public class ScoreManager : BaseClass {
         spawnManager.UpdateGlobesText(collectedPowerGlobes);
     }
 
-    public void NewLevel()
+    public void NewLevel() //denna kallas från LevelLoader när en ny level är igång, bara så denna vet
     {
         try
         {

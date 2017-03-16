@@ -144,10 +144,21 @@ public class GameManager : BaseClass {
         LevelLoader lLoader = FindObjectOfType(typeof(LevelLoader)) as LevelLoader;
         //lLoader.LoadNextLevel();
         //return;
-        Level ll = lLoader.GetCurrLevel();
-        ll.bestGlobesCollected = scoreManager.GetBestGlobesCollected();
-        levelManager.SetDataLevel(ll.levelIndex, ll);
+
+        SaveGame();
         lLoader.LoadMainMenu();
         //Application.Quit();
+    }
+
+    public void SaveGame()
+    {
+        print("Saving game");
+        LevelLoader lLoader = FindObjectOfType(typeof(LevelLoader)) as LevelLoader;
+        //lLoader.LoadNextLevel();
+        //return;
+        Level ll = lLoader.GetCurrLevel();
+        ll.bestGlobesCollected = scoreManager.GetBestGlobesCollected();
+        ll.bestTime = scoreManager.GetBestTime();
+        levelManager.SetDataLevel(ll.levelIndex, ll);
     }
 }
