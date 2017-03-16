@@ -4,8 +4,12 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelLoader : MonoBehaviour {
+    //public static LevelLoader loader; //singleton
+
     LevelManager levelManager;
-    private static Level activeLevel;
+    ScoreManager scoreManager; //resettar den
+    //private static Level activeLevel;
+    private static int activeLevelIndex; //index istället för själva objektet, så man kan hämta den senaste variationen från LevelManager
 
     private AsyncOperation async = null;
     private bool isLoading = false;
@@ -17,8 +21,8 @@ public class LevelLoader : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        DontDestroyOnLoad(transform);
         levelManager = GetComponent<LevelManager>();
+        scoreManager = GetComponent<ScoreManager>();
         allB = FindObjectsOfType(typeof(BaseClass)) as BaseClass[];
 
         loadingScreenObject.SetActive(false);
@@ -45,10 +49,14 @@ public class LevelLoader : MonoBehaviour {
         }
     }
 
+    public void LoadMainMenu()
+    {
+        LoadLevel(levelManager.startMenuLevel);
+    }
 
     public void LoadNextLevel()
     {
-        Level levelToBeLoaded = levelManager.GetNextLevel(activeLevel);
+        Level levelToBeLoaded = levelManager.GetNextLevel(GetCurrLevel());
         LoadLevel(levelToBeLoaded);
     }
 
@@ -71,15 +79,17 @@ public class LevelLoader : MonoBehaviour {
             allB[i].isLocked = true;
         }
         async = SceneManager.LoadSceneAsync(lv.loadName);
-        activeLevel = lv;
+
+        //Level lvTemp = new Level(lv); //kopierar eftersom referensen kan försvinna när man deletar detta objekt o låter en annan instance sköta det: (if (potLevelLoaders.Length > 1) Destroy(this.gameObject);)
+        activeLevelIndex = lv.levelIndex;
         yield return async;
 
         loadingScreenObject.SetActive(false);
         isLoading = false;
         async = null;
 
-        LevelLoader[] potLevelLoaders = FindObjectsOfType(typeof(LevelLoader)) as LevelLoader[]; //se till så att det bara finns en levelloader i scenen
-        if (potLevelLoaders.Length > 1) Destroy(this.gameObject);
+        //LevelLoader[] potLevelLoaders = FindObjectsOfType(typeof(LevelLoader)) as LevelLoader[]; //se till så att det bara finns en levelloader i scenen
+        //if (potLevelLoaders.Length > 1) Destroy(this.gameObject);
         Debug.Log("Loading complete");
     }
 
@@ -93,15 +103,17 @@ public class LevelLoader : MonoBehaviour {
         {
             allB[i].isLocked = false;
         }
+
+        scoreManager.NewLevel();
     }
 
     public string GetCurrLevelName()
     {
-        return activeLevel.name;
+        return GetCurrLevel().name;
     }
 
     public Level GetCurrLevel()
     {
-        return activeLevel;
+        return levelManager.GetLevel(activeLevelIndex); //index så att man får den senaste variationen av leveln!
     }
 }

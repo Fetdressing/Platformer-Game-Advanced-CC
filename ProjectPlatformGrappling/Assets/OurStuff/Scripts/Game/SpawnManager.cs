@@ -20,6 +20,7 @@ public class SpawnManager : BaseClass {
 
     private bool isRespawning;
 
+    //rimligt att denna håller koll på tid då den hanterar när man lämnat första spawnen!
     [System.NonSerialized]
     public bool levelStarted = false;
     private float timePointLevelStarted = 0;
@@ -29,7 +30,7 @@ public class SpawnManager : BaseClass {
     public Text powerGlobeText;
     PowerPickup[] powerPickups;
     HealthSpirit[] healthSpirits; //så man kan respawna fiender n stuff
-    private int collectedPowerGlobes = 0;
+    ScoreManager scoreManager;
 	// Use this for initialization
 	void Start () {
         Init();
@@ -38,9 +39,9 @@ public class SpawnManager : BaseClass {
     public override void Init()
     {
         base.Init();
-        collectedPowerGlobes = 0;
         powerPickups = FindObjectsOfType(typeof(PowerPickup)) as PowerPickup[];
         healthSpirits = FindObjectsOfType(typeof(HealthSpirit)) as HealthSpirit[];
+        scoreManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<ScoreManager>();
 
         GameObject[] spawnpointObjects = GameObject.FindGameObjectsWithTag("SpawnPoint");
         if(startSpawn == null)
@@ -60,7 +61,6 @@ public class SpawnManager : BaseClass {
         }
 
         stagMovement = player.GetComponent<StagMovement>();
-        PowerGlobeCollected(0);
 
         Reset();
     }
@@ -194,9 +194,18 @@ public class SpawnManager : BaseClass {
         mainCameraS.Reset(); //viktig så den låser upp kontrollen igen
     }
 
-    public void PowerGlobeCollected(int value)
+    public void UpdateGlobesText(int g)
     {
-        collectedPowerGlobes += value;
-        powerGlobeText.text = collectedPowerGlobes.ToString() + " / " + powerPickups.Length;
+        //scoreManager.collectedPowerGlobes += value;
+        powerGlobeText.text = g + " / " + scoreManager.GetBestGlobesCollected();
+    }
+
+    public int GetMaxNrGlobes()
+    {
+        if(powerPickups == null)
+        {
+            powerPickups = FindObjectsOfType(typeof(PowerPickup)) as PowerPickup[];
+        }
+        return powerPickups.Length; //returnerar hur många globes som finns ute på mappen
     }
 }

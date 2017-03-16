@@ -28,7 +28,8 @@ public class PowerPickup : BaseClass {
     public AudioClip[] audioClips;
 
     public int globeValue = 1; //hur mycket "score" den är värd
-    private SpawnManager spawnManager; //håller koll på hur många globes som plockats
+    //private SpawnManager spawnManager; //håller koll på hur många globes som plockats
+    private ScoreManager scoreManager; //håller koll på hur många globes som plockats
 
     private Vector3 wantedPos = Vector3.zero; //sätts externaly
     private bool moveToWantedPos = false;
@@ -53,7 +54,7 @@ public class PowerPickup : BaseClass {
         thisRigidbody = this.transform.GetComponent<Rigidbody>();
 
         try {
-            spawnManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<SpawnManager>();
+            scoreManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<ScoreManager>();
         }
         catch
         {
@@ -146,7 +147,7 @@ public class PowerPickup : BaseClass {
 
             if(hasBeenPicked == false)
             {
-                spawnManager.PowerGlobeCollected(globeValue);
+                scoreManager.PowerGlobeCollected(globeValue);
             }
             hasBeenPicked = true;
             particlePicked.StartParticleSystem();

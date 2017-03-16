@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class GameManager : BaseClass {
+    LevelManager levelManager;
+    ScoreManager scoreManager;
+
     public GameObject gameUIPanel;
     public GameObject menuUIPanel;
     public GameObject settingsUIPanel;
@@ -21,6 +24,8 @@ public class GameManager : BaseClass {
     public override void Init()
     {
         base.Init();
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+        scoreManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<ScoreManager>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         goalDisplay.SetActive(false);
@@ -136,9 +141,13 @@ public class GameManager : BaseClass {
     public void ExitGame()
     {
         if (isLocked) return;
-        //LevelLoader lLoader = FindObjectOfType(typeof(LevelLoader)) as LevelLoader;
+        LevelLoader lLoader = FindObjectOfType(typeof(LevelLoader)) as LevelLoader;
         //lLoader.LoadNextLevel();
         //return;
-        Application.Quit();
+        Level ll = lLoader.GetCurrLevel();
+        ll.bestGlobesCollected = scoreManager.GetBestGlobesCollected();
+        levelManager.SetDataLevel(ll.levelIndex, ll);
+        lLoader.LoadMainMenu();
+        //Application.Quit();
     }
 }
