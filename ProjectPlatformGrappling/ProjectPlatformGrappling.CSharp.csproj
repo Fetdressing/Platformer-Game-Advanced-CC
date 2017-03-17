@@ -464,6 +464,7 @@
     <Compile Include="Assets\OurStuff\Scripts\Game\GameSettings.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\LevelLoader.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\LevelManager.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\Game\LevelSelector.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\MainMenu.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\ScoreManager.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\SpawnManager.cs" />
@@ -513,6 +514,7 @@
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagShooter.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagSpeedBreaker.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Specials\ObjectActivator.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\UIGeneral\HoverText.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\AnimStandardPlayer.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\AnimationSpeedModifier.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\CameraShaker.cs" />

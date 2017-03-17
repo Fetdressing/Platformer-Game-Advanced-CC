@@ -135,7 +135,7 @@ public class Level
 
     public string name;
     public string loadName; //det namnet man loadar
-    public Image image;
+    public Sprite image;
 
     [System.NonSerialized]
     public int levelIndex = 0;
@@ -146,7 +146,7 @@ public class Level
     public bool isCleared = false; //om man klarat mappen
     public bool isLocked = false; //om det är en secret map, den behöver ett startvärde då man vill kunna sätta maps som locked från start
     [System.NonSerialized]
-    public float bestTime = 0; //vilken ens bästa tid har varit på denna map
+    public float bestTime = Mathf.Infinity; //vilken ens bästa tid har varit på denna map
     [System.NonSerialized]
     public int bestGlobesCollected = 0;
 }
