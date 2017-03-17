@@ -66,6 +66,8 @@ public class LevelManager : MonoBehaviour { //håller koll på alla tillgänglig
             string fileName = Application.persistentDataPath + "/LevelI" + i.ToString() + ".dat";
             if (File.Exists(fileName))
             {
+                //File.Delete(fileName); //ta bort all data där
+                //continue; //ta bort all data där
                 FileStream file = File.Open(fileName, FileMode.Open);
                 LevelData data = (LevelData)bf.Deserialize(file);
                 file.Close();

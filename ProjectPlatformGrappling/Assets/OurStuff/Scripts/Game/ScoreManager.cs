@@ -44,6 +44,10 @@ public class ScoreManager : BaseClass {
         {
             return spawnManager.timePassed;
         }
+        else if(currLevel.bestTime == 0) //man kan ju inte klara banan på 0 sekunder pfft
+        {
+            return spawnManager.timePassed;
+        }
         return currLevel.bestTime;
     }
 

@@ -44,7 +44,7 @@ public class LevelSelector : BaseClass {
 
             tempB.GetComponentInChildren<Text>().text = (i + 1).ToString();
 
-            tempB.GetComponent<HoverText>().SetText("Time: " + lv.bestTime.ToString() + "\nGlobes: " + lv.bestGlobesCollected.ToString());
+            tempB.GetComponent<HoverText>().SetText("Time: " + lv.bestTime.ToString("F1") + "\nGlobes: " + lv.bestGlobesCollected.ToString());
         }
     }
 }

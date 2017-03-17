@@ -63,11 +63,9 @@ public class GameManager : BaseClass {
             ToggleMenu();
         }
 
-        if(Vector3.Distance(player.position, goal.position) < 45)
+        if(Vector3.Distance(player.position, goal.position) < 90)
         {
-            goalDisplay.SetActive(true);
-            Time.timeScale = 0;
-            Cursor.visible = true;
+            Win();
         }
 
         if(Time.timeScale < 0.0001f)
@@ -157,8 +155,24 @@ public class GameManager : BaseClass {
         //lLoader.LoadNextLevel();
         //return;
         Level ll = lLoader.GetCurrLevel();
+        //ll.bestGlobesCollected = scoreManager.GetBestGlobesCollected();
+        //ll.bestTime = scoreManager.GetBestTime();
+        levelManager.SetDataLevel(ll.levelIndex, ll);
+    }
+
+    public void Win() //sprang i mål
+    {
+        goalDisplay.SetActive(true);
+        Time.timeScale = 0;
+        Cursor.visible = true;
+
+        LevelLoader lLoader = FindObjectOfType(typeof(LevelLoader)) as LevelLoader;
+        //lLoader.LoadNextLevel();
+        //return;
+        Level ll = lLoader.GetCurrLevel();
         ll.bestGlobesCollected = scoreManager.GetBestGlobesCollected();
         ll.bestTime = scoreManager.GetBestTime();
-        levelManager.SetDataLevel(ll.levelIndex, ll);
+
+        SaveGame();
     }
 }
