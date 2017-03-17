@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using DigitalRuby.SimpleLUT;
 
 public class SpawnManager : BaseClass {
     public int maxLives = 3;
@@ -11,6 +12,9 @@ public class SpawnManager : BaseClass {
     public Transform player;
     private StagMovement stagMovement;
     public WoWCCamera mainCameraS;
+
+    private SimpleLUT simpleLut;
+    private float startContrast;
 
     private List<Transform> spawnPoints = new List<Transform>();
     private Transform closestSpawn;
@@ -43,6 +47,9 @@ public class SpawnManager : BaseClass {
         healthSpirits = FindObjectsOfType(typeof(HealthSpirit)) as HealthSpirit[];
         scoreManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<ScoreManager>();
 
+        simpleLut = mainCameraS.transform.GetComponentInChildren<SimpleLUT>();
+        startContrast = simpleLut.Contrast;
+
         GameObject[] spawnpointObjects = GameObject.FindGameObjectsWithTag("SpawnPoint");
         if(startSpawn == null)
         {
@@ -63,6 +70,7 @@ public class SpawnManager : BaseClass {
         stagMovement = player.GetComponent<StagMovement>();
 
         Reset();
+        StartSpawn();
     }
 
     public override void Reset()
@@ -70,8 +78,6 @@ public class SpawnManager : BaseClass {
         base.Reset();
         currLives = maxLives;
         isRespawning = false;
-
-        StartSpawn();
     }
 
     void Update()
@@ -118,7 +124,7 @@ public class SpawnManager : BaseClass {
 
         player.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         SetLatestSpawn(startSpawn);
-        StartCoroutine(SpawnPlayerAtLocation(latestSpawn.position, true));
+        StartCoroutine(SpawnPlayerAtLocation(latestSpawn.position, true, true));
     }
 
     public void Respawn(Vector3 playerDeathPos)
@@ -159,8 +165,13 @@ public class SpawnManager : BaseClass {
         //player.position = closestSpawnPos;
     }
 
-    IEnumerator SpawnPlayerAtLocation( Vector3 pos, bool instantMove)
+    IEnumerator SpawnPlayerAtLocation( Vector3 pos, bool instantMove, bool applyEffect = false)
     {
+        if(applyEffect)
+        {
+            simpleLut.Contrast = 1;
+        }
+
         if (!instantMove)
         {
             while (Vector3.Distance(player.position, pos) > 4.0f)
@@ -174,8 +185,25 @@ public class SpawnManager : BaseClass {
             player.position = pos;
         }
         //Vector3 forwNoY = new Vector3(mainCameraS.transform.forward.x, 0, mainCameraS.transform.forward.z);
-        yield return mainCameraS.SetRot(latestSpawn.forward, false);
+        
         stagMovement.currMomentum = Vector3.zero;
+        stagMovement.stagObject.forward = latestSpawn.forward;
+
+        IEnumerator setRot = mainCameraS.SetRot(latestSpawn.forward, false);
+        mainCameraS.StartCoroutine(setRot);
+
+        if (applyEffect)
+        {
+            while(simpleLut.Contrast - 0.01f > startContrast)
+            {
+                simpleLut.Contrast = Mathf.Lerp(simpleLut.Contrast, startContrast, deltaTime_Unscaled * 2);
+                yield return new WaitForEndOfFrame();
+            }
+            simpleLut.Contrast = startContrast; //bara för o vara säker att det blir rätt värde
+        }
+
+        yield return setRot; //och vänta på att den ska bli klar oxå!
+
         stagMovement.currMomentum = latestSpawn.forward * 100;
         player.GetComponent<PowerManager>().Reset();
         stagMovement.Reset();

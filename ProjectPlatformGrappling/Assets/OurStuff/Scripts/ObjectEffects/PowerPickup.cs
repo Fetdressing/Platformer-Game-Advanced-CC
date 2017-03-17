@@ -106,10 +106,12 @@ public class PowerPickup : BaseClass {
         if (stagMovement.isLocked) return;
         if (playerChaseSpeed < 0.1f) return;
 
-        float distanceToPlayer = Vector3.Distance(player.position, this.transform.position);
+        float distanceToPlayer = Vector3.Distance(player.position, transform.position);
+        if (distanceToPlayer > playerChaseDistance * 2) return;
+
         if (distanceToPlayer < playerChaseDistance && cooldownChase < Time.time)
         {
-            transform.position = Vector3.Lerp(this.transform.position, player.position + stagMovement.yMiddlePointOffset, Time.fixedDeltaTime * playerChaseSpeed / distanceToPlayer);
+            transform.position = Vector3.Lerp(transform.position, player.position + stagMovement.yMiddlePointOffset, Time.fixedDeltaTime * playerChaseSpeed / distanceToPlayer);
         }
         else if (moveToWantedPos) //en external position
         {
@@ -118,11 +120,11 @@ public class PowerPickup : BaseClass {
                 moveToWantedPos = false;
             }
 
-            this.transform.position = Vector3.Lerp(this.transform.position, wantedPos, Time.fixedDeltaTime * playerChaseSpeed * 0.1f);
+            transform.position = Vector3.Lerp(this.transform.position, wantedPos, Time.fixedDeltaTime * playerChaseSpeed * 0.1f);
         }
-        else if (Vector3.Distance(startPos, this.transform.position) > (playerChaseDistance) && returnToStartPos)
+        else if (Vector3.Distance(startPos, transform.position) > (playerChaseDistance) && returnToStartPos)
         {
-            transform.position = Vector3.Lerp(this.transform.position, startPos, Time.fixedDeltaTime * playerChaseSpeed);
+            transform.position = Vector3.Lerp(transform.position, startPos, Time.fixedDeltaTime * playerChaseSpeed);
         }
     }
 

@@ -4,6 +4,7 @@ using System.Collections;
 public class WoWCCamera : BaseClass
 {
     protected ControlManager controlManager;
+    private StagMovement stagMovement;
     public LayerMask collisionLayerMask; //mot vilka lager ska kameran kolla kollision?
 
     public Transform target;
@@ -21,7 +22,7 @@ public class WoWCCamera : BaseClass
 
     float xSpeed = 600;
     float ySpeed = 400;
-    [HideInInspector]
+    [System.NonSerialized]
     public float speedMultiplier = 1;
 
     public float yMinLimit = -20;
@@ -70,6 +71,7 @@ public class WoWCCamera : BaseClass
     void Start()
     {
         controlManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<ControlManager>();
+        stagMovement = target.GetComponentInChildren<StagMovement>();
 
         System.Action upd = UnscaledFixedUpdate;
         fUpdate = new CustomFixedUpdate(0.02f, upd);
@@ -82,7 +84,7 @@ public class WoWCCamera : BaseClass
         if (GetComponent<Rigidbody>())
             GetComponent<Rigidbody>().freezeRotation = true;
 
-        movingToPos = false;
+        movingToPos = true; //så att den ska glidea in i början
         settingRotation = null;
     }
 
@@ -122,15 +124,19 @@ public class WoWCCamera : BaseClass
     {
         xn = xn + x;
         float yn = 15;
-        while(settingRotation != null && Mathf.Abs(x - xn) + Mathf.Abs(y - yn) > 2f)
+
+        Quaternion rotation = Quaternion.Euler(y, x, 0);
+        Vector3 position = target.position - (rotation * Vector3.forward * (distance) + new Vector3(0, -targetHeight, 0));
+
+        while (settingRotation != null && Mathf.Abs(x - xn) + Mathf.Abs(y - yn) > 2f || Vector3.Distance(transform.position, position) > 5.0f)
         {
             x = Mathf.Lerp(x, xn, Time.unscaledDeltaTime * 8);
             y = Mathf.Lerp(y, yn, Time.unscaledDeltaTime * 8);
             
-            Quaternion rotation = Quaternion.Euler(y, x, 0);
-            Vector3 position = target.position - (rotation * Vector3.forward * (distance) + new Vector3(0, -targetHeight, 0));
+            rotation = Quaternion.Euler(y, x, 0);
+            position = target.position - (rotation * Vector3.forward * (distance) + new Vector3(0, -targetHeight, 0));
 
-            transform.position = position;
+            transform.position = Vector3.Lerp(transform.position, position, deltaTime_Unscaled);
             transform.rotation = rotation;
 
             yield return new WaitForEndOfFrame();
@@ -143,9 +149,25 @@ public class WoWCCamera : BaseClass
         settingRotation = null;
     }
 
+    //public IEnumerator GlideIn()
+    //{
+    //    movingToPos = true;
+    //    float distanceTarget = Vector3.Distance(transform.position, target.position);
+    //    while(distanceTarget > distance)
+    //    {
+    //        Vector3 position = target.position - (Vector3.forward * (distance) + new Vector3(0, -targetHeight, 0));
+    //        distanceTarget = Vector3.Distance(transform.position, position);
+    //        transform.position = Vector3.Lerp(transform.position, position, deltaTime_Unscaled * 1f);
+    //        transform.LookAt(target.position);
+    //        yield return new WaitForEndOfFrame();
+    //    }
+    //    movingToPos = false;
+    //}
+
     void UnscaledFixedUpdate()
     {
         if (movingToPos == true || Time.timeScale == 0) return; ///kanske vill kunna rotera i meny o sånt?? specielt för när man testar mousemovement i settings??
+
         xMom += controlManager.horAxisView * xSpeed * 0.2f * speedMultiplier;
         yMom += controlManager.verAxisView * ySpeed * 0.2f * speedMultiplier;
 
