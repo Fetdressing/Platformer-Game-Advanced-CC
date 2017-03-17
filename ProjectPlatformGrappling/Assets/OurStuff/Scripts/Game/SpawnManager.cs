@@ -51,10 +51,11 @@ public class SpawnManager : BaseClass {
         startContrast = simpleLut.Contrast;
 
         GameObject[] spawnpointObjects = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        print("platserna blir fel, tar typ parent??");
         if(startSpawn == null)
         {
             startSpawn = spawnpointObjects[0].transform;
-            latestSpawn = startSpawn;
+            SetLatestSpawn(startSpawn);
         }
 
         for(int i = 0; i < spawnpointObjects.Length; i++)
