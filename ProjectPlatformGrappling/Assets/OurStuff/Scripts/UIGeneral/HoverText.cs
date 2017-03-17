@@ -5,26 +5,35 @@ using UnityEngine.UI;
 
 public class HoverText : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public Text textBox;
+    public GameObject textBoxObj;
+    private Text textB;
     public Color showColor = Color.blue;
 
     public void SetText(string t)
     {
-        textBox.text = t;
+        if(textB == null)
+        {
+            textB = textBoxObj.GetComponentInChildren<Text>();
+        }
+        textB.text = t;
     }
 
     void Start()
     {
-        textBox.color = new Color(0, 0, 0, 0);
+        textBoxObj.SetActive(false);
+        textB = textBoxObj.GetComponentInChildren<Text>();
+        textB.color = new Color(0, 0, 0, 0);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        textBox.color = showColor; //Or however you do your color
+        textB.color = showColor; //Or however you do your color
+        textBoxObj.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        textBox.color = new Color(0, 0, 0, 0);
+        textB.color = new Color(0, 0, 0, 0);
+        textBoxObj.SetActive(false);
     }
 }

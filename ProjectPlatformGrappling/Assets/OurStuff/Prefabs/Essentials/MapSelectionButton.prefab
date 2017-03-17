@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 222056300400028152}
   - component: {fileID: 114806605611395100}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: InfoText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb523b27fcbee8428e4c608f31f7805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textBox: {fileID: 114572496957840226}
+  textBoxObj: {fileID: 1486371448672884}
   showColor: {r: 0.3602941, g: 0.86764693, b: 1, a: 1}
 --- !u!114 &114277882099817958
 MonoBehaviour:
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.666}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -373,7 +373,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 75, y: -73.5}
-  m_SizeDelta: {x: 150, y: 147}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: -73.5}
+  m_SizeDelta: {x: 0, y: 147}
   m_Pivot: {x: 0.5, y: 0.5}
