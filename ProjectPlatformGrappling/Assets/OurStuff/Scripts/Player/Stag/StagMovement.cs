@@ -76,8 +76,8 @@ public class StagMovement : BaseClass
     public GameObject dashEffectObject;
     public ParticleSystem dashReadyPS; //particlesystem som körs när dash är redo att användas
     protected int currDashCombo = 0; //hur många dashes som gjorts i streck, används för att öka kostnaden tex
-    protected float dashComboMult = 0.008f;
-    protected float dashComboResetTime = 0.85f;
+    protected float dashComboMult = 0.0010f;
+    protected float dashComboResetTime = 0.90f;
     protected float dashComboResetTimer = 0.0f;
     public LayerMask unitCheckLM; //fiender o liknande som dash ska styras mot
     //during dash
@@ -1270,7 +1270,9 @@ public class StagMovement : BaseClass
 
         if (GetGrounded(groundCheckObject, 0.7f) && extraDashTime == 0) //extra cooldown för att man dashar från marken! FY PÅ DEJ!! (varit airbourne i X sekunder)if(Mathf.Abs(jumpTimePoint - Time.time) > 0.08f)
         { //använder extraDashTime och antar att det är när man dashar vidare från objekt, behöver en mer solid check kanske?
-            dashTimePoint += dashGroundCooldown;
+            int dashComboStacks_Punishment = 10;
+            currDashCombo += dashComboStacks_Punishment; //blir mega dyrt på nästa dash!
+            //dashTimePoint += dashGroundCooldown;
         }
 
         //HÄMTA RIKTNINGEN
