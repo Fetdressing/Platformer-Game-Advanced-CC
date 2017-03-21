@@ -10,11 +10,11 @@ public class LevelManager : MonoBehaviour { //håller koll på alla tillgänglig
     public static LevelManager levelManager; //singleton
 
     public Level startMenuLevel;
-
     public Level[] standardLevels;
 
+    public const int nr_ReplayMoves_Stored = 1000000; //för replay, hur många "frames" som ska storeas
 
-	void Awake () {
+	void Awake () { ///detta kanske behöver kallas varje gång LevelLoader loadar en ny level istället
 
         if (levelManager == null) //singleton
         {
@@ -105,6 +105,13 @@ public class LevelManager : MonoBehaviour { //håller koll på alla tillgänglig
             bf.Serialize(file, data);
             file.Close();
         }
+    }
+
+
+    public class ReplayData
+    {
+        public int datacheck = 0; //när jag läser så ska denna kollas hurvida den är 1337 eller inte, annars är datan korrupt eller inte fixad
+        public Vector3[] positions = new Vector3[nr_ReplayMoves_Stored];
     }
 }
 

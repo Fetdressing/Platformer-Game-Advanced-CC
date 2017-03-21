@@ -466,6 +466,7 @@
     <Compile Include="Assets\OurStuff\Scripts\Game\LevelManager.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\LevelSelector.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\MainMenu.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\Game\ReplayManager.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\ScoreManager.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\SpawnManager.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Game\Spawnpoint.cs" />
