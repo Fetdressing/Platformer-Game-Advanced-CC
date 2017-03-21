@@ -84,21 +84,25 @@ public class WoWCCamera : BaseClass
         if (GetComponent<Rigidbody>())
             GetComponent<Rigidbody>().freezeRotation = true;
 
-        movingToPos = true; //så att den ska glidea in i början
-        settingRotation = null;
+        //movingToPos = true; //så att den ska glidea in i början
+        //settingRotation = null;
     }
 
     public override void Reset()
     {
         base.Reset();
-        movingToPos = false;
-        if (settingRotation != null)
-        {
-            StopCoroutine(settingRotation);
-        }
-        settingRotation = null;
 
-        StopAllCoroutines();
+        //så att man inte ska få ett hack i början
+        lastFrameTargetPos = target.position;
+        lastFrameDistance = distance;
+        //movingToPos = true;
+        //if (settingRotation != null)
+        //{
+        //    StopCoroutine(settingRotation);
+        //}
+        //settingRotation = null;
+
+        //StopAllCoroutines();
     }
 
     public IEnumerator SetRot(Vector3 newDir, bool unlock = true)
@@ -128,7 +132,7 @@ public class WoWCCamera : BaseClass
         Quaternion rotation = Quaternion.Euler(y, x, 0);
         Vector3 position = target.position - (rotation * Vector3.forward * (distance) + new Vector3(0, -targetHeight, 0));
 
-        while (settingRotation != null && Mathf.Abs(x - xn) + Mathf.Abs(y - yn) > 2f || Vector3.Distance(transform.position, position) > 5.0f)
+        while (settingRotation != null && Mathf.Abs(x - xn) + Mathf.Abs(y - yn) > 2f || Vector3.Distance(transform.position, position) > 3.0f)
         {
             x = Mathf.Lerp(x, xn, Time.unscaledDeltaTime * 8);
             y = Mathf.Lerp(y, yn, Time.unscaledDeltaTime * 8);
@@ -136,10 +140,10 @@ public class WoWCCamera : BaseClass
             rotation = Quaternion.Euler(y, x, 0);
             position = target.position - (rotation * Vector3.forward * (distance) + new Vector3(0, -targetHeight, 0));
 
-            transform.position = Vector3.Lerp(transform.position, position, deltaTime_Unscaled);
+            transform.position = Vector3.Lerp(transform.position, position, deltaTime_Unscaled * 1.5f);
             transform.rotation = rotation;
 
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
 
         if (unlock)
@@ -166,7 +170,7 @@ public class WoWCCamera : BaseClass
 
     void UnscaledFixedUpdate()
     {
-        if (movingToPos == true || Time.timeScale == 0) return; ///kanske vill kunna rotera i meny o sånt?? specielt för när man testar mousemovement i settings??
+        if (settingRotation != null || movingToPos == true || Time.timeScale == 0) return; ///kanske vill kunna rotera i meny o sånt?? specielt för när man testar mousemovement i settings??
 
         xMom += controlManager.horAxisView * xSpeed * 0.2f * speedMultiplier;
         yMom += controlManager.verAxisView * ySpeed * 0.2f * speedMultiplier;
@@ -197,7 +201,7 @@ public class WoWCCamera : BaseClass
 
     void LateUpdate()
     {
-        if (movingToPos == true || Time.timeScale == 0) return;
+        if (settingRotation != null || movingToPos == true || Time.timeScale == 0) return;
         //if (Time.timeScale == 0) return;
 
         if (!target)
@@ -255,7 +259,7 @@ public class WoWCCamera : BaseClass
         
         //Debug.DrawRay(target.position, toTar, Color.red);
 
-        Vector3 yOffset = new Vector3(0, 1.5f, 0);
+        Vector3 yOffset = new Vector3(0, targetHeight, 0);
         CompensateForWalls(target.position + yOffset, position, ref newDistance);
         
         float wantedDistance;

@@ -51,14 +51,25 @@ public class SpawnManager : BaseClass {
         startContrast = simpleLut.Contrast;
 
         GameObject[] spawnpointObjects = GameObject.FindGameObjectsWithTag("SpawnPoint");
-        print("platserna blir fel, tar typ parent??");
+
         if(startSpawn == null)
         {
             startSpawn = spawnpointObjects[0].transform;
-            SetLatestSpawn(startSpawn);
         }
+        else
+        {
+            foreach(Transform t in startSpawn.GetComponentsInChildren<Transform>()) //hämta själva spawnpositionen i objektet
+            {
+                if(t.GetComponent<Spawnpoint>() != null)
+                {
+                    startSpawn = t;
+                    break;
+                }
+            }
+        }
+        SetLatestSpawn(startSpawn);
 
-        for(int i = 0; i < spawnpointObjects.Length; i++)
+        for (int i = 0; i < spawnpointObjects.Length; i++)
         {
             spawnPoints.Add(spawnpointObjects[i].transform);
         }
@@ -190,8 +201,8 @@ public class SpawnManager : BaseClass {
         stagMovement.currMomentum = Vector3.zero;
         stagMovement.stagObject.forward = latestSpawn.forward;
 
-        IEnumerator setRot = mainCameraS.SetRot(latestSpawn.forward, false);
-        mainCameraS.StartCoroutine(setRot);
+        IEnumerator setRotT = mainCameraS.SetRot(latestSpawn.forward, true);
+        Coroutine setRot = mainCameraS.StartCoroutine(setRotT);
 
         if (applyEffect)
         {

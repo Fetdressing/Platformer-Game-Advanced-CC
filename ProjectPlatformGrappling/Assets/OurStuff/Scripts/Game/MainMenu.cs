@@ -9,9 +9,6 @@ public class MainMenu : MonoBehaviour {
     private string selectedScene = "Scene1SpiritWorld";
 
     public MenuPage[] menues;
-
-    public string startCanvas;
-    public GameObject levelSelectionCanvas;
 	// Use this for initialization
 	void Start () {
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
