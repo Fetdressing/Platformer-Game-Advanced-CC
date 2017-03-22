@@ -84,19 +84,19 @@ Material:
       second: 0
     - first:
         name: _Emission
-      second: 0.984
+      second: 0
     - first:
         name: _GlossMapScale
       second: 1
     - first:
         name: _Glossiness
-      second: 0.443
+      second: 0.328
     - first:
         name: _GlossyReflections
       second: 1
     - first:
         name: _Metallic
-      second: 0.295
+      second: 0
     - first:
         name: _Mode
       second: 0
@@ -121,6 +121,15 @@ Material:
     - first:
         name: _ZWrite
       second: 1
+    - first:
+        name: _bOffset
+      second: 1
+    - first:
+        name: _gOffset
+      second: 0.62
+    - first:
+        name: _rOffset
+      second: -0.82
     m_Colors:
     - first:
         name: _Color
