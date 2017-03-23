@@ -114,7 +114,6 @@ public class ReplayManager : BaseClass {
             file.Close();
 
             int datacheck = data.datacheck;
-            print(datacheck);
             if (datacheck != 1337) { print("Data is corrupt"); validReplayData = false; return; }
 
             bestLevelReplayData.positions = data.positions;
