@@ -27,28 +27,33 @@ public class ScoreManager : BaseClass {
     }
 
 
+    public int GetBestGlobesCollected(Level ll) //hämtar för current map
+    {
+        //Level currLevel = levelLoader.GetCurrLevel();
+        return Mathf.Max(ll.bestGlobesCollected, collectedPowerGlobes);
+    }
+
     public int GetBestGlobesCollected() //hämtar för current map
     {
         Level currLevel = levelLoader.GetCurrLevel();
-        if(currLevel.bestGlobesCollected < collectedPowerGlobes)
-        {
-            return collectedPowerGlobes;
-        }
-        return currLevel.bestGlobesCollected;
+        return Mathf.Max(currLevel.bestGlobesCollected, collectedPowerGlobes);
     }
 
-    public float GetBestTime()
+    public float GetBestTime(Level ll, ref bool isBest)
     {
-        Level currLevel = levelLoader.GetCurrLevel();
-        if (currLevel.bestTime > spawnManager.timePassed)
+        //Level currLevel = levelLoader.GetCurrLevel();
+        if (ll.bestTime > spawnManager.timePassed)
         {
+            isBest = false;
             return spawnManager.timePassed;
         }
-        else if(currLevel.bestTime == 0) //man kan ju inte klara banan på 0 sekunder pfft
+        else if(ll.bestTime == 0) //man kan ju inte klara banan på 0 sekunder pfft
         {
+            isBest = false;
             return spawnManager.timePassed;
         }
-        return currLevel.bestTime;
+        isBest = true;
+        return ll.bestTime;
     }
 
 

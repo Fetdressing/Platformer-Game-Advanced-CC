@@ -35,6 +35,7 @@ public class SpawnManager : BaseClass {
     PowerPickup[] powerPickups;
     HealthSpirit[] healthSpirits; //så man kan respawna fiender n stuff
     ScoreManager scoreManager;
+    ReplayManager replayManager;
 	// Use this for initialization
 	void Start () {
         Init();
@@ -46,6 +47,7 @@ public class SpawnManager : BaseClass {
         powerPickups = FindObjectsOfType(typeof(PowerPickup)) as PowerPickup[];
         healthSpirits = FindObjectsOfType(typeof(HealthSpirit)) as HealthSpirit[];
         scoreManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<ScoreManager>();
+        replayManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<ReplayManager>();
 
         simpleLut = mainCameraS.transform.GetComponentInChildren<SimpleLUT>();
         startContrast = simpleLut.Contrast;
@@ -119,6 +121,7 @@ public class SpawnManager : BaseClass {
     {
         levelStarted = true;
         timePointLevelStarted = Time.time;
+        replayManager.BeginSimulation(player.transform);
     }
 
     public void SetLatestSpawn(Transform spawn)

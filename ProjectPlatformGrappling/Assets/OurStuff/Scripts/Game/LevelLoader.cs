@@ -8,6 +8,7 @@ public class LevelLoader : MonoBehaviour {
 
     LevelManager levelManager;
     ScoreManager scoreManager; //resettar den
+    ReplayManager replayManager;
     //private static Level activeLevel;
     private static int activeLevelIndex; //index istället för själva objektet, så man kan hämta den senaste variationen från LevelManager
 
@@ -23,6 +24,7 @@ public class LevelLoader : MonoBehaviour {
     void Awake () {
         levelManager = GetComponent<LevelManager>();
         scoreManager = GetComponent<ScoreManager>();
+        replayManager = GetComponent<ReplayManager>();
         allB = FindObjectsOfType(typeof(BaseClass)) as BaseClass[];
 
         loadingScreenObject.SetActive(false);
@@ -65,6 +67,7 @@ public class LevelLoader : MonoBehaviour {
     {
         if (isLoading == true) return false;
         if (lv.isLocked) { print("Secretmap, this map will not be loaded"); return false; } //låst secret map
+        replayManager.EndSimulation();
         loadingScreenObject.SetActive(true);
         isLoading = true;
         StartCoroutine(LoadScene(lv));

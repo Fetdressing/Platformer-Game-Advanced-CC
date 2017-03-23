@@ -155,7 +155,7 @@ public class GameManager : BaseClass {
         //lLoader.LoadNextLevel();
         //return;
         Level ll = lLoader.GetCurrLevel();
-        ll.bestGlobesCollected = scoreManager.GetBestGlobesCollected();
+        ll.bestGlobesCollected = scoreManager.GetBestGlobesCollected(ll);
         //ll.bestTime = scoreManager.GetBestTime();
         levelManager.SetDataLevel(ll.levelIndex, ll);
     }
@@ -170,8 +170,10 @@ public class GameManager : BaseClass {
         //lLoader.LoadNextLevel();
         //return;
         Level ll = lLoader.GetCurrLevel();
-        ll.bestGlobesCollected = scoreManager.GetBestGlobesCollected();
-        ll.bestTime = scoreManager.GetBestTime();
+        ll.bestGlobesCollected = scoreManager.GetBestGlobesCollected(ll);
+
+        bool currIsBest = false;
+        ll.bestTime = scoreManager.GetBestTime(ll, ref currIsBest);
 
         SaveGame();
     }
