@@ -141,58 +141,29 @@ public class PowerManager : BaseClass {
         float currPowerPer = (currPower / maxPower);
         CalculateSaturation(currPowerPer);
 
-        hornRenderer.material.SetTextureOffset("_MainTex", new Vector2(uvStartOffsetHorns[0], uvStartOffsetHorns[1] - (currPowerPer * uvOffsetMult)));
-        emiStagMat.SetColor("_EmissionColor", new Color(1,1,1) * currPowerPer);
-        for (int i = 0; i < lifeLights.Length; i++)
-        {
-            lifeLights[i].intensity = (lightsMaxIntensity * currPower) - 0.3f;
-        }
-        if (changeMatIE == null)
-        {
-            stagRenderer.material = emiStagMat;
-        }
+        CalculateLight(currPowerPer);
     }
 
-    public void AddPower(float p, float maxPercentage, bool showDamageMat = false) //tex ger max upp till 80% av max powern
+    public void AddPower(float p, float maxPercentage, float minPercentage = 0, bool showDamageMat = false) //tex ger max upp till 80% av max powern
     {
-        if (p > 0 && ((currPower / maxPower) * 100) > maxPercentage) return; //kolla oxå så att värdet är positivt, dvs INTE gör skada
-
-        if (godMode)
+        float wantedMaxPower = maxPower * maxPercentage * 0.01f;
+        float wantedMinPower = maxPower * minPercentage * 0.01f;
+        if (currPower > wantedMaxPower || currPower < wantedMinPower) //redan över gränsen
         {
-            p = Mathf.Abs(p);
-        }
-        currPower += p;
-
-        if (showDamageMat)
-        {
-            if (damagedMaterial != null && p < 0.0f)
-            {
-                ApplyMaterial(damagedMaterial, 0.1f);
-            }
+            return;
         }
 
-        if (currPower > maxPower)
+        if ((currPower + p) > wantedMaxPower) //kommer hamna över gränsen om jag lägger på p, reducera den så att man hamnar jämnt!
         {
-            currPower = maxPower;
+            p = wantedMaxPower - currPower;
         }
-        else if (currPower <= 0)
+        else if((currPower + p) < wantedMinPower) //negativ här
         {
-            Die();
+            p = wantedMinPower - currPower;
         }
+        //if (p < 0) return; //kolla oxå så att värdet är positivt, dvs INTE gör skada
 
-        float currPowerPer = (currPower / maxPower);
-        CalculateSaturation(currPowerPer);
-
-        hornRenderer.material.SetTextureOffset("_MainTex", new Vector2(uvStartOffsetHorns[0], uvStartOffsetHorns[1] - (currPowerPer * uvOffsetMult)));
-        emiStagMat.SetColor("_EmissionColor", new Color(1, 1, 1) * currPowerPer);
-        for (int i = 0; i < lifeLights.Length; i++)
-        {
-            lifeLights[i].intensity = (lightsMaxIntensity * currPower) - 0.3f;
-        }
-        if (changeMatIE == null)
-        {
-            stagRenderer.material = emiStagMat;
-        }
+        AddPower(p, showDamageMat);
     }
 
     public void AddPowerPercentage(float p, bool showDamageMat = false) //i decimaltal
@@ -353,6 +324,20 @@ public class PowerManager : BaseClass {
 
         wantedSaturation = startSaturation - satValue * satDecreaseMult;
         //sLut.Saturation = startSaturation - satValue * satDecreaseMult;
+    }
+
+    void CalculateLight(float f)
+    {
+        hornRenderer.material.SetTextureOffset("_MainTex", new Vector2(uvStartOffsetHorns[0], uvStartOffsetHorns[1] - (f * uvOffsetMult)));
+        emiStagMat.SetColor("_EmissionColor", new Color(1, 1, 1) * f);
+        for (int i = 0; i < lifeLights.Length; i++)
+        {
+            lifeLights[i].intensity = (lightsMaxIntensity * f) - 0.3f;
+        }
+        if (changeMatIE == null)
+        {
+            stagRenderer.material = emiStagMat;
+        }
     }
 
     void LerpToWantedSaturation()
