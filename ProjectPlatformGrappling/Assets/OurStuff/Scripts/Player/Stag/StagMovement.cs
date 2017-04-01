@@ -1270,8 +1270,9 @@ public class StagMovement : BaseClass
 
         if (GetGrounded(groundCheckObject, 0.7f) && extraDashTime == 0) //extra cooldown för att man dashar från marken! FY PÅ DEJ!! (varit airbourne i X sekunder)if(Mathf.Abs(jumpTimePoint - Time.time) > 0.08f)
         { //använder extraDashTime och antar att det är när man dashar vidare från objekt, behöver en mer solid check kanske?
-            int dashComboStacks_Punishment = 15;
-            currDashCombo += dashComboStacks_Punishment; //blir mega dyrt på nästa dash!
+            int dashground_Punishment = 4;
+            //currDashCombo += dashComboStacks_Punishment; //blir mega dyrt på nästa dash!
+            powerManager.AddPower(-dashPowerCost * dashground_Punishment, 100, 5);
             //dashTimePoint += dashGroundCooldown;
         }
 
