@@ -25,6 +25,7 @@ public class ColorReplacement3D : MonoBehaviour
     [System.Serializable]
     public class CubeTextureConfig
     {
+        public string name = "New Texture Config";
         public Color a00 = Color.white;
         public Color a10 = Color.green;
         public Color a01 = Color.blue;
@@ -83,6 +84,7 @@ public class ColorReplacement3D : MonoBehaviour
             {
                 for (int i = 0; i < m_texConfigs.Length; i++)
                 {
+                    print(m_texConfigs[i].name);
                     if (i < temp.Length)
                     {
                         temp[i] = m_texConfigs[i];
@@ -113,6 +115,9 @@ public class ColorReplacement3D : MonoBehaviour
         }
     }
 
+    /**
+     * Generate the selected cubemap
+     */
     private void GenerateCubeMap()
     {
         switch (m_shaderType)
@@ -131,6 +136,8 @@ public class ColorReplacement3D : MonoBehaviour
                 break;
         }
     }
+
+    //Generate flat side cube texture (4 different colours)
     private Color[] GetFlatSideColor(Color p_inColor)
     {
         Color[] flatSideColor = new Color[m_resolution * m_resolution];
