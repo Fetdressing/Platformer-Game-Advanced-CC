@@ -18,6 +18,7 @@ public class ObjectTriggeredSeekAndEmit : BaseClass
     public float m_force = 10.0f;
     private bool m_attract = false;
     private bool m_isAlive = true;
+    public int m_emitCount = 50;
     // Use this for initialization
     void Start()
     {
@@ -58,7 +59,7 @@ public class ObjectTriggeredSeekAndEmit : BaseClass
             {
                 m_ps.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
                 m_childSystem.transform.position = m_psTransform.position;
-                m_childSystem.Emit(100);
+                m_childSystem.Emit(m_emitCount);
                 m_isAlive = false;
                 Deactivate();
             }
