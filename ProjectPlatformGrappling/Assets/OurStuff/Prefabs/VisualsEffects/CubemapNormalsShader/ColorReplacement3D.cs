@@ -84,7 +84,7 @@ public class ColorReplacement3D : MonoBehaviour
             {
                 for (int i = 0; i < m_texConfigs.Length; i++)
                 {
-                    print(m_texConfigs[i].name);
+                    //print(m_texConfigs[i].name);
                     if (i < temp.Length)
                     {
                         temp[i] = m_texConfigs[i];
