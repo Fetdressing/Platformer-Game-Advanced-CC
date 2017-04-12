@@ -63,7 +63,7 @@ public class StagMovement : BaseClass
     [System.NonSerialized]public IEnumerator staggDashIE; //sätts även ifrån andra script som StagSpeedBreaker
     [System.NonSerialized]public IEnumerator staggIE; //normala stag grejen
     [System.NonSerialized]public float dashTimePoint; //mud påverkar denna så att man inte kan dasha
-    protected float dashGlobalCooldown = 0.05f;
+    protected float dashGlobalCooldown = 0.0f;
     protected float dashGroundCooldown = 1f; //går igång ifall man dashar från marken
     protected float dashSpeed = 400;
     protected float modDashSpeed; //blir dashspeeden men kan sedan ökas när man närmar sig dashtargets
