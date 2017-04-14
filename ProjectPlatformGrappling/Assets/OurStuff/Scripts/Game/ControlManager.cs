@@ -68,18 +68,18 @@ public class ControlManager : MonoBehaviour {
 
     void Update()
     {
-        didJump = false;
-        didDash = false;
+        didJump = characterActions.Jump.WasPressed;
+        didDash = characterActions.Dash.WasPressed;
 
-        if (characterActions.Jump.WasPressed)
-        {
-            didJump = true;
-        }
+        //if (characterActions.Jump.WasPressed)
+        //{
+        //    didJump = true;
+        //}
 
-        if (characterActions.Dash.WasPressed)
-        {
-            didDash = true;
-        }
+        //if (characterActions.Dash.WasPressed)
+        //{
+        //    didDash = true;
+        //}
 
         // We use the aggregate filter action here.
         // It combines Left and Right into a single axis value

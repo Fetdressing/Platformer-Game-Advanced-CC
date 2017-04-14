@@ -1189,15 +1189,15 @@ public class StagMovement : BaseClass
 
         //isLocked = true;
         Time.timeScale = 0.02f;
-        yield return null;
+        //yield return null; /// vill kanske verkligen yielda här?
         float timer = staggTime + Time.time + Time.deltaTime;
 
         while (timer > Time.time && controlManager.didDash == false) //slowmotion tills man dashar
         {
-            yield return new WaitForEndOfFrame();
             externalVel = Vector3.zero;
             ySpeed = 0;
             stagObject.transform.forward = cameraObj.forward;
+            yield return new WaitForEndOfFrame();
         }
         //Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Unit"), gameObject.layer, false);
         //yield return new WaitForSeconds(staggTime);

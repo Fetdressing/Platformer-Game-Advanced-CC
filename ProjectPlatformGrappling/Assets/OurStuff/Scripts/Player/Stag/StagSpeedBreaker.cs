@@ -98,11 +98,6 @@ public class StagSpeedBreaker : BaseClass {
         }
     }
 
-    //IEnumerator StagDash()
-    //{
-
-    //}
-
     public void Activate(bool force = false) //force gör så att man slipper checken
     {
         ready = true;
