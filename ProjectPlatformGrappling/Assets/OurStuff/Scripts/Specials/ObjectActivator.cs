@@ -59,7 +59,10 @@ public class ObjectActivator : BaseClass {
 
         for(int i = 0; i < activate_GameObjects.Length; i++)
         {
-            activate_GameObjects[i].SetActive(true);
+            if (activate_GameObjects[i] != null)
+            {
+                activate_GameObjects[i].SetActive(true);
+            }
         }
 
         if (audioS != null && sound != null)
