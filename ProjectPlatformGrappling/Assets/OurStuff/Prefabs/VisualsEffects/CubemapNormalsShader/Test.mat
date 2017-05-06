@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Test
-  m_Shader: {fileID: 4800000, guid: 90019ac05d6710e4fb081c0bb0029bed, type: 3}
+  m_Shader: {fileID: 4800000, guid: 65a3c962d695cf9439f18a58d45dc905, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -89,6 +89,9 @@ Material:
         name: _DstBlend
       second: 0
     - first:
+        name: _EMISSION
+      second: 0
+    - first:
         name: _Emission
       second: 0
     - first:
@@ -112,6 +115,9 @@ Material:
     - first:
         name: _Parallax
       second: 0.02
+    - first:
+        name: _Smoothness
+      second: 1
     - first:
         name: _SmoothnessTextureChannel
       second: 0
