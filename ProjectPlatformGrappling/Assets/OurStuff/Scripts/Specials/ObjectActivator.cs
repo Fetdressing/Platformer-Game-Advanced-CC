@@ -85,7 +85,10 @@ public class ObjectActivator : BaseClass {
 
             for (int i = 0; i < activate_GameObjects.Length; i++)
             {
-                activate_GameObjects[i].SetActive(false);
+                if (activate_GameObjects[i] != null)
+                {
+                    activate_GameObjects[i].SetActive(false);
+                }
             }
 
             if (repeatTimes < 0)
