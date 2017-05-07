@@ -426,7 +426,6 @@
     <Compile Include="Assets\ExternalAssets\QuickSetObjectPlacer\Scripts\QuickSetObjectPlacer.cs" />
     <Compile Include="Assets\ExternalAssets\SimpleLUT\Script\SimpleLUT.cs" />
     <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\CubemapNormalsShader\ColorReplacement3D.cs" />
-    <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\CubemapNormalsShader\ColorReplacementEditor.cs" />
     <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\CubemapNormalsShader\Old\ColorReplacement.cs" />
     <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\Imported\ParticleSystems\Sripts\BoosterGlobeHandler.cs" />
     <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\Imported\ParticleSystems\Sripts\ObjectTriggeredSeekAndEmit.cs" />
