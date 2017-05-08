@@ -535,7 +535,7 @@ public class StagMovement : BaseClass
         }
 
         yVector = new Vector3(0, ySpeed, 0);
-        AngleY(ref yVector, transform.position + new Vector3(0, characterController.height * 0.5f, 0), 6);
+        AngleY(ref yVector, transform.position + new Vector3(0, characterController.height * 0.5f, 0), 8);
         // YYYYY
 
         //characterController.Move((currMomentum + dashVel + externalVel + yVector) * deltaTime);
@@ -867,12 +867,13 @@ public class StagMovement : BaseClass
         }
 
         //poängen i början ska dock vara värda mer!!
-        float flatMoveStacksSpeedBonues = Mathf.Max(1, Mathf.Log(currMovementStacks.value, 1.01f));
+        int stackValueMod = Mathf.Max(8, currMovementStacks.value);
+        float flatMoveStacksSpeedBonues = Mathf.Max(1, Mathf.Log(stackValueMod, 1.01f));
         flatMoveStacksSpeedBonues *= 0.0024f; //hjälper accelerationen
         //Debug.Log(flatMoveStacksSpeedBonues.ToString());
 
         float bonusStageSpeed = 1.0f; //ökar för vart X stacks
-        bonusStageSpeed = currMovementStacks.value / 3;
+        bonusStageSpeed = stackValueMod / 3;
         bonusStageSpeed = Mathf.Floor(bonusStageSpeed);
         bonusStageSpeed = Mathf.Max(1, bonusStageSpeed);
 
