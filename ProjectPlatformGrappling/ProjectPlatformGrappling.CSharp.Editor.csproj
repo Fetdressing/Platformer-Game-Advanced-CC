@@ -55,9 +55,6 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>Library\UnityAssemblies\UnityEditor.Advertisements.dll</HintPath>
     </Reference>
@@ -99,9 +96,6 @@
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.VR">
       <HintPath>Library\UnityAssemblies\UnityEditor.VR.dll</HintPath>
@@ -166,6 +160,8 @@
     <Compile Include="Assets\ExternalAssets\InControl\Source\Touch\Editor\TouchStickControlEditor.cs" />
     <Compile Include="Assets\ExternalAssets\InControl\Source\Touch\Editor\TouchSwipeControlEditor.cs" />
     <Compile Include="Assets\ExternalAssets\InControl\Source\Touch\Editor\TouchTrackControlEditor.cs" />
+    <Compile Include="Assets\ExternalAssets\LowPolyWater\Editor\LowPolyWaterInspector.cs" />
+    <Compile Include="Assets\ExternalAssets\LowPolyWater\Editor\LowPolyWaterShaderGUI.cs" />
     <Compile Include="Assets\ExternalAssets\Quantum Theory\Polyworld\Editor\QT_CombineMeshes.cs" />
     <Compile Include="Assets\ExternalAssets\Quantum Theory\Polyworld\Editor\QT_ConvertMesh.cs" />
     <Compile Include="Assets\ExternalAssets\Quantum Theory\Polyworld\Editor\QT_PolyWorldTerrainEditor.cs" />
@@ -176,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ExternalAssets\InControl\Readme\README.txt" />
+    <None Include="Assets\ExternalAssets\LowPolyWater\Shaders\LowPolyWater.shader" />
     <None Include="Assets\ExternalAssets\Quantum Theory\Polyworld\Shaders\PolyWorldSurfaceTexture_Gamma.shader" />
     <None Include="Assets\ExternalAssets\Quantum Theory\Polyworld\Shaders\PolyWorldSurfaceTexture_Linear.shader" />
     <None Include="Assets\ExternalAssets\Quantum Theory\Polyworld\Shaders\PolyWorldSurface_Gamma.shader" />
