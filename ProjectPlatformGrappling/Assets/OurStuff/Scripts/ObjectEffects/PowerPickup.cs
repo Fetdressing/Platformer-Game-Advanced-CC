@@ -28,7 +28,7 @@ public class PowerPickup : BaseClass {
     public AudioClip[] audioClips;
 
     public int globeValue = 1; //hur mycket "score" den är värd
-    //private SpawnManager spawnManager; //håller koll på hur många globes som plockats
+    private SpawnManager spawnManager; 
     private ScoreManager scoreManager; //håller koll på hur många globes som plockats
 
     private Vector3 wantedPos = Vector3.zero; //sätts externaly
@@ -49,7 +49,8 @@ public class PowerPickup : BaseClass {
     public override void Init()
     {
         base.Init();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        spawnManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<SpawnManager>();
+        player = spawnManager.player;
         stagMovement = player.GetComponent<StagMovement>();
         thisRigidbody = this.transform.GetComponent<Rigidbody>();
 

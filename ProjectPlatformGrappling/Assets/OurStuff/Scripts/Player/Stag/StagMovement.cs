@@ -535,7 +535,7 @@ public class StagMovement : BaseClass
         }
 
         yVector = new Vector3(0, ySpeed, 0);
-        AngleY(ref yVector, transform.position + new Vector3(0, characterController.height * 0.5f, 0), 8);
+        AngleY(ref yVector, transform.position + new Vector3(0, characterController.height * 0.5f, 0), 10);
         // YYYYY
 
         //characterController.Move((currMomentum + dashVel + externalVel + yVector) * deltaTime);
@@ -674,7 +674,7 @@ public class StagMovement : BaseClass
         float magnitude = dir.magnitude;
         if(dir.y > 0) //up
         {
-            if (Physics.SphereCast(castPos, characterController.radius + 0.1f, Vector3.up, out rHit, raycastLength, groundCheckLM))
+            if (Physics.SphereCast(castPos, characterController.radius - 0.1f, Vector3.up, out rHit, raycastLength, groundCheckLM))
             {
                 if (GetSlope(rHit.normal) < maxSlopeGrounded * 0.5f) return;
                 Vector3 c = Vector3.Cross(Vector3.down, rHit.normal);
@@ -688,7 +688,7 @@ public class StagMovement : BaseClass
         }
         else //down
         {
-            if (Physics.SphereCast(castPos, characterController.radius + 0.1f, Vector3.down, out rHit, raycastLength, groundCheckLM))
+            if (Physics.SphereCast(castPos, characterController.radius - 0.1f, Vector3.down, out rHit, raycastLength, groundCheckLM))
             {
                 if (GetSlope(rHit.normal) < maxSlopeGrounded * 0.5f) { return; }
                 Vector3 c = Vector3.Cross(Vector3.up, rHit.normal);
@@ -803,7 +803,7 @@ public class StagMovement : BaseClass
         }
 
         if (noHits) return;
-        if (Vector3.Dot(dirN, mainHit.normal) < dotValueFaceplant) return; //lutad nästan rakt mot väggen/golvet
+        //if (Vector3.Dot(dirN, mainHit.normal) < dotValueFaceplant) return; //lutad nästan rakt mot väggen/golvet ///vill kanske att den inte ska göra nått vid faceplant
         if (checkMaxSlope && GetSlope(mainHit.normal) < maxSlopeGrounded) return;
 
         if (smallest)
