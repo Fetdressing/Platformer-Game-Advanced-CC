@@ -7,6 +7,8 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 public class LevelManager : MonoBehaviour { //håller koll på alla tillgängliga levlar, väljer vilken level man vill ladda med denna
+    public bool removeAllData = false; //rensa all sparad data
+
     public static LevelManager levelManager; //singleton
     public static LevelLoader levelLoader;
 
@@ -75,8 +77,11 @@ public class LevelManager : MonoBehaviour { //håller koll på alla tillgänglig
             string fileName = Application.persistentDataPath + "/LevelI" + i.ToString() + ".dat";
             if (File.Exists(fileName))
             {
-                //File.Delete(fileName); //ta bort all data där
-                //continue; //ta bort all data där
+                if (removeAllData)
+                {
+                    File.Delete(fileName); //ta bort all data där
+                    continue; //ta bort all data där
+                }
                 FileStream file = File.Open(fileName, FileMode.Open);
                 LevelData data = (LevelData)bf.Deserialize(file);
                 file.Close();

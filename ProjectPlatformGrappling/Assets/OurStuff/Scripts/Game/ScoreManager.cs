@@ -63,7 +63,7 @@ public class ScoreManager : BaseClass {
         spawnManager.UpdateGlobesText(collectedPowerGlobes);
     }
 
-    public void NewLevel() //denna kallas från LevelLoader när en ny level är igång, bara så denna vet
+    public override void NewLevel() //denna kallas från LevelLoader när en ny level är igång, bara så denna vet
     {
         try
         {

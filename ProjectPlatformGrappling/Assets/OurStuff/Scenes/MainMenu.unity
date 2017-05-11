@@ -2708,8 +2708,6 @@ MonoBehaviour:
     item: {fileID: 1682053752}
   - name: MapSelectMenu
     item: {fileID: 1243324487}
-  startCanvas: 
-  levelSelectionCanvas: {fileID: 0}
 --- !u!4 &1931174687
 Transform:
   m_ObjectHideFlags: 0

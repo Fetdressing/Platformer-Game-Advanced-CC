@@ -28,6 +28,8 @@ public class EnvironmentChanger : BaseClass {
         NextFogColor();
         wantedFogDensity = RenderSettings.fogEndDistance;
         fogDensitySpeedChange = 0.5f;
+
+        RenderSettings.fogColor = fogColors[0];
     }
 
     // Update is called once per frame

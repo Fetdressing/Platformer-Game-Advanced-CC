@@ -508,6 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6910b608a7ea1449170551c7b47a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  removeAllData: 0
   startMenuLevel:
     name: MainMenu
     loadName: OurStuff/Scenes/MainMenu
@@ -521,6 +522,10 @@ MonoBehaviour:
   - name: RedWood
     loadName: OurStuff/Scenes/RedWoodScene
     image: {fileID: 21300000, guid: aa89c2ab61c0d9c41aaaa8794a359f30, type: 3}
+    isLocked: 0
+  - name: WaterfallFobia
+    loadName: OurStuff/Scenes/WaterfallFobia
+    image: {fileID: 21300000, guid: 788234bdb78269c41b50049272df71f1, type: 3}
     isLocked: 0
 --- !u!114 &114596125411978444
 MonoBehaviour:

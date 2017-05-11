@@ -5,10 +5,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 400004}
-  - 114: {fileID: 11400000}
+  - component: {fileID: 400004}
+  - component: {fileID: 11400000}
   m_Layer: 0
   m_Name: _QuickSet
   m_TagString: Untagged
@@ -18,17 +18,17 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &400004
 Transform:
-  m_ObjectHideFlags: 8
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40,37 +40,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c88feefde72da499ca436f0cacb7c96a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectGroups: []
-  SelectedObjectId: {x: -1, y: -1}
-  RayMask: {}
-  Offset: {x: 0, y: 0, z: 0}
-  Rotation: {x: 0, y: 0, z: 0}
-  Scale: {x: 1, y: 1, z: 1}
+  HasBeenInitialized: 1
+  ObjectGroups:
+  - GOs:
+    - IsSelected: 0
+      GO: {fileID: 1000010267190188, guid: 8630a592f8db99d47b7dfc4480ed3777, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 1000014266181216, guid: b0252c7688d779d499f166a01810a2df, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 1000012604432630, guid: 02d853cb57806714a98cbfcf29ac3719, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 1000012370681496, guid: ea83ae721de8ff543ba2886fd3b9deb5, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 100000, guid: cb415a1fdb885ce42a84668b38bd9f09, type: 3}
+    - IsSelected: 0
+      GO: {fileID: 100000, guid: d2b0c4e3b0ce7d646aae8c907452336f, type: 3}
+    - IsSelected: 0
+      GO: {fileID: 100000, guid: 002059cf656d16a4c855e9e96d4f0cd9, type: 3}
+    - IsSelected: 0
+      GO: {fileID: 100000, guid: 7365d621ecd7b9b4cbf2cc8e427e3056, type: 3}
+    - IsSelected: 0
+      GO: {fileID: 100000, guid: 5a6c4507eb29a6b4a9df723e5a28543e, type: 3}
+    - IsSelected: 0
+      GO: {fileID: 100000, guid: 2009958bb6105f44bb3eb1c8eecc38fd, type: 3}
+    - IsSelected: 1
+      GO: {fileID: 100000, guid: d1c870d82e10e79449268f98c7fb5e69, type: 3}
+    - IsSelected: 0
+      GO: {fileID: 100000, guid: 43325d4667edb1e45b0f08de8ce608d1, type: 3}
+    - IsSelected: 0
+      GO: {fileID: 1413383110230246, guid: 41a85b83e39388840af1009b0d4593cb, type: 2}
+    - IsSelected: 0
+      GO: {fileID: 1567171219126122, guid: 6d1e48efb75fa164b92e69c75f67a998, type: 2}
+    GroupParent: {fileID: 0}
+    IsOpen: 1
+    GroupName: ObjectGroup0
+  SelectedObjectId: {x: 0, y: 10}
+  RayMask:
+    serializedVersion: 2
+    m_Bits: 536870913
+  Offset: {x: 0, y: -1, z: 0}
+  Rotation: {x: 3, y: 3, z: 3}
+  Scale: {x: 2, y: 2, z: 2}
   SnapX: 0
   SnapY: 0
   SnapZ: 0
   AutoSetX: 0
   AutoSetY: 0
   AutoSetZ: 0
-  UseGridSpaceX: 1
-  UseGridSpaceY: 1
-  UseGridSpaceZ: 1
   AutoXPos: 0
   AutoYPos: 0
   AutoZPos: 0
-  GridTransform: {fileID: 0}
   GridSize: 10
-  UnitSize: 1
   DrawXY: 0
   DrawXZ: 0
   DrawYZ: 0
-  NewGridPos: {x: 0, y: 0, z: 0}
-  NewGridRot: {x: 0, y: 0, z: 0}
-  LastObjectFoldout: 0
-  LastPlacedObject: {fileID: 0}
-  LastObjectPosition: {x: 0, y: 0, z: 0}
-  LastObjectRotation: {x: 0, y: 0, z: 0}
-  LastObjectScale: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

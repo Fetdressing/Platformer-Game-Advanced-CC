@@ -30,4 +30,6 @@ public class BaseClass : MonoBehaviour
     {
         public T value;
     }
+
+    public virtual void NewLevel() { }
 }

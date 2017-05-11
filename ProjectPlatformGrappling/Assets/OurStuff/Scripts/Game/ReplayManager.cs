@@ -6,6 +6,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 public class ReplayManager : BaseClass {
+
     LevelManager levelManager;
     LevelLoader levelLoader;
 
@@ -21,7 +22,7 @@ public class ReplayManager : BaseClass {
     bool simulate = false;
     int everyXUpdate = 8; //hur ofta den ska hämta data från spelaren
     int currUpdateNumber = 0;
-    Vector3 currMovePos = Vector3.zero;
+    Vector3 currMovePos = Vector3.zero; //replayerns nästa steg
     public Transform replayObject;
     Transform player;
     // Use this for initialization
@@ -29,15 +30,35 @@ public class ReplayManager : BaseClass {
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
         levelLoader = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelLoader>();
 
-        bestLevelReplayData = new ReplayData(levelManager.Nr_ReplayMoves_Stored);
-
+        //bestLevelReplayData = new ReplayData(levelManager.Nr_ReplayMoves_Stored);
         //LoadReplayData(levelLoader.GetCurrLevel().levelIndex);
+
+        if (levelManager.removeAllData) //ta bort all data
+        {
+            for (int i = 0; i < levelManager.standardLevels.Length; i++)
+            {
+                string fileName = Application.persistentDataPath + "/LevelReplayData" + i.ToString() + ".dat";
+                File.Delete(fileName); //ta bort all data där
+            }
+        }
 
         simulate = false;
 	}
 
+    public override void NewLevel() //new level was loaded, awake kallas bara en gång. LevelLoader kallar mig
+    {
+        bestLevelReplayData = null;
+
+        currMovePos = Vector3.zero;
+        replayObject.gameObject.SetActive(false);
+
+        simulate = false;
+    }
+
     public void BeginSimulation(Transform playerT)
     {
+        currPositions.Clear();
+        bestLevelReplayData = null;
         LoadReplayData(levelLoader.GetCurrLevel().levelIndex);
         player = playerT;
         replayObject.transform.position = player.position;
@@ -62,7 +83,7 @@ public class ReplayManager : BaseClass {
 
         int currMoveIndex = (currUpdateNumber/ everyXUpdate) - 1;
         currMoveIndex = Mathf.Max(0, currMoveIndex);
-        if (currMoveIndex < bestLevelReplayData.positions.Length)
+        if (bestLevelReplayData != null && validReplayData && currMoveIndex < bestLevelReplayData.positions.Length)
         {
             if (bestLevelReplayData.positions[currMoveIndex] != null)
             {
@@ -106,8 +127,6 @@ public class ReplayManager : BaseClass {
         string fileName = Application.persistentDataPath + "/LevelReplayData" + levelIndex.ToString() + ".dat";
         if (File.Exists(fileName))
         {
-            //File.Delete(fileName); //ta bort all data där
-            //continue; //ta bort all data där
             FileStream file = File.Open(fileName, FileMode.Open);
             ReplayData data = Deserialize(file);
             //ReplayData data = (ReplayData)bf.Deserialize(file);
@@ -116,6 +135,8 @@ public class ReplayManager : BaseClass {
             int datacheck = data.datacheck;
             if (datacheck != 1337) { print("Data is corrupt"); validReplayData = false; return; }
 
+            bestLevelReplayData = new ReplayData(levelManager.Nr_ReplayMoves_Stored);
+            bestLevelReplayData.positions = null;
             bestLevelReplayData.positions = data.positions;
 
             validReplayData = true;
@@ -132,7 +153,9 @@ public class ReplayManager : BaseClass {
         if (!useReplays) return;
         BinaryFormatter bf = new BinaryFormatter();
 
-        FileStream file = File.Create(Application.persistentDataPath + "/LevelReplayData" + levelIndex.ToString() + ".dat");
+        string fileName = Application.persistentDataPath + "/LevelReplayData" + levelIndex.ToString() + ".dat";
+        File.Delete(fileName); //ta bort den gamla datan
+        FileStream file = File.Create(fileName);
 
         ReplayData data = new ReplayData(currPositions.Count);
         data.datacheck = 1337;

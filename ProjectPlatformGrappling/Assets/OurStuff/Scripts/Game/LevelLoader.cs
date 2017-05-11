@@ -105,9 +105,8 @@ public class LevelLoader : MonoBehaviour {
         for (int i = 0; i < allB.Length; i++)
         {
             allB[i].isLocked = false;
+            allB[i].NewLevel(); //kalla new-level-loaded funktioner
         }
-
-        scoreManager.NewLevel();
     }
 
     public string GetCurrLevelName()
