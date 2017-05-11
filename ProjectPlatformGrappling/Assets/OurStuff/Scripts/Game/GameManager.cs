@@ -143,7 +143,7 @@ public class GameManager : BaseClass {
         //lLoader.LoadNextLevel();
         //return;
 
-        SaveGame();
+        SaveGame(); //ha inte den här alls sen!
         lLoader.LoadMainMenu();
         //Application.Quit();
     }
@@ -175,6 +175,7 @@ public class GameManager : BaseClass {
         bool currIsBest = false;
         ll.bestTime = scoreManager.GetBestTime(ll, ref currIsBest);
 
+        //if(currIsBest) //kolla så att detta är bästa tiden
         SaveGame();
     }
 }
