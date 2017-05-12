@@ -543,6 +543,7 @@
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\UVDisplacer.cs" />
     <Compile Include="Assets\ParticleController.cs" />
     <Compile Include="Assets\ParticleVelocityTrails.cs" />
+    <Compile Include="Assets\PowerGlobeHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ExternalAssets\InControl\Readme\README.txt" />
