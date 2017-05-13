@@ -332,20 +332,20 @@ public class StagMovement : BaseClass
         {
             if (GetGrounded(groundCheckObject)) //släppt kontrollerna, då kan man deaccelerera snabbare! : finalMoveDir.magnitude <= 0.0f
             {
-                Break((4 - currMovementStacks.value * 0.12f), ref currMomXZ);
+                Break((4 - currMovementStacks.value * 0.08f), ref currMomXZ);
             }
             Break((0.3f), ref currMomXZ); //flat break, //börja breaka hela tiden, även i luften med
         }
 
-        ////Break Y
-        if (currMomY > currLimitSpeed * 0.333f) //dessa kanske bör ligga separat utanför denna funktionen eftersom jag ändrade om denna funktion
-        {
-            Break((25 - currMovementStacks.value * 0.3f), ref currMomY);
-        }
-        else
-        {
-            Break((0.3f), ref currMomY); //flat break, //börja breaka hela tiden, även i luften med
-        }
+        //////Break Y
+        //if (currMomY > currLimitSpeed * 0.333f) //dessa kanske bör ligga separat utanför denna funktionen eftersom jag ändrade om denna funktion
+        //{
+        //    Break((25 - currMovementStacks.value * 0.3f), ref currMomY);
+        //}
+        //else
+        //{
+        //    Break((0.3f), ref currMomY); //flat break, //börja breaka hela tiden, även i luften med
+        //}
 
         currMomentum = new Vector3(currMomXZ.x, currMomentum.y, currMomXZ.z);
         //**BREAK**
@@ -438,10 +438,14 @@ public class StagMovement : BaseClass
             currMovementStacks = hiddenMovementStacks;
             hiddenMovementStacks.value = CalculateHiddenStacks();
         }
-        else if(GetTimeSinceLastDash() < 5.0f)
+        else
         {
             currMovementStacks = realMovementStacks;
         }
+        //else if(GetTimeSinceLastDash() < 5.0f)
+        //{
+        //    currMovementStacks = realMovementStacks;
+        //}
 
         moveStackText.text = currMovementStacks.value.ToString();
 
@@ -1639,7 +1643,7 @@ public class StagMovement : BaseClass
 
     int CalculateHiddenStacks()
     {
-        int dec_multiplier = 14;
+        float dec_multiplier = 18;
         int minStacks = 10;
 
         if(realMovementStacks.value < minStacks)
