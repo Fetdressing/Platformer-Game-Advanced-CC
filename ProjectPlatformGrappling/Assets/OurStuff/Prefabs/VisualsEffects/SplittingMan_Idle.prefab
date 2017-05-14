@@ -151,6 +151,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1426273075495710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4201202707478874}
+  - component: {fileID: 65229051853094068}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1435747545694194
 GameObject:
   m_ObjectHideFlags: 1
@@ -373,6 +389,19 @@ Transform:
   m_Father: {fileID: 4918048190657568}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4201202707478874
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426273075495710}
+  m_LocalRotation: {x: 0.014834147, y: -0, z: -0, w: 0.99988997}
+  m_LocalPosition: {x: 0, y: -13.43, z: -0.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4393033099722250}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 1.7, y: 0, z: 0}
 --- !u!4 &4254570548941752
 Transform:
   m_ObjectHideFlags: 1
@@ -441,6 +470,7 @@ Transform:
   - {fileID: 4918048190657568}
   - {fileID: 4664996179975158}
   - {fileID: 4944881279753268}
+  - {fileID: 4201202707478874}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -607,6 +637,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1679407258482028}
   m_Mesh: {fileID: 4300002, guid: 481301b1b4cc1b44396c1fcec1498408, type: 3}
+--- !u!65 &65229051853094068
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426273075495710}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 34, z: 5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65339358644154948
 BoxCollider:
   m_ObjectHideFlags: 1
