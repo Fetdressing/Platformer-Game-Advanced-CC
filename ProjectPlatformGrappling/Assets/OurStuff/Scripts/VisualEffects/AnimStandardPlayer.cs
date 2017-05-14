@@ -4,6 +4,7 @@ using System.Collections;
 public class AnimStandardPlayer : BaseClass { //hämtar speeden på denna transformen
     public Animation animationH;
 
+    public bool useStandardAnimations = true;
     public AnimationClip walk;
     public AnimationClip run;
     private AnimationClip currMoveClip;
@@ -30,9 +31,16 @@ public class AnimStandardPlayer : BaseClass { //hämtar speeden på denna transf
         if (animationH == null)
             animationH = transform.GetComponent<Animation>();
 
-        animationH[walk.name].speed = walkASpeed;
-        animationH[run.name].speed = runASpeed;
-        animationH[idle.name].speed = idleASpeed;
+        try { 
+            animationH[walk.name].speed = walkASpeed;
+            animationH[run.name].speed = runASpeed;
+            animationH[idle.name].speed = idleASpeed;
+            currMoveClip = walk;
+        }
+        catch
+        {
+
+        }
 
         Reset();
     }
@@ -40,11 +48,11 @@ public class AnimStandardPlayer : BaseClass { //hämtar speeden på denna transf
     public override void Reset()
     {
         base.Reset();
-        currMoveClip = walk;
     }
 
     // Update is called once per frame
     void Update () {
+        if (!useStandardAnimations) return;
         currFramePos = transform.position;
         float speed = (currFramePos - lastFramePos).magnitude / Time.deltaTime;
         
@@ -75,5 +83,10 @@ public class AnimStandardPlayer : BaseClass { //hämtar speeden på denna transf
         animationH[aClip.name].layer = 1;
         animationH[aClip.name].weight = weight;
         animationH.CrossFade(aClip.name, 0.1f);
+    }
+
+    public void PlayAnimation(string aClipN)
+    {
+        animationH.CrossFade(aClipN, 0.1f);
     }
 }

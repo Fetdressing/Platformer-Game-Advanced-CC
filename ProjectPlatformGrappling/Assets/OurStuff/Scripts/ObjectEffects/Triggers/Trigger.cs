@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Collider))]
 public class Trigger : BaseClass {
+    public bool once = false; //om den är true så körs bara "StartTrigger" en gång
     [HideInInspector]
     public bool isTriggered;
     public bool continous = false; //om true så kallar den kommandot hela tiden
-    public float collisionExtent = 5;
     public LayerMask collisionMask;
 
     public ParticleSystem psActivated;
@@ -42,27 +43,6 @@ public class Trigger : BaseClass {
         ExitTrigger();
     }
 
-    //void OnTriggerEnter(Collider col)
-    //{
-    //    ToggleTrigger(true);
-    //}
-
-    //void OnTriggerExit(Collider col)
-    //{
-    //    //kolla ifall det står någon kvar
-    //    ToggleTrigger(false);
-    //}
-
-    //void OnCollisionEnter(Collision col)
-    //{
-    //    ToggleTrigger(true);
-    //}
-
-    //void OnCollisionExit(Collision col)
-    //{
-    //    ToggleTrigger(false);
-    //}
-
     void FixedUpdate()
     {
         if (initTimes == 0) return;
@@ -72,7 +52,8 @@ public class Trigger : BaseClass {
 
     public bool GetTriggered()
     {
-        Collider[] col = Physics.OverlapBox(transform.position, new Vector3(collisionExtent, collisionExtent, collisionExtent), Quaternion.identity, collisionMask);
+        Vector3 extents = GetComponent<BoxCollider>().size;
+        Collider[] col = Physics.OverlapBox(transform.position, extents, transform.rotation, collisionMask);
         if(col.Length > 0)
         {
             return true;
@@ -108,6 +89,11 @@ public class Trigger : BaseClass {
             {
                 ExitTrigger();
             }
+            else if (continous) //maybe?
+            {
+                ExitTrigger();
+            }
+
             if (psActivated != null)
             {
                 psActivated.Stop();
@@ -130,6 +116,10 @@ public class Trigger : BaseClass {
             }
         }
         fEventStart.Invoke();
+        if(once)
+        {
+            Destroy(this, 3);
+        }
     }
 
     public virtual void ExitTrigger()
