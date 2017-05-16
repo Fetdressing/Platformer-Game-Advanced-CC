@@ -52,9 +52,6 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -69,9 +66,6 @@
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
@@ -526,6 +520,8 @@
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagMovement.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagShooter.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagSpeedBreaker.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\PowerGlobeHandler.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\SimplePowerGlobeHandler.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Specials\ObjectActivator.cs" />
     <Compile Include="Assets\OurStuff\Scripts\UIGeneral\HoverText.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\AnimStandardPlayer.cs" />
@@ -543,7 +539,6 @@
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\UVDisplacer.cs" />
     <Compile Include="Assets\ParticleController.cs" />
     <Compile Include="Assets\ParticleVelocityTrails.cs" />
-    <Compile Include="Assets\PowerGlobeHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ExternalAssets\InControl\Readme\README.txt" />
