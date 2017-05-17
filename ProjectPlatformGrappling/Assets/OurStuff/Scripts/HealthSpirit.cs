@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class HealthSpirit : BaseClass
 {
-    private Transform thisTransform;
     private Rigidbody thisRigidbody;
     private AIBase aiBase;
 
@@ -23,7 +22,7 @@ public class HealthSpirit : BaseClass
     {
         get
         {
-            return new Vector3(thisTransform.position.x, thisTransform.position.y + middlePointOffsetY, thisTransform.position.z);
+            return new Vector3(transform.position.x, transform.position.y + middlePointOffsetY, transform.position.z);
         }
     }
 
@@ -66,14 +65,13 @@ public class HealthSpirit : BaseClass
     public override void Init()
     {
         base.Init();
-        thisTransform = this.transform;
-        thisRigidbody = thisTransform.GetComponent<Rigidbody>();
-        startPos = thisTransform.position;
+        thisRigidbody = transform.GetComponent<Rigidbody>();
+        startPos = transform.position;
         if (thisRenderer == null)
         {
             thisRenderer = GetComponentsInChildren<Renderer>();
         }
-        aiBase = thisTransform.GetComponent<AIBase>();
+        aiBase = transform.GetComponent<AIBase>();
         int i = 0;
         foreach (Renderer re in thisRenderer)
         {
@@ -109,11 +107,11 @@ public class HealthSpirit : BaseClass
 
         healthRegAmount = startHealthRegAmount;
         isAlive = true;
-        thisTransform.gameObject.SetActive(true);
+        transform.gameObject.SetActive(true);
         transparentValue = 1;
         SetTransparency(transparentValue, false);
-
-        thisTransform.position = startPos;
+        
+        transform.position = startPos;
 
         //ApplyMaterial(damagedMaterial, 0.1f);
         ResetChangeMat();
@@ -273,11 +271,11 @@ public class HealthSpirit : BaseClass
 
         if (destroyOnDeath == true)
         {
-            //if (thisTransform.GetComponent<AIBase>() != null)
+            //if (transform.GetComponent<AIBase>() != null)
             //{
-            //    thisTransform.GetComponent<AIBase>().Dealloc();
+            //    transform.GetComponent<AIBase>().Dealloc();
             //}
-            //Destroy(thisTransform.gameObject, delayedDeathTime);
+            //Destroy(transform.gameObject, delayedDeathTime);
         }
         else
         {
@@ -288,7 +286,7 @@ public class HealthSpirit : BaseClass
     public IEnumerator DieDelayed()
     {
         yield return new WaitForSeconds(delayedDeathTime);
-        thisTransform.gameObject.SetActive(false);
+        transform.gameObject.SetActive(false);
         if (transform.tag == "Player")
         {
             GameObject.FindGameObjectWithTag("Manager").GetComponent<SpawnManager>().Respawn(deathLocation);
@@ -345,7 +343,7 @@ public class HealthSpirit : BaseClass
 
     public void ApplyMaterial(Material m, float time)
     {
-        if (thisTransform.gameObject.activeSelf == false) return;
+        if (transform.gameObject.activeSelf == false) return;
 
         if (changeMatIE != null) return;
 

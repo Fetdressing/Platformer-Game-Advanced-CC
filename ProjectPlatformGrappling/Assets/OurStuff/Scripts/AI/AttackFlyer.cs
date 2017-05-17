@@ -20,6 +20,7 @@ public class AttackFlyer : BaseClass {
 
     private bool chasing = false;
     private Transform player;
+    private StagMovement pStagMov;
     private bool returning = false;
 
     public Animation animH;
@@ -56,6 +57,7 @@ public class AttackFlyer : BaseClass {
         }
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        pStagMov = player.GetComponent<StagMovement>();
 
         Reset();
     }
@@ -71,6 +73,7 @@ public class AttackFlyer : BaseClass {
     // Update is called once per frame
     void Update()
     {
+        if (pStagMov.isLocked) return;
         Vector3 dir = transform.forward;
         float distanceToMovePos = Vector3.Distance(transform.position, currMovePos);
 
