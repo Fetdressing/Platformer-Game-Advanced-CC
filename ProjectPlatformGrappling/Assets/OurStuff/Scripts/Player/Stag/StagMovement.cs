@@ -132,6 +132,7 @@ public class StagMovement : BaseClass
     public Pointer<int> hiddenMovementStacks = new Pointer<int>();//används när man slutat använda så mkt input
     [System.NonSerialized]
     public Pointer<int> realMovementStacks = new Pointer<int>();//används när man dashar, hoppar och är aktiv
+    private int minSoftMovementStacks = 10; //om man slutar hoppa/dasha så hamnar den snabbt här
 
 
     public PullField pullField; //som drar till sig grejer till spelaren, infinite gravity!
@@ -1644,7 +1645,7 @@ public class StagMovement : BaseClass
     int CalculateHiddenStacks()
     {
         float dec_multiplier = 18;
-        int minStacks = 10;
+        int minStacks = minSoftMovementStacks;
 
         if(realMovementStacks.value < minStacks)
         {
@@ -1658,6 +1659,10 @@ public class StagMovement : BaseClass
 
     public void AddMovementStack(int i)
     {
+        if(i > 0 && realMovementStacks.value < minSoftMovementStacks) //lättare att få stacks i början
+        {
+            i *= 2;
+        }
         realMovementStacks.value += i;
 
         if (realMovementStacks.value < 1)

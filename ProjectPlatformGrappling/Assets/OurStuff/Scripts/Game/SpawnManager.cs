@@ -218,10 +218,10 @@ public class SpawnManager : BaseClass {
         }
 
         yield return setRot; //och vänta på att den ska bli klar oxå!
-
+        stagMovement.Reset();
         stagMovement.currMomentum = latestSpawn.forward * 100;
         player.GetComponent<PowerManager>().Reset();
-        stagMovement.Reset();
+        
         //player.GetComponent<StagShooter>().Reset();
         player.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 

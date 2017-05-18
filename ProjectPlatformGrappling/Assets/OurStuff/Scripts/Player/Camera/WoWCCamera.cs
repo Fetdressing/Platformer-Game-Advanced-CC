@@ -107,6 +107,8 @@ public class WoWCCamera : BaseClass
 
     public IEnumerator SetRot(Vector3 newDir, bool unlock = true)
     {
+        xMom = 0.0f;
+        yMom = 0.0f;
         if(settingRotation != null)
         {
             StopCoroutine(settingRotation);
