@@ -130,7 +130,7 @@ Material:
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _SpecColor
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 0.66176474, g: 0.66176474, b: 0.66176474, a: 1}
     - first:
         name: __Direction
       second: {r: -1, g: -0.00000008742278, b: -10, a: -0.0000008742278}
