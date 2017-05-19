@@ -333,9 +333,9 @@ public class StagMovement : BaseClass
         {
             if (GetGrounded(groundCheckObject)) //släppt kontrollerna, då kan man deaccelerera snabbare! : finalMoveDir.magnitude <= 0.0f
             {
-                Break((4 - currMovementStacks.value * 0.08f), ref currMomXZ);
+                Break((4.5f - currMovementStacks.value * 0.08f), ref currMomXZ);
             }
-            Break((0.3f), ref currMomXZ); //flat break, //börja breaka hela tiden, även i luften med
+            Break((0.35f), ref currMomXZ); //flat break, //börja breaka hela tiden, även i luften med
         }
 
         //////Break Y
