@@ -503,6 +503,7 @@
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Teleport.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Triggers\Conversation.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Triggers\MoveObjectTrigger.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Triggers\TimedEvent.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Triggers\Trigger.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\VelocityMultiplier.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\WallJumpObj.cs" />

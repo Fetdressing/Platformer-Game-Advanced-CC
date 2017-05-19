@@ -525,7 +525,7 @@ MonoBehaviour:
     isLocked: 0
   - name: WaterfallFobia
     loadName: OurStuff/Scenes/WaterfallFobia
-    image: {fileID: 21300000, guid: 788234bdb78269c41b50049272df71f1, type: 3}
+    image: {fileID: 21300000, guid: b01528fe5865b264f914f866e68f738f, type: 3}
     isLocked: 0
 --- !u!114 &114596125411978444
 MonoBehaviour:
