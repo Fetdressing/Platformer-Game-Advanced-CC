@@ -17,11 +17,12 @@ public class SimplePowerGlobeHandler : BaseClass
 
     private Vector3 m_startPosition;
     private Rigidbody m_rigidBody;
-    private List<ParticleSystem> m_particleSystems;
+    private List<ParticleSystem.Particle> m_triggeredParticles = new List<ParticleSystem.Particle>();
+    private ParticleSystem m_ps;
 
     private bool hasBeenPicked = false;
     private bool isAlive = true;
-    
+
     // Use this for initialization
     void Start()
     {
@@ -44,8 +45,10 @@ public class SimplePowerGlobeHandler : BaseClass
         {
             print("Scoremanager not found");
         }
-
         m_startPosition = transform.position;
+
+        m_ps = GetComponent<ParticleSystem>();
+
         Reset();
     }
 
@@ -63,12 +66,29 @@ public class SimplePowerGlobeHandler : BaseClass
 
     private void CollectGlobe()
     {
-        if(m_powerManager != null)
+        if (m_powerManager != null)
         {
             m_powerManager.AddPower(m_powerValue);
-            if (!hasBeenPicked) m_scoreManager.PowerGlobeCollected(m_globeValue);
+            if (!hasBeenPicked)
+            {
+                m_scoreManager.PowerGlobeCollected(m_globeValue);
+                print("YAYA");
+            }
             hasBeenPicked = true;
 
+        }
+    }
+
+    void OnParticleTrigger()
+    {
+        // Collect globe, add power.
+        if (m_ps != null)
+        {
+            int triggeredParticleCount = m_ps.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, m_triggeredParticles);
+            if (triggeredParticleCount > 0) 
+            {
+                CollectGlobe();
+            }
         }
     }
 

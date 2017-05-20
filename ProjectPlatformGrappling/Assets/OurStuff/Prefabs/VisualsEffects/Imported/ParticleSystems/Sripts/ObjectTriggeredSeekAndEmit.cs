@@ -10,6 +10,7 @@ public class ObjectTriggeredSeekAndEmit : BaseClass
     private SphereCollider m_collider;
     private Transform m_psTransform;
 
+    public bool m_shouldEmit = false;
     public ParticleSystem m_childSystem;
 
     public Transform m_playerTransform;
@@ -58,6 +59,7 @@ public class ObjectTriggeredSeekAndEmit : BaseClass
             if (particles > 0)
             {
                 m_ps.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
+           
                 m_childSystem.transform.position = m_psTransform.position;
                 m_childSystem.Emit(m_emitCount);
                 m_isAlive = false;

@@ -118,7 +118,7 @@ public class PowerManager : BaseClass {
         {
             p = Mathf.Abs(p);
         }
-
+        
         currPower += p;
 
         if (showDamageMat)

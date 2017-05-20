@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/OurStuff/Scenes/RedWoodScene.unity
   - enabled: 1
     path: Assets/OurStuff/Scenes/WaterfallFobia.unity
+  - enabled: 1
+    path: Assets/OurStuff/Scenes/SexyEffectsCorner.unity

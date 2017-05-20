@@ -417,6 +417,10 @@
     <Compile Include="Assets\ExternalAssets\InControl\Source\iCade\ICadeNative.cs" />
     <Compile Include="Assets\ExternalAssets\InControl\Source\iCade\ICadeState.cs" />
     <Compile Include="Assets\ExternalAssets\InControl\Test\TestInputManager.cs" />
+    <Compile Include="Assets\ExternalAssets\LowPolyWater\Demo\Scripts\DemoFreeFlyCamera.cs" />
+    <Compile Include="Assets\ExternalAssets\LowPolyWater\Scripts\LowPolyWater.cs" />
+    <Compile Include="Assets\ExternalAssets\LowPolyWater\Scripts\src\LPWEdgeBlend.cs" />
+    <Compile Include="Assets\ExternalAssets\LowPolyWater\Scripts\src\LPWNoise.cs" />
     <Compile Include="Assets\ExternalAssets\Quantum Theory\Polyworld\Scripts\QT_InteractContainer.cs" />
     <Compile Include="Assets\ExternalAssets\Quantum Theory\Polyworld\Scripts\QT_LightFlicker.cs" />
     <Compile Include="Assets\ExternalAssets\Quantum Theory\Polyworld\Scripts\QT_PolyWorldTerrain.cs" />
@@ -426,7 +430,6 @@
     <Compile Include="Assets\ExternalAssets\QuickSetObjectPlacer\Scripts\QuickSetObjectPlacer.cs" />
     <Compile Include="Assets\ExternalAssets\SimpleLUT\Script\SimpleLUT.cs" />
     <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\CubemapNormalsShader\ColorReplacement3D.cs" />
-    <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\CubemapNormalsShader\ColorReplacementEditor.cs" />
     <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\CubemapNormalsShader\Old\ColorReplacement.cs" />
     <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\Imported\ParticleSystems\Sripts\BoosterGlobeHandler.cs" />
     <Compile Include="Assets\OurStuff\Prefabs\VisualsEffects\Imported\ParticleSystems\Sripts\ObjectTriggeredSeekAndEmit.cs" />
@@ -500,6 +503,7 @@
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Teleport.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Triggers\Conversation.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Triggers\MoveObjectTrigger.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Triggers\TimedEvent.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\Triggers\Trigger.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\VelocityMultiplier.cs" />
     <Compile Include="Assets\OurStuff\Scripts\ObjectEffects\WallJumpObj.cs" />
@@ -517,6 +521,8 @@
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagMovement.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagShooter.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagSpeedBreaker.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\PowerGlobeHandler.cs" />
+    <Compile Include="Assets\OurStuff\Scripts\SimplePowerGlobeHandler.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Specials\ObjectActivator.cs" />
     <Compile Include="Assets\OurStuff\Scripts\UIGeneral\HoverText.cs" />
     <Compile Include="Assets\OurStuff\Scripts\VisualEffects\AnimStandardPlayer.cs" />
@@ -537,6 +543,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ExternalAssets\InControl\Readme\README.txt" />
+    <None Include="Assets\ExternalAssets\LowPolyWater\Shaders\LowPolyWater.shader" />
     <None Include="Assets\ExternalAssets\Quantum Theory\Polyworld\Shaders\PolyWorldSurfaceTexture_Gamma.shader" />
     <None Include="Assets\ExternalAssets\Quantum Theory\Polyworld\Shaders\PolyWorldSurfaceTexture_Linear.shader" />
     <None Include="Assets\ExternalAssets\Quantum Theory\Polyworld\Shaders\PolyWorldSurface_Gamma.shader" />
@@ -647,6 +654,11 @@
     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />
     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
+    <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
+    <None Include="Assets\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
+    <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
+    <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
+    <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\WaterInclude.cginc" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
