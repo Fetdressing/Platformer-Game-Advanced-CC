@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class Wisp : BaseClass {
+    private Transform player;
     private Vector3 startPosition;
     private Vector3 currMovePos;
     public float movePosIntervalTime = 8;
@@ -9,9 +10,8 @@ public class Wisp : BaseClass {
 
     public float speed = 4;
     public float checkDistanceThreshhold = 400;
-
-    private bool fleeing = false;
-    private Transform fleeingUnit;
+    
+    public float fleeDistance = 25; //hur långt den ska fly
     private bool returning = false;
 	// Use this for initialization
 	void Start () {
@@ -23,30 +23,27 @@ public class Wisp : BaseClass {
         base.Init();
         startPosition = transform.position;
         currMovePos = transform.position;
+        player = GameObject.FindGameObjectWithTag("Manager").GetComponent<SpawnManager>().player;
+
+        speed *= 0.001f;
         Reset();
     }
 
     public override void Reset()
     {
         base.Reset();
-        fleeing = false;
         returning = false;
         movePosIntervalTimer = 0.0f;
     }
     // Update is called once per frame
     void Update () {
-        if (fleeing)
+        print("en random rotation varför gång de förflyttar sig kanske?");
+        if (Vector3.Distance(player.position, transform.position) < fleeDistance)
         {
-            Vector3 dir = (transform.position - fleeingUnit.position).normalized;
-            transform.position = Vector3.Lerp(transform.position, dir, Time.deltaTime * speed * 6);
-            if (Vector3.Distance(startPosition, transform.position) < 5)
-            {
-                fleeing = false;
-            }
-            else
-            {
-                return;
-            }
+            Vector3 fleePos = transform.position + (transform.position - player.position).normalized * fleeDistance * 1.3f;
+            transform.position = Vector3.Lerp(transform.position, fleePos, Time.time * speed);
+
+            return;
         }
 
         if(movePosIntervalTimer < Time.time)
@@ -55,14 +52,14 @@ public class Wisp : BaseClass {
             currMovePos = GetRandomVector() + transform.position;
         }
 
-        if(Vector3.Distance(transform.position, startPosition) > checkDistanceThreshhold*3 && returning == false)
+        if(returning == false && Vector3.Distance(transform.position, startPosition) > checkDistanceThreshhold*3)
         {
             returning = true;
         }
 
         if(returning == true)
         {
-            transform.position = Vector3.Lerp(transform.position, startPosition, Time.deltaTime * speed);
+            transform.position = Vector3.Lerp(transform.position, startPosition, Time.time * speed * 0.01f);
             if(Vector3.Distance(startPosition, transform.position) < 5)
             {
                 returning = false;
@@ -70,8 +67,7 @@ public class Wisp : BaseClass {
         }
         else
         {
-            Vector3 dir = (transform.position - currMovePos).normalized;
-            transform.position = Vector3.Lerp(transform.position, currMovePos, Time.deltaTime * speed);
+            transform.position = Vector3.Lerp(transform.position, currMovePos, Time.time * speed);
         }
 	}
 
@@ -103,13 +99,5 @@ public class Wisp : BaseClass {
     {
         Vector3 p = new Vector3(Random.Range(-checkDistanceThreshhold * 0.5f, checkDistanceThreshhold * 0.5f), Random.Range(-checkDistanceThreshhold * 0.5f, checkDistanceThreshhold * 0.5f), Random.Range(-checkDistanceThreshhold * 0.5f, checkDistanceThreshhold * 0.5f));
         return p;
-    }
-
-    void OnTriggerEnter(Collider col)
-    {
-        if(col.tag != "Player") { return; }
-        fleeingUnit = col.transform;
-        fleeing = true;
-
     }
 }
