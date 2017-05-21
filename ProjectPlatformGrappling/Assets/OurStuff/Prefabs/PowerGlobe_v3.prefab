@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4117391547599714}
   - component: {fileID: 198549968239319774}
   - component: {fileID: 199673273335262430}
-  - component: {fileID: 114961466005536576}
   - component: {fileID: 114982011884610080}
   - component: {fileID: 135112557784965748}
   m_Layer: 11
@@ -42,10 +41,9 @@ GameObject:
   - component: {fileID: 198299471482967072}
   - component: {fileID: 199116846441619512}
   - component: {fileID: 135290797560793876}
-  - component: {fileID: 114881971626744558}
   - component: {fileID: 114299161162439122}
   m_Layer: 11
-  m_Name: Blop
+  m_Name: HALO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,10 +61,11 @@ GameObject:
   - component: {fileID: 199873358731376122}
   - component: {fileID: 135631712023270936}
   - component: {fileID: 114932160491500462}
-  - component: {fileID: 114868263774574178}
+  - component: {fileID: 114423173437377788}
   - component: {fileID: 114217811280837984}
+  - component: {fileID: 114868263774574178}
   m_Layer: 11
-  m_Name: MidSphere
+  m_Name: MAIN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +80,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4452250666091912}
   m_Layer: 11
-  m_Name: PowerGlobe_v2
+  m_Name: PowerGlobe_v3
   m_TagString: Untagged
   m_Icon: {fileID: -982381405332843317, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -137,7 +136,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1954448902702004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -377.2, y: 10.3, z: -13.1}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4117391547599714}
@@ -212,10 +211,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad03b886af649594fac85de261f64da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_shouldEmit: 0
   m_childSystem: {fileID: 198876219161962462}
   m_playerTransform: {fileID: 0}
-  m_force: 100
+  m_lerp: 1
+  m_chaseSpeed: 500
+  m_force: 1000
   m_emitCount: 50
+--- !u!114 &114423173437377788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1918772226278954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b6e96c4f0f31c478ba6b119e04049c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_powerValue: 0.1
+  m_globeValue: 1
+  m_playerTransform: {fileID: 0}
 --- !u!114 &114868263774574178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,50 +243,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad03b886af649594fac85de261f64da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_shouldEmit: 1
   m_childSystem: {fileID: 198876219161962462}
   m_playerTransform: {fileID: 0}
-  m_force: 100
-  m_emitCount: 50
---- !u!114 &114881971626744558
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1690294438367250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2f2e26b9e96b464e9dd282764247ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_siblingSystem1: {fileID: 198549968239319774}
+  m_lerp: 1
+  m_chaseSpeed: 500
+  m_force: 1000
+  m_emitCount: 10
 --- !u!114 &114932160491500462
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1918772226278954}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2f2e26b9e96b464e9dd282764247ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_siblingSystem1: {fileID: 198549968239319774}
---- !u!114 &114961466005536576
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1625590540888502}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffe1c5285c962d8478e61f6a01104cd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_maxDistance: 1
-  m_maxConnections: 5
-  m_maxLRs: 20
-  m_lineRendererTemplate: {fileID: 120991462709303030, guid: ef1a962209098cb4e85d3d71a4a38a33,
-    type: 2}
 --- !u!114 &114982011884610080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -297,7 +288,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8
+  m_Radius: 25.68
   m_Center: {x: 0.0036894083, y: 0.005379021, z: 0.008259296}
 --- !u!135 &135290797560793876
 SphereCollider:
@@ -378,7 +369,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 1602974855
+  randomSeed: 1898448564
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -2907,7 +2898,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 544860750
+  randomSeed: 1191112503
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5025,7 +5016,7 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 1
   TriggerModule:
-    enabled: 1
+    enabled: 0
     collisionShape0: {fileID: 0}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
@@ -5412,11 +5403,11 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1958307976673880}
   serializedVersion: 5
-  lengthInSec: 5
+  lengthInSec: 0.5
   speed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     scalar: 0
@@ -5460,7 +5451,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: -549880433
+  randomSeed: -1049179996
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5980,11 +5971,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
       minMaxState: 0
-    cnt0: 30
+    cnt0: 10
     cnt1: 30
     cnt2: 30
     cnt3: 30
-    cntmax0: 30
+    cntmax0: 10
     cntmax1: 30
     cntmax2: 30
     cntmax3: 30
@@ -5992,7 +5983,7 @@ ParticleSystem:
     time1: 0
     time2: 0
     time3: 0
-    m_BurstCount: 0
+    m_BurstCount: 1
   SizeModule:
     enabled: 0
     curve:
@@ -8061,7 +8052,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 554094282
+  randomSeed: 946736423
   InitialModule:
     serializedVersion: 3
     enabled: 1

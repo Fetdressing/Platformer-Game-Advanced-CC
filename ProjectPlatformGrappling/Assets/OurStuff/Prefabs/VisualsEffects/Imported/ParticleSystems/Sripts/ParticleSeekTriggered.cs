@@ -8,8 +8,7 @@ public class ParticleSeekTriggered : MonoBehaviour
     // Public variables
     public Transform m_target;
     public float m_force = 10.0f;
-    public bool m_stopOnTrigger = true;
-    public float m_stopDelay = 0.0f;
+    public bool m_stopOnTrigger = false;
     public bool m_startOnExit = true;
 
     // System
@@ -23,6 +22,10 @@ public class ParticleSeekTriggered : MonoBehaviour
     void Start()
     {
         m_particleSystem = GetComponent<ParticleSystem>();
+        if (m_target == null) 
+        {
+            m_target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        }
         m_psMainModule = m_particleSystem.main;
     }
 

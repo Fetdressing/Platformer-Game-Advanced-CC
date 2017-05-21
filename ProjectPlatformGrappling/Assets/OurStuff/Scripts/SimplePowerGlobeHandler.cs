@@ -34,7 +34,10 @@ public class SimplePowerGlobeHandler : BaseClass
         base.Init();
 
         m_spawnManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<SpawnManager>();
-        m_playerTransform = m_spawnManager.player;
+        if (m_playerCollider == null)
+        {
+            m_playerTransform = m_spawnManager.player;
+        }
         m_powerManager = m_playerTransform.GetComponent<PowerManager>();
         m_stagMovement = m_playerTransform.GetComponent<StagMovement>();
         try
@@ -72,7 +75,7 @@ public class SimplePowerGlobeHandler : BaseClass
             if (!hasBeenPicked)
             {
                 m_scoreManager.PowerGlobeCollected(m_globeValue);
-                print("YAYA");
+                //print("YAYA");
             }
             hasBeenPicked = true;
 
@@ -85,7 +88,7 @@ public class SimplePowerGlobeHandler : BaseClass
         if (m_ps != null)
         {
             int triggeredParticleCount = m_ps.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, m_triggeredParticles);
-            if (triggeredParticleCount > 0) 
+            if (triggeredParticleCount > 0)
             {
                 CollectGlobe();
             }
