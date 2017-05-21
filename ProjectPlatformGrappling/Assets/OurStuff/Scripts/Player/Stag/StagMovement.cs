@@ -127,7 +127,10 @@ public class StagMovement : BaseClass
     protected float movementStackResetTime = 2.0f;
     //[System.NonSerialized]public int currMovementStacks.value = 0; //får mer stacks när man dashar och hoppar mycket
     [System.NonSerialized]
-    public Pointer<int> currMovementStacks;
+    public Pointer<int> currMovementStacks = new Pointer<int>();
+    [System.NonSerialized]
+    public Pointer<int> wantedMovementStacks;//den pekar på antingen hidden eller real movestacks och currMovementStacks lerpar till denna
+    private float wantedTimepointChanged = 0.0f; //när wantedMovementStacks bytte vad den peka på senast
     [System.NonSerialized]
     public Pointer<int> hiddenMovementStacks = new Pointer<int>();//används när man slutat använda så mkt input
     [System.NonSerialized]
@@ -215,8 +218,9 @@ public class StagMovement : BaseClass
         //resettar inte dessa vid reset då jag vill behålla mina stacks efter respawn
         realMovementStacks.value = 1;
         hiddenMovementStacks.value = 1;
-
-        currMovementStacks = realMovementStacks;
+        currMovementStacks.value = 1;
+        //currMovementStacks = realMovementStacks;
+        wantedMovementStacks = realMovementStacks;
         AddMovementStack(5); //startvärde
 
         Reset();
@@ -331,9 +335,10 @@ public class StagMovement : BaseClass
         }
         else
         {
-            if (GetGrounded(groundCheckObject)) //släppt kontrollerna, då kan man deaccelerera snabbare! : finalMoveDir.magnitude <= 0.0f
+            if (GetGrounded(groundCheckObject))
             {
-                Break((4.5f - currMovementStacks.value * 0.08f), ref currMomXZ);
+                //Break((4.5f - currMovementStacks.value * 0.08f), ref currMomXZ);
+                Break((3.0f + currMovementStacks.value * 0.03f), ref currMomXZ);
             }
             Break((0.35f), ref currMomXZ); //flat break, //börja breaka hela tiden, även i luften med
         }
@@ -434,19 +439,33 @@ public class StagMovement : BaseClass
             AddMovementStack(-2); //ändrar realMovementStacks
         }
 
-        if(GetGroundedDuration() > 0.1f)
+        float lerpSpeed = 0.2f;
+        if(GetGroundedDuration() > 0.0f)
         {
-            currMovementStacks = hiddenMovementStacks;
             hiddenMovementStacks.value = CalculateHiddenStacks();
+            lerpSpeed = 1.2f;
+
+            if (wantedMovementStacks != hiddenMovementStacks)
+            {
+                wantedMovementStacks = hiddenMovementStacks;
+                wantedTimepointChanged = Time.time;
+            }
+            
         }
         else
         {
-            currMovementStacks = realMovementStacks;
+            if (wantedMovementStacks != realMovementStacks)
+            {
+                wantedMovementStacks = realMovementStacks;
+                wantedTimepointChanged = Time.time;
+            }
+            //currMovementStacks = realMovementStacks;
         }
         //else if(GetTimeSinceLastDash() < 5.0f)
         //{
         //    currMovementStacks = realMovementStacks;
         //}
+        currMovementStacks.value = (int)Mathf.Lerp(currMovementStacks.value, wantedMovementStacks.value, (Time.time - wantedTimepointChanged) * lerpSpeed);
 
         moveStackText.text = currMovementStacks.value.ToString();
 
@@ -2117,7 +2136,7 @@ public class StagMovement : BaseClass
 
     public float GetGroundedDuration()
     {
-        if (!isGroundedRaycast)
+        if (!GetGrounded())
             return 0;
         //if (Time.time - groundedTimePoint > 2)
         //    Debug.Log((Time.time - groundedTimePoint).ToString());
