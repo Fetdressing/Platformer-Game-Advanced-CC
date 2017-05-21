@@ -521,7 +521,6 @@
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagMovement.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagShooter.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Player\Stag\StagSpeedBreaker.cs" />
-    <Compile Include="Assets\OurStuff\Scripts\PowerGlobeHandler.cs" />
     <Compile Include="Assets\OurStuff\Scripts\SimplePowerGlobeHandler.cs" />
     <Compile Include="Assets\OurStuff\Scripts\Specials\ObjectActivator.cs" />
     <Compile Include="Assets\OurStuff\Scripts\UIGeneral\HoverText.cs" />
