@@ -131,6 +131,7 @@ public class StagMovement : BaseClass
     [System.NonSerialized]
     public Pointer<int> wantedMovementStacks;//den pekar på antingen hidden eller real movestacks och currMovementStacks lerpar till denna
     private float wantedTimepointChanged = 0.0f; //när wantedMovementStacks bytte vad den peka på senast
+    int startLerpValue = 1; //så man får en linear interpolation istället för acceleration som fås när man lerpar från det aktiva värdet
     [System.NonSerialized]
     public Pointer<int> hiddenMovementStacks = new Pointer<int>();//används när man slutat använda så mkt input
     [System.NonSerialized]
@@ -439,16 +440,17 @@ public class StagMovement : BaseClass
             AddMovementStack(-2); //ändrar realMovementStacks
         }
 
-        float lerpSpeed = 0.2f;
+        float lerpSpeed = 1.0f;
         if(GetGroundedDuration() > 0.0f)
         {
             hiddenMovementStacks.value = CalculateHiddenStacks();
-            lerpSpeed = 1.2f;
+            lerpSpeed = 1.8f;
 
             if (wantedMovementStacks != hiddenMovementStacks)
             {
                 wantedMovementStacks = hiddenMovementStacks;
                 wantedTimepointChanged = Time.time;
+                startLerpValue = currMovementStacks.value;
             }
             
         }
@@ -458,6 +460,7 @@ public class StagMovement : BaseClass
             {
                 wantedMovementStacks = realMovementStacks;
                 wantedTimepointChanged = Time.time;
+                startLerpValue = currMovementStacks.value;
             }
             //currMovementStacks = realMovementStacks;
         }
@@ -465,7 +468,7 @@ public class StagMovement : BaseClass
         //{
         //    currMovementStacks = realMovementStacks;
         //}
-        currMovementStacks.value = (int)Mathf.Lerp(currMovementStacks.value, wantedMovementStacks.value, (Time.time - wantedTimepointChanged) * lerpSpeed);
+        currMovementStacks.value = (int)Mathf.Lerp(startLerpValue, wantedMovementStacks.value, (Time.time - wantedTimepointChanged) * lerpSpeed);
 
         moveStackText.text = currMovementStacks.value.ToString();
 

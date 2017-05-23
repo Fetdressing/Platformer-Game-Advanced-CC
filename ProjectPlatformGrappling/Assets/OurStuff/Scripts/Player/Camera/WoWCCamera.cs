@@ -177,6 +177,27 @@ public class WoWCCamera : BaseClass
         xMom += controlManager.horAxisView * xSpeed * 0.2f * speedMultiplier;
         yMom += controlManager.verAxisView * ySpeed * 0.2f * speedMultiplier;
 
+        //så kameran inte ska flippa vid lagg
+        float momMaxValue = 2700 * speedMultiplier;
+        if(xMom > 0)
+        {
+            xMom = Mathf.Min(xMom, momMaxValue);
+        }
+        else
+        {
+            xMom = Mathf.Max(xMom, -momMaxValue);
+        }
+
+        if (yMom > 0)
+        {
+            yMom = Mathf.Min(yMom, momMaxValue);
+        }
+        else
+        {
+            yMom = Mathf.Max(yMom, -momMaxValue);
+        }
+        //så kameran inte ska flippa vid lagg
+
         float slowDownMult = 25; //slöa ner momentumen
         xMom = Mathf.Lerp(xMom, 0, 0.01f * slowDownMult);
         yMom = Mathf.Lerp(yMom, 0, 0.01f * slowDownMult);
