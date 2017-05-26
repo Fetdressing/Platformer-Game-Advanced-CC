@@ -32,7 +32,7 @@ public class SpawnManager : BaseClass {
     public Text timeText;
 
     public Text powerGlobeText;
-    PowerPickup[] powerPickups;
+    SimplePowerGlobeHandler[] powerPickups;
     HealthSpirit[] healthSpirits; //så man kan respawna fiender n stuff
     ScoreManager scoreManager;
     ReplayManager replayManager;
@@ -44,7 +44,7 @@ public class SpawnManager : BaseClass {
     public override void Init()
     {
         base.Init();
-        powerPickups = FindObjectsOfType(typeof(PowerPickup)) as PowerPickup[];
+        powerPickups = FindObjectsOfType(typeof(SimplePowerGlobeHandler)) as SimplePowerGlobeHandler[];
         healthSpirits = FindObjectsOfType(typeof(HealthSpirit)) as HealthSpirit[];
         scoreManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<ScoreManager>();
         replayManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<ReplayManager>();
@@ -247,7 +247,7 @@ public class SpawnManager : BaseClass {
     {
         if(powerPickups == null)
         {
-            powerPickups = FindObjectsOfType(typeof(PowerPickup)) as PowerPickup[];
+            powerPickups = FindObjectsOfType(typeof(SimplePowerGlobeHandler)) as SimplePowerGlobeHandler[];
         }
         return powerPickups.Length; //returnerar hur många globes som finns ute på mappen
     }

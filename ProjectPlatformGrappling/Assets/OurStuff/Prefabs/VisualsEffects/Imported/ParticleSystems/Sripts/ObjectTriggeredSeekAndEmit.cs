@@ -30,6 +30,12 @@ public class ObjectTriggeredSeekAndEmit : BaseClass
     // Use this for initialization
     void Start()
     {
+        Init();
+    }
+
+    public override void Init()
+    {
+        base.Init();
         m_collider = GetComponent<SphereCollider>();
         m_collider.isTrigger = true; // must be trigger
 
@@ -43,15 +49,15 @@ public class ObjectTriggeredSeekAndEmit : BaseClass
             m_playerTransform = GameObject.FindGameObjectWithTag("Manager").GetComponent<SpawnManager>().player;
         }
         m_playerCollider = m_playerTransform.GetComponent<Collider>();
-
     }
-
     public override void Reset()
     {
         base.Reset();
         gameObject.SetActive(true);
         m_firstAttractFrame = true;
+        m_attract = false;
         m_attractTime = 0.0f;
+        m_isAlive = true;
     }
 
     public override void Deactivate()

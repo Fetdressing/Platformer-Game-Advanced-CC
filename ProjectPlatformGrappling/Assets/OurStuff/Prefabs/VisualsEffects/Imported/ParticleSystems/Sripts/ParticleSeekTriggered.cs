@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ParticleSystem))]
-public class ParticleSeekTriggered : MonoBehaviour
+public class ParticleSeekTriggered : BaseClass
 {
     // Public variables
     public Transform m_target;
     public float m_force = 10.0f;
-    public bool m_stopOnTrigger = false;
+    public bool m_stopOnEnter = false;
     public bool m_startOnExit = true;
 
     // System
@@ -21,6 +21,12 @@ public class ParticleSeekTriggered : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Init();
+    }
+
+    public override void Init()
+    {
+        base.Init();
         m_particleSystem = GetComponent<ParticleSystem>();
         if (m_target == null) 
         {
@@ -29,9 +35,16 @@ public class ParticleSeekTriggered : MonoBehaviour
         m_psMainModule = m_particleSystem.main;
     }
 
+    public override void Reset() 
+    {
+        base.Reset();
+        m_isAttracting = false;
+        gameObject.SetActive(true);
+        m_particleSystem.Play();
+    }
     void OnTriggerEnter()
     {
-        if (m_stopOnTrigger)
+        if (m_stopOnEnter)
         {
             m_particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
@@ -43,7 +56,7 @@ public class ParticleSeekTriggered : MonoBehaviour
 
     void OnTriggerExit()
     {
-        if(!m_stopOnTrigger)
+        if(!m_stopOnEnter)
         {
             m_isAttracting = false;
         }

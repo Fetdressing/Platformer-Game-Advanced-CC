@@ -658,36 +658,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 198299471482967072, guid: e68b03f10311cf043866ad1a7c1eeb92,
-        type: 2}
-      propertyPath: randomSeed
-      value: 1378215353
-      objectReference: {fileID: 0}
-    - target: {fileID: 198299471482967072, guid: e68b03f10311cf043866ad1a7c1eeb92,
-        type: 2}
-      propertyPath: TriggerModule.collisionShape0
-      value: 
-      objectReference: {fileID: 1922278939}
     - target: {fileID: 198901570753979900, guid: e68b03f10311cf043866ad1a7c1eeb92,
         type: 2}
       propertyPath: TriggerModule.collisionShape0
       value: 
       objectReference: {fileID: 1922278939}
-    - target: {fileID: 198901570753979900, guid: e68b03f10311cf043866ad1a7c1eeb92,
+    - target: {fileID: 198299471482967072, guid: e68b03f10311cf043866ad1a7c1eeb92,
         type: 2}
-      propertyPath: randomSeed
-      value: 946736423
-      objectReference: {fileID: 0}
-    - target: {fileID: 198876219161962462, guid: e68b03f10311cf043866ad1a7c1eeb92,
-        type: 2}
-      propertyPath: lengthInSec
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 198876219161962462, guid: e68b03f10311cf043866ad1a7c1eeb92,
-        type: 2}
-      propertyPath: randomSeed
-      value: -1180635964
-      objectReference: {fileID: 0}
+      propertyPath: TriggerModule.collisionShape0
+      value: 
+      objectReference: {fileID: 1922278939}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e68b03f10311cf043866ad1a7c1eeb92, type: 2}
   m_IsPrefabParent: 0
