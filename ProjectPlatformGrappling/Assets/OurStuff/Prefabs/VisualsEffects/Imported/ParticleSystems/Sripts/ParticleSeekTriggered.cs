@@ -18,11 +18,6 @@ public class ParticleSeekTriggered : BaseClass
 
     private bool m_isAttracting = false;
     private int m_maxParticles = 50;
-    // Use this for initialization
-    void Start()
-    {
-        Init();
-    }
 
     public override void Init()
     {
@@ -33,10 +28,15 @@ public class ParticleSeekTriggered : BaseClass
             m_target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         }
         m_psMainModule = m_particleSystem.main;
+        initTimes++;
     }
 
     public override void Reset() 
     {
+        if(initTimes == 0)
+        {
+            Init();
+        }
         base.Reset();
         m_isAttracting = false;
         gameObject.SetActive(true);
