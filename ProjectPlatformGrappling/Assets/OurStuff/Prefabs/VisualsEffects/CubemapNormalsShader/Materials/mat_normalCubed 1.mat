@@ -96,7 +96,7 @@ Material:
       second: 0
     - first:
         name: _Emission
-      second: 0.114
+      second: 0.319
     - first:
         name: _GlossMapScale
       second: 1
