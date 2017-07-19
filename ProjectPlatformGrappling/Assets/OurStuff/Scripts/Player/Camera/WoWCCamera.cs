@@ -3,6 +3,7 @@ using System.Collections;
 
 public class WoWCCamera : BaseClass
 {
+    public bool instantMovement = false;
     protected ControlManager controlManager;
     private StagMovement stagMovement;
     public LayerMask collisionLayerMask; //mot vilka lager ska kameran kolla kollision?
@@ -20,8 +21,9 @@ public class WoWCCamera : BaseClass
     public float maxDistance = 20;
     public float minDistance = 2.5f;
 
-    float xSpeed = 600;
-    float ySpeed = 400;
+    public float xSpeed = 600;
+    public float ySpeed = 400;
+    public float momSlowdownRate = 25;
     [System.NonSerialized]
     public float speedMultiplier = 1;
 
@@ -177,6 +179,11 @@ public class WoWCCamera : BaseClass
         xMom += controlManager.horAxisView * xSpeed * 0.2f * speedMultiplier;
         yMom += controlManager.verAxisView * ySpeed * 0.2f * speedMultiplier;
 
+        if(instantMovement)
+        {
+            return;
+        }
+
         //så kameran inte ska flippa vid lagg
         float momMaxValue = 2700 * speedMultiplier;
         if(xMom > 0)
@@ -197,10 +204,10 @@ public class WoWCCamera : BaseClass
             yMom = Mathf.Max(yMom, -momMaxValue);
         }
         //så kameran inte ska flippa vid lagg
+        
 
-        float slowDownMult = 25; //slöa ner momentumen
-        xMom = Mathf.Lerp(xMom, 0, 0.01f * slowDownMult);
-        yMom = Mathf.Lerp(yMom, 0, 0.01f * slowDownMult);
+        xMom = Mathf.Lerp(xMom, 0, 0.01f * momSlowdownRate);
+        yMom = Mathf.Lerp(yMom, 0, 0.01f * momSlowdownRate);
 
         //stackedMom += new Vector2(xMom, yMom);
     }
@@ -244,6 +251,11 @@ public class WoWCCamera : BaseClass
         x += xMom * 0.01f;
         y -= yMom * 0.01f;
 
+        if(instantMovement)
+        {
+            xMom = 0;
+            yMom = 0;
+        }
         //stackedMom = Vector2.zero;
 
 

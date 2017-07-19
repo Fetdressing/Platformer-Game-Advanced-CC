@@ -2158,7 +2158,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011624216690}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 668, y: 80, z: 837}
+  m_LocalPosition: {x: 813, y: 125.1, z: 774}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000011528313108}
@@ -2450,7 +2450,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011122356326}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 258.6, y: -75.85, z: 797.4}
+  m_LocalPosition: {x: 245, y: 41, z: 711}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000011412557584}
@@ -5260,6 +5260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c673890f95dec0e469a9de4a372d98e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instantMovement: 0
   collisionLayerMask:
     serializedVersion: 2
     m_Bits: 536870913
@@ -5269,6 +5270,9 @@ MonoBehaviour:
   extraDistance: 0
   maxDistance: 38
   minDistance: 5
+  xSpeed: 600
+  ySpeed: 400
+  momSlowdownRate: 45
   yMinLimit: -80
   yMaxLimit: 85
   zoomRate: 30
@@ -5313,7 +5317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c53dc872e23014fb5b578d49a8dc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  godMode: 0
+  godMode: 1
   hornRenderer: {fileID: 137000013060747340}
   stagRenderer: {fileID: 137000010550600080}
   lifeLights:

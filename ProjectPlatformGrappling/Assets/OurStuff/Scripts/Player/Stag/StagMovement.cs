@@ -34,7 +34,7 @@ public class StagMovement : BaseClass
     protected float stagRootJointStartY; //krävs att animationen börjar i bottnen isåfall
     public Transform stagObject; //denna roteras så det står korrekt
 
-    protected float startSpeed = 190;
+    protected float startSpeed = 250; //acceleration
     protected float jumpSpeed = 110;
     protected float gravity = 180;
     float addedGravity = 0.0f; //läggs till gravity om man har mer momentum
@@ -115,7 +115,7 @@ public class StagMovement : BaseClass
     protected Vector3 externalVel = new Vector3(0, 0, 0);
     [System.NonSerialized] public Vector3 currMomentum = Vector3.zero; //så man behåller fart även efter man släppt på styrning
     protected Vector3 nextMove = Vector3.zero; //denna sätts i fixedupdate, sen körs move i update av detta värdet. Så man får frame independency
-    protected float startLimitSpeed = 70;
+    protected float startLimitSpeed = 60;
     [System.NonSerialized]public float currLimitSpeed; //max momentumen, hämtas från script som WallJumpObj
     protected Vector3 updateTrans;
 
@@ -339,9 +339,9 @@ public class StagMovement : BaseClass
             if (GetGrounded(groundCheckObject))
             {
                 //Break((4.5f - currMovementStacks.value * 0.08f), ref currMomXZ);
-                Break((3.0f + currMovementStacks.value * 0.03f), ref currMomXZ);
+                Break((2.5f + currMovementStacks.value * 0.03f), ref currMomXZ);
             }
-            Break((0.35f), ref currMomXZ); //flat break, //börja breaka hela tiden, även i luften med
+            Break((0.15f), ref currMomXZ); //flat break, //börja breaka hela tiden, även i luften med
         }
 
         //////Break Y
@@ -896,7 +896,7 @@ public class StagMovement : BaseClass
         //poängen i början ska dock vara värda mer!!
         int stackValueMod = Mathf.Max(8, currMovementStacks.value);
         float flatMoveStacksSpeedBonues = Mathf.Max(1, Mathf.Log(stackValueMod, 1.01f));
-        flatMoveStacksSpeedBonues *= 0.0024f; //hjälper accelerationen
+        flatMoveStacksSpeedBonues *= 0.0018f; //hjälper accelerationen
         //Debug.Log(flatMoveStacksSpeedBonues.ToString());
 
         float bonusStageSpeed = 1.0f; //ökar för vart X stacks
@@ -1711,7 +1711,7 @@ public class StagMovement : BaseClass
         //lite minimum värden, så man kan stacka högt
         //Debug.Log((timeReduceValue).ToString());
         float minimumTime = 0.4f;
-        int softLimitStacks = 48;
+        int softLimitStacks = 25;
 
         if(realMovementStacks.value > softLimitStacks)
         {
